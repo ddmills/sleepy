@@ -1,0 +1,26 @@
+{
+    "name": "knossonia",
+    "version": "0.0.1",
+    "description": "",
+    "scripts": {
+        "start": "watch \"npm run build\" ./src --interval=.1 --wait=1",
+        "build": "rollup -c --format iife",
+        "pretty": "prettier --write ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ddmills/knossonia.git"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.12.1",
+        "@babel/core": "^7.12.3",
+        "@babel/plugin-proposal-class-properties": "^7.12.1",
+        "@rollup/plugin-json": "^4.1.0",
+        "@rollup/plugin-node-resolve": "^10.0.0",
+        "prettier": "^2.1.2",
+        "rollup": "^2.33.1",
+        "rollup-plugin-babel": "^4.4.0",
+        "rollup-plugin-commonjs": "^10.1.0",
+        "watch": "^1.0.2"
+    }
+}

@@ -39,7 +39,7 @@ while (currentTick < tickBound) {
     for (actor in actors) {
         actor.energy = Min(actor.energy + 1, 1000)
 
-        action = getDesiredAction(actor)
+        action = getDesiredAction(actor) // if player, wait for input(?)
 
         if (action.cost <= actor.energy) {
             actor.energy -= action.cost
@@ -49,6 +49,41 @@ while (currentTick < tickBound) {
                 tickBound += action.cost
             }
         }
+    }
+}
+```
+
+main loop:
+```
+while (true) {
+    for (actor in actors) {
+        actor.energy++;
+
+        if (actor.energy >= 0) {
+            action = getDesiredAction(actor) // if player, wait for input(?)
+
+            actor.energy -= action.cost
+            action.perform()
+        }
+    }
+}
+```
+
+```
+tick = 0;
+queue = PriorityQueue(actors)
+
+while (true) {
+    actor = queue.pop();
+
+    action = getDesiredAction(actor) // if player, wait for input(?)
+
+    action.perform()
+
+    tick += action.cost
+
+    for (actor in actors) { // still looping over actors
+        actor.energy += action.cost
     }
 }
 ```

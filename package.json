@@ -24,6 +24,7 @@
         "watch": "^1.0.2"
     },
     "dependencies": {
-        "geotic": "^3.3.0"
+        "geotic": "^3.3.0",
+        "rot-js": "^2.1.5"
     }
 }

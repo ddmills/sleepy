@@ -5,6 +5,15 @@
             "type": "Moniker"
         },
         {
+            "type": "Glyph",
+            "properties": {
+                "char": "@"
+            }
+        },
+        {
+            "type": "Position"
+        },
+        {
             "type": "Brain"
         },
         {

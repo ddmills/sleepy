@@ -1,21 +1,18 @@
 import { Engine } from 'geotic';
-import { Moniker } from './components/Moniker';
-import { Goal } from './components/Goal';
-import { Brain } from './components/Brain';
-import { Hunger } from './components/Hunger';
-import BeingPrefab from './prefabs/BeingPrefab.json';
-import GoalPrefab from './prefabs/GoalPrefab.json';
+
+import * as components from './components';
+import * as prefabs from './prefabs';
 
 const ecs = new Engine();
 
 window.ecs = ecs;
 
-ecs.registerComponent(Moniker);
-ecs.registerComponent(Goal);
-ecs.registerComponent(Brain);
-ecs.registerComponent(Hunger);
+Object.values(components).forEach((component) => {
+    ecs.registerComponent(component);
+});
 
-ecs.registerPrefab(GoalPrefab);
-ecs.registerPrefab(BeingPrefab);
+Object.values(prefabs).forEach((prefab) => {
+    ecs.registerPrefab(prefab);
+});
 
 export default ecs;

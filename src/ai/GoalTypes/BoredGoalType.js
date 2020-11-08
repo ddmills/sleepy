@@ -1,11 +1,12 @@
 import { GoalType } from './GoalType';
+import { SUCCESS } from '../GoalActionResult';
 
 export class BoredGoalType extends GoalType {
     static name = 'Bored';
 
     static isFinished = (entity, goal) => {
         return false;
-    }
+    };
 
     static takeAction = (entity, goal) => {
         const evt = entity.fireEvent('boredom');
@@ -14,12 +15,11 @@ export class BoredGoalType extends GoalType {
             entity.brain.pushGoal(evt.data.goal);
             entity.fireEvent('take-action');
 
-            return true;
+            return SUCCESS;
         }
 
         entity.fireEvent('log', 'idling');
 
-        return true;
-    }
+        return SUCCESS;
+    };
 }
-

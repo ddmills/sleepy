@@ -19,8 +19,19 @@ export class Eater extends Component {
     }
 
     onEatFood(evt) {
-        this.entity.fireEvent('log', `devours some food. hunger=${this.hunger}+${evt.data.food}`);
-        this.hunger += evt.data.food;
-        evt.handle();
+        if (Math.random() < 0.75) {
+            this.entity.fireEvent(
+                'log',
+                `devours some food. hunger=${this.hunger}+${evt.data.food}`
+            );
+            this.hunger += evt.data.food;
+
+            evt.handle();
+        } else {
+            this.entity.fireEvent(
+                'log',
+                `fails to eat the food. hunger=${this.hunger}`
+            );
+        }
     }
 }

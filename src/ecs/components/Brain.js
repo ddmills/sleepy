@@ -1,4 +1,5 @@
 import { Component } from 'geotic';
+import { SUCCESS, INVALID, FAILURE } from '../../ai/GoalActionResult';
 
 export class Brain extends Component {
     static properties = {
@@ -7,24 +8,62 @@ export class Brain extends Component {
     };
 
     onTakeAction(evt) {
-        // if goals are empty...
+        if (this.energy < 0) {
+            return;
+        }
 
-        // pop any finished goals
         while (this.peekGoal() && this.peekGoal().isFinished()) {
             const goal = this.popGoal();
-            console.log(`goal is finished. destroying - ${goal.name}`);
+            this.entity.fireEvent('log', `finished ${goal.name}`);
 
             goal.destroy();
         }
 
-        // invoke 'TakeAction' on latest goal
-        if (this.peekGoal().takeAction()) {
-            this.energy -= this.peekGoal().cost;
+        const currentGoal = this.peekGoal();
+        const result = currentGoal.takeAction();
+
+        if (result == SUCCESS) {
+            this.entity.fireEvent(
+                'log',
+                `successfully took at step toward ${currentGoal.name}`
+            );
+            this.energy -= currentGoal.cost;
+        } else if (result == FAILURE) {
+            this.entity.fireEvent(
+                'log',
+                `failed at taking a step toward ${currentGoal.name}`
+            );
+            this.energy -= currentGoal.cost;
+            this.removeGoal(currentGoal);
+        } else if (result == INVALID) {
+            this.entity.fireEvent(
+                'log',
+                `invalid action of ${currentGoal.name}`
+            );
+            this.removeGoal(currentGoal);
+            this.entity.fireEvent('take-action');
         }
 
-        // if action FAILS, then need to replan based on original intent?
+        evt.handle();
+    }
 
-        // return energy count (?)
+    removeGoal(goal) {
+        this.goals = this.goals.filter((g) => {
+            const isSelf = Boolean(g.id === goal.id);
+            const isSiblingGoal = Boolean(
+                g.goal.originalIntent &&
+                    g.goal.originalIntent.id === goal.originalIntent.id
+            );
+
+            if (isSelf || isSiblingGoal) {
+                console.log('removing goal', g.goal.name);
+                g.destroy();
+
+                return false;
+            }
+
+            return true;
+        });
     }
 
     pushGoal(goal) {

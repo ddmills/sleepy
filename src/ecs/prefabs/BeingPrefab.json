@@ -1,0 +1,14 @@
+{
+    "name": "Being",
+    "components": [
+        {
+            "type": "Moniker"
+        },
+        {
+            "type": "Brain"
+        },
+        {
+            "type": "Hunger"
+        }
+    ]
+}

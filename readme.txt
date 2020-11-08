@@ -87,3 +87,57 @@ while (true) {
     }
 }
 ```
+
+entity
+    - energy (value)
+    - goals
+        - goal (type, cost)
+        - goal (type, cost)
+        - goal (type, cost)
+
+entity
+    - brain
+        - energy (value)
+        - goals <EntityArray>
+            - goal (type, cost)
+            - goal (type, cost)
+            - goal (type, cost)
+
+GoalType
+    - static isFinished : bool
+    - static takeAction() : void
+    - static originalGoal() : Entity / Goal
+
+
+- kill player
+    - approach player
+        - move east
+        - move east
+        - move east
+
+AI steps:
+
+```
+goals = stack()
+
+
+onTurn() {
+    while (goals.peek().isFinished) {
+        goals.pop()
+    }
+
+    if (goals.isEmpty()) {
+        // PLAN (?)
+    }
+
+    const goal = goals.peek();
+
+    success = goal.takeAction();
+
+    if (!success) {
+        // remove all goals from stack which have originalIntent = goal.originalIntent
+        // REPLAN goal.originalIntent
+    }
+}
+
+```

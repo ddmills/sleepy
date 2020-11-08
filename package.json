@@ -22,5 +22,8 @@
         "rollup-plugin-babel": "^4.4.0",
         "rollup-plugin-commonjs": "^10.1.0",
         "watch": "^1.0.2"
+    },
+    "dependencies": {
+        "geotic": "^3.3.0"
     }
 }

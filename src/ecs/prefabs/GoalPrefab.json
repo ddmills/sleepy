@@ -1,0 +1,8 @@
+{
+    "name": "Goal",
+    "components": [
+        {
+            "type": "Goal"
+        }
+    ]
+}

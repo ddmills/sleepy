@@ -8,7 +8,10 @@
             "type": "Brain"
         },
         {
-            "type": "Hunger"
+            "type": "Eater"
+        },
+        {
+            "type": "Logger"
         }
     ]
 }

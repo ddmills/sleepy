@@ -8,8 +8,10 @@ const query = ecs.createQuery({
 export const update = (tick) => {
     query.get().forEach((entity) => {
         entity.brain.energy++;
-        console.log(`${entity.moniker.name} energy=${entity.brain.energy}`);
+
         if (entity.brain.energy >= 0) {
+            entity.fireEvent('log', 'ready for action!');
+
             entity.brain.energy = 0;
             entity.fireEvent('take-action');
         }

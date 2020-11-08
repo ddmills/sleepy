@@ -1,12 +1,12 @@
 import ecs from '../ecs';
-import { Hunger } from '../ecs/components';
+import { Eater } from '../ecs/components';
 
-const hungers = ecs.createQuery({
-    all: [Hunger],
+const eaters = ecs.createQuery({
+    all: [Eater],
 });
 
 export const update = (tick) => {
-    hungers.get().forEach((entity) => {
-        entity.hunger.value--;
+    eaters.get().forEach((entity) => {
+        entity.eater.hunger--;
     });
 };

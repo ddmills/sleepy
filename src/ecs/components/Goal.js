@@ -3,7 +3,7 @@ import * as GoalEvaluator from '../../ai/GoalEvaluator';
 
 export class Goal extends Component {
     static properties = {
-        name: 'bored',
+        name: 'Bored',
         originalIntent: '<Entity>',
         parent: '<Entity>',
         target: '<Entity>',
@@ -17,9 +17,5 @@ export class Goal extends Component {
 
     takeAction() {
         return GoalEvaluator.takeAction(this.parent, this);
-    }
-
-    plan() {
-        return GoalEvaluator.plan(this.parent, this);
     }
 }

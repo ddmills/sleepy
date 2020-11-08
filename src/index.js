@@ -1,6 +1,7 @@
 import ecs from './ecs';
 import * as HungerSystem from './systems/HungerSystem';
 import * as BrainSystem from './systems/BrainSystem';
+import { BoredGoalType } from './ai/GoalTypes';
 
 const jim = ecs.createPrefab('Being', {
     moniker: {
@@ -8,7 +9,7 @@ const jim = ecs.createPrefab('Being', {
     },
 });
 
-jim.brain.pushGoal(ecs.createPrefab('Goal'));
+jim.brain.pushGoal(BoredGoalType.create());
 
 let t = 0;
 const tick = () => {

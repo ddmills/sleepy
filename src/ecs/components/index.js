@@ -7,3 +7,5 @@ export { Position } from './Position';
 export { Map } from './Map';
 export { MapLayer } from './MapLayer';
 export { Glyph } from './Glyph';
+export { Legs } from './Legs';
+export { MoveCommand } from './MoveCommand';

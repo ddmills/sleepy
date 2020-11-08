@@ -13,11 +13,11 @@ export class Map extends Component {
     }
 
     idx(x, y) {
-        return (y * this.width) + x;
+        return y * this.width + x;
     }
 
     coord(idx) {
-        return (idx % this.width, idx / this.width);
+        return idx % this.width, idx / this.width;
     }
 
     getLayer(name) {

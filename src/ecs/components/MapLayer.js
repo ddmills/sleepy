@@ -15,7 +15,5 @@ export class MapLayer extends Component {
         return content[idx];
     }
 
-    get(x, y) {
-
-    }
+    get(x, y) {}
 }

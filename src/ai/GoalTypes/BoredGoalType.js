@@ -18,8 +18,6 @@ export class BoredGoalType extends GoalType {
             return SUCCESS;
         }
 
-        entity.fireEvent('log', 'idling');
-
         return SUCCESS;
     };
 }

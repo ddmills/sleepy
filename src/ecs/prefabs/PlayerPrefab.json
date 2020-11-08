@@ -1,17 +1,16 @@
 {
-    "name": "Being",
+    "name": "Player",
+    "inherit": ["Human"],
     "components": [
         {
             "type": "Glyph",
             "properties": {
-                "char": "?"
+                "char": "@",
+                "fg": "white"
             }
         },
         {
-            "type": "Position"
-        },
-        {
-            "type": "Brain"
+            "type": "Logger"
         }
     ]
 }

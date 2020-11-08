@@ -1,0 +1,22 @@
+{
+    "name": "Human",
+    "inherit": ["Being"],
+    "components": [
+        {
+            "type": "Moniker"
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "char": "h",
+                "fg": "pink"
+            }
+        },
+        {
+            "type": "Legs"
+        },
+        {
+            "type": "Eater"
+        }
+    ]
+}

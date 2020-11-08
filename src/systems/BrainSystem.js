@@ -10,8 +10,6 @@ export const update = (tick) => {
         entity.brain.energy++;
 
         if (entity.brain.energy >= 0) {
-            entity.fireEvent('log', 'ready for action!');
-
             entity.brain.energy = 0;
             entity.fireEvent('take-action');
         }

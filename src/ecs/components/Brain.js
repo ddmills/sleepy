@@ -23,23 +23,11 @@ export class Brain extends Component {
         const result = currentGoal.takeAction();
 
         if (result == SUCCESS) {
-            this.entity.fireEvent(
-                'log',
-                `successfully took at step toward ${currentGoal.name}`
-            );
             this.energy -= currentGoal.cost;
         } else if (result == FAILURE) {
-            this.entity.fireEvent(
-                'log',
-                `failed at taking a step toward ${currentGoal.name}`
-            );
             this.energy -= currentGoal.cost;
             this.removeGoal(currentGoal);
         } else if (result == INVALID) {
-            this.entity.fireEvent(
-                'log',
-                `invalid action of ${currentGoal.name}`
-            );
             this.removeGoal(currentGoal);
             this.entity.fireEvent('take-action');
         }

@@ -2,7 +2,7 @@ import { Component } from 'geotic';
 
 export class Glyph extends Component {
     static properties = {
-        fg: '#000',
+        fg: '#fff',
         bg: '',
         char: '',
     };

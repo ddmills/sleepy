@@ -7,13 +7,15 @@ const renderables = ecs.createQuery({
 });
 
 export const update = (tick) => {
+    display.clear();
+
     renderables.get().forEach((renderable) => {
         display.draw(
             renderable.position.x,
             renderable.position.y,
             renderable.glyph.char,
             renderable.glyph.fg,
-            renderable.glyph.bg,
+            renderable.glyph.bg
         );
     });
 };

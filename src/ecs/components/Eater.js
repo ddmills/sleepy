@@ -12,7 +12,6 @@ export class Eater extends Component {
 
     onBoredom(evt) {
         if (this.isHungry) {
-            this.entity.fireEvent('log', `is hungry! hunger=${this.hunger}`);
             evt.data.goal = SatisfyHungerGoalType.create();
             evt.handle();
         }
@@ -20,18 +19,12 @@ export class Eater extends Component {
 
     onEatFood(evt) {
         if (Math.random() < 0.75) {
-            this.entity.fireEvent(
-                'log',
-                `devours some food. hunger=${this.hunger}+${evt.data.food}`
-            );
+            this.entity.fireEvent('log', 'eats some food');
             this.hunger += evt.data.food;
 
             evt.handle();
         } else {
-            this.entity.fireEvent(
-                'log',
-                `fails to eat the food. hunger=${this.hunger}`
-            );
+            this.entity.fireEvent('log', 'fails to eat the food');
         }
     }
 }

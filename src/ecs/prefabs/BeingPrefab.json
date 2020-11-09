@@ -2,16 +2,16 @@
     "name": "Being",
     "components": [
         {
-            "type": "Glyph",
-            "properties": {
-                "char": "?"
-            }
+            "type": "Actor"
         },
         {
             "type": "Position"
         },
         {
-            "type": "Actor"
+            "type": "Glyph",
+            "properties": {
+                "char": "?"
+            }
         }
     ]
 }

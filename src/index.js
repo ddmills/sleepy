@@ -7,7 +7,7 @@ import * as MovementSystem from './systems/MovementSystem';
 import { BoredGoalType } from './ai/GoalTypes';
 import { N, W, Z, E, S, NW, SW, SE, NE } from './enums/Directions';
 import display from './core/display';
-import { Brain } from './ecs/components';
+import { Brain, MoveCommand } from './ecs/components';
 
 const jim = ecs.createPrefab('Player', {
     moniker: {
@@ -36,59 +36,67 @@ let t = 0;
 const tick = () => {
     HungerSystem.update(t);
     ActionSystem.update(t);
-    MovementSystem.update(t);
-    RenderSystem.update(t);
     t++;
-
-    display.drawText(1, 1, `%c{yellow}Knossonia`);
-    display.drawText(display.width - 1 - `${t}`.length, 1, `%c{pink}${t}`);
 };
 
-tick();
+const move = (entity, direction) => {
+    if (entity.has(MoveCommand)) {
+        entity.remove(MoveCommand);
+    }
 
-const move = (direction) => {
-    jim.fireEvent('move-command', {
+    entity.add(MoveCommand, {
         direction,
     });
-    tick();
 };
 
 document.addEventListener('keydown', (e) => {
     if (keycodes[e.keyCode] === 'space') {
-        tick();
+        jim.fireEvent('energy-consumed', 1000);
     }
     if (keycodes[e.keyCode] === 'q') {
-        move(NW);
+        move(jim, NW);
     }
     if (keycodes[e.keyCode] === 'w') {
-        move(N);
+        move(jim, N);
     }
     if (keycodes[e.keyCode] === 'e') {
-        move(NE);
+        move(jim, NE);
     }
     if (keycodes[e.keyCode] === 'a') {
-        move(W);
+        move(jim, W);
     }
     if (keycodes[e.keyCode] === 's') {
-        move(Z);
+        move(jim, Z);
     }
     if (keycodes[e.keyCode] === 'd') {
-        move(E);
+        move(jim, E);
     }
     if (keycodes[e.keyCode] === 'z') {
-        move(SW);
+        move(jim, SW);
     }
     if (keycodes[e.keyCode] === 'x') {
-        move(S);
+        move(jim, S);
     }
     if (keycodes[e.keyCode] === 'c') {
-        move(SE);
+        move(jim, SE);
     }
 });
 
-// setInterval(() => {
-//     tick();
-// }, 1000);
+const update = (dt) => {
+    if (!jim.actor.hasEnergy) {
+        tick();
+    }
 
-// const data = ecs.serialize();
-// console.log(JSON.stringify(data, null, 2));
+    MovementSystem.update(t);
+    RenderSystem.update(t);
+
+    display.drawText(1, 1, `%c{yellow}Knossonia`);
+    display.drawText(display.width - 1 - `${t}`.length, 1, `%c{pink}${t}`);
+
+    display.drawText(1, display.height - 3, `energy (jim) ${jim.actor.energy}`);
+    display.drawText(1, display.height - 2, `energy (bob) ${bob.actor.energy}`);
+
+    requestAnimationFrame(update);
+};
+
+requestAnimationFrame(update);

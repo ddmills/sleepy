@@ -3,6 +3,7 @@ import { SUCCESS } from '../GoalActionResult';
 
 export class BoredGoalType extends GoalType {
     static name = 'Bored';
+    static cost = 0;
 
     static isFinished = (entity, goal) => {
         return false;

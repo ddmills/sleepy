@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>knossonia</title>
+        <title><%= htmlWebpackPlugin.options.title %></title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -23,9 +23,18 @@
             canvas {
                 image-rendering: crisp-edges;
             }
+            .build {
+                color: yellow;
+                font-size: 12px;
+                font-family: Menlo;
+                text-align: left;
+                position: absolute;
+                left: 16px;
+                bottom: 16px;
+            }
         </style>
     </head>
     <body>
-        <script src="./build/index.js"></script>
+        <div class="build">build <%= htmlWebpackPlugin.options.version %></div>
     </body>
 </html>

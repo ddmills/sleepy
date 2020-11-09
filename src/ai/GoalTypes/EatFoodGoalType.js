@@ -3,6 +3,7 @@ import { SUCCESS, FAILURE } from '../GoalActionResult';
 
 export class EatFoodGoalType extends GoalType {
     static name = 'EatFood';
+    static cost = 100;
 
     static isFinished = (entity, goal) => {
         return goal.complete;

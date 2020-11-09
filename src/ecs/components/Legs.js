@@ -1,19 +1,20 @@
 import { Component } from 'geotic';
-import * as directions from '../../enums/Directions';
-import { MoveCommand } from './MoveCommand';
+import { Position } from './Position';
+import { Actor } from './Actor';
 
 export class Legs extends Component {
-    onMoveCommand(evt) {
-        const direction = evt.data.direction;
-        const name = directions.fullName(direction);
-
-        if (this.entity.has(MoveCommand)) {
-            this.entity.remove(MoveCommand);
+    onTryMove(evt) {
+        if (!this.entity.has(Position)) {
+            return;
         }
 
-        this.entity.add(MoveCommand, {
-            direction,
-        });
+        if (this.entity.has(Actor) && !this.entity.actor.hasEnergy) {
+            return;
+        }
+
+        this.entity.position.x += evt.data.x;
+        this.entity.position.y += evt.data.y;
+        this.entity.fireEvent('energy-consumed', 750);
 
         evt.handle();
     }

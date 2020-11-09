@@ -2,11 +2,12 @@ import ecs from './ecs';
 import keycodes from './enums/keycodes';
 import * as RenderSystem from './systems/RenderSystem';
 import * as HungerSystem from './systems/HungerSystem';
-import * as BrainSystem from './systems/BrainSystem';
+import * as ActionSystem from './systems/ActionSystem';
 import * as MovementSystem from './systems/MovementSystem';
 import { BoredGoalType } from './ai/GoalTypes';
 import { N, W, Z, E, S, NW, SW, SE, NE } from './enums/Directions';
 import display from './core/display';
+import { Brain } from './ecs/components';
 
 const jim = ecs.createPrefab('Player', {
     moniker: {
@@ -18,12 +19,23 @@ const jim = ecs.createPrefab('Player', {
     },
 });
 
-jim.brain.pushGoal(BoredGoalType.create());
+const bob = ecs.createPrefab('Human', {
+    moniker: {
+        name: 'Bobby',
+    },
+    position: {
+        x: 23,
+        y: 20,
+    },
+});
+
+bob.add(Brain);
+bob.brain.pushGoal(BoredGoalType.create());
 
 let t = 0;
 const tick = () => {
     HungerSystem.update(t);
-    BrainSystem.update(t);
+    ActionSystem.update(t);
     MovementSystem.update(t);
     RenderSystem.update(t);
     t++;

@@ -3,15 +3,10 @@ import { SUCCESS, INVALID, FAILURE } from '../../ai/GoalActionResult';
 
 export class Brain extends Component {
     static properties = {
-        energy: 0,
         goals: '<EntityArray>',
     };
 
     onTakeAction(evt) {
-        if (this.energy < 0) {
-            return;
-        }
-
         while (this.peekGoal() && this.peekGoal().isFinished()) {
             const goal = this.popGoal();
             this.entity.fireEvent('log', `finished ${goal.name}`);
@@ -23,9 +18,9 @@ export class Brain extends Component {
         const result = currentGoal.takeAction();
 
         if (result == SUCCESS) {
-            this.energy -= currentGoal.cost;
+            this.entity.fireEvent('energy-consumed', currentGoal.cost);
         } else if (result == FAILURE) {
-            this.energy -= currentGoal.cost;
+            this.entity.fireEvent('energy-consumed', currentGoal.cost);
             this.removeGoal(currentGoal);
         } else if (result == INVALID) {
             this.removeGoal(currentGoal);
@@ -44,7 +39,6 @@ export class Brain extends Component {
             );
 
             if (isSelf || isSiblingGoal) {
-                console.log('removing goal', g.goal.name);
                 g.destroy();
 
                 return false;

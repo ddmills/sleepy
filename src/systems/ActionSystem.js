@@ -1,16 +1,15 @@
 import ecs from '../ecs';
-import { Brain } from '../ecs/components';
+import { Actor } from '../ecs/components';
 
 const query = ecs.createQuery({
-    all: [Brain],
+    all: [Actor],
 });
 
 export const update = (tick) => {
     query.get().forEach((entity) => {
-        entity.brain.energy++;
+        entity.fireEvent('tick');
 
-        if (entity.brain.energy >= 0) {
-            entity.brain.energy = 0;
+        if (entity.actor.hasEnergy) {
             entity.fireEvent('take-action');
         }
     });

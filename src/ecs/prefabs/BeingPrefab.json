@@ -11,7 +11,7 @@
             "type": "Position"
         },
         {
-            "type": "Brain"
+            "type": "Actor"
         }
     ]
 }

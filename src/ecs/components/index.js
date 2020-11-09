@@ -1,3 +1,4 @@
+export { Actor } from './Actor';
 export { Brain } from './Brain';
 export { Goal } from './Goal';
 export { Eater } from './Eater';

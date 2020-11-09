@@ -10,3 +10,4 @@ export { MapLayer } from './MapLayer';
 export { Glyph } from './Glyph';
 export { Legs } from './Legs';
 export { MoveCommand } from './MoveCommand';
+export { IsPlayer } from './IsPlayer';

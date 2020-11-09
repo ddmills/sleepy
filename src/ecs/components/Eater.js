@@ -3,11 +3,11 @@ import { SatisfyHungerGoalType } from '../../ai/GoalTypes';
 
 export class Eater extends Component {
     static properties = {
-        hunger: 7,
+        hunger: 6000,
     };
 
     get isHungry() {
-        return this.hunger <= 3;
+        return this.hunger <= 3000;
     }
 
     onBoredom(evt) {

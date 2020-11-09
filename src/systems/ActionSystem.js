@@ -5,12 +5,31 @@ const query = ecs.createQuery({
     all: [Actor],
 });
 
-export const update = (tick) => {
-    query.get().forEach((entity) => {
-        entity.fireEvent('tick');
+export let tick = 0;
+export let deltaTick = 0;
 
-        if (entity.actor.hasEnergy) {
+export const update = (dt) => {
+    const entities = query.get();
+    const sorted = Array.from(entities);
+    sorted.sort((a, b) => a.actor.energy < b.actor.energy ? 1 : -1);
+
+    const entity = sorted[0];
+    deltaTick = 0;
+
+    if (!entity.actor.hasEnergy) {
+        deltaTick = entity.actor.energy * -1;
+        tick -= entity.actor.energy;
+
+        entities.forEach((entity) => {
+            entity.actor.addEnergy(deltaTick);
+        });
+    }
+
+    if (entity.actor.hasEnergy) {
+        console.log('CURRENT TURN', entity.moniker.name);
+
+        if (!entity.isPlayer) {
             entity.fireEvent('take-action');
         }
-    });
+    }
 };

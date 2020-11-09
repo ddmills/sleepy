@@ -32,13 +32,6 @@ const bob = ecs.createPrefab('Human', {
 bob.add(Brain);
 bob.brain.pushGoal(BoredGoalType.create());
 
-let t = 0;
-const tick = () => {
-    HungerSystem.update(t);
-    ActionSystem.update(t);
-    t++;
-};
-
 const move = (entity, direction) => {
     if (entity.has(MoveCommand)) {
         entity.remove(MoveCommand);
@@ -83,18 +76,16 @@ document.addEventListener('keydown', (e) => {
 });
 
 const update = (dt) => {
-    if (!jim.actor.hasEnergy) {
-        tick();
-    }
-
-    MovementSystem.update(t);
-    RenderSystem.update(t);
+    HungerSystem.update(dt);
+    ActionSystem.update(dt);
+    MovementSystem.update(dt);
+    RenderSystem.update(dt);
 
     display.drawText(1, 1, `%c{yellow}Knossonia`);
-    display.drawText(display.width - 1 - `${t}`.length, 1, `%c{pink}${t}`);
 
-    display.drawText(1, display.height - 3, `energy (jim) ${jim.actor.energy}`);
-    display.drawText(1, display.height - 2, `energy (bob) ${bob.actor.energy}`);
+    display.drawText(1, display.height - 3, `energy (jim) %c{yellow}${jim.actor.energy}`);
+    display.drawText(1, display.height - 2, `energy (bob) %c{yellow}${bob.actor.energy}`);
+    display.drawText(display.width - 1 - `${ActionSystem.tick}`.length, 1, `%c{pink}${ActionSystem.tick}`);
 
     requestAnimationFrame(update);
 };

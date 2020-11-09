@@ -12,7 +12,6 @@ export class SatisfyHungerGoalType extends GoalType {
     static takeAction = (entity, goal) => {
         entity.brain.pushGoal(EatFoodGoalType.createAsSubGoal(goal));
         entity.brain.pushGoal(EatFoodGoalType.createAsSubGoal(goal));
-        entity.brain.pushGoal(EatFoodGoalType.createAsSubGoal(goal));
 
         entity.fireEvent('take-action');
 

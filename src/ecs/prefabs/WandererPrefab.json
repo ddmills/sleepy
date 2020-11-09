@@ -1,0 +1,20 @@
+{
+    "name": "Wanderer",
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Wanderer"
+            }
+        },
+        {
+            "type": "Wandering"
+        },
+        {
+            "type": "Brain"
+        },
+        {
+            "type": "Logger"
+        }
+    ]
+}

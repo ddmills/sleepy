@@ -3,7 +3,6 @@ import { SUCCESS } from '../GoalActionResult';
 
 export class BoredGoalType extends GoalType {
     static name = 'Bored';
-    static cost = 1000;
 
     static isFinished = (entity, goal) => {
         return false;
@@ -18,6 +17,8 @@ export class BoredGoalType extends GoalType {
 
             return SUCCESS;
         }
+
+        entity.fireEvent('consume-energy', 1000);
 
         return SUCCESS;
     };

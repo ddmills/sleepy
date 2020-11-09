@@ -1,0 +1,4 @@
+{
+    "name": "HumanWanderer",
+    "inherit": ["Human", "Wanderer"]
+}

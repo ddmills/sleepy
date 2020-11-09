@@ -8,19 +8,13 @@ export class Brain extends Component {
 
     onTakeAction(evt) {
         while (this.peekGoal() && this.peekGoal().isFinished()) {
-            const goal = this.popGoal();
-            this.entity.fireEvent('log', `finished ${goal.name}`);
-
-            goal.destroy();
+            this.popGoal().destroy();
         }
 
         const currentGoal = this.peekGoal();
         const result = currentGoal.takeAction();
 
-        if (result == SUCCESS) {
-            this.entity.fireEvent('energy-consumed', currentGoal.cost);
-        } else if (result == FAILURE) {
-            this.entity.fireEvent('energy-consumed', currentGoal.cost);
+        if (result == FAILURE) {
             this.removeGoal(currentGoal);
         } else if (result == INVALID) {
             this.removeGoal(currentGoal);

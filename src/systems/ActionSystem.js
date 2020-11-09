@@ -8,10 +8,18 @@ const query = ecs.createQuery({
 export let tick = 0;
 export let deltaTick = 0;
 
+export const turn = () => {
+    return Math.floor(tick / 1000);
+};
+
+export const subTurn = () => {
+    return tick - turn() * 1000;
+};
+
 export const update = (dt) => {
     const entities = query.get();
     const sorted = Array.from(entities);
-    sorted.sort((a, b) => a.actor.energy < b.actor.energy ? 1 : -1);
+    sorted.sort((a, b) => (a.actor.energy < b.actor.energy ? 1 : -1));
 
     const entity = sorted[0];
     deltaTick = 0;
@@ -25,11 +33,7 @@ export const update = (dt) => {
         });
     }
 
-    if (entity.actor.hasEnergy) {
-        console.log('CURRENT TURN', entity.moniker.name);
-
-        if (!entity.isPlayer) {
-            entity.fireEvent('take-action');
-        }
+    if (entity.actor.hasEnergy && !entity.isPlayer) {
+        entity.fireEvent('take-action');
     }
 };

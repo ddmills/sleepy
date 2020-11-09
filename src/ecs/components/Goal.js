@@ -7,8 +7,8 @@ export class Goal extends Component {
         originalIntent: '<Entity>',
         parent: '<Entity>',
         target: '<Entity>',
-        cost: 0,
         complete: false,
+        data: {},
     };
 
     isFinished() {

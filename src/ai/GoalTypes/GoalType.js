@@ -3,7 +3,6 @@ import { FAILURE } from '../GoalActionResult';
 
 export class GoalType {
     static name = 'Unknown';
-    static cost = 0;
 
     static isFinished(entity, goal) {
         return false;
@@ -24,7 +23,6 @@ export class GoalType {
         return ecs.createPrefab('Goal', {
             goal: {
                 name: this.name,
-                cost: this.cost,
                 ...properties,
             },
         });

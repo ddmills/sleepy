@@ -23,8 +23,6 @@ export const isFinished = (entity, goal) => {
 };
 
 export const takeAction = (entity, goal) => {
-    entity.fireEvent('log', `current goal: ${goal.name}`);
-
     const type = getGoalType(goal.name);
 
     return type.takeAction(entity, goal);

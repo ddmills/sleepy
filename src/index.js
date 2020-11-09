@@ -4,10 +4,10 @@ import * as RenderSystem from './systems/RenderSystem';
 import * as HungerSystem from './systems/HungerSystem';
 import * as ActionSystem from './systems/ActionSystem';
 import * as MovementSystem from './systems/MovementSystem';
-import { BoredGoalType } from './ai/GoalTypes';
-import { N, W, Z, E, S, NW, SW, SE, NE } from './enums/Directions';
-import display from './core/display';
-import { Brain, MoveCommand } from './ecs/components';
+import * as UISystem from './systems/UISystem';
+import { BoredGoalType, MoveGoalType } from './ai/GoalTypes';
+import { N, W, Z, E, S, NW, SW, SE, NE, delta } from './enums/Directions';
+import { MoveCommand } from './ecs/components';
 
 const jim = ecs.createPrefab('Player', {
     moniker: {
@@ -19,17 +19,13 @@ const jim = ecs.createPrefab('Player', {
     },
 });
 
-const bob = ecs.createPrefab('Human', {
-    moniker: {
-        name: 'Bobby',
-    },
+const bob = ecs.createPrefab('HumanWanderer', {
     position: {
         x: 23,
         y: 20,
     },
 });
 
-bob.add(Brain);
 bob.brain.pushGoal(BoredGoalType.create());
 
 const move = (entity, direction) => {
@@ -80,12 +76,7 @@ const update = (dt) => {
     ActionSystem.update(dt);
     MovementSystem.update(dt);
     RenderSystem.update(dt);
-
-    display.drawText(1, 1, `%c{yellow}Knossonia`);
-
-    display.drawText(1, display.height - 3, `energy (jim) %c{yellow}${jim.actor.energy}`);
-    display.drawText(1, display.height - 2, `energy (bob) %c{yellow}${bob.actor.energy}`);
-    display.drawText(display.width - 1 - `${ActionSystem.tick}`.length, 1, `%c{pink}${ActionSystem.tick}`);
+    UISystem.update(dt);
 
     requestAnimationFrame(update);
 };

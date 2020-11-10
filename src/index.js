@@ -5,9 +5,10 @@ import * as HungerSystem from './systems/HungerSystem';
 import * as ActionSystem from './systems/ActionSystem';
 import * as MovementSystem from './systems/MovementSystem';
 import * as UISystem from './systems/UISystem';
-import { BoredGoalType, MoveGoalType } from './ai/GoalTypes';
-import { N, W, Z, E, S, NW, SW, SE, NE, delta } from './enums/Directions';
+import { BoredGoalType } from './ai/GoalTypes';
+import { N, W, Z, E, S, NW, SW, SE, NE } from './enums/Directions';
 import { MoveCommand } from './ecs/components';
+import InputController from './core/input/InputController';
 
 const jim = ecs.createPrefab('Player', {
     moniker: {

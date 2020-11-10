@@ -1,5 +1,5 @@
 import ecs from '../ecs';
-import display from '../core/display';
+import Display from '../core/rendering/Display';
 import { Glyph, Position } from '../ecs/components';
 
 const renderables = ecs.createQuery({
@@ -7,10 +7,10 @@ const renderables = ecs.createQuery({
 });
 
 export const update = (tick) => {
-    display.clear();
+    Display.clear();
 
     renderables.get().forEach((renderable) => {
-        display.draw(
+        Display.draw(
             renderable.position.x,
             renderable.position.y,
             renderable.glyph.char,

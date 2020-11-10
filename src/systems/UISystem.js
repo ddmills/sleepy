@@ -1,5 +1,5 @@
 import ecs from '../ecs';
-import display from '../core/display';
+import Display from '../core/rendering/Display';
 import { Moniker, Actor } from '../ecs/components';
 import * as ActionSystem from './ActionSystem';
 
@@ -11,20 +11,20 @@ export const update = (tick) => {
     const turn = ActionSystem.turn();
     const subTurn = `${ActionSystem.subTurn()}`.padEnd(3, '0');
 
-    display.drawText(1, 1, `%c{cyan}Knossonia`);
+    Display.drawText(1, 1, `%c{cyan}Knossonia`);
 
     const entities = Array.from(actors.get());
 
     entities.forEach((entity, i) => {
-        display.drawText(
+        Display.drawText(
             1,
-            display.height - (2 + i),
+            Display.height - (2 + i),
             `energy (${entity.moniker.name}) %c{yellow}${entity.actor.energy}`
         );
     });
 
-    display.drawText(
-        display.width - 6 - `${turn}`.length,
+    Display.drawText(
+        Display.width - 6 - `${turn}`.length,
         1,
         `%c{cyan}${turn}%c{white}.%c{yellow}${subTurn}`
     );

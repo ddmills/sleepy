@@ -5,11 +5,13 @@ import ActionSystem from '../systems/ActionSystem';
 import RenderSystem from '../systems/RenderSystem';
 import MovementSystem from '../systems/MovementSystem';
 import UISystem from '../systems/UISystem';
+import MouseManager from './input/MouseManager';
 
 export default class Game {
     constructor() {
         this.renderer = new Renderer();
-        this.inputController = new InputController(this.renderer);
+        this.mouseManager = new MouseManager();
+        this.inputController = new InputController(this);
         this.hungerSystem = new HungerSystem(this);
         this.actionSystem = new ActionSystem(this);
         this.movementSystem = new MovementSystem(this);

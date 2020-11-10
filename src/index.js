@@ -7,9 +7,9 @@ import Game from './core/Game';
 
 const g = new Game();
 
-const jim = ecs.createPrefab('Player', {
+const player = ecs.createPrefab('Player', {
     moniker: {
-        name: 'Jim',
+        name: 'Player',
     },
     position: {
         x: 4,
@@ -38,34 +38,34 @@ const move = (entity, direction) => {
 
 document.addEventListener('keydown', (e) => {
     if (keycodes[e.keyCode] === 'space') {
-        jim.fireEvent('energy-consumed', 1000);
+        player.fireEvent('energy-consumed', 1000);
     }
     if (keycodes[e.keyCode] === 'q') {
-        move(jim, NW);
+        move(player, NW);
     }
     if (keycodes[e.keyCode] === 'w') {
-        move(jim, N);
+        move(player, N);
     }
     if (keycodes[e.keyCode] === 'e') {
-        move(jim, NE);
+        move(player, NE);
     }
     if (keycodes[e.keyCode] === 'a') {
-        move(jim, W);
+        move(player, W);
     }
     if (keycodes[e.keyCode] === 's') {
-        move(jim, Z);
+        move(player, Z);
     }
     if (keycodes[e.keyCode] === 'd') {
-        move(jim, E);
+        move(player, E);
     }
     if (keycodes[e.keyCode] === 'z') {
-        move(jim, SW);
+        move(player, SW);
     }
     if (keycodes[e.keyCode] === 'x') {
-        move(jim, S);
+        move(player, S);
     }
     if (keycodes[e.keyCode] === 'c') {
-        move(jim, SE);
+        move(player, SE);
     }
 });
 

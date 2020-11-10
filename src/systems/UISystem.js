@@ -16,7 +16,12 @@ export default class UISystem extends System {
         const turn = this.game.actionSystem.turn;
         const subTurn = `${this.game.actionSystem.subTurn}`.padEnd(3, '0');
 
+        const x = this.game.mouseManager.x;
+        const y = this.game.mouseManager.y;
+        const hasMouse = this.game.mouseManager.hasMouse;
+
         this.game.renderer.drawText(1, 1, `%c{cyan}Knossonia`);
+        this.game.renderer.drawText(1, 2, `%c{white}(${x}, ${y}) ${hasMouse}`);
 
         const entities = Array.from(this.#query.get());
 

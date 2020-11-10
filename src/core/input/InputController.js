@@ -2,13 +2,13 @@ import InputKeyboardEvent from './events/InputKeyboardEvent';
 import InputMouseEvent from './events/InputMouseEvent';
 
 export default class InputController {
-    #renderer = null;
+    #game = null;
 
-    constructor(renderer) {
-        this.#renderer = renderer;
+    constructor(game) {
+        this.#game = game;
         document.addEventListener('keydown', this.onKeydown.bind(this));
 
-        const container = this.#renderer.getDOMContainer();
+        const container = this.#game.renderer.getDOMContainer();
 
         container.addEventListener('click', this.onMouseClick.bind(this));
         container.addEventListener('mousemove', this.onMouseMove.bind(this));
@@ -29,7 +29,7 @@ export default class InputController {
     }
 
     onMouseClick(e) {
-        const [tileX, tileY] = this.#renderer.eventToPosition(e);
+        const [tileX, tileY] = this.#game.renderer.eventToPosition(e);
 
         const evt = new InputMouseEvent({
             button: e.button,
@@ -47,14 +47,16 @@ export default class InputController {
     }
 
     onMouseMove(e) {
-        console.log('onMouseMove');
+        const [tileX, tileY] = this.#game.renderer.eventToPosition(e);
+
+        this.#game.mouseManager.updatePosition(tileX, tileY);
     }
 
     onMouseEnter(e) {
-        console.log('onMouseEnter');
+        this.#game.mouseManager.updateMouseEnter();
     }
 
     onMouseLeave(e) {
-        console.log('onMouseLeave');
+        this.#game.mouseManager.updateMouseLeave();
     }
 }

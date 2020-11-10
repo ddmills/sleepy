@@ -6,20 +6,18 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 const gitRevisionPlugin = new GitRevisionPlugin();
 
+const isDevelopment = process.env.NODE_ENV === 'development';
+
 const mode = () => {
-    if (process.env.NODE_ENV === 'development') {
+    if (isDevelopment) {
         return { mode: 'development' };
     }
 
-    if (process.env.NODE_ENV === 'production') {
-        return { mode: 'production' };
-    }
-
-    return {};
+    return { mode: 'none' };
 };
 
 const devtool = () => {
-    if (process.env.NODE_ENV === 'development') {
+    if (isDevelopment) {
         return { devtool: 'inline-source-map' };
     }
 
@@ -31,7 +29,7 @@ const devtool = () => {
 };
 
 const devServer = () => {
-    if (process.env.NODE_ENV === 'development') {
+    if (isDevelopment) {
         return {
             devServer: {
                 contentBase: './build',

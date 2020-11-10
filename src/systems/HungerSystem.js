@@ -1,15 +1,22 @@
 import ecs from '../ecs';
 import { Eater } from '../ecs/components';
-import { deltaTick } from './ActionSystem';
+import System from './System';
 
-const eaters = ecs.createQuery({
-    all: [Eater],
-});
+export default class HungerSystem extends System {
+    #query = null;
 
-export const update = (dt) => {
-    if (deltaTick > 0) {
-        eaters.get().forEach((entity) => {
-            entity.eater.hunger -= deltaTick;
+    constructor(game) {
+        super(game);
+        this.#query = ecs.createQuery({
+            all: [Eater],
         });
     }
-};
+
+    update(dt) {
+        if (this.game.actionSystem.tickDelta > 0) {
+            this.#query.get().forEach((entity) => {
+                entity.eater.hunger -= this.game.actionSystem.tickDelta;
+            });
+        }
+    }
+}

@@ -1,17 +1,19 @@
-import Display from '../rendering/Display';
 import InputKeyboardEvent from './events/InputKeyboardEvent';
 import InputMouseEvent from './events/InputMouseEvent';
 
-class InputController {
-    constructor() {
-        document.addEventListener('keydown', this.onKeydown);
+export default class InputController {
+    #renderer = null;
 
-        const container = Display.getDOMContainer();
+    constructor(renderer) {
+        this.#renderer = renderer;
+        document.addEventListener('keydown', this.onKeydown.bind(this));
 
-        container.addEventListener('click', this.onMouseClick);
-        container.addEventListener('mousemove', this.onMouseMove);
-        container.addEventListener('mouseenter', this.onMouseEnter);
-        container.addEventListener('mouseleave', this.onMouseLeave);
+        const container = this.#renderer.getDOMContainer();
+
+        container.addEventListener('click', this.onMouseClick.bind(this));
+        container.addEventListener('mousemove', this.onMouseMove.bind(this));
+        container.addEventListener('mouseenter', this.onMouseEnter.bind(this));
+        container.addEventListener('mouseleave', this.onMouseLeave.bind(this));
     }
 
     onKeydown(e) {
@@ -27,7 +29,7 @@ class InputController {
     }
 
     onMouseClick(e) {
-        const [tileX, tileY] = Display.eventToPosition(e);
+        const [tileX, tileY] = this.#renderer.eventToPosition(e);
 
         const evt = new InputMouseEvent({
             button: e.button,
@@ -56,5 +58,3 @@ class InputController {
         console.log('onMouseLeave');
     }
 }
-
-export default new InputController();

@@ -1,14 +1,11 @@
 import ecs from './ecs';
 import keycodes from './enums/keycodes';
-import * as RenderSystem from './systems/RenderSystem';
-import * as HungerSystem from './systems/HungerSystem';
-import * as ActionSystem from './systems/ActionSystem';
-import * as MovementSystem from './systems/MovementSystem';
-import * as UISystem from './systems/UISystem';
 import { BoredGoalType } from './ai/GoalTypes';
 import { N, W, Z, E, S, NW, SW, SE, NE } from './enums/Directions';
 import { MoveCommand } from './ecs/components';
-import InputController from './core/input/InputController';
+import Game from './core/Game';
+
+const g = new Game();
 
 const jim = ecs.createPrefab('Player', {
     moniker: {
@@ -72,14 +69,4 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-const update = (dt) => {
-    HungerSystem.update(dt);
-    ActionSystem.update(dt);
-    MovementSystem.update(dt);
-    RenderSystem.update(dt);
-    UISystem.update(dt);
-
-    requestAnimationFrame(update);
-};
-
-requestAnimationFrame(update);
+g.start();

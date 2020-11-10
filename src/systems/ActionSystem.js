@@ -1,39 +1,55 @@
 import ecs from '../ecs';
 import { Actor } from '../ecs/components';
+import System from './System';
 
-const query = ecs.createQuery({
-    all: [Actor],
-});
+export default class ActionSystem extends System {
+    #tick = 0;
+    #tickDelta = 0;
+    #query = null;
 
-export let tick = 0;
-export let deltaTick = 0;
+    constructor(game) {
+        super(game);
 
-export const turn = () => {
-    return Math.floor(tick / 1000);
-};
-
-export const subTurn = () => {
-    return tick - turn() * 1000;
-};
-
-export const update = (dt) => {
-    const entities = query.get();
-    const sorted = Array.from(entities);
-    sorted.sort((a, b) => (a.actor.energy < b.actor.energy ? 1 : -1));
-
-    const entity = sorted[0];
-    deltaTick = 0;
-
-    if (!entity.actor.hasEnergy) {
-        deltaTick = entity.actor.energy * -1;
-        tick -= entity.actor.energy;
-
-        entities.forEach((entity) => {
-            entity.actor.addEnergy(deltaTick);
+        this.#query = ecs.createQuery({
+            all: [Actor],
         });
     }
 
-    if (entity.actor.hasEnergy && !entity.isPlayer) {
-        entity.fireEvent('take-action');
+    get tick() {
+        return this.#tick;
     }
-};
+
+    get tickDelta() {
+        return this.#tickDelta;
+    }
+
+    get turn() {
+        return Math.floor(this.#tick / 1000);
+    }
+
+    get subTurn() {
+        return this.#tick - this.turn * 1000;
+    }
+
+    update(dt) {
+        const entities = this.#query.get();
+        const sorted = Array.from(entities);
+        sorted.sort((a, b) => (a.actor.energy < b.actor.energy ? 1 : -1));
+
+        const entity = sorted[0];
+        this.#tickDelta = 0;
+
+        if (!entity.actor.hasEnergy) {
+            this.#tickDelta = entity.actor.energy * -1;
+            this.#tick -= entity.actor.energy;
+
+            entities.forEach((entity) => {
+                entity.actor.addEnergy(this.#tickDelta);
+            });
+        }
+
+        if (entity.actor.hasEnergy && !entity.isPlayer) {
+            entity.fireEvent('take-action');
+        }
+    }
+}

@@ -1,21 +1,28 @@
 import ecs from '../ecs';
-import Display from '../core/rendering/Display';
 import { Glyph, Position } from '../ecs/components';
+import System from './System';
 
-const renderables = ecs.createQuery({
-    all: [Glyph, Position],
-});
+export default class RenderSystem extends System {
+    #query = null;
 
-export const update = (tick) => {
-    Display.clear();
+    constructor(game) {
+        super(game);
+        this.#query = ecs.createQuery({
+            all: [Glyph, Position],
+        });
+    }
 
-    renderables.get().forEach((renderable) => {
-        Display.draw(
-            renderable.position.x,
-            renderable.position.y,
-            renderable.glyph.char,
-            renderable.glyph.fg,
-            renderable.glyph.bg
-        );
-    });
-};
+    update(dt) {
+        this.game.renderer.clear();
+
+        this.#query.get().forEach((renderable) => {
+            this.game.renderer.draw(
+                renderable.position.x,
+                renderable.position.y,
+                renderable.glyph.char,
+                renderable.glyph.fg,
+                renderable.glyph.bg
+            );
+        });
+    }
+}

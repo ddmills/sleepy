@@ -1,17 +1,25 @@
 import ecs from '../ecs';
 import { MoveCommand, Position } from '../ecs/components';
 import * as Directions from '../enums/Directions';
+import System from './System';
 
-const commands = ecs.createQuery({
-    all: [MoveCommand, Position],
-});
+export default class MovementSystem extends System {
+    #query = null;
 
-export const update = (tick) => {
-    commands.get().forEach((entity) => {
-        const delta = Directions.delta(entity.moveCommand.direction);
+    constructor(game) {
+        super(game);
+        this.#query = ecs.createQuery({
+            all: [MoveCommand, Position],
+        });
+    }
 
-        entity.fireEvent('TryMove', delta);
+    update(dt) {
+        this.#query.get().forEach((entity) => {
+            const delta = Directions.delta(entity.moveCommand.direction);
 
-        entity.moveCommand.destroy();
-    });
-};
+            entity.fireEvent('TryMove', delta);
+
+            entity.moveCommand.destroy();
+        });
+    }
+}

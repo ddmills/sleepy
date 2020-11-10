@@ -1,6 +1,6 @@
 import { Display as RotDisplay } from 'rot-js';
 
-class Display {
+export default class Renderer {
     #rot = null;
     #container = null;
 
@@ -43,5 +43,3 @@ class Display {
         return this.#rot.eventToPosition(e);
     }
 }
-
-export default new Display();

@@ -6,8 +6,7 @@ export default class InputKeyboardEvent {
     isMeta = false;
 
     constructor(data) {
-        this.key = data.key,
-        this.isShift = data.isShift;
+        (this.key = data.key), (this.isShift = data.isShift);
         this.isAlt = data.isAlt;
         this.isCtrl = data.isCtrl;
         this.isMeta = data.isMeta;

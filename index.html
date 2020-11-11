@@ -26,15 +26,28 @@
             .build {
                 color: yellow;
                 font-size: 12px;
-                font-family: Menlo;
+                font-family: Menlo, monospace;
                 text-align: left;
                 position: absolute;
                 left: 16px;
                 bottom: 16px;
             }
+            .controls {
+                position: absolute;
+                left: 16px;
+                top: 16px;
+                padding: 0;
+                margin: 0;
+                font-family: Menlo, monospace;
+                list-style: none;
+            }
         </style>
     </head>
     <body>
+        <ul class="controls">
+            <li>movement (W, A, D, X)</li>
+            <li>diagonal (Q, E, Z, C)</li>
+        </ul>
         <div class="build">build <%= htmlWebpackPlugin.options.version %></div>
     </body>
 </html>

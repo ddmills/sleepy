@@ -1,4 +1,3 @@
-import ecs from '../ecs';
 import { Moniker, Actor } from '../ecs/components';
 import System from './System';
 
@@ -7,7 +6,7 @@ export default class UISystem extends System {
 
     constructor(game) {
         super(game);
-        this.#query = game.ecs.createQuery({
+        this.#query = this.game.ecs.createQuery({
             all: [Moniker, Actor],
         });
     }
@@ -20,8 +19,7 @@ export default class UISystem extends System {
         const y = this.game.mouseManager.y;
         const hasMouse = this.game.mouseManager.hasMouse;
 
-        this.game.renderer.drawText(1, 1, `%c{cyan}Knossonia`);
-        this.game.renderer.drawText(1, 2, `%c{white}(${x}, ${y}) ${hasMouse}`);
+        this.game.renderer.drawText(1, 1, `%c{cyan}Knossonia %c{white}(${x}, ${y}) ${hasMouse}`);
 
         const entities = Array.from(this.#query.get());
 

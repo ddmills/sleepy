@@ -17,4 +17,7 @@ export default class Screen {
 
     onInputCommand(cmd) {
     }
+
+    onUpdate(dt) {
+    }
 }

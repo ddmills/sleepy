@@ -24,6 +24,7 @@ export default class Game {
         this.screenManager = new ScreenManager(this);
         this.commandManager = new CommandManager(this);
         this.inputController = new InputController(this);
+
         this.hungerSystem = new HungerSystem(this);
         this.actionSystem = new ActionSystem(this);
         this.movementSystem = new MovementSystem(this);
@@ -44,6 +45,7 @@ export default class Game {
         this.movementSystem.update(dt);
         this.renderSystem.update(dt);
         this.UISystem.update(dt);
+        this.screenManager.update(dt);
 
         requestAnimationFrame(this.loop.bind(this));
     }

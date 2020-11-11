@@ -28,4 +28,8 @@ export default class ScreenManager {
     onInputCommand(cmd) {
         this.screen.onInputCommand(cmd);
     }
+
+    update(dt) {
+        this.screen.onUpdate(dt);
+    }
 }

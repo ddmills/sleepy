@@ -1,5 +1,6 @@
 import Manager from './Manager';
 import { BoredGoalType } from '../ai/GoalTypes';
+import { MoveCommand } from '../ecs/components';
 
 export default class PlayerManager extends Manager {
     #entity = null;
@@ -27,5 +28,19 @@ export default class PlayerManager extends Manager {
         });
 
         bob.brain.pushGoal(BoredGoalType.create());
+    }
+
+    move(direction) {
+        if (this.entity.has(MoveCommand)) {
+            this.entity.remove(MoveCommand);
+        }
+
+        this.entity.add(MoveCommand, {
+            direction,
+        });
+    }
+
+    wait(turns = 1) {
+        this.entity.fireEvent('energy-consumed', turns * 1000);
     }
 }

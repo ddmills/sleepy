@@ -22,4 +22,10 @@ export default class MainMenuScreen extends Screen {
             this.game.screenManager.setScreen(SCREEN_ADVENTURE);
         }
     }
+
+    onUpdate(dt) {
+        this.game.renderer.clear();
+        this.game.renderer.drawText(1, 1, `%c{cyan}Knossonia`);
+        this.game.renderer.drawText(1, 3, `%c{white}press enter to embark`);
+    }
 }

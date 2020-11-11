@@ -7,7 +7,7 @@ export default class HungerSystem extends System {
 
     constructor(game) {
         super(game);
-        this.#query = ecs.createQuery({
+        this.#query = game.ecs.createQuery({
             all: [Eater],
         });
     }

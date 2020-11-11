@@ -7,7 +7,7 @@ export default class UISystem extends System {
 
     constructor(game) {
         super(game);
-        this.#query = ecs.createQuery({
+        this.#query = game.ecs.createQuery({
             all: [Moniker, Actor],
         });
     }

@@ -7,7 +7,7 @@ export default class RenderSystem extends System {
 
     constructor(game) {
         super(game);
-        this.#query = ecs.createQuery({
+        this.#query = game.ecs.createQuery({
             all: [Glyph, Position],
         });
     }

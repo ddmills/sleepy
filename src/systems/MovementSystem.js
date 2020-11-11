@@ -9,7 +9,7 @@ export default class MovementSystem extends System {
 
     constructor(game) {
         super(game);
-        this.#query = ecs.createQuery({
+        this.#query = game.ecs.createQuery({
             all: [MoveCommand, Position],
         });
     }
@@ -21,15 +21,6 @@ export default class MovementSystem extends System {
             entity.fireEvent('TryMove', delta);
 
             entity.moveCommand.destroy();
-        });
-    }
-
-    issueMoveCommand(entity, direction) {
-        if (entity.has(MoveCommand)) {
-            entity.remove(MoveCommand);
-        }
-        entity.add(MoveCommand, {
-            direction,
         });
     }
 }

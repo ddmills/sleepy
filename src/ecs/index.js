@@ -3,16 +3,22 @@ import { Engine } from 'geotic';
 import * as components from './components';
 import * as prefabs from './prefabs';
 
-const ecs = new Engine();
+export default class ECS {
+    #engine;
 
-window.ecs = ecs;
+    get engine() {
+        return this.#engine;
+    }
 
-Object.values(components).forEach((component) => {
-    ecs.registerComponent(component);
-});
+    constructor() {
+        this.#engine = new Engine();
 
-Object.values(prefabs).forEach((prefab) => {
-    ecs.registerPrefab(prefab);
-});
+        Object.values(components).forEach((component) => {
+            this.#engine.registerComponent(component);
+        });
 
-export default ecs;
+        Object.values(prefabs).forEach((prefab) => {
+            this.#engine.registerPrefab(prefab);
+        });
+    }
+}

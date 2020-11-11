@@ -10,7 +10,7 @@ export default class ActionSystem extends System {
     constructor(game) {
         super(game);
 
-        this.#query = ecs.createQuery({
+        this.#query = game.ecs.createQuery({
             all: [Actor],
         });
     }

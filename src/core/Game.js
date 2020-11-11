@@ -7,13 +7,22 @@ import MovementSystem from '../systems/MovementSystem';
 import UISystem from '../systems/UISystem';
 import MouseManager from './input/MouseManager';
 import CommandManager from './input/CommandManager';
-import { INPUT_DOMAIN_GAME } from './input/InputDomainType';
+import ScreenManager from './screens/ScreenManager';
+import PlayerManager from './PlayerManager';
+import ECS from '../ecs';
 
 export default class Game {
+    get ecs() {
+        return this.engine.engine;
+    }
+
     constructor() {
+        this.engine = new ECS();
         this.renderer = new Renderer();
         this.mouseManager = new MouseManager();
-        this.commandManager = new CommandManager();
+        this.playerManager = new PlayerManager(this);
+        this.screenManager = new ScreenManager(this);
+        this.commandManager = new CommandManager(this);
         this.inputController = new InputController(this);
         this.hungerSystem = new HungerSystem(this);
         this.actionSystem = new ActionSystem(this);
@@ -23,6 +32,7 @@ export default class Game {
     }
 
     start() {
+        this.playerManager.onStart();
         requestAnimationFrame(this.loop.bind(this));
     }
 
@@ -38,3 +48,5 @@ export default class Game {
         requestAnimationFrame(this.loop.bind(this));
     }
 }
+
+export const game = new Game();

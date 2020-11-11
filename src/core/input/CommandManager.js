@@ -2,10 +2,12 @@ import { INPUT_DOMAIN_DEFAULT } from './InputDomainType';
 import commands from './commands';
 
 export default class CommandManager {
+    #game = null;
     #commands = {};
     #domainStack = [INPUT_DOMAIN_DEFAULT];
 
-    constructor() {
+    constructor(game) {
+        this.#game = game;
         commands.forEach((cmd) => this.registerCommand(cmd));
     }
 
@@ -13,7 +15,7 @@ export default class CommandManager {
         const cmd = this.getCommandForInputEvent(evt);
 
         if (cmd) {
-            console.log(`CMD(${cmd.type}) ${cmd.name}`);
+            this.#game.screenManager.onInputCommand(cmd);
         }
     }
 
@@ -21,8 +23,12 @@ export default class CommandManager {
         this.#domainStack.push(domain);
     }
 
-    popDomain() {
-        return this.#domainStack.pop();
+    popDomain(domain) {
+        const index = this.#domainStack.lastIndexOf(domain);
+
+        if (index > -1) {
+            this.#domainStack.splice(index, 1);
+        }
     }
 
     getDomainCommands(domain) {

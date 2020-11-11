@@ -1,5 +1,5 @@
-import ecs from '../../ecs';
 import { FAILURE } from '../GoalActionResult';
+import { game } from '../../core/Game';
 
 export class GoalType {
     static name = 'Unknown';
@@ -20,7 +20,7 @@ export class GoalType {
     }
 
     static create(properties = {}) {
-        return ecs.createPrefab('Goal', {
+        return game.ecs.createPrefab('Goal', {
             goal: {
                 name: this.name,
                 ...properties,

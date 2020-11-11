@@ -19,31 +19,31 @@ export default class InputController {
     onKeydown(e) {
         const evt = new InputKeyboardEvent({
             key: e.keyCode,
-            isShift: e.shiftKey,
-            isAlt: e.altKey,
-            isCtrl: e.ctrlKey,
-            isMeta: e.metaKey,
+            shift: e.shiftKey,
+            ctrl: e.ctrlKey,
+            alt: e.altKey,
+            meta: e.metaKey,
         });
 
-        console.log('onKeydown', evt);
+        this.#game.commandManager.onInputEvent(evt);
     }
 
     onMouseClick(e) {
         const [tileX, tileY] = this.#game.renderer.eventToPosition(e);
 
         const evt = new InputMouseEvent({
-            button: e.button,
+            key: e.button,
             x: e.offsetX,
             y: e.offsetY,
-            isShift: e.shiftKey,
-            isAlt: e.altKey,
-            isCtrl: e.ctrlKey,
-            isMeta: e.metaKey,
+            shift: e.shiftKey,
+            ctrl: e.ctrlKey,
+            alt: e.altKey,
+            meta: e.metaKey,
             tileX,
             tileY,
         });
 
-        console.log('onMouseClick', e, evt);
+        this.#game.commandManager.onInputEvent(evt);
     }
 
     onMouseMove(e) {

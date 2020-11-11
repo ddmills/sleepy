@@ -82,15 +82,15 @@ const directions = [
     },
 ];
 
-export const NW = 0;
-export const N = 1;
-export const NE = 2;
-export const W = 3;
-export const Z = 4;
-export const E = 5;
-export const SW = 6;
-export const S = 7;
-export const SE = 8;
+export const DIR_NW = 0;
+export const DIR_N = 1;
+export const DIR_NE = 2;
+export const DIR_W = 3;
+export const DIR_Z = 4;
+export const DIR_E = 5;
+export const DIR_SW = 6;
+export const DIR_S = 7;
+export const DIR_SE = 8;
 
 export const shortName = (direction) => directions[direction].shortName;
 

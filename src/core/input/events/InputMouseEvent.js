@@ -1,22 +1,15 @@
-export default class InputMouseEvent {
-    button = false;
+import InputEvent from './InputEvent';
+
+export default class InputMouseEvent extends InputEvent {
     x = false;
     y = false;
-    isShift = false;
-    isAlt = false;
-    isCtrl = false;
-    isMeta = false;
     tileX = false;
     tileY = false;
 
     constructor(data) {
-        this.button = data.button;
+        super(data);
         this.x = data.x;
         this.y = data.y;
-        this.isShift = data.isShift;
-        this.isAlt = data.isAlt;
-        this.isCtrl = data.isCtrl;
-        this.isMeta = data.isMeta;
         this.tileX = data.tileX;
         this.tileY = data.tileY;
     }

@@ -1,9 +1,10 @@
 import ecs from './ecs';
-import keycodes from './enums/keycodes';
 import { BoredGoalType } from './ai/GoalTypes';
-import { N, W, Z, E, S, NW, SW, SE, NE } from './enums/Directions';
+import { DIR_N, DIR_W, DIR_Z, DIR_E, DIR_S, DIR_NW, DIR_SW, DIR_SE, DIR_NE } from './enums/Directions';
 import { MoveCommand } from './ecs/components';
 import Game from './core/Game';
+import * as KeyCodes from './core/input/KeyCodes';
+import { INPUT_DOMAIN_GAME } from './core/input/InputDomainType';
 
 const g = new Game();
 
@@ -37,36 +38,38 @@ const move = (entity, direction) => {
 };
 
 document.addEventListener('keydown', (e) => {
-    if (keycodes[e.keyCode] === 'space') {
+    if (e.keyCode === KeyCodes.KEY_SPACE) {
         player.fireEvent('energy-consumed', 1000);
     }
-    if (keycodes[e.keyCode] === 'q') {
-        move(player, NW);
+    if (e.keyCode === KeyCodes.KEY_Q) {
+        move(player, DIR_NW);
     }
-    if (keycodes[e.keyCode] === 'w') {
-        move(player, N);
+    if (e.keyCode === KeyCodes.KEY_W) {
+        move(player, DIR_N);
     }
-    if (keycodes[e.keyCode] === 'e') {
-        move(player, NE);
+    if (e.keyCode === KeyCodes.KEY_E) {
+        move(player, DIR_NE);
     }
-    if (keycodes[e.keyCode] === 'a') {
-        move(player, W);
+    if (e.keyCode === KeyCodes.KEY_A) {
+        move(player, DIR_W);
     }
-    if (keycodes[e.keyCode] === 's') {
-        move(player, Z);
+    if (e.keyCode === KeyCodes.KEY_S) {
+        move(player, DIR_Z);
     }
-    if (keycodes[e.keyCode] === 'd') {
-        move(player, E);
+    if (e.keyCode === KeyCodes.KEY_D) {
+        move(player, DIR_E);
     }
-    if (keycodes[e.keyCode] === 'z') {
-        move(player, SW);
+    if (e.keyCode === KeyCodes.KEY_Z) {
+        move(player, DIR_SW);
     }
-    if (keycodes[e.keyCode] === 'x') {
-        move(player, S);
+    if (e.keyCode === KeyCodes.KEY_X) {
+        move(player, DIR_S);
     }
-    if (keycodes[e.keyCode] === 'c') {
-        move(player, SE);
+    if (e.keyCode === KeyCodes.KEY_C) {
+        move(player, DIR_SE);
     }
 });
+
+g.commandManager.pushDomain(INPUT_DOMAIN_GAME);
 
 g.start();

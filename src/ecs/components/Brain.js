@@ -27,8 +27,6 @@ export class Brain extends Component {
     removeGoal(goal) {
         const goalsToDestroy = [];
 
-        console.log('REMOVING GOAL', goal.name);
-
         this.goals = this.goals.filter((g) => {
             const isSelf = Boolean(g.id === goal.entity.id);
             const isSiblingGoal = Boolean(

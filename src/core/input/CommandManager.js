@@ -15,7 +15,7 @@ export default class CommandManager extends Manager {
         const cmd = this.getCommandForInputEvent(evt);
 
         if (cmd) {
-            this.game.screenManager.onInputCommand(cmd);
+            this.game.screens.onInputCommand(cmd);
         }
     }
 

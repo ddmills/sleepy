@@ -22,12 +22,12 @@ export default class Game {
         this.engine = new ECS();
         this.clock = new ClockManager(this);
         this.renderer = new Renderer(this);
-        this.gameStateManager = new GameStateManager(this);
-        this.mouseManager = new MouseManager(this);
-        this.playerManager = new PlayerManager(this);
-        this.screenManager = new ScreenManager(this);
-        this.commandManager = new CommandManager(this);
-        this.inputController = new InputController(this);
+        this.state = new GameStateManager(this);
+        this.mouse = new MouseManager(this);
+        this.player = new PlayerManager(this);
+        this.screens = new ScreenManager(this);
+        this.commands = new CommandManager(this);
+        this.input = new InputController(this);
 
         this.hungerSystem = new HungerSystem(this);
         this.actionSystem = new ActionSystem(this);
@@ -37,7 +37,7 @@ export default class Game {
     }
 
     start() {
-        this.gameStateManager.newGame();
+        this.state.newGame();
         requestAnimationFrame(this.loop.bind(this));
     }
 
@@ -49,7 +49,7 @@ export default class Game {
         this.movementSystem.update(dt);
         this.renderSystem.update(dt);
         this.UISystem.update(dt);
-        this.screenManager.update(dt);
+        this.screens.update(dt);
 
         requestAnimationFrame(this.loop.bind(this));
     }

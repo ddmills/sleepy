@@ -26,7 +26,7 @@ export default class InputController extends Manager {
 
         e.preventDefault();
 
-        this.game.commandManager.onInputEvent(evt);
+        this.game.commands.onInputEvent(evt);
     }
 
     onMouseClick(e) {
@@ -44,20 +44,20 @@ export default class InputController extends Manager {
             tileY,
         });
 
-        this.game.commandManager.onInputEvent(evt);
+        this.game.commands.onInputEvent(evt);
     }
 
     onMouseMove(e) {
         const [tileX, tileY] = this.game.renderer.eventToPosition(e);
 
-        this.game.mouseManager.updatePosition(tileX, tileY);
+        this.game.mouse.updatePosition(tileX, tileY);
     }
 
     onMouseEnter(e) {
-        this.game.mouseManager.updateMouseEnter();
+        this.game.mouse.updateMouseEnter();
     }
 
     onMouseLeave(e) {
-        this.game.mouseManager.updateMouseLeave();
+        this.game.mouse.updateMouseLeave();
     }
 }

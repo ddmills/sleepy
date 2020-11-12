@@ -19,7 +19,11 @@ export default class UISystem extends System {
         const y = this.game.mouse.y;
         const hasMouse = this.game.mouse.hasMouse;
 
-        this.game.renderer.drawText(1, 1, `%c{cyan}Knossonia %c{white}(${x}, ${y}) ${hasMouse}`);
+        this.game.renderer.drawText(
+            1,
+            1,
+            `%c{cyan}Knossonia %c{white}(${x}, ${y}) ${hasMouse}`
+        );
 
         const entities = Array.from(this.#query.get());
 

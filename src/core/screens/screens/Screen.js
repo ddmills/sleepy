@@ -9,15 +9,11 @@ export default class Screen {
         this.#game = game;
     }
 
-    onEnter() {
-    }
+    onEnter() {}
 
-    onLeave() {
-    }
+    onLeave() {}
 
-    onInputCommand(cmd) {
-    }
+    onInputCommand(cmd) {}
 
-    onUpdate(dt) {
-    }
+    onUpdate(dt) {}
 }

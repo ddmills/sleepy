@@ -32,8 +32,8 @@ export default class ECS extends Manager {
 
     onSaveGame() {
         return {
-            engine: this.#engine.serialize()
-        }
+            engine: this.#engine.serialize(),
+        };
     }
 
     onLoadGame(data) {

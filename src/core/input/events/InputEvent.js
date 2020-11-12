@@ -6,7 +6,7 @@ export default class InputEvent {
     meta = false;
 
     constructor(data) {
-        this.key = data.key
+        this.key = data.key;
         this.shift = data.shift;
         this.ctrl = data.ctrl;
         this.alt = data.alt;

@@ -1,8 +1,6 @@
-import ecs from '../ecs';
 import { MoveCommand, Position } from '../ecs/components';
 import * as Directions from '../enums/Directions';
 import System from './System';
-import { INPUT_CMD_MOVE_NW } from '../core/input/InputCommandType';
 
 export default class MovementSystem extends System {
     #query = null;

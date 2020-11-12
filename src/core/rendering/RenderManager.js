@@ -14,7 +14,7 @@ export default class Renderer extends Manager {
         this.#rot = new RotDisplay({
             width: this.width,
             height: this.height,
-            fontSize: 18,
+            fontSize: 16,
             forceSquareRatio: false,
             bg: '#262626',
         });

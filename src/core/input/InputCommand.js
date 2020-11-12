@@ -16,11 +16,13 @@ export default class InputCommand {
     matches(inputEvent) {
         const isKeyboard = inputEvent instanceof InputKeyboardEvent;
 
-        return this.isKeyboard == isKeyboard
-            && this.key == inputEvent.key
-            && this.shift == inputEvent.shift
-            && this.ctrl == inputEvent.ctrl
-            && this.alt == inputEvent.alt
-            && this.meta == inputEvent.meta;
+        return (
+            this.isKeyboard == isKeyboard &&
+            this.key == inputEvent.key &&
+            this.shift == inputEvent.shift &&
+            this.ctrl == inputEvent.ctrl &&
+            this.alt == inputEvent.alt &&
+            this.meta == inputEvent.meta
+        );
     }
 }

@@ -9,6 +9,10 @@ export default class PlayerManager extends Manager {
         return this.game.ecs.getEntity(this.#entityId);
     }
 
+    get isTurn() {
+        return this.entity.actor.hasEnergy;
+    }
+
     onNewGame() {
         const player = this.game.ecs.createPrefab('Player', {
             position: {
@@ -25,8 +29,8 @@ export default class PlayerManager extends Manager {
                     name: `Wanderer ${i}`,
                 },
                 position: {
-                    x: i%64,
-                    y: i%32,
+                    x: i % 64,
+                    y: i % 32,
                 },
             });
 
@@ -35,6 +39,10 @@ export default class PlayerManager extends Manager {
     }
 
     move(direction) {
+        if (!this.isTurn) {
+            return;
+        }
+
         if (this.entity.has(MoveCommand)) {
             this.entity.remove(MoveCommand);
         }
@@ -45,16 +53,20 @@ export default class PlayerManager extends Manager {
     }
 
     wait(turns = 1) {
+        if (!this.isTurn) {
+            return;
+        }
+
         this.entity.fireEvent('energy-consumed', turns * 1000);
     }
 
     onSaveGame() {
         return {
-            playerEntityId: this.#entityId
+            playerEntityId: this.#entityId,
         };
     }
 
     onLoadGame(data) {
-        this.#entityId = data.playerEntityId
+        this.#entityId = data.playerEntityId;
     }
 }

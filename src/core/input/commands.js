@@ -1,6 +1,11 @@
-import { INPUT_DOMAIN_MAIN_MENU, INPUT_DOMAIN_DEFAULT, INPUT_DOMAIN_ADVENTURE } from './InputDomainType'
+import {
+    INPUT_DOMAIN_MAIN_MENU,
+    INPUT_DOMAIN_DEFAULT,
+    INPUT_DOMAIN_ADVENTURE,
+} from './InputDomainType';
 import InputCommand from './InputCommand';
-import { INPUT_CMD_WAIT,
+import {
+    INPUT_CMD_WAIT,
     INPUT_CMD_MOVE_NW,
     INPUT_CMD_MOVE_N,
     INPUT_CMD_MOVE_NE,
@@ -12,9 +17,10 @@ import { INPUT_CMD_WAIT,
     INPUT_CMD_CONFIRM,
     INPUT_CMD_CANCEL,
     INPUT_CMD_SAVE,
-    INPUT_CMD_LOAD
+    INPUT_CMD_LOAD,
 } from './InputCommandType';
-import { KEY_S,
+import {
+    KEY_S,
     KEY_Q,
     KEY_W,
     KEY_E,
@@ -30,19 +36,21 @@ import { KEY_S,
     KEY_RIGHT,
     KEY_DOWN,
     KEY_SPACE,
-    KEY_L} from './KeyCodes';
+    KEY_L,
+} from './KeyCodes';
 
-const cmd = (domain, type, name, isKeyboard, key, shift, ctrl, alt, meta) => new InputCommand({
-    domain,
-    type,
-    name,
-    isKeyboard,
-    key,
-    shift,
-    ctrl,
-    alt,
-    meta
-});
+const cmd = (domain, type, name, isKeyboard, key, shift, ctrl, alt, meta) =>
+    new InputCommand({
+        domain,
+        type,
+        name,
+        isKeyboard,
+        key,
+        shift,
+        ctrl,
+        alt,
+        meta,
+    });
 
 // prettier-ignore
 export default [

@@ -1,5 +1,9 @@
 import Screen from './Screen';
-import { INPUT_CMD_CONFIRM, INPUT_CMD_SAVE, INPUT_CMD_LOAD } from '../../input/InputCommandType';
+import {
+    INPUT_CMD_CONFIRM,
+    INPUT_CMD_SAVE,
+    INPUT_CMD_LOAD,
+} from '../../input/InputCommandType';
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import { SCREEN_ADVENTURE } from '../ScreenType';
 

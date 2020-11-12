@@ -12,6 +12,10 @@ export default class RenderSystem extends System {
     }
 
     update(dt) {
+        if (!this.game.clock.tickDelta) {
+            return;
+        }
+
         this.game.renderer.clear();
 
         this.#query.get().forEach((renderable) => {

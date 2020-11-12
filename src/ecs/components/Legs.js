@@ -9,6 +9,7 @@ export class Legs extends Component {
         }
 
         if (this.entity.has(Actor) && !this.entity.actor.hasEnergy) {
+            console.log('NO ENERGY');
             return;
         }
 

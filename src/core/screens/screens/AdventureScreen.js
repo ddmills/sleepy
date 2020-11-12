@@ -1,7 +1,30 @@
 import Screen from './Screen';
-import { INPUT_CMD_MOVE_N, INPUT_CMD_MOVE_NE, INPUT_CMD_MOVE_W, INPUT_CMD_WAIT, INPUT_CMD_MOVE_E, INPUT_CMD_MOVE_SW, INPUT_CMD_MOVE_S, INPUT_CMD_MOVE_SE, INPUT_CMD_MOVE_NW, INPUT_CMD_CANCEL, INPUT_CMD_SAVE, INPUT_CMD_LOAD } from '../../input/InputCommandType';
+import {
+    INPUT_CMD_MOVE_N,
+    INPUT_CMD_MOVE_NE,
+    INPUT_CMD_MOVE_W,
+    INPUT_CMD_WAIT,
+    INPUT_CMD_MOVE_E,
+    INPUT_CMD_MOVE_SW,
+    INPUT_CMD_MOVE_S,
+    INPUT_CMD_MOVE_SE,
+    INPUT_CMD_MOVE_NW,
+    INPUT_CMD_CANCEL,
+    INPUT_CMD_SAVE,
+    INPUT_CMD_LOAD,
+} from '../../input/InputCommandType';
 import { INPUT_DOMAIN_ADVENTURE } from '../../input/InputDomainType';
-import { DIR_N, DIR_W, DIR_Z, DIR_E, DIR_S, DIR_NW, DIR_SW, DIR_SE, DIR_NE } from '../../../enums/Directions';
+import {
+    DIR_N,
+    DIR_W,
+    DIR_Z,
+    DIR_E,
+    DIR_S,
+    DIR_NW,
+    DIR_SW,
+    DIR_SE,
+    DIR_NE,
+} from '../../../enums/Directions';
 import { SCREEN_MAIN_MENU } from '../ScreenType';
 
 export default class AdventureScreen extends Screen {

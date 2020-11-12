@@ -18,6 +18,7 @@ import {
     INPUT_CMD_CANCEL,
     INPUT_CMD_SAVE,
     INPUT_CMD_LOAD,
+    INPUT_CMD_LOOK,
 } from './InputCommandType';
 import {
     KEY_S,
@@ -73,4 +74,5 @@ export default [
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_S,   'move_s',   true, KEY_X,        false, false, false, false),
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_S,   'move_s2',  true, KEY_DOWN,     false, false, false, false),
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_SE,  'move_se',  true, KEY_C,        false, false, false, false),
+    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_LOOK,     'look',     true, KEY_L,        false, false, false, false),
 ];

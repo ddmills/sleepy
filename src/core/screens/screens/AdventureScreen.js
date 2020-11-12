@@ -12,6 +12,7 @@ import {
     INPUT_CMD_CANCEL,
     INPUT_CMD_SAVE,
     INPUT_CMD_LOAD,
+    INPUT_CMD_LOOK,
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_ADVENTURE } from '../../input/InputDomainType';
 import {
@@ -36,6 +37,14 @@ export default class AdventureScreen extends Screen {
         this.game.commands.popDomain(INPUT_DOMAIN_ADVENTURE);
     }
 
+    onDirectionInput(dir) {
+        if (this.game.cursor.isEnabled) {
+            this.game.cursor.move(dir);
+        } else {
+            this.game.player.move(dir);
+        }
+    }
+
     onInputCommand(cmd) {
         if (cmd.type === INPUT_CMD_SAVE) {
             this.game.state.saveGame();
@@ -43,35 +52,42 @@ export default class AdventureScreen extends Screen {
         if (cmd.type === INPUT_CMD_LOAD) {
             this.game.state.loadGame();
         }
+        if (cmd.type === INPUT_CMD_LOOK) {
+            this.game.cursor.toggle();
+        }
         if (cmd.type === INPUT_CMD_CANCEL) {
-            this.game.screens.setScreen(SCREEN_MAIN_MENU);
+            if (this.game.cursor.isEnabled) {
+                this.game.cursor.disable();
+            } else {
+                this.game.screens.setScreen(SCREEN_MAIN_MENU);
+            }
         }
         if (cmd.type === INPUT_CMD_WAIT) {
             this.game.player.wait();
         }
         if (cmd.type === INPUT_CMD_MOVE_NW) {
-            this.game.player.move(DIR_NW);
+            this.onDirectionInput(DIR_NW);
         }
         if (cmd.type === INPUT_CMD_MOVE_N) {
-            this.game.player.move(DIR_N);
+            this.onDirectionInput(DIR_N);
         }
         if (cmd.type === INPUT_CMD_MOVE_NE) {
-            this.game.player.move(DIR_NE);
+            this.onDirectionInput(DIR_NE);
         }
         if (cmd.type === INPUT_CMD_MOVE_W) {
-            this.game.player.move(DIR_W);
+            this.onDirectionInput(DIR_W);
         }
         if (cmd.type === INPUT_CMD_MOVE_E) {
-            this.game.player.move(DIR_E);
+            this.onDirectionInput(DIR_E);
         }
         if (cmd.type === INPUT_CMD_MOVE_SW) {
-            this.game.player.move(DIR_SW);
+            this.onDirectionInput(DIR_SW);
         }
         if (cmd.type === INPUT_CMD_MOVE_S) {
-            this.game.player.move(DIR_S);
+            this.onDirectionInput(DIR_S);
         }
         if (cmd.type === INPUT_CMD_MOVE_SE) {
-            this.game.player.move(DIR_SE);
+            this.onDirectionInput(DIR_SE);
         }
     }
 }

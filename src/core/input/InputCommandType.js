@@ -11,3 +11,4 @@ export const INPUT_CMD_CONFIRM = 9;
 export const INPUT_CMD_CANCEL = 10;
 export const INPUT_CMD_SAVE = 11;
 export const INPUT_CMD_LOAD = 12;
+export const INPUT_CMD_LOOK = 13;

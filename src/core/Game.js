@@ -12,6 +12,7 @@ import PlayerManager from './PlayerManager';
 import ECS from '../ecs';
 import GameStateManager from './GameStateManager';
 import ClockManager from './ClockManager';
+import CursorSystem from '../systems/CursorSystem';
 
 export default class Game {
     get ecs() {
@@ -34,6 +35,7 @@ export default class Game {
         this.movementSystem = new MovementSystem(this);
         this.renderSystem = new RenderSystem(this);
         this.UISystem = new UISystem(this);
+        this.cursor = new CursorSystem(this);
     }
 
     start() {
@@ -50,6 +52,7 @@ export default class Game {
         this.renderSystem.update(dt);
         this.UISystem.update(dt);
         this.screens.update(dt);
+        this.cursor.update(dt);
 
         requestAnimationFrame(this.loop.bind(this));
     }

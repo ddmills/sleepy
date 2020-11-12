@@ -1,4 +1,3 @@
-import ecs from '../ecs';
 import { Eater } from '../ecs/components';
 import System from './System';
 

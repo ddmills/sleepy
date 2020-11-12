@@ -13,6 +13,14 @@ export default class PlayerManager extends Manager {
         return this.entity.actor.hasEnergy;
     }
 
+    get x() {
+        return this.entity.position.x;
+    }
+
+    get y() {
+        return this.entity.position.y;
+    }
+
     onNewGame() {
         const player = this.game.ecs.createPrefab('Player', {
             position: {

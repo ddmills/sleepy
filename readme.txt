@@ -25,16 +25,5 @@ https://ddmills.com/knossonia/
 # inspo
 - https://github.com/Bozar/cursedSouls
 - https://github.com/munificent/hauberk
-
-
-
-- save/load
-- rendering
-    - one canvas per layer (?)
-    - layers
-        - BACKGROUND - highlighting squares/tiles
-        - GROUND - walls, flooring
-        - ITEMS - loot
-        - ACTORS - monsters, player
-        - EFFECTS - explosions, magic
-        - UI - text, tags
+- https://www.reddit.com/r/roguelikedev/comments/66graa/tileset_inquiry/
+- https://www.reddit.com/r/roguelikedev/comments/1dmbxr/art_scrollosprites/

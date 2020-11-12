@@ -16,21 +16,21 @@ export default class PlayerManager extends Manager {
     onNewGame() {
         const player = this.game.ecs.createPrefab('Player', {
             position: {
-                x: 4,
-                y: 10,
+                x: 16,
+                y: 16,
             },
         });
 
         this.#entityId = player.id;
 
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 3; i++) {
             const wanderer = this.game.ecs.createPrefab('HumanWanderer', {
                 moniker: {
                     name: `Wanderer ${i}`,
                 },
                 position: {
-                    x: i % 64,
-                    y: i % 32,
+                    x: 21 + i,
+                    y: 8,
                 },
             });
 

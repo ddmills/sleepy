@@ -25,16 +25,6 @@ export default class UISystem extends System {
             `%c{cyan}Knossonia %c{white}(${x}, ${y}) ${hasMouse}`
         );
 
-        const entities = Array.from(this.#query.get());
-
-        entities.forEach((entity, i) => {
-            this.game.renderer.drawText(
-                1,
-                this.game.renderer.height - (2 + i),
-                `energy (${entity.moniker.name}) %c{yellow}${entity.actor.energy}`
-            );
-        });
-
         this.game.renderer.drawText(
             this.game.renderer.width - 6 - `${turn}`.length,
             1,

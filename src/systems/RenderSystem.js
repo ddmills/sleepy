@@ -11,11 +11,7 @@ export default class RenderSystem extends System {
         });
     }
 
-    update(dt) {
-        if (!this.game.clock.tickDelta) {
-            return;
-        }
-
+    render() {
         this.game.renderer.clear();
 
         this.#query.get().forEach((renderable) => {
@@ -27,5 +23,13 @@ export default class RenderSystem extends System {
                 renderable.glyph.bg
             );
         });
+    }
+
+    update(dt) {
+        if (!this.game.clock.tickDelta) {
+            return;
+        }
+
+        this.render();
     }
 }

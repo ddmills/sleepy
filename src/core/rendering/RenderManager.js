@@ -10,13 +10,13 @@ export default class Renderer extends Manager {
 
     constructor(game) {
         super(game);
-        RotDisplay.Rect.cache = true;
+        RotDisplay.Rect.cache = true; // what does this do?
         this.#rot = new RotDisplay({
             width: this.width,
             height: this.height,
             fontSize: 16,
             forceSquareRatio: false,
-            bg: '#262626',
+            bg: '#232323',
         });
         this.attach();
     }

@@ -1,4 +1,4 @@
-import Renderer from './rendering/Renderer';
+import Renderer from './rendering/RenderManager';
 import InputController from './input/InputController';
 import HungerSystem from '../systems/HungerSystem';
 import ActionSystem from '../systems/ActionSystem';
@@ -10,6 +10,8 @@ import CommandManager from './input/CommandManager';
 import ScreenManager from './screens/ScreenManager';
 import PlayerManager from './PlayerManager';
 import ECS from '../ecs';
+import GameStateManager from './GameStateManager';
+import ClockManager from './ClockManager';
 
 export default class Game {
     get ecs() {
@@ -18,8 +20,10 @@ export default class Game {
 
     constructor() {
         this.engine = new ECS();
-        this.renderer = new Renderer();
-        this.mouseManager = new MouseManager();
+        this.clock = new ClockManager(this);
+        this.renderer = new Renderer(this);
+        this.gameStateManager = new GameStateManager(this);
+        this.mouseManager = new MouseManager(this);
         this.playerManager = new PlayerManager(this);
         this.screenManager = new ScreenManager(this);
         this.commandManager = new CommandManager(this);
@@ -33,7 +37,7 @@ export default class Game {
     }
 
     start() {
-        this.playerManager.onStart();
+        this.gameStateManager.newGame();
         requestAnimationFrame(this.loop.bind(this));
     }
 

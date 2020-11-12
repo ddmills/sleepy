@@ -1,5 +1,6 @@
+import Manager from '../Manager';
 
-export default class MouseManager {
+export default class MouseManager extends Manager {
     #x = 0;
     #y = 0;
     #hasMouse = false;

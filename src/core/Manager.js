@@ -8,4 +8,8 @@ export default class Manager {
     constructor(game) {
         this.#game = game;
     }
+
+    onNewGame() {}
+    onSaveGame() {}
+    onLoadGame(data) {}
 }

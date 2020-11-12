@@ -12,8 +12,8 @@ export default class UISystem extends System {
     }
 
     update(dt) {
-        const turn = this.game.actionSystem.turn;
-        const subTurn = `${this.game.actionSystem.subTurn}`.padEnd(3, '0');
+        const turn = this.game.clock.turn;
+        const subTurn = `${this.game.clock.subTurn}`.padEnd(3, '0');
 
         const x = this.game.mouseManager.x;
         const y = this.game.mouseManager.y;

@@ -8,15 +8,15 @@ export class Brain extends Component {
 
     onTakeAction(evt) {
         while (this.peekGoal() && this.peekGoal().isFinished()) {
-            this.popGoal().destroy();
+            this.popGoal().entity.destroy();
         }
 
         const currentGoal = this.peekGoal();
         const result = currentGoal.takeAction();
 
-        if (result == FAILURE) {
+        if (result === FAILURE) {
             this.removeGoal(currentGoal);
-        } else if (result == INVALID) {
+        } else if (result === INVALID) {
             this.removeGoal(currentGoal);
             this.entity.fireEvent('take-action');
         }
@@ -25,26 +25,36 @@ export class Brain extends Component {
     }
 
     removeGoal(goal) {
+        const goalsToDestroy = [];
+
+        console.log('REMOVING GOAL', goal.name);
+
         this.goals = this.goals.filter((g) => {
-            const isSelf = Boolean(g.id === goal.id);
+            const isSelf = Boolean(g.id === goal.entity.id);
             const isSiblingGoal = Boolean(
                 g.goal.originalIntent &&
                     g.goal.originalIntent.id === goal.originalIntent.id
             );
 
             if (isSelf || isSiblingGoal) {
-                g.destroy();
-
+                goalsToDestroy.push(g.goal);
                 return false;
             }
 
             return true;
         });
+
+        goalsToDestroy.forEach((g) => g.entity.destroy());
     }
 
     pushGoal(goal) {
-        goal.goal.parent = this.entity;
-        return this.goals.push(goal);
+        if (!(goal instanceof Component)) {
+            throw new Error('Pushing non-component goal!', goal);
+        }
+
+        goal.parent = this.entity;
+
+        return this.goals.push(goal.entity);
     }
 
     popGoal() {

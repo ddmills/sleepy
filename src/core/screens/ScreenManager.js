@@ -32,4 +32,8 @@ export default class ScreenManager {
     update(dt) {
         this.screen.onUpdate(dt);
     }
+
+    onLoadGame(data) {
+        this.setScreen(SCREEN_ADVENTURE);
+    }
 }

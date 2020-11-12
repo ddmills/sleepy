@@ -25,6 +25,6 @@ export class GoalType {
                 name: this.name,
                 ...properties,
             },
-        });
+        }).goal;
     }
 }

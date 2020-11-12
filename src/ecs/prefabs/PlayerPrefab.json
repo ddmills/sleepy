@@ -3,6 +3,12 @@
     "inherit": ["Human"],
     "components": [
         {
+            "type": "Moniker",
+            "properties": {
+                "name": "Player"
+            }
+        },
+        {
             "type": "Glyph",
             "properties": {
                 "char": "@",

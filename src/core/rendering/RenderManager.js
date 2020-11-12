@@ -1,20 +1,22 @@
 import { Display as RotDisplay } from 'rot-js';
+import Manager from '../Manager';
 
-export default class Renderer {
+export default class Renderer extends Manager {
     #rot = null;
     #container = null;
 
     width = 64;
     height = 32;
 
-    constructor() {
+    constructor(game) {
+        super(game);
         RotDisplay.Rect.cache = true;
         this.#rot = new RotDisplay({
             width: this.width,
             height: this.height,
             fontSize: 18,
             forceSquareRatio: false,
-            bg: '#1c171f',
+            bg: '#262626',
         });
         this.attach();
     }

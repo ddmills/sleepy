@@ -1,13 +1,13 @@
 import { INPUT_DOMAIN_DEFAULT } from './InputDomainType';
 import commands from './commands';
+import Manager from '../Manager';
 
-export default class CommandManager {
-    #game = null;
+export default class CommandManager extends Manager {
     #commands = {};
     #domainStack = [INPUT_DOMAIN_DEFAULT];
 
     constructor(game) {
-        this.#game = game;
+        super(game);
         commands.forEach((cmd) => this.registerCommand(cmd));
     }
 
@@ -15,7 +15,7 @@ export default class CommandManager {
         const cmd = this.getCommandForInputEvent(evt);
 
         if (cmd) {
-            this.#game.screenManager.onInputCommand(cmd);
+            this.game.screenManager.onInputCommand(cmd);
         }
     }
 

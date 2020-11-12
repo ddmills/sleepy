@@ -3,22 +3,21 @@ import { BoredGoalType } from '../ai/GoalTypes';
 import { MoveCommand } from '../ecs/components';
 
 export default class PlayerManager extends Manager {
-    #entity = null;
+    #entityId = null;
 
     get entity() {
-        return this.#entity;
+        return this.game.ecs.getEntity(this.#entityId);
     }
 
-    onStart() {
-        this.#entity = this.game.ecs.createPrefab('Player', {
-            moniker: {
-                name: 'Player',
-            },
+    onNewGame() {
+        const player = this.game.ecs.createPrefab('Player', {
             position: {
                 x: 4,
                 y: 10,
             },
         });
+
+        this.#entityId = player.id;
 
         const bob = this.game.ecs.createPrefab('HumanWanderer', {
             position: {
@@ -27,6 +26,17 @@ export default class PlayerManager extends Manager {
             },
         });
 
+        const kate = this.game.ecs.createPrefab('HumanWanderer', {
+            moniker: {
+                name: 'Kate',
+            },
+            position: {
+                x: 33,
+                y: 20,
+            },
+        });
+
+        kate.brain.pushGoal(BoredGoalType.create());
         bob.brain.pushGoal(BoredGoalType.create());
     }
 
@@ -42,5 +52,15 @@ export default class PlayerManager extends Manager {
 
     wait(turns = 1) {
         this.entity.fireEvent('energy-consumed', turns * 1000);
+    }
+
+    onSaveGame() {
+        return {
+            playerEntityId: this.#entityId
+        };
+    }
+
+    onLoadGame(data) {
+        this.#entityId = data.playerEntityId
     }
 }

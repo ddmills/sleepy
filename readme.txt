@@ -1,5 +1,7 @@
 https://ddmills.com/knossonia/
 
+built with geotic - https://github.com/ddmills/geotic
+
 - time
     - year
     - month
@@ -27,3 +29,4 @@ https://ddmills.com/knossonia/
 - https://github.com/munificent/hauberk
 - https://www.reddit.com/r/roguelikedev/comments/66graa/tileset_inquiry/
 - https://www.reddit.com/r/roguelikedev/comments/1dmbxr/art_scrollosprites/
+- https://robey.lag.net/2020/02/09/bizcat-bitmap-font.html

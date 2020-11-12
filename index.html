@@ -34,11 +34,15 @@
                 left: 16px;
                 bottom: 16px;
             }
+            #tileset {
+                display: none;
+            }
         </style>
     </head>
     <body>
-        <a class="build" href="https://github.com/ddmills/knossonia"
-            ><%= htmlWebpackPlugin.options.version %></a
-        >
+        <a class="build" href="https://github.com/ddmills/knossonia">
+            <%= htmlWebpackPlugin.options.version %>
+        </a>
+        <img id="tileset" src="<%=require("./resources/tiles.png").default%>" />
     </body>
 </html>

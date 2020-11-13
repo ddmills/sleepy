@@ -47,12 +47,6 @@ export default class CursorSystem extends System {
             return;
         }
 
-        console.log('draw!');
-        this.game.renderer.draw(this.#x, this.#y, 'X', 'yellow');
-        // if (this.game.actionSystem.tickDelta > 0) {
-        //     this.#query.get().forEach((entity) => {
-        //         entity.eater.hunger -= this.game.actionSystem.tickDelta;
-        //     });
-        // }
+        this.game.renderer.draw(this.x, this.y, 'X', 'yellow');
     }
 }

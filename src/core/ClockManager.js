@@ -25,11 +25,22 @@ export default class ClockManager extends Manager {
         this.#tick += delta;
     }
 
-    onNewGame() {}
+    onNewGame() {
+        this.#tick = 0;
+        this.#tickDelta = 0;
+    }
 
-    onLoadGame(data) {}
+    onLoadGame(data) {
+        this.#tick = data.clock.tick;
+        this.#tickDelta = data.clock.tickDelta;
+    }
 
     onSaveGame() {
-        return {};
+        return {
+            clock: {
+                tick: this.tick,
+                tickDelta: this.tickDelta
+            }
+        };
     }
 }

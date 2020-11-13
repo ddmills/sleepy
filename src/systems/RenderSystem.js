@@ -15,10 +15,17 @@ export default class RenderSystem extends System {
         this.game.renderer.clear();
 
         this.#query.get().forEach((renderable) => {
-            this.game.renderer.draw(
+            // this.game.renderer.draw(
+            //     renderable.position.x,
+            //     renderable.position.y,
+            //     renderable.glyph.char,
+            //     renderable.glyph.fg,
+            //     renderable.glyph.bg
+            // );
+            this.game.renderer.drawSprite(
                 renderable.position.x,
                 renderable.position.y,
-                renderable.glyph.char,
+                'smile',
                 renderable.glyph.fg,
                 renderable.glyph.bg
             );

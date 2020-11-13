@@ -52,6 +52,22 @@ export default class Display {
         this.ctx.textBaseline = 'top';
     }
 
+    drawSprite(x, y, sprite, fg1, fg2, bg) {
+        const pixelX = x * this.tileWidth;
+        const pixelY = y * this.tileHeight;
+
+        const img = sprite.colorize(
+            [0, 240, 240, 255],
+            [100, 20, 50, 255]
+        );
+
+        this.ctx.putImageData(
+            img,
+            pixelX,
+            pixelY
+        );
+    }
+
     draw(x, y, char, fg, bg = 'transparent') {
         fg = fg || this.#defaultFg;
 

@@ -5,6 +5,7 @@ export default class Display {
     #height;
     #tileWidth;
     #tileHeight;
+    #defaultFg;
 
     get tileWidth() {
         return this.#tileWidth;
@@ -30,11 +31,12 @@ export default class Display {
         return this.#ctx;
     }
 
-    constructor({width, height, tileWidth, tileHeight}) {
+    constructor({width, height, tileWidth, tileHeight, defaultFg}) {
         this.#width = width;
         this.#height = height;
         this.#tileWidth = tileWidth;
         this.#tileHeight = tileHeight;
+        this.#defaultFg = defaultFg || '#fff';
 
         this.#canvas = document.createElement('canvas');
         this.#ctx = this.canvas.getContext('2d');
@@ -50,15 +52,20 @@ export default class Display {
         this.ctx.textBaseline = 'top';
     }
 
-    draw(x, y, char, fg = '#eee', bg) {
-        // this.clearTile(x, y);
-        // this.ctx.fillStyle = '#333';
-        // this.ctx.fillRect(
-        //     x * this.tileWidth,
-        //     y * this.tileHeight,
-        //     this.tileWidth,
-        //     this.tileHeight
-        // );
+    draw(x, y, char, fg, bg = 'transparent') {
+        fg = fg || this.#defaultFg;
+
+        if (bg !== 'transparent') {
+            this.ctx.fillStyle = bg;
+            this.ctx.fillRect(
+                x * this.tileWidth,
+                y * this.tileHeight,
+                this.tileWidth,
+                this.tileHeight
+            );
+        } else {
+            this.clearTile(x, y);
+        }
 
         this.ctx.fillStyle = fg;
         this.ctx.fillText(
@@ -68,8 +75,8 @@ export default class Display {
         );
     }
 
-    drawText(x, y, text, fg = '#eee', bg) {
-        this.ctx.fillStyle = fg;
+    drawText(x, y, text, fg, bg = 'transparent') {
+        this.ctx.fillStyle = fg || this.#defaultFg;;
         for (let i = 0; i < text.length; i++) {
             this.draw(
                 x + i,

@@ -7,7 +7,7 @@ export default class InputController extends Manager {
         super(game);
         document.addEventListener('keydown', this.onKeydown.bind(this));
 
-        const container = this.game.renderer.getDOMContainer();
+        const container = this.game.renderer.canvas;
 
         container.addEventListener('click', this.onMouseClick.bind(this));
         container.addEventListener('mousemove', this.onMouseMove.bind(this));
@@ -30,27 +30,31 @@ export default class InputController extends Manager {
     }
 
     onMouseClick(e) {
-        const [tileX, tileY] = this.game.renderer.eventToPosition(e);
+        const xPx = e.offsetX;
+        const yPx = e.offsetY;
+        const {x, y} = this.game.renderer.pxToTile(xPx, yPx);
 
         const evt = new InputMouseEvent({
             key: e.button,
-            x: e.offsetX,
-            y: e.offsetY,
+            x,
+            y,
             shift: e.shiftKey,
             ctrl: e.ctrlKey,
             alt: e.altKey,
             meta: e.metaKey,
-            tileX,
-            tileY,
+            xPx,
+            yPx,
         });
 
         this.game.commands.onInputEvent(evt);
     }
 
     onMouseMove(e) {
-        const [tileX, tileY] = this.game.renderer.eventToPosition(e);
+        const xPx = e.offsetX;
+        const yPx = e.offsetY;
+        const {x, y} = this.game.renderer.pxToTile(xPx, yPx);
 
-        this.game.mouse.updatePosition(tileX, tileY);
+        this.game.mouse.updatePosition(x, y);
     }
 
     onMouseEnter(e) {

@@ -22,13 +22,13 @@ export default class UISystem extends System {
         this.game.renderer.drawText(
             1,
             1,
-            `%c{cyan}Knossonia %c{white}(${x}, ${y}) ${hasMouse}`
+            `Knossonia (${x}, ${y}) ${hasMouse}`
         );
 
         this.game.renderer.drawText(
-            this.game.renderer.width - 6 - `${turn}`.length,
+            this.game.renderer.width - 5 - `${turn}`.length,
             1,
-            `%c{cyan}${turn}%c{white}.%c{yellow}${subTurn}`
+            `${turn}.${subTurn}`
         );
     }
 }

@@ -1,47 +1,55 @@
-import { Display as RotDisplay } from 'rot-js';
 import Manager from '../Manager';
+import Display from './Display';
 
 export default class Renderer extends Manager {
-    #rot = null;
-    #container = null;
+    #tileWidth = 16;
+    #tileHeight = 24;
 
     width = 64;
     height = 32;
 
-    constructor(game) {
-        super(game);
-        RotDisplay.Rect.cache = true; // what does this do?
-        this.#rot = new RotDisplay({
-            width: this.width,
-            height: this.height,
-            fontSize: 18,
-            forceSquareRatio: false,
-            bg: '#232323',
-        });
-        this.attach();
+    get tileWidth() {
+        return this.#tileWidth;
     }
 
-    attach() {
-        this.#container = document.body.appendChild(this.#rot.getContainer());
+    get tileHeight() {
+        return this.#tileHeight;
+    }
+
+    get canvas() {
+        return this.display.canvas;
+    }
+
+    constructor(game) {
+        super(game);
+        const tileSet = document.getElementById('tileset');
+
+        this.display = new Display({
+            width: this.width,
+            height: this.height,
+            tileWidth: this.tileWidth,
+            tileHeight: this.tileHeight,
+        });
+
+        document.body.appendChild(this.display.canvas);
     }
 
     draw(x, y, char, fg, bg) {
-        this.#rot.draw(x, y, char, fg, bg);
+        this.display.draw(x, y, char, fg, bg);
     }
 
-    drawText(x, y, string) {
-        this.#rot.drawText(x, y, string);
+    drawText(x, y, text) {
+        this.display.drawText(x, y, text);
     }
 
     clear() {
-        this.#rot.clear();
+        this.display.clear();
     }
 
-    getDOMContainer() {
-        return this.#container;
-    }
+    pxToTile(xPx, yPx) {
+        const x = Math.trunc(xPx / this.tileWidth);
+        const y = Math.trunc(yPx / this.tileHeight);
 
-    eventToPosition(e) {
-        return this.#rot.eventToPosition(e);
+        return {x, y};
     }
 }

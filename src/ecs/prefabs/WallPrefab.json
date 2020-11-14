@@ -1,0 +1,22 @@
+{
+    "name": "Wall",
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Wall"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "char": "═",
+                "primary": "brown",
+                "secondary": "##336633"
+            }
+        },
+        {
+            "type": "Position"
+        }
+    ]
+}

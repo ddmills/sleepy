@@ -2,7 +2,10 @@
     "name": "Being",
     "components": [
         {
-            "type": "Actor"
+            "type": "Actor",
+            "properties": {
+                "energy": -500
+            }
         },
         {
             "type": "Position"

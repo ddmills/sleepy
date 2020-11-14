@@ -1,3 +1,4 @@
+import { Map as MapGenerator } from 'rot-js';
 import Manager from './Manager';
 import { BoredGoalType } from '../ai/GoalTypes';
 import { Position } from '../ecs/components';
@@ -18,6 +19,28 @@ export default class MapManager extends Manager {
     }
 
     onNewGame() {
+        const w = 24;
+        const h = 24;
+        const generator = new MapGenerator.Uniform(w, h, {
+            timeLimit: 8000,
+            roomWidth: [3, 6],
+            roomHeight: [3, 6],
+            roomDugPercentage: 0.8,
+        });
+
+        generator.create((x, y, v) => {
+            if (v !== 1) {
+                return;
+            }
+
+            this.game.ecs.createPrefab('Wall', {
+                position: {
+                    x,
+                    y,
+                },
+            });
+        })
+
         for (let i = 0; i < 3; i++) {
             const wanderer = this.game.ecs.createPrefab('HumanWanderer', {
                 moniker: {

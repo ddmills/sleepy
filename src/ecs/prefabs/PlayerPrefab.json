@@ -3,6 +3,12 @@
     "inherit": ["Human"],
     "components": [
         {
+            "type": "Actor",
+            "properties": {
+                "energy": 0
+            }
+        },
+        {
             "type": "Moniker",
             "properties": {
                 "name": "Player"

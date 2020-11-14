@@ -42,6 +42,7 @@
         "webpack-dev-server": "^3.11.0"
     },
     "dependencies": {
+        "color-parse": "^1.4.2",
         "geotic": "^3.3.0",
         "rot-js": "^2.1.5"
     }

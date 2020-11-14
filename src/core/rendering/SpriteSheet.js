@@ -1,8 +1,11 @@
+import cp437 from './cp437';
+import Sprite from './Sprite';
+
 export default class SpriteSheet {
     #name = null;
     #image = null;
-    #spriteCountX = null;
-    #spriteCountY = null;
+    #defaultGlyph = '?';
+    #sprites = {};
 
     get name() {
         return this.#name;
@@ -21,11 +24,11 @@ export default class SpriteSheet {
     }
 
     get spriteCountX() {
-        return this.#spriteCountX;
+        return 16;
     }
 
     get spriteCountY() {
-        return this.#spriteCountY;
+        return 16;
     }
 
     get spriteWidth() {
@@ -36,10 +39,22 @@ export default class SpriteSheet {
         return this.image.height / this.spriteCountY;
     }
 
-    constructor(name, image, spriteCountX, spriteCountY) {
+    constructor(name, image) {
         this.#name = name;
         this.#image = image;
-        this.#spriteCountX = spriteCountX;
-        this.#spriteCountY = spriteCountY;
+
+        cp437.forEach((row, i) => {
+            row.forEach((glyph, j) => {
+                this.#sprites[glyph] = new Sprite(glyph, this, j, i);
+            });
+        });
+    }
+
+    getSprite(glyph) {
+        if (this.#sprites[glyph]) {
+            return this.#sprites[glyph];
+        }
+
+        return this.#sprites[this.#defaultGlyph];
     }
 }

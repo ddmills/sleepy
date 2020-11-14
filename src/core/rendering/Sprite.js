@@ -1,3 +1,5 @@
+import colorParse from 'color-parse';
+
 const isWhite = (r, g, b) => r === 255 && g === 255 && b === 255;
 
 export default class Sprite {
@@ -66,25 +68,27 @@ export default class Sprite {
         );
     }
 
-    colorize(primary, secondary) {
+    colorize(primaryCss, secondaryCss) {
+        const primary = colorParse(primaryCss).values;
+        const secondary = colorParse(secondaryCss).values;
+
         const pixels = this.#ctx.getImageData(0, 0, this.width, this.height);
 
         for (let i = 0; i < pixels.data.length; i += 4) {
             const r = pixels.data[i];
             const g = pixels.data[i + 1];
             const b = pixels.data[i + 2];
-            const a = pixels.data[i + 3];
 
             if (isWhite(r, g, b)) {
-                pixels.data[i] = primary[0];
-                pixels.data[i + 1] = primary[1];
-                pixels.data[i + 2] = primary[2];
-                pixels.data[i + 4] = primary[3];
-            } else {
                 pixels.data[i] = secondary[0];
                 pixels.data[i + 1] = secondary[1];
                 pixels.data[i + 2] = secondary[2];
-                pixels.data[i + 4] = secondary[3];
+                pixels.data[i + 4] = secondary.alpha;
+            } else {
+                pixels.data[i] = primary[0];
+                pixels.data[i + 1] = primary[1];
+                pixels.data[i + 2] = primary[2];
+                pixels.data[i + 4] = primary.alpha;
             }
         }
 

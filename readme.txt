@@ -30,3 +30,7 @@ built with geotic - https://github.com/ddmills/geotic
 - https://www.reddit.com/r/roguelikedev/comments/66graa/tileset_inquiry/
 - https://www.reddit.com/r/roguelikedev/comments/1dmbxr/art_scrollosprites/
 - https://robey.lag.net/2020/02/09/bizcat-bitmap-font.html
+- https://int10h.org/oldschool-pc-fonts
+- https://www.gridsagegames.com/blog/category/dev-series-fonts/
+- https://kenney.nl/assets/bit-pack
+- https://github.com/rsaarelm/sodna/blob/master/codepage_437.txt

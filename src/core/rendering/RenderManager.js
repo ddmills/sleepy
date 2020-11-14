@@ -1,11 +1,11 @@
 import Manager from '../Manager';
 import Display from './Display';
-import sprites from './sprites';
+import spritesheets from './spritesheets';
 
 export default class Renderer extends Manager {
     #tileWidth = 16;
-    #tileHeight = 24;
-    #sprites = {};
+    #tileHeight = 16;
+    #spritesheets = {};
     #display = null;
 
     width = 64;
@@ -30,8 +30,8 @@ export default class Renderer extends Manager {
     constructor(game) {
         super(game);
 
-        sprites.forEach((sprite) => {
-            this.#sprites[sprite.glyph] = sprite;
+        spritesheets.forEach((spritesheet) => {
+            this.#spritesheets[spritesheet.name] = spritesheet;
         });
 
         this.#display = new Display({
@@ -45,35 +45,21 @@ export default class Renderer extends Manager {
     }
 
     draw(x, y, char, fg, bg) {
-        this.display.draw(x, y, char, fg, bg);
+        this.drawSprite(x, y, char, fg, bg);
     }
 
-    drawText(x, y, text) {
+    drawText(x, y, text, fg, bg) {
         for (let i = 0; i < text.length; i++) {
-            this.drawSprite(x + i, y, text.charAt(i));
+            const sprite = this.#spritesheets.font.getSprite(text.charAt(i));
+
+            this.display.drawSprite(x + (.5 * i), y, sprite, fg, bg);
         }
-        // this.display.drawText(x, y, text);
     }
 
-    drawSprite(x, y, glyph, fg1 = 'red', fg2 = 'blue', bg) {
-        const sprite = this.getSprite(glyph);
-
-        if (!sprite) {
-            console.warn('sprite for glyph not found!', glyph);
-            return;
-        }
+    drawSprite(x, y, glyph, fg1, fg2, bg) {
+        const sprite = this.#spritesheets.tiles.getSprite(glyph);
 
         this.display.drawSprite(x, y, sprite, fg1, fg2, bg);
-    }
-
-    getSprite(glyph) {
-        const sprite = this.#sprites[glyph];
-
-        if (sprite) {
-            return sprite;
-        }
-
-        return this.#sprites['?'];
     }
 
     clear() {

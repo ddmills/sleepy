@@ -52,56 +52,13 @@ export default class Display {
         this.ctx.textBaseline = 'top';
     }
 
-    drawSprite(x, y, sprite, fg1, fg2, bg) {
+    drawSprite(x, y, sprite, fg1 = '#d6d6d6', fg2 = 'red', bg) {
         const pixelX = x * this.tileWidth;
         const pixelY = y * this.tileHeight;
 
-        const img = sprite.colorize(
-            [0, 240, 240, 255],
-            [100, 20, 50, 255]
-        );
+        const img = sprite.colorize(fg1, fg2);
 
-        this.ctx.putImageData(
-            img,
-            pixelX,
-            pixelY
-        );
-    }
-
-    draw(x, y, char, fg, bg = 'transparent') {
-        fg = fg || this.#defaultFg;
-
-        if (bg !== 'transparent') {
-            this.ctx.fillStyle = bg;
-            this.ctx.fillRect(
-                x * this.tileWidth,
-                y * this.tileHeight,
-                this.tileWidth,
-                this.tileHeight
-            );
-        } else {
-            this.clearTile(x, y);
-        }
-
-        this.ctx.fillStyle = fg;
-        this.ctx.fillText(
-            char,
-            x * this.tileWidth,
-            y * this.tileHeight
-        );
-    }
-
-    drawText(x, y, text, fg, bg = 'transparent') {
-        this.ctx.fillStyle = fg || this.#defaultFg;;
-        for (let i = 0; i < text.length; i++) {
-            this.draw(
-                x + i,
-                y,
-                text.charAt(i),
-                fg,
-                bg
-            );
-        }
+        this.ctx.putImageData(img, pixelX, pixelY);
     }
 
     clear() {

@@ -59,10 +59,20 @@ export default class CursorSystem extends System {
         entities
             .filter((e) => e.has(Moniker))
             .forEach((entity, i) => {
+                const c = i === 0 ? '◄' : ' ';
                 this.game.renderer.drawText(
-                    1,
-                    this.game.renderer.height - 1 - (entities.length - i),
-                    entity.moniker.name
+                    entity.position.x + 1,
+                    entity.position.y + i,
+                    `${c}█`,
+                    '#ddd'
+                );
+                this.game.renderer.drawText(
+                    entity.position.x + 2,
+                    entity.position.y + i,
+                    entity.moniker.name + ' ',
+                    '#111133',
+                    'white',
+                    '#ddd'
                 );
             });
     }

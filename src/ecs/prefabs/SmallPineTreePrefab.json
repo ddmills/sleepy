@@ -3,12 +3,6 @@
     "inherit": ["PineTree"],
     "components": [
         {
-            "type": "Moniker",
-            "properties": {
-                "name": "Small Pine Tree"
-            }
-        },
-        {
             "type": "Glyph",
             "properties": {
                 "char": "♠",

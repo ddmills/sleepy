@@ -1,6 +1,7 @@
 export default class Display {
     #ctx;
     #canvas;
+    #canvasDirty;
     #width;
     #height;
     #tileWidth;
@@ -52,21 +53,29 @@ export default class Display {
         this.ctx.textBaseline = 'top';
     }
 
-    drawSprite(x, y, sprite, fg1 = '#d6d6d6', fg2 = 'red', bg) {
+    draw(x, y, sprite, fg1, fg2, bg) {
         const pixelX = x * this.tileWidth;
         const pixelY = y * this.tileHeight;
 
         const img = sprite.colorize(fg1, fg2);
 
-        this.ctx.fillStyle = '#0b1717';
-        this.ctx.fillRect(pixelX, pixelY, img.width, img.height);
-        this.ctx.putImageData(img, pixelX, pixelY);
+        if (bg) {
+            this.ctx.fillStyle = bg;
+            this.ctx.fillRect(pixelX, pixelY, sprite.width, sprite.height);
+        } else {
+            this.ctx.clearRect(pixelX, pixelY, this.tileWidth, this.tileHeight);
+        }
+
+        this.ctx.drawImage(img, pixelX, pixelY);
     }
 
     clear() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.fillStyle = '#0b1717';
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+
+    fillTile(x, y, color) {
+        this.ctx.fillStyle = color;
+        this.ctx.fillRect(x, y, this.tileWidth, this.#tileHeight);
     }
 
     clearTile(x, y) {

@@ -44,26 +44,22 @@ export default class Renderer extends Manager {
         document.body.appendChild(this.display.canvas);
     }
 
-    draw(x, y, char, fg, bg) {
-        this.drawSprite(x, y, char, fg, bg);
+    draw(x, y, char, fg1 = '#d6d6d6', fg2 = '#333', bg) {
+        const sprite = this.#spritesheets.tiles.getSprite(char);
+
+        this.display.draw(x, y, sprite, fg1, fg2, bg);
     }
 
     computeTextWidth(text) {
         return text.length * 0.5;
     }
 
-    drawText(x, y, text, fg, bg) {
+    drawText(x, y, text, fg1 = '#d6d6d6', fg2 = '#333', bg) {
         for (let i = 0; i < text.length; i++) {
             const sprite = this.#spritesheets.font.getSprite(text.charAt(i));
 
-            this.display.drawSprite(x + 0.5 * i, y, sprite, fg, bg);
+            this.display.draw(x + 0.5 * i, y, sprite, fg1, fg2, bg);
         }
-    }
-
-    drawSprite(x, y, glyph, fg1, fg2, bg) {
-        const sprite = this.#spritesheets.tiles.getSprite(glyph);
-
-        this.display.drawSprite(x, y, sprite, fg1, fg2, bg);
     }
 
     clear() {

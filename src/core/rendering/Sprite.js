@@ -5,6 +5,8 @@ const isBlack = (r, g, b) => r === 0 && g === 0 && b === 0;
 
 export default class Sprite {
     #ctx = null;
+    #ctxDirty = null;
+    #canvasDirty = null;
     #glyph = null;
     #sheet = null;
     #x = null;
@@ -53,9 +55,16 @@ export default class Sprite {
         this.#y = y;
 
         const canvas = document.createElement('canvas');
+        this.#canvasDirty = document.createElement('canvas');
+
         canvas.width = this.width;
         canvas.height = this.height;
+        this.#canvasDirty.width = this.width;
+        this.#canvasDirty.height = this.height;
+
         this.#ctx = canvas.getContext('2d');
+        this.#ctxDirty = this.#canvasDirty.getContext('2d');
+
         this.#ctx.drawImage(
             this.sheet.image,
             this.sourceX,
@@ -93,6 +102,8 @@ export default class Sprite {
             }
         }
 
-        return pixels;
+        this.#ctxDirty.putImageData(pixels, 0, 0);
+
+        return this.#canvasDirty;
     }
 }

@@ -12,8 +12,8 @@
             "type": "Glyph",
             "properties": {
                 "char": "@",
-                "fg": "#d6d6d6",
-                "bg": "#66a3dc"
+                "primary": "#d6d6d6",
+                "secondary": "#66a3dc"
             }
         },
         {

@@ -8,8 +8,8 @@ export default class Renderer extends Manager {
     #spritesheets = {};
     #display = null;
 
-    width = 64;
-    height = 32;
+    width = 24;
+    height = 24;
 
     get tileWidth() {
         return this.#tileWidth;
@@ -46,6 +46,10 @@ export default class Renderer extends Manager {
 
     draw(x, y, char, fg, bg) {
         this.drawSprite(x, y, char, fg, bg);
+    }
+
+    computeTextWidth(text) {
+        return text.length * .5;
     }
 
     drawText(x, y, text, fg, bg) {

@@ -1,6 +1,7 @@
 import colorParse from 'color-parse';
 
 const isWhite = (r, g, b) => r === 255 && g === 255 && b === 255;
+const isBlack = (r, g, b) => r === 0 && g === 0 && b === 0;
 
 export default class Sprite {
     #ctx = null;
@@ -79,16 +80,16 @@ export default class Sprite {
             const g = pixels.data[i + 1];
             const b = pixels.data[i + 2];
 
-            if (isWhite(r, g, b)) {
-                pixels.data[i] = secondary[0];
-                pixels.data[i + 1] = secondary[1];
-                pixels.data[i + 2] = secondary[2];
-                pixels.data[i + 4] = secondary.alpha;
-            } else {
+            if (isBlack(r, g, b)) {
                 pixels.data[i] = primary[0];
                 pixels.data[i + 1] = primary[1];
                 pixels.data[i + 2] = primary[2];
                 pixels.data[i + 4] = primary.alpha;
+            } else {
+                pixels.data[i] = secondary[0];
+                pixels.data[i + 1] = secondary[1];
+                pixels.data[i + 2] = secondary[2];
+                pixels.data[i + 4] = secondary.alpha;
             }
         }
 

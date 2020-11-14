@@ -25,10 +25,13 @@ export default class UISystem extends System {
             `Knossonia (${x}, ${y}) ${hasMouse}`
         );
 
+        const str = `${turn}.${subTurn}`;
+        const len = Math.ceil(this.game.renderer.computeTextWidth(str))
+
         this.game.renderer.drawText(
-            this.game.renderer.width - 5 - `${turn}`.length,
+            this.game.renderer.width - 1 - len,
             1,
-            `${turn}.${subTurn}`
+            str
         );
     }
 }

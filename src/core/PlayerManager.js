@@ -44,6 +44,19 @@ export default class PlayerManager extends Manager {
 
             wanderer.brain.pushGoal(BoredGoalType.create());
         }
+
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 6; j++) {
+                const type = (j + i) % 2 === 0 ? 'SmallPineTree' : 'PineTree';
+
+                this.game.ecs.createPrefab(type, {
+                    position: {
+                        x: 10 + i,
+                        y: 5 + j,
+                    },
+                });
+            }
+        }
     }
 
     move(direction) {

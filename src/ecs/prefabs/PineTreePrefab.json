@@ -1,0 +1,22 @@
+{
+    "name": "PineTree",
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Pine Tree"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "char": "♣",
+                "fg": "#336633",
+                "bg": "brown"
+            }
+        },
+        {
+            "type": "Position"
+        }
+    ]
+}

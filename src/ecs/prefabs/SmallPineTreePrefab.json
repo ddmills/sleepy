@@ -1,0 +1,20 @@
+{
+    "name": "SmallPineTree",
+    "inherit": ["PineTree"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Small Pine Tree"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "char": "♠",
+                "fg": "#336633",
+                "bg": "brown"
+            }
+        }
+    ]
+}

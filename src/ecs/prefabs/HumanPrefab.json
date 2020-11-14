@@ -9,7 +9,8 @@
             "type": "Glyph",
             "properties": {
                 "char": "h",
-                "fg": "pink"
+                "fg": "pink",
+                "bg": "blue"
             }
         },
         {

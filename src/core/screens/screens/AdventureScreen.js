@@ -13,6 +13,8 @@ import {
     INPUT_CMD_SAVE,
     INPUT_CMD_LOAD,
     INPUT_CMD_LOOK,
+    INPUT_CMD_SCREEN_CAPTURE_START,
+    INPUT_CMD_SCREEN_CAPTURE_END,
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_ADVENTURE } from '../../input/InputDomainType';
 import {
@@ -62,6 +64,12 @@ export default class AdventureScreen extends Screen {
             } else {
                 this.game.screens.setScreen(SCREEN_MAIN_MENU);
             }
+        }
+        if (cmd.type === INPUT_CMD_SCREEN_CAPTURE_START) {
+            this.game.screenCapture.startCapture();
+        }
+        if (cmd.type === INPUT_CMD_SCREEN_CAPTURE_END) {
+            this.game.screenCapture.endCapture();
         }
         if (cmd.type === INPUT_CMD_WAIT) {
             this.game.player.wait();

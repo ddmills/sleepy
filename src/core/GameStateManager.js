@@ -6,6 +6,7 @@ export default class GameStateManager extends Manager {
         this.game.clock.onNewGame();
         this.game.engine.onNewGame();
         this.game.player.onNewGame();
+        this.game.map.onNewGame();
     }
 
     saveGame() {

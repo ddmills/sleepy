@@ -32,7 +32,7 @@ export default class InputController extends Manager {
     onMouseClick(e) {
         const xPx = e.offsetX;
         const yPx = e.offsetY;
-        const {x, y} = this.game.renderer.pxToTile(xPx, yPx);
+        const { x, y } = this.game.renderer.pxToTile(xPx, yPx);
 
         const evt = new InputMouseEvent({
             key: e.button,
@@ -52,7 +52,7 @@ export default class InputController extends Manager {
     onMouseMove(e) {
         const xPx = e.offsetX;
         const yPx = e.offsetY;
-        const {x, y} = this.game.renderer.pxToTile(xPx, yPx);
+        const { x, y } = this.game.renderer.pxToTile(xPx, yPx);
 
         this.game.mouse.updatePosition(x, y);
     }

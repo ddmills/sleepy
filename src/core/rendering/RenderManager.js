@@ -49,14 +49,14 @@ export default class Renderer extends Manager {
     }
 
     computeTextWidth(text) {
-        return text.length * .5;
+        return text.length * 0.5;
     }
 
     drawText(x, y, text, fg, bg) {
         for (let i = 0; i < text.length; i++) {
             const sprite = this.#spritesheets.font.getSprite(text.charAt(i));
 
-            this.display.drawSprite(x + (.5 * i), y, sprite, fg, bg);
+            this.display.drawSprite(x + 0.5 * i, y, sprite, fg, bg);
         }
     }
 
@@ -74,6 +74,6 @@ export default class Renderer extends Manager {
         const x = Math.trunc(xPx / this.tileWidth);
         const y = Math.trunc(yPx / this.tileHeight);
 
-        return {x, y};
+        return { x, y };
     }
 }

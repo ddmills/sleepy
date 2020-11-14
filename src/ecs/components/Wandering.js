@@ -5,7 +5,7 @@ import * as Directions from '../../enums/Directions';
 export class Wandering extends Component {
     onBoredom(evt) {
         if (Math.random() > 0.25) {
-            return
+            return;
         }
 
         const direction = Math.floor(Math.random() * 9);

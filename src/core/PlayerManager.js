@@ -30,33 +30,6 @@ export default class PlayerManager extends Manager {
         });
 
         this.#entityId = player.id;
-
-        for (let i = 0; i < 3; i++) {
-            const wanderer = this.game.ecs.createPrefab('HumanWanderer', {
-                moniker: {
-                    name: `Wanderer ${i}`,
-                },
-                position: {
-                    x: 21 + i,
-                    y: 8,
-                },
-            });
-
-            wanderer.brain.pushGoal(BoredGoalType.create());
-        }
-
-        for (let i = 0; i < 4; i++) {
-            for (let j = 0; j < 6; j++) {
-                const type = (j + i) % 2 === 0 ? 'SmallPineTree' : 'PineTree';
-
-                this.game.ecs.createPrefab(type, {
-                    position: {
-                        x: 10 + i,
-                        y: 5 + j,
-                    },
-                });
-            }
-        }
     }
 
     move(direction) {

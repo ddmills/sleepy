@@ -19,6 +19,8 @@ import {
     INPUT_CMD_SAVE,
     INPUT_CMD_LOAD,
     INPUT_CMD_LOOK,
+    INPUT_CMD_SCREEN_CAPTURE_START,
+    INPUT_CMD_SCREEN_CAPTURE_END,
 } from './InputCommandType';
 import {
     KEY_S,
@@ -38,6 +40,8 @@ import {
     KEY_DOWN,
     KEY_SPACE,
     KEY_L,
+    KEY_F5,
+    KEY_F6,
 } from './KeyCodes';
 
 const cmd = (domain, type, name, isKeyboard, key, shift, ctrl, alt, meta) =>
@@ -55,24 +59,26 @@ const cmd = (domain, type, name, isKeyboard, key, shift, ctrl, alt, meta) =>
 
 // prettier-ignore
 export default [
-    // DOMAIN                   CMD                 NAME        KB    KEY           SHIFT  CTRL   ALT    META
-    cmd(INPUT_DOMAIN_DEFAULT,   INPUT_CMD_CONFIRM,  'confirm',  true, KEY_ENTER,    false, false, false, false),
-    cmd(INPUT_DOMAIN_DEFAULT,   INPUT_CMD_CONFIRM,  'confirm2', true, KEY_SPACE,    false, true,  false, false),
-    cmd(INPUT_DOMAIN_DEFAULT,   INPUT_CMD_CANCEL,   'cancel',   true, KEY_ESCAPE,   false, false, false, false),
-    cmd(INPUT_DOMAIN_DEFAULT,   INPUT_CMD_SAVE,     'save',     true, KEY_S,        false, true,  false, false),
-    cmd(INPUT_DOMAIN_DEFAULT,   INPUT_CMD_LOAD,     'load',     true, KEY_L,        false, true,  false, false),
-    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_WAIT,     'wait',     true, KEY_S,        false, false, false, false),
-    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_NW,  'move_nw',  true, KEY_Q,        false, false, false, false),
-    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_N,   'move_n',   true, KEY_W,        false, false, false, false),
-    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_N,   'move_n2',  true, KEY_UP,       false, false, false, false),
-    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_NE,  'move_ne',  true, KEY_E,        false, false, false, false),
-    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_W,   'move_w',   true, KEY_A,        false, false, false, false),
-    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_W,   'move_w2',  true, KEY_LEFT,     false, false, false, false),
-    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_E,   'move_e',   true, KEY_D,        false, false, false, false),
-    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_E,   'move_e2',  true, KEY_RIGHT,    false, false, false, false),
-    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_SW,  'move_sw',  true, KEY_Z,        false, false, false, false),
-    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_S,   'move_s',   true, KEY_X,        false, false, false, false),
-    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_S,   'move_s2',  true, KEY_DOWN,     false, false, false, false),
-    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_SE,  'move_se',  true, KEY_C,        false, false, false, false),
-    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_LOOK,     'look',     true, KEY_L,        false, false, false, false),
+    // DOMAIN                   CMD                             NAME                      KB    KEY           SHIFT  CTRL   ALT    META
+    cmd(INPUT_DOMAIN_DEFAULT,   INPUT_CMD_CONFIRM,              'confirm',                true, KEY_ENTER,    false, false, false, false),
+    cmd(INPUT_DOMAIN_DEFAULT,   INPUT_CMD_CONFIRM,              'confirm2',               true, KEY_SPACE,    false, true,  false, false),
+    cmd(INPUT_DOMAIN_DEFAULT,   INPUT_CMD_CANCEL,               'cancel',                 true, KEY_ESCAPE,   false, false, false, false),
+    cmd(INPUT_DOMAIN_DEFAULT,   INPUT_CMD_SAVE,                 'save',                   true, KEY_S,        false, true,  false, false),
+    cmd(INPUT_DOMAIN_DEFAULT,   INPUT_CMD_LOAD,                 'load',                   true, KEY_L,        false, true,  false, false),
+    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_WAIT,                 'wait',                   true, KEY_S,        false, false, false, false),
+    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_NW,              'move_nw',                true, KEY_Q,        false, false, false, false),
+    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_N,               'move_n',                 true, KEY_W,        false, false, false, false),
+    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_N,               'move_n2',                true, KEY_UP,       false, false, false, false),
+    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_NE,              'move_ne',                true, KEY_E,        false, false, false, false),
+    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_W,               'move_w',                 true, KEY_A,        false, false, false, false),
+    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_W,               'move_w2',                true, KEY_LEFT,     false, false, false, false),
+    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_E,               'move_e',                 true, KEY_D,        false, false, false, false),
+    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_E,               'move_e2',                true, KEY_RIGHT,    false, false, false, false),
+    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_SW,              'move_sw',                true, KEY_Z,        false, false, false, false),
+    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_S,               'move_s',                 true, KEY_X,        false, false, false, false),
+    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_S,               'move_s2',                true, KEY_DOWN,     false, false, false, false),
+    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_MOVE_SE,              'move_se',                true, KEY_C,        false, false, false, false),
+    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_LOOK,                 'look',                   true, KEY_L,        false, false, false, false),
+    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_SCREEN_CAPTURE_START, 'start capture screen',   true, KEY_F5,       false, false, false, false),
+    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_SCREEN_CAPTURE_END,   'end capture screen',     true, KEY_F6,       false, false, false, false),
 ];

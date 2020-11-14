@@ -5,4 +5,8 @@ export class Position extends Component {
         x: 0,
         y: 0,
     };
+
+    equals(x, y) {
+        return this.x === x && this.y === y;
+    }
 }

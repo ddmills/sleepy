@@ -13,6 +13,8 @@ import ECS from '../ecs';
 import GameStateManager from './GameStateManager';
 import ClockManager from './ClockManager';
 import CursorSystem from '../systems/CursorSystem';
+import MapManager from './MapManager';
+import ScreenCaptureManager from './ScreenCaptureManager';
 
 export default class Game {
     get ecs() {
@@ -25,10 +27,12 @@ export default class Game {
         this.renderer = new Renderer(this);
         this.state = new GameStateManager(this);
         this.mouse = new MouseManager(this);
+        this.map = new MapManager(this);
         this.player = new PlayerManager(this);
         this.screens = new ScreenManager(this);
         this.commands = new CommandManager(this);
         this.input = new InputController(this);
+        this.screenCapture = new ScreenCaptureManager(this);
 
         this.hungerSystem = new HungerSystem(this);
         this.actionSystem = new ActionSystem(this);

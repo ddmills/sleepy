@@ -1,3 +1,4 @@
+import { Moniker } from '../ecs/components';
 import * as Directions from '../enums/Directions';
 import System from './System';
 
@@ -42,11 +43,27 @@ export default class CursorSystem extends System {
         this.#y += delta.y;
     }
 
+    getEntities() {
+        return this.game.map.getEntitiesAt(this.x, this.y);
+    }
+
     update(dt) {
         if (!this.#isEnabled) {
             return;
         }
 
         this.game.renderer.draw(this.x, this.y, 'X', 'yellow');
+
+        const entities = this.getEntities();
+
+        entities
+            .filter((e) => e.has(Moniker))
+            .forEach((entity, i) => {
+                this.game.renderer.drawText(
+                    1,
+                    this.game.renderer.height - 1 - (entities.length - i),
+                    entity.moniker.name
+                );
+            });
     }
 }

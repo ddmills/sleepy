@@ -39,8 +39,8 @@ export default class ClockManager extends Manager {
         return {
             clock: {
                 tick: this.tick,
-                tickDelta: this.tickDelta
-            }
+                tickDelta: this.tickDelta,
+            },
         };
     }
 }

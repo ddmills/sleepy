@@ -31,7 +31,7 @@ export default class Display {
         return this.#ctx;
     }
 
-    constructor({width, height, tileWidth, tileHeight, defaultFg}) {
+    constructor({ width, height, tileWidth, tileHeight, defaultFg }) {
         this.#width = width;
         this.#height = height;
         this.#tileWidth = tileWidth;
@@ -58,11 +58,15 @@ export default class Display {
 
         const img = sprite.colorize(fg1, fg2);
 
+        this.ctx.fillStyle = '#0b1717';
+        this.ctx.fillRect(pixelX, pixelY, img.width, img.height);
         this.ctx.putImageData(img, pixelX, pixelY);
     }
 
     clear() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.fillStyle = '#0b1717';
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
     clearTile(x, y) {

@@ -52,28 +52,51 @@ export default class CursorSystem extends System {
             return;
         }
 
-        this.game.renderer.draw(this.x, this.y, 'X', 'yellow');
-
         const entities = this.getEntities();
 
-        entities
-            .filter((e) => e.has(Moniker))
-            .forEach((entity, i) => {
-                const c = i === 0 ? '◄' : ' ';
-                this.game.renderer.drawText(
-                    entity.position.x + 1,
-                    entity.position.y + i,
-                    `${c}█`,
-                    '#ddd'
-                );
-                this.game.renderer.drawText(
-                    entity.position.x + 2,
-                    entity.position.y + i,
-                    entity.moniker.name + ' ',
-                    '#111133',
-                    'white',
-                    '#ddd'
-                );
-            });
+        if (this.x < this.game.map.width / 2) {
+            entities
+                .filter((e) => e.has(Moniker))
+                .forEach((entity, i) => {
+                    const c = i === 0 ? '◄' : ' ';
+                    this.game.renderer.drawText(
+                        entity.position.x + 1,
+                        entity.position.y + i,
+                        `${c}█`,
+                        '#ddd'
+                    );
+                    this.game.renderer.drawText(
+                        entity.position.x + 2,
+                        entity.position.y + i,
+                        entity.moniker.name + ' ',
+                        '#111133',
+                        'white',
+                        '#ddd'
+                    );
+                });
+        } else {
+            entities
+                .filter((e) => e.has(Moniker))
+                .forEach((entity, i) => {
+                    const c = i === 0 ? '►' : ' ';
+                    this.game.renderer.drawText(
+                        entity.position.x - 1,
+                        entity.position.y + i,
+                        `█${c}`,
+                        '#ddd'
+                    );
+                    const len = this.game.renderer.computeTextWidth(entity.moniker.name);
+                    this.game.renderer.drawText(
+                        entity.position.x - len - 1.5,
+                        entity.position.y + i,
+                        ' ' + entity.moniker.name,
+                        '#111133',
+                        'white',
+                        '#ddd'
+                    );
+                });
+        }
+
+        this.game.renderer.draw(this.x, this.y, 'X', 'yellow');
     }
 }

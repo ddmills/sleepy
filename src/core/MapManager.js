@@ -39,7 +39,7 @@ export default class MapManager extends Manager {
                     y,
                 },
             });
-        })
+        });
 
         for (let i = 0; i < 3; i++) {
             const wanderer = this.game.ecs.createPrefab('HumanWanderer', {

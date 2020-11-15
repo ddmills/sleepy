@@ -1,4 +1,4 @@
-import { Moniker } from '../ecs/components';
+import { Moniker, Visible } from '../ecs/components';
 import * as Directions from '../enums/Directions';
 import System from './System';
 
@@ -44,7 +44,7 @@ export default class CursorSystem extends System {
     }
 
     getEntities() {
-        return this.game.map.getEntitiesAt(this.x, this.y);
+        return this.game.map.getEntitiesAt(this.x, this.y).filter((e) => e.has(Visible));
     }
 
     update(dt) {

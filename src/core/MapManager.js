@@ -43,7 +43,9 @@ export default class MapManager extends Manager {
                 return;
             }
 
-            this.game.ecs.createPrefab('SmallPineTree', {
+            const type = Math.random() < .5 ? 'PineTree' : 'SmallPineTree';
+
+            this.game.ecs.createPrefab(type, {
                 position: {
                     x,
                     y,

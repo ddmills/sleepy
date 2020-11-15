@@ -15,6 +15,7 @@ import ClockManager from './ClockManager';
 import CursorSystem from '../systems/CursorSystem';
 import MapManager from './MapManager';
 import ScreenCaptureManager from './ScreenCaptureManager';
+import FOVSystem from '../systems/FOVSystem';
 
 export default class Game {
     get ecs() {
@@ -37,6 +38,7 @@ export default class Game {
         this.hungerSystem = new HungerSystem(this);
         this.actionSystem = new ActionSystem(this);
         this.movementSystem = new MovementSystem(this);
+        this.FOVSystem = new FOVSystem(this);
         this.renderSystem = new RenderSystem(this);
         this.UISystem = new UISystem(this);
         this.cursor = new CursorSystem(this);
@@ -53,6 +55,7 @@ export default class Game {
         this.hungerSystem.update(dt);
         this.actionSystem.update(dt);
         this.movementSystem.update(dt);
+        this.FOVSystem.update(dt);
         this.renderSystem.update(dt);
         this.UISystem.update(dt);
         this.screens.update(dt);

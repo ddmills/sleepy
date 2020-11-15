@@ -1,4 +1,4 @@
-import { Glyph, Position } from '../ecs/components';
+import { Glyph, Position, Visible } from '../ecs/components';
 import System from './System';
 
 export default class RenderSystem extends System {
@@ -7,7 +7,7 @@ export default class RenderSystem extends System {
     constructor(game) {
         super(game);
         this.#query = game.ecs.createQuery({
-            all: [Glyph, Position],
+            all: [Glyph, Position, Visible],
         });
     }
 

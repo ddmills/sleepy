@@ -12,3 +12,5 @@ export { MoveCommand } from './MoveCommand';
 export { IsPlayer } from './IsPlayer';
 export { Wandering } from './Wandering';
 export { Blocker } from './Blocker';
+export { Shadowcaster } from './Shadowcaster';
+export { Visible } from './Visible';

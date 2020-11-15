@@ -17,6 +17,9 @@
         },
         {
             "type": "Position"
+        },
+        {
+            "type": "Blocker"
         }
     ]
 }

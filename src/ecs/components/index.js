@@ -11,3 +11,4 @@ export { Legs } from './Legs';
 export { MoveCommand } from './MoveCommand';
 export { IsPlayer } from './IsPlayer';
 export { Wandering } from './Wandering';
+export { Blocker } from './Blocker';

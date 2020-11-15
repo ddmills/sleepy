@@ -5,7 +5,6 @@ export { Eater } from './Eater';
 export { Moniker } from './Moniker';
 export { Logger } from './Logger';
 export { Position } from './Position';
-export { Map } from './Map';
 export { MapLayer } from './MapLayer';
 export { Glyph } from './Glyph';
 export { Legs } from './Legs';

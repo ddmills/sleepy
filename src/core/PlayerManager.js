@@ -22,11 +22,9 @@ export default class PlayerManager extends Manager {
     }
 
     onNewGame() {
+        const position = this.game.map.getRandomEmptyPosition();
         const player = this.game.ecs.createPrefab('Player', {
-            position: {
-                x: 16,
-                y: 16,
-            },
+            position,
         });
 
         this.#entityId = player.id;

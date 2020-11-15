@@ -4,6 +4,18 @@ import { BoredGoalType } from '../ai/GoalTypes';
 import { Position } from '../ecs/components';
 
 export default class MapManager extends Manager {
+    #width = 24;
+    #height = 24;
+
+    get width() {
+        return this.#width;
+    }
+
+    get height() {
+        return this.#height;
+    }
+
+
     constructor(game) {
         super(game);
 
@@ -19,9 +31,7 @@ export default class MapManager extends Manager {
     }
 
     onNewGame() {
-        const w = 24;
-        const h = 24;
-        const generator = new MapGenerator.Uniform(w, h, {
+        const generator = new MapGenerator.Uniform(this.width, this.height, {
             timeLimit: 8000,
             roomWidth: [3, 6],
             roomHeight: [3, 6],
@@ -33,7 +43,7 @@ export default class MapManager extends Manager {
                 return;
             }
 
-            this.game.ecs.createPrefab('Wall', {
+            this.game.ecs.createPrefab('SmallPineTree', {
                 position: {
                     x,
                     y,
@@ -42,30 +52,25 @@ export default class MapManager extends Manager {
         });
 
         for (let i = 0; i < 3; i++) {
+            const position = this.getRandomEmptyPosition();
             const wanderer = this.game.ecs.createPrefab('HumanWanderer', {
                 moniker: {
                     name: `Wanderer ${i}`,
                 },
-                position: {
-                    x: 4 + i,
-                    y: 16,
-                },
+                position,
             });
 
             wanderer.brain.pushGoal(BoredGoalType.create());
         }
+    }
 
-        for (let i = 0; i < 4; i++) {
-            for (let j = 0; j < 6; j++) {
-                const type = (j + i) % 2 === 0 ? 'SmallPineTree' : 'PineTree';
+    getRandomEmptyPosition() {
+        let x, y;
+        do {
+            x = Math.trunc(Math.random() * this.width);
+            y = Math.trunc(Math.random() * this.height);
+        } while (this.getEntitiesAt(x, y).length > 0);
 
-                this.game.ecs.createPrefab(type, {
-                    position: {
-                        x: 10 + i,
-                        y: 5 + j,
-                    },
-                });
-            }
-        }
+        return { x, y };
     }
 }

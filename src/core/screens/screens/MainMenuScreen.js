@@ -36,7 +36,8 @@ export default class MainMenuScreen extends Screen {
         this.game.renderer.drawText(1, 1, `Knossonia`);
         this.game.renderer.drawText(1, 3, `press enter to embark`);
         this.game.renderer.drawText(1, 7, `move [w, a, d, x]`);
-        this.game.renderer.drawText(1, 8, `save [ctrl+s]`);
-        this.game.renderer.drawText(1, 9, `load [ctrl+l]`);
+        this.game.renderer.drawText(1, 8, `look [l]`);
+        this.game.renderer.drawText(1, 9, `save [ctrl+s]`);
+        this.game.renderer.drawText(1, 10, `load [ctrl+l]`);
     }
 }

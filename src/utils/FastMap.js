@@ -52,6 +52,8 @@ export default class FastMap {
             return;
         }
 
+        this.remove(id);
+
         this.#idHash.set(id, { x, y });
         this.#data[idx].add(id);
     }
@@ -74,7 +76,6 @@ export default class FastMap {
 
     remove(id) {
         if (!this.has(id)) {
-            console.warn(`Trying to remove entity ${id} which isn't tracked`);
             return;
         }
 

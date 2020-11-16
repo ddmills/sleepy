@@ -44,13 +44,38 @@ export default class FastMap {
         }
     }
 
-    set(x, y, id) {
-        const idx = this.idx(x, y);
+    serialize() {
+        const entries = this.#data.map((d) => Array.from(d));
 
-        if (this.isIdxOutOfBounds(idx)) {
+        return {
+            width: this.width,
+            height: this.height,
+            entries,
+        };
+    }
+
+    deserialize(data) {
+        this.#width = data.width;
+        this.#height = data.height;
+        this.#idHash = new Map();
+
+        for (let i = 0; i < data.entries.length; i++) {
+            const coord = this.coord(i);
+            this.#data[i] = new Set(data.entries[i]);
+
+            data.entries[i].forEach((id) => {
+                this.#idHash.set(id, coord)
+            });
+        }
+    }
+
+    set(x, y, id) {
+        if (this.isOutOfBounds(x, y)) {
             console.warn(`Trying to set an entity ${id} position out-of-bounds ${x}, ${y}`);
             return;
         }
+
+        const idx = this.idx(x, y);
 
         this.remove(id);
 
@@ -86,13 +111,7 @@ export default class FastMap {
         this.#data[idx].delete(id);
     }
 
-    isIdxOutOfBounds(idx) {
-        return idx < 0 || idx > this.size;
-    }
-
     isOutOfBounds(x, y) {
-        const idx = this.idx(x, y);
-
-        return this.isIdxOutOfBounds(idx);
+        return x < 0 || y < 0 || x >= this.width || y >= this.height;
     }
 }

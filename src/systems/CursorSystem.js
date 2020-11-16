@@ -20,8 +20,11 @@ export default class CursorSystem extends System {
     }
 
     enable() {
-        this.#x = this.game.player.x;
-        this.#y = this.game.player.y;
+        const player = this.game.player.position;
+
+        this.#x = player.x;
+        this.#y = player.y;
+
         this.#isEnabled = true;
     }
 
@@ -60,14 +63,14 @@ export default class CursorSystem extends System {
                 .forEach((entity, i) => {
                     const c = i === 0 ? '◄' : ' ';
                     this.game.renderer.drawText(
-                        entity.position.x + 1,
-                        entity.position.y + i,
+                        this.x + 1,
+                        this.y + i,
                         `${c}█`,
                         '#ddd'
                     );
                     this.game.renderer.drawText(
-                        entity.position.x + 2,
-                        entity.position.y + i,
+                        this.x + 2,
+                        this.y + i,
                         entity.moniker.name + ' ',
                         '#111133',
                         'white',
@@ -80,15 +83,15 @@ export default class CursorSystem extends System {
                 .forEach((entity, i) => {
                     const c = i === 0 ? '►' : ' ';
                     this.game.renderer.drawText(
-                        entity.position.x - 1,
-                        entity.position.y + i,
+                        this.x - 1,
+                        this.y + i,
                         `█${c}`,
                         '#ddd'
                     );
                     const len = this.game.renderer.computeTextWidth(entity.moniker.name);
                     this.game.renderer.drawText(
-                        entity.position.x - len - 1.5,
-                        entity.position.y + i,
+                        this.x - len - 1.5,
+                        this.y + i,
                         ' ' + entity.moniker.name,
                         '#111133',
                         'white',

@@ -15,9 +15,10 @@ export default class RenderSystem extends System {
         this.game.renderer.clear();
 
         this.#query.get().forEach((renderable) => {
+            const pos = renderable.position.getPos();
             this.game.renderer.draw(
-                renderable.position.x,
-                renderable.position.y,
+                pos.x,
+                pos.y,
                 renderable.glyph.char,
                 renderable.glyph.primary,
                 renderable.glyph.secondary,

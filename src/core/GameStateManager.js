@@ -14,6 +14,7 @@ export default class GameStateManager extends Manager {
             ...this.game.clock.onSaveGame(),
             ...this.game.player.onSaveGame(),
             ...this.game.engine.onSaveGame(),
+            ...this.game.map.onSaveGame(),
         };
 
         console.log('SAVE GAME', data);
@@ -27,6 +28,7 @@ export default class GameStateManager extends Manager {
 
         this.game.clock.onLoadGame(data);
         this.game.engine.onLoadGame(data);
+        this.game.map.onLoadGame(data);
         this.game.player.onLoadGame(data);
         this.game.screens.onLoadGame(data);
     }

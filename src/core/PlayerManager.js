@@ -1,5 +1,4 @@
 import Manager from './Manager';
-import { BoredGoalType } from '../ai/GoalTypes';
 import { MoveCommand } from '../ecs/components';
 
 export default class PlayerManager extends Manager {
@@ -13,19 +12,15 @@ export default class PlayerManager extends Manager {
         return this.entity.actor.hasEnergy;
     }
 
-    get x() {
-        return this.entity.position.x;
-    }
-
-    get y() {
-        return this.entity.position.y;
+    get position() {
+        return this.entity.position.getPos();
     }
 
     onNewGame() {
         const position = this.game.map.getRandomEmptyPosition();
-        const player = this.game.ecs.createPrefab('Player', {
-            position,
-        });
+        const player = this.game.ecs.createPrefab('Player');
+
+        player.position.setPos(position.x, position.y);
 
         this.#entityId = player.id;
     }

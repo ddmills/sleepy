@@ -1,12 +1,17 @@
 import { Component } from 'geotic';
 
 export class Position extends Component {
-    static properties = {
-        x: 0,
-        y: 0,
-    };
+    getPos() {
+        return window.game.map.getPosition(this.entity.id);
+    }
+
+    setPos(x, y) {
+        return window.game.map.setPosition(x, y, this.entity.id);
+    }
 
     equals(x, y) {
-        return this.x === x && this.y === y;
+        const pos = this.getPos();
+
+        return pos.x === x && pos.y === y;
     }
 }

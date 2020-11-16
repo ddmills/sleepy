@@ -34,6 +34,7 @@ export default class AdventureScreen extends Screen {
     onEnter() {
         this.game.renderer.clear();
         this.game.commands.pushDomain(INPUT_DOMAIN_ADVENTURE);
+        this.game.FOVSystem.computeFOV();
     }
 
     onLeave() {

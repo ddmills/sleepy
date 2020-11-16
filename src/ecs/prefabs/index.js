@@ -8,3 +8,4 @@ export * as TilePrefab from './TilePrefab.json';
 export * as PineTreePrefab from './PineTreePrefab.json';
 export * as SmallPineTreePrefab from './SmallPineTreePrefab.json';
 export * as WallPrefab from './WallPrefab.json';
+export * as GoblinPrefab from './GoblinPrefab.json';

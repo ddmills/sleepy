@@ -1,0 +1,22 @@
+{
+    "name": "Goblin",
+    "inherit": ["Being", "Wanderer"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Goblin"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "char": "g",
+                "primary": "#5d8250"
+            }
+        },
+        {
+            "type": "Legs"
+        }
+    ]
+}

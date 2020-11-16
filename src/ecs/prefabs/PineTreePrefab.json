@@ -1,5 +1,6 @@
 {
     "name": "PineTree",
+    "inherit": ["Tile"],
     "components": [
         {
             "type": "Moniker",
@@ -14,9 +15,6 @@
                 "primary": "#336633",
                 "secondary": "brown"
             }
-        },
-        {
-            "type": "Position"
         },
         {
             "type": "Blocker"

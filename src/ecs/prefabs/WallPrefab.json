@@ -1,5 +1,6 @@
 {
     "name": "Wall",
+    "inherits": ["Tile"],
     "components": [
         {
             "type": "Moniker",
@@ -14,9 +15,6 @@
                 "primary": "brown",
                 "secondary": "##336633"
             }
-        },
-        {
-            "type": "Position"
         }
     ]
 }

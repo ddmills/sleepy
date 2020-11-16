@@ -14,3 +14,5 @@ export { Wandering } from './Wandering';
 export { Blocker } from './Blocker';
 export { Shadowcaster } from './Shadowcaster';
 export { Visible } from './Visible';
+export { Explorable } from './Explorable';
+export { Explored } from './Explored';

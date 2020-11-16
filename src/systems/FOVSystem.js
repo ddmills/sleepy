@@ -1,5 +1,5 @@
 import { FOV } from 'rot-js';
-import { Shadowcaster, Visible } from '../ecs/components';
+import { Explorable, Explored, Shadowcaster, Visible } from '../ecs/components';
 import System from './System';
 
 export default class FOVSystem extends System {
@@ -19,10 +19,18 @@ export default class FOVSystem extends System {
             .some((e) => e.has(Shadowcaster));
     }
 
-    setVisible(x, y) {
+    setVisible(x, y, amount, range) {
         this.game.map
             .getEntitiesAt(x, y)
-            .forEach((e) => e.add(Visible));
+            .forEach((e) => {
+                e.add(Visible, {
+                    range,
+                    amount
+                });
+                if (e.has(Explorable) && !e.has(Explored)) {
+                    e.add(Explored);
+                }
+            });
     }
 
     computeFOV() {
@@ -31,7 +39,7 @@ export default class FOVSystem extends System {
         const pos = this.game.player.position;
 
         this.fov.compute(pos.x, pos.y, 4, (x, y, r, visibility) => {
-            this.setVisible(x, y);
+            this.setVisible(x, y, visibility, r);
         });
     }
 

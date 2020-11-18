@@ -2,13 +2,16 @@
     "name": "Being",
     "components": [
         {
+            "type": "Position"
+        },
+        {
             "type": "Actor",
             "properties": {
                 "energy": -500
             }
         },
         {
-            "type": "Position"
+            "type": "Health"
         },
         {
             "type": "Glyph",

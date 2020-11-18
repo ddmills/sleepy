@@ -1,5 +1,5 @@
 import Manager from './Manager';
-import { MoveCommand } from '../ecs/components';
+import { MeleeCommand, MoveCommand } from '../ecs/components';
 
 export default class PlayerManager extends Manager {
     #entityId = null;
@@ -36,6 +36,20 @@ export default class PlayerManager extends Manager {
 
         this.entity.add(MoveCommand, {
             direction,
+        });
+    }
+
+    melee(target) {
+        if (!this.isTurn) {
+            return;
+        }
+
+        if (this.entity.has(MeleeCommand)) {
+            this.entity.remove(MeleeCommand);
+        }
+
+        this.entity.add(MeleeCommand, {
+            target
         });
     }
 

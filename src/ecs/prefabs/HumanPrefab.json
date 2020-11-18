@@ -16,6 +16,9 @@
             "type": "Legs"
         },
         {
+            "type": "Arms"
+        },
+        {
             "type": "Eater"
         }
     ]

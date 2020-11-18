@@ -16,6 +16,9 @@
             }
         },
         {
+            "type": "Arms"
+        },
+        {
             "type": "Legs"
         }
     ]

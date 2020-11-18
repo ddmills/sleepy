@@ -27,6 +27,7 @@ import {
     DIR_SW,
     DIR_SE,
     DIR_NE,
+    delta as directionDelta
 } from '../../../enums/Directions';
 import { SCREEN_MAIN_MENU } from '../ScreenType';
 
@@ -45,7 +46,19 @@ export default class AdventureScreen extends Screen {
         if (this.game.cursor.isEnabled) {
             this.game.cursor.move(dir);
         } else {
-            this.game.player.move(dir);
+            const delta = directionDelta(dir);
+            const playerPosition = this.game.player.position;
+            const targetPosition = {
+                x: playerPosition.x + delta.x,
+                y: playerPosition.y + delta.y,
+            };
+            const targets = this.game.map.getEntitiesAt(targetPosition.x, targetPosition.y);
+
+            if (targets.length > 0) {
+                this.game.player.melee(targets[0]);
+            } else {
+                this.game.player.move(dir);
+            }
         }
     }
 

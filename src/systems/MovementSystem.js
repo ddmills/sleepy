@@ -16,7 +16,7 @@ export default class MovementSystem extends System {
         this.#query.get().forEach((entity) => {
             const delta = Directions.delta(entity.moveCommand.direction);
 
-            entity.fireEvent('TryMove', delta);
+            entity.fireEvent('try-move', delta);
 
             entity.moveCommand.destroy();
         });

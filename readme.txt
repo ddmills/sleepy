@@ -22,7 +22,10 @@ built with geotic - https://github.com/ddmills/geotic
         - foreground (^)
         - background (*)
         - black/white
-
+- CognitiveState
+    - Alert
+    - Distracted
+    - Daydreaming (?)
 
 # inspo
 - https://github.com/Bozar/cursedSouls
@@ -35,6 +38,6 @@ built with geotic - https://github.com/ddmills/geotic
 - https://kenney.nl/assets/bit-pack
 - https://github.com/rsaarelm/sodna/blob/master/codepage_437.txt
 - https://github.com/spite/ccapture.js
-
+- http://www.zincland.com/7drl/kobold/
 - https://secrethideout.itch.io/rogue-dungeon-tileset-16x16
 - https://iknowkingrabbit.itch.io/mas-darkest-pack

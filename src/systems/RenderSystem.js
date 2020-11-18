@@ -25,8 +25,8 @@ export default class RenderSystem extends System {
                 pos.x,
                 pos.y,
                 renderable.glyph.char,
-                '#444',
-                '#333'
+                '#283131',
+                '#283131'
             );
         });
 

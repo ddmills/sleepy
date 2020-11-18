@@ -57,22 +57,16 @@ export default class MapManager extends Manager {
 
         for (let i = 0; i < 3; i++) {
             const position = this.getRandomEmptyPosition();
-            const wanderer = this.game.ecs.createPrefab('HumanWanderer', {
-                moniker: {
-                    name: `Wanderer ${i}`,
-                }
-            });
+            const wanderer = this.game.ecs.createPrefab('HumanWanderer');
+
             wanderer.position.setPos(position.x, position.y);
             wanderer.brain.pushGoal(BoredGoalType.create());
         }
 
         for (let i = 0; i < 5; i++) {
             const position = this.getRandomEmptyPosition();
-            const goblin = this.game.ecs.createPrefab('Goblin', {
-                moniker: {
-                    name: `Goblin ${i}`,
-                }
-            });
+            const goblin = this.game.ecs.createPrefab('Goblin');
+
             goblin.position.setPos(position.x, position.y);
             goblin.brain.pushGoal(BoredGoalType.create());
         }

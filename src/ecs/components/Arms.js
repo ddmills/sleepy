@@ -1,7 +1,5 @@
 import { Component } from 'geotic';
-import { Position } from './Position';
 import { Actor } from './Actor';
-import { Blocker } from './Blocker';
 
 export class Arms extends Component {
     onTryMelee(evt) {
@@ -14,6 +12,16 @@ export class Arms extends Component {
             type: 'blunt',
             value: 5,
         };
+
+        const map = window.game.map;
+
+        const targetPos = evt.data.target.position.getPos();
+        const selfPos = this.entity.position.getPos();
+        const isAdjacent = map.isAdjacent(selfPos.x, selfPos.y, targetPos.x, targetPos.y);
+
+        if (!isAdjacent) {
+            return;
+        }
 
         evt.data.target.fireEvent('damage', damage);
 

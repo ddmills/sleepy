@@ -4,7 +4,7 @@ import * as Directions from '../../enums/Directions';
 
 export class Wandering extends Component {
     onBoredom(evt) {
-        if (Math.random() > 0.25) {
+        if (Math.random() > 0.5) {
             return;
         }
 

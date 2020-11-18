@@ -1,5 +1,6 @@
 import { GoalType } from './GoalType';
 import { SUCCESS } from '../GoalActionResult';
+import { KillSomethingGoalType } from './KillSomethingGoalType';
 
 export class BoredGoalType extends GoalType {
     static name = 'Bored';
@@ -9,16 +10,31 @@ export class BoredGoalType extends GoalType {
     };
 
     static takeAction = (entity, goal) => {
-        const evt = entity.fireEvent('boredom');
+        // do i detect any hostiles?
+        const detectHostiles = entity.fireEvent('try-detect-hostiles');
 
-        if (evt.data.goal) {
-            entity.brain.pushGoal(evt.data.goal);
+        if (detectHostiles.handled) {
+            entity.brain.pushGoal(KillSomethingGoalType.createAsSubGoal(goal, {
+                target: detectHostiles.data.target
+            }));
+
             entity.fireEvent('take-action');
 
             return SUCCESS;
         }
 
-        entity.fireEvent('consume-energy', 1000);
+        // is there anything i want to do since i'm bored?
+        const boredomGoal = entity.fireEvent('boredom');
+
+        if (boredomGoal.data.goal) {
+            entity.brain.pushGoal(boredomGoal.data.goal);
+            entity.fireEvent('take-action');
+
+            return SUCCESS;
+        }
+
+        // nothing to do, just idle
+        entity.fireEvent('energy-consumed', 1000);
 
         return SUCCESS;
     };

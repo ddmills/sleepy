@@ -1,5 +1,4 @@
 import { MeleeCommand } from '../ecs/components';
-import * as Directions from '../enums/Directions';
 import System from './System';
 
 export default class MeleeSystem extends System {

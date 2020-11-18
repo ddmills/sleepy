@@ -26,6 +26,17 @@ built with geotic - https://github.com/ddmills/geotic
     - Alert
     - Distracted
     - Daydreaming (?)
+- Faction
+    - dimensions
+        - like
+        - respect
+        - affection
+        - fear
+    - leader = 1 person
+        - unique name, strong
+    - captains = n beings
+        - unique name, strong
+    - followers = n beings
 
 # inspo
 - https://github.com/Bozar/cursedSouls
@@ -41,3 +52,4 @@ built with geotic - https://github.com/ddmills/geotic
 - http://www.zincland.com/7drl/kobold/
 - https://secrethideout.itch.io/rogue-dungeon-tileset-16x16
 - https://iknowkingrabbit.itch.io/mas-darkest-pack
+- https://www.youtube.com/watch?v=LKCRim02opc

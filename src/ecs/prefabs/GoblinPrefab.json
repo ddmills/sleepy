@@ -20,6 +20,15 @@
         },
         {
             "type": "Legs"
+        },
+        {
+            "type": "Eyes"
+        },
+        {
+            "type": "Faction",
+            "properties": {
+                "name": "goblins"
+            }
         }
     ]
 }

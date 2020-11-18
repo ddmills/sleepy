@@ -19,7 +19,16 @@
             "type": "Arms"
         },
         {
+            "type": "Eyes"
+        },
+        {
             "type": "Eater"
+        },
+        {
+            "type": "Faction",
+            "properties": {
+                "name": "humans"
+            }
         }
     ]
 }

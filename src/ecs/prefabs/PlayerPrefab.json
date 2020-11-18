@@ -9,6 +9,13 @@
             }
         },
         {
+            "type": "Health",
+            "properties": {
+                "value": 25,
+                "max": 25
+            }
+        },
+        {
             "type": "Moniker",
             "properties": {
                 "name": "Player"

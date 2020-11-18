@@ -25,5 +25,9 @@ export default class UISystem extends System {
         const len = Math.ceil(this.game.renderer.computeTextWidth(str));
 
         this.game.renderer.drawText(this.game.renderer.width - 1 - len, 1, str);
+
+        const hp = this.game.player.entity.health;
+
+        this.game.renderer.drawText(1, this.game.renderer.height - 2, `${hp.value}/${hp.max}`, 'red');
     }
 }

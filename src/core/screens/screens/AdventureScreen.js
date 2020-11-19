@@ -113,4 +113,16 @@ export default class AdventureScreen extends Screen {
             this.onDirectionInput(DIR_SE);
         }
     }
+
+    onUpdate(dt) {
+        this.game.hungerSystem.update(dt);
+        this.game.actionSystem.update(dt);
+        this.game.movementSystem.update(dt);
+        this.game.meleeSystem.update(dt);
+        this.game.deathSystem.update(dt);
+        this.game.FOVSystem.update(dt);
+        this.game.renderSystem.update(dt);
+        this.game.UISystem.update(dt);
+        this.game.cursor.update(dt);
+    }
 }

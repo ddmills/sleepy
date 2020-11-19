@@ -56,17 +56,7 @@ export default class Game {
     loop(t) {
         const dt = 0;
 
-        this.hungerSystem.update(dt);
-        this.actionSystem.update(dt);
-        this.movementSystem.update(dt);
-        this.meleeSystem.update(dt);
-        this.deathSystem.update(dt);
-        this.FOVSystem.update(dt);
-        this.renderSystem.update(dt);
-        this.UISystem.update(dt);
         this.screens.update(dt);
-        this.cursor.update(dt);
-
         requestAnimationFrame(this.loop.bind(this));
     }
 }

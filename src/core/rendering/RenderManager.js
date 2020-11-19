@@ -62,6 +62,12 @@ export default class Renderer extends Manager {
         }
     }
 
+    drawTextCenter(y, text, fg1 = '#d6d6d6', fg2 = '#333', bg) {
+        const len = this.computeTextWidth(text);
+
+        this.drawText((this.width - len) / 2, y, text, fg1, fg2, bg);
+    }
+
     clear() {
         this.display.clear();
     }

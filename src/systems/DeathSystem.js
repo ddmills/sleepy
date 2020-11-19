@@ -1,4 +1,5 @@
-import { Dead, MeleeCommand } from '../ecs/components';
+import { SCREEN_DEATH } from '../core/screens/ScreenType';
+import { Dead, IsPlayer } from '../ecs/components';
 import System from './System';
 
 export default class DeathSystem extends System {
@@ -15,9 +16,11 @@ export default class DeathSystem extends System {
         this.#query.get().forEach((entity) => {
             entity.fireEvent('death');
 
-            console.log('ohh no! dead!', entity);
-
-            entity.destroy();
+            if (entity.has(IsPlayer)) {
+                this.game.screens.setScreen(SCREEN_DEATH);
+            } else {
+                entity.destroy();
+            }
         });
     }
 }

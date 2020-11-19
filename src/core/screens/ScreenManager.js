@@ -1,6 +1,7 @@
-import { SCREEN_MAIN_MENU, SCREEN_ADVENTURE } from './ScreenType';
+import { SCREEN_MAIN_MENU, SCREEN_ADVENTURE, SCREEN_DEATH } from './ScreenType';
 import AdventureScreen from './screens/AdventureScreen';
 import MainMenuScreen from './screens/MainMenuScreen';
+import DeathScreen from './screens/DeathScreen';
 import Manager from '../Manager';
 
 export default class ScreenManager extends Manager {
@@ -12,6 +13,7 @@ export default class ScreenManager extends Manager {
         this.#screens = {
             [SCREEN_MAIN_MENU]: new MainMenuScreen(game),
             [SCREEN_ADVENTURE]: new AdventureScreen(game),
+            [SCREEN_DEATH]: new DeathScreen(game),
         };
     }
 
@@ -23,7 +25,6 @@ export default class ScreenManager extends Manager {
         this.screen.onLeave();
         this.#screenType = screenType;
         this.screen.onEnter();
-        this.game.renderSystem.render();
     }
 
     onInputCommand(cmd) {

@@ -39,9 +39,9 @@ export default class MapManager extends Manager {
         this.#lookup.clear();
         const generator = new MapGenerator.Uniform(this.width, this.height, {
             timeLimit: 8000,
-            roomWidth: [3, 6],
-            roomHeight: [3, 6],
-            roomDugPercentage: 0.8,
+            roomWidth: [2, 5],
+            roomHeight: [2, 5],
+            roomDugPercentage: 0.9,
         });
 
         generator.create((x, y, v) => {

@@ -53,3 +53,34 @@ built with geotic - https://github.com/ddmills/geotic
 - https://secrethideout.itch.io/rogue-dungeon-tileset-16x16
 - https://iknowkingrabbit.itch.io/mas-darkest-pack
 - https://www.youtube.com/watch?v=LKCRim02opc
+- https://cesium.com/docs/tutorials/particle-systems/
+
+- particles requirements
+    - ability to configure speed
+    - block game input
+    - change colors over time
+    - change glyphs over time
+
+- particle effect
+    - name
+    - systems array
+        - system
+        - delay
+        - position
+
+- particle system
+    - lifetime (ms)
+        - min
+        - max
+    - speed (tiles-per-second)
+        - min
+        - max
+    - color - changes from a-to-z over the lifetime
+        - fg1 [a, b, c, ..., z] - primary
+        - fg2 [a, b, c, ..., z] - secondary
+        - bg [a, b, c, ..., z] - background
+    - glyph - changes froom a-to-z over the lifetime
+        - [a, b, c, ..., z]
+    - emission-rate (particles-per-second)
+    - duration (ms)
+    - loop (boolean)

@@ -23,6 +23,8 @@ export class Arms extends Component {
             return;
         }
 
+        window.game.particles.createAt(targetPos.x, targetPos.y);
+
         evt.data.target.fireEvent('damage', damage);
 
         this.entity.fireEvent('energy-consumed', 800);

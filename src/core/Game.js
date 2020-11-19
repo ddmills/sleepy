@@ -18,8 +18,11 @@ import ScreenCaptureManager from './ScreenCaptureManager';
 import FOVSystem from '../systems/FOVSystem';
 import MeleeSystem from '../systems/MeleeSystem';
 import DeathSystem from '../systems/DeathSystem';
+import ParticleSystem from '../systems/ParticleSystem';
 
 export default class Game {
+    #lastUpdate;
+
     get ecs() {
         return this.engine.engine;
     }
@@ -46,17 +49,24 @@ export default class Game {
         this.renderSystem = new RenderSystem(this);
         this.UISystem = new UISystem(this);
         this.cursor = new CursorSystem(this);
+        this.particles = new ParticleSystem(this);
     }
 
     start() {
+        this.#lastUpdate = Date.now();
         this.state.newGame();
         requestAnimationFrame(this.loop.bind(this));
     }
 
     loop(t) {
-        const dt = 0;
+        const now = Date.now();
+        const dt = now - this.#lastUpdate;
 
         this.screens.update(dt);
+        this.particles.update(dt);
+
+        this.#lastUpdate = now;
+
         requestAnimationFrame(this.loop.bind(this));
     }
 }

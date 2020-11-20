@@ -1,0 +1,14 @@
+{
+    "name": "GameObject",
+    "components": [
+        {
+            "type": "Position"
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "char": "?"
+            }
+        }
+    ]
+}

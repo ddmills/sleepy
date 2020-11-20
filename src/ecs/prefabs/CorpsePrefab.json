@@ -1,23 +1,18 @@
 {
-    "name": "Being",
+    "name": "Corpse",
     "inherit": ["GameObject"],
     "components": [
         {
-            "type": "Position"
-        },
-        {
-            "type": "Actor",
+            "type": "Moniker",
             "properties": {
-                "energy": -500
+                "name": "Corpse"
             }
-        },
-        {
-            "type": "Health"
         },
         {
             "type": "Glyph",
             "properties": {
-                "char": "?"
+                "char": "%",
+                "primary": "#730d14"
             }
         }
     ]

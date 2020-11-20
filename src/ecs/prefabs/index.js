@@ -1,4 +1,7 @@
+export * as GameObjectPrefab from './GameObjectPrefab.json';
+export * as CorpsePrefab from './CorpsePrefab.json';
 export * as BeingPrefab from './BeingPrefab.json';
+export * as HumanoidPrefab from './HumanoidPrefab.json';
 export * as HumanPrefab from './HumanPrefab.json';
 export * as WandererPrefab from './WandererPrefab.json';
 export * as HumanWanderer from './HumanWandererPrefab.json';

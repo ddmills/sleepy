@@ -1,5 +1,6 @@
 export { Actor } from './Actor';
 export { Brain } from './Brain';
+export { Body } from './Body';
 export { Goal } from './Goal';
 export { Eater } from './Eater';
 export { Moniker } from './Moniker';

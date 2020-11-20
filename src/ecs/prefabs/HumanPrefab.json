@@ -1,28 +1,13 @@
 {
     "name": "Human",
-    "inherit": ["Being"],
+    "inherit": ["Humanoid"],
     "components": [
-        {
-            "type": "Moniker"
-        },
         {
             "type": "Glyph",
             "properties": {
                 "char": "h",
                 "primary": "pink"
             }
-        },
-        {
-            "type": "Legs"
-        },
-        {
-            "type": "Arms"
-        },
-        {
-            "type": "Eyes"
-        },
-        {
-            "type": "Eater"
         },
         {
             "type": "Faction",

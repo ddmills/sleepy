@@ -1,0 +1,31 @@
+{
+    "name": "Humanoid",
+    "inherit": ["Being"],
+    "components": [
+        {
+            "type": "Glyph",
+            "properties": {
+                "char": "h",
+                "primary": "#ccc"
+            }
+        },
+        {
+            "type": "Body"
+        },
+        {
+            "type": "Legs"
+        },
+        {
+            "type": "Arms"
+        },
+        {
+            "type": "Eyes"
+        },
+        {
+            "type": "Faction",
+            "properties": {
+                "name": "neutral"
+            }
+        }
+    ]
+}

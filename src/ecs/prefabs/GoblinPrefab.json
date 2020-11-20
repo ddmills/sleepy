@@ -1,6 +1,6 @@
 {
     "name": "Goblin",
-    "inherit": ["Being", "Wanderer"],
+    "inherit": ["Humanoid", "Wanderer"],
     "components": [
         {
             "type": "Moniker",
@@ -14,15 +14,6 @@
                 "char": "g",
                 "primary": "#5d8250"
             }
-        },
-        {
-            "type": "Arms"
-        },
-        {
-            "type": "Legs"
-        },
-        {
-            "type": "Eyes"
         },
         {
             "type": "Faction",

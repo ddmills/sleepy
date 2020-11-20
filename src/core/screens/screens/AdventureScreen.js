@@ -52,7 +52,9 @@ export default class AdventureScreen extends Screen {
                 x: playerPosition.x + delta.x,
                 y: playerPosition.y + delta.y,
             };
-            const targets = this.game.map.getEntitiesAt(targetPosition.x, targetPosition.y);
+            const targets = this.game.map
+                .getEntitiesAt(targetPosition.x, targetPosition.y)
+                .filter((e) => this.game.factions.areEntitiesHostile(e, this.game.player.entity));
 
             if (targets.length > 0) {
                 this.game.player.melee(targets[0]);

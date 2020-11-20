@@ -37,6 +37,7 @@ built with geotic - https://github.com/ddmills/geotic
     - captains = n beings
         - unique name, strong
     - followers = n beings
+- your intuition tells you...
 
 # inspo
 - https://github.com/Bozar/cursedSouls

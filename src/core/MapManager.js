@@ -55,7 +55,7 @@ export default class MapManager extends Manager {
             entity.position.setPos(x, y);
         });
 
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 4; i++) {
             const position = this.getRandomEmptyPosition();
             const wanderer = this.game.ecs.createPrefab('HumanWanderer');
 
@@ -63,7 +63,7 @@ export default class MapManager extends Manager {
             wanderer.brain.pushGoal(BoredGoalType.create());
         }
 
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 10; i++) {
             const position = this.getRandomEmptyPosition();
             const goblin = this.game.ecs.createPrefab('Goblin');
 

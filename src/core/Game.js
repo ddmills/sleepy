@@ -19,6 +19,7 @@ import FOVSystem from '../systems/FOVSystem';
 import MeleeSystem from '../systems/MeleeSystem';
 import DeathSystem from '../systems/DeathSystem';
 import ParticleSystem from '../systems/ParticleSystem';
+import FactionManager from './FactionManager';
 
 export default class Game {
     #lastUpdate;
@@ -34,6 +35,7 @@ export default class Game {
         this.state = new GameStateManager(this);
         this.mouse = new MouseManager(this);
         this.map = new MapManager(this);
+        this.factions = new FactionManager(this);
         this.player = new PlayerManager(this);
         this.screens = new ScreenManager(this);
         this.commands = new CommandManager(this);

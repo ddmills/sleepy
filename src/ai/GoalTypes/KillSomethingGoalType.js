@@ -6,7 +6,7 @@ export class KillSomethingGoalType extends GoalType {
     static name = 'KillSomething';
 
     static isFinished = (entity, goal) => {
-        return goal.target.has(Dead) || goal.target.isDestroyed;
+        return !goal.target || goal.target.has(Dead) || goal.target.isDestroyed;
     };
 
     static takeAction = (entity, goal) => {

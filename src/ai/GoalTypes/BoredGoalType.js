@@ -14,9 +14,11 @@ export class BoredGoalType extends GoalType {
         const detectHostiles = entity.fireEvent('try-detect-hostiles');
 
         if (detectHostiles.handled) {
-            entity.brain.pushGoal(KillSomethingGoalType.createAsSubGoal(goal, {
-                target: detectHostiles.data.target
-            }));
+            const killGoal = KillSomethingGoalType.createAsSubGoal(goal, {
+                target: detectHostiles.data.target.id
+            });
+
+            entity.brain.pushGoal(killGoal);
 
             entity.fireEvent('take-action');
 

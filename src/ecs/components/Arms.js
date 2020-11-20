@@ -23,7 +23,11 @@ export class Arms extends Component {
             return;
         }
 
-        window.game.particles.createAt(targetPos.x, targetPos.y);
+        window.game.particles.createParticle(targetPos.x, targetPos.y, {
+            lifetime: 140,
+            fg1s: ['#8d4c4f', '#730d14'],
+            glyphs: ['-'],
+        });
 
         evt.data.target.fireEvent('damage', damage);
 

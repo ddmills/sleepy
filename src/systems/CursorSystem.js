@@ -33,6 +33,7 @@ export default class CursorSystem extends System {
     }
 
     toggle() {
+
         if (this.isEnabled) {
             this.disable();
         } else {

@@ -2,14 +2,21 @@ import { Component } from 'geotic';
 
 export class Particle extends Component {
     static properties = {
-        lifetime: 160,
+        lifetime: 200,
         fg1s: ['#8d4c4f', '#730d14'],
         fg2s: [],
         bgs: [],
-        glyphs: ['·', '·', '-'],
+        glyphs: ['·'],
+        speed: .05,
         age: 0,
         x: 0,
         y: 0,
+        startX: 0,
+        startY: 0,
+        direction: {
+            x: 0,
+            y: 0
+        }
     };
 
     get isExpired() {

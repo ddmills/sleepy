@@ -122,6 +122,7 @@ export default class AdventureScreen extends Screen {
         this.game.deathSystem.update(dt);
         this.game.FOVSystem.update(dt);
         this.game.renderSystem.update(dt);
+        this.game.particles.update(dt);
         this.game.UISystem.update(dt);
         this.game.cursor.update(dt);
     }

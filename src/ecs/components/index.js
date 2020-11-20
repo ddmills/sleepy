@@ -23,3 +23,4 @@ export { Dead } from './Dead';
 export { Faction } from './Faction';
 export { Eyes } from './Eyes';
 export { Particle } from './Particle';
+export { ParticleEmitter } from './ParticleEmitter';

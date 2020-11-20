@@ -63,7 +63,6 @@ export default class Game {
         const dt = now - this.#lastUpdate;
 
         this.screens.update(dt);
-        this.particles.update(dt);
 
         this.#lastUpdate = now;
 

@@ -30,7 +30,7 @@ export default class Renderer extends Manager {
     constructor(game) {
         super(game);
 
-        spritesheets.forEach((spritesheet) => {
+        spritesheets().forEach((spritesheet) => {
             this.#spritesheets[spritesheet.name] = spritesheet;
         });
 

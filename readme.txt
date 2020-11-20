@@ -39,6 +39,23 @@ built with geotic - https://github.com/ddmills/geotic
     - followers = n beings
 - your intuition tells you...
 
+- puzzles
+    - sokoban style
+    - flip switch, unlock door
+    - kill enemy, get key, unlock door
+    - sliding puzzle
+    - logic grid puzzle quests
+    - chest/door with three shapes
+        - three matching shapes scattered in dungeon
+        - chest can be smashed open (contents also break)
+        - chest can be fiddled open ()
+- traps
+    - hidden dart gun
+    - pressure plate
+    - switch
+    - moving block
+    - statues that can animate
+
 # inspo
 - https://github.com/Bozar/cursedSouls
 - https://github.com/munificent/hauberk

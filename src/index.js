@@ -1,6 +1,10 @@
-import { game } from './core/Game';
+import { loadImages } from './utils/ImageLoader';
 
-window.game = game;
-window.ecs = game.ecs;
+loadImages().then(() => {
+    const { game } = require('./core/Game');
 
-game.start();
+    window.game = game;
+    window.ecs = game.ecs;
+
+    game.start();
+});

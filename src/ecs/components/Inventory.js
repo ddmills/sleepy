@@ -15,8 +15,16 @@ export class Inventory extends Component {
         const idx = this.content.indexOf(loot);
 
         if (idx >= 0) {
-            this.content.splice(idx, 1, loot);
+            this.content.splice(idx, 1);
             loot.remove(IsInventoried);
         }
+    }
+
+    dropLoot(loot) {
+        this.removeLoot(loot);
+
+        const pos = this.entity.position.getPos();
+
+        loot.position.setPos(pos.x, pos.y);
     }
 }

@@ -6,7 +6,7 @@ import {
     INPUT_CMD_MOVE_S,
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
-import { SCREEN_ADVENTURE } from '../ScreenType';
+import { SCREEN_ADVENTURE, SCREEN_INVENTORY } from '../ScreenType';
 
 export default class InteractModalScreen extends Screen {
     #width = 16;
@@ -29,9 +29,11 @@ export default class InteractModalScreen extends Screen {
         this.#selectedIdx = 0;
         this.#entity = ctx.entity;
         this.#target = ctx.target;
+
         const evt = this.#entity.fireEvent('get-interactions', {
             interactions: []
         });
+
         this.#interactions = evt.data.interactions;
     }
 
@@ -54,6 +56,9 @@ export default class InteractModalScreen extends Screen {
         if (interaction) {
             this.#entity.fireEvent(interaction.evt, {
                 target: this.#target,
+            });
+            this.game.screens.setScreen(SCREEN_INVENTORY, {
+                entity: this.#target,
             });
         }
     }
@@ -115,10 +120,5 @@ export default class InteractModalScreen extends Screen {
 
             this.game.renderer.drawText(xpos + 1, ypos, interaction.name);
         });
-
-        // this.game.renderer.drawText(this.left + 1, this.top, ' ← back [esc] ', '#222', '#222', '#eee');
-
-        // const len = this.game.renderer.computeTextWidth(' confirm [enter] ');
-        // this.game.renderer.drawText(this.left + this.#width - len - 1, this.top + this.#height, ' confirm [enter] ', '#222', '#222', '#eee');
     }
 }

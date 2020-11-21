@@ -17,7 +17,12 @@ export class Arms extends Component {
 
         const targetPos = evt.data.target.position.getPos();
         const selfPos = this.entity.position.getPos();
-        const isAdjacent = map.isAdjacent(selfPos.x, selfPos.y, targetPos.x, targetPos.y);
+        const isAdjacent = map.isAdjacent(
+            selfPos.x,
+            selfPos.y,
+            targetPos.x,
+            targetPos.y
+        );
 
         if (!isAdjacent) {
             return;

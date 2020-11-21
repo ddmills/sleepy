@@ -12,7 +12,7 @@ export const liquids = {
         secondary: '#8bb9d5',
         onDrink: (entity) => {
             console.log('Mmm. earth juice. yummy');
-        }
+        },
     },
     [LIQUID_BLOOD]: {
         name: 'blood',
@@ -22,9 +22,9 @@ export const liquids = {
         onDrink: (entity, volume) => {
             console.log('blood. this would make a good syrup');
             entity.fireEvent('heal', {
-                value: volume * 1
+                value: volume * 1,
             });
-        }
+        },
     },
     [LIQUID_HONEY]: {
         name: 'honey',
@@ -37,19 +37,19 @@ export const liquids = {
             game.particles.createEmitter(pos.x, pos.y - 1, {
                 direction: {
                     x: 0,
-                    y: -1
+                    y: -1,
                 },
                 glyphs: ['.', '○'],
                 fg1s: ['#d6aa3a'],
-                speed: .02,
-                lifetime: 500
+                speed: 0.02,
+                lifetime: 500,
             });
 
             entity.fireEvent('heal', {
-                value: volume * 2
+                value: volume * 2,
             });
-        }
-    }
+        },
+    },
 };
 
 export const drinkLiquid = (entity, type, volume) => {

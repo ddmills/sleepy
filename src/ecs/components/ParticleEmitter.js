@@ -26,7 +26,7 @@ export class ParticleEmitter extends Component {
         particle.add(Particle, {
             ...this.particleData,
             x: this.x,
-            y: this.y
+            y: this.y,
         });
 
         this.count += 1;

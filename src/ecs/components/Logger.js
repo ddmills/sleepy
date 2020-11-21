@@ -3,7 +3,9 @@ import { Moniker } from './Moniker';
 
 export class Logger extends Component {
     get moniker() {
-        return this.entity.has(Moniker) ? this.entity.moniker.display : 'Unknown';
+        return this.entity.has(Moniker)
+            ? this.entity.moniker.display
+            : 'Unknown';
     }
 
     onLog(evt) {

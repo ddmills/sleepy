@@ -1,4 +1,3 @@
 import { Component } from 'geotic';
 
-export class Blocker extends Component {
-}
+export class Blocker extends Component {}

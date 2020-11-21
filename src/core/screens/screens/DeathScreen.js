@@ -1,7 +1,5 @@
 import Screen from './Screen';
-import {
-    INPUT_CMD_CONFIRM,
-} from '../../input/InputCommandType';
+import { INPUT_CMD_CONFIRM } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import { SCREEN_MAIN_MENU } from '../ScreenType';
 

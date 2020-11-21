@@ -1,3 +1,3 @@
 import { Component } from 'geotic';
 
-export class Shadowcaster extends Component {};
+export class Shadowcaster extends Component {}

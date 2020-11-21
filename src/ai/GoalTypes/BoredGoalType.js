@@ -15,7 +15,7 @@ export class BoredGoalType extends GoalType {
 
         if (detectHostiles.handled) {
             const killGoal = KillSomethingGoalType.createAsSubGoal(goal, {
-                target: detectHostiles.data.target.id
+                target: detectHostiles.data.target.id,
             });
 
             entity.brain.pushGoal(killGoal);

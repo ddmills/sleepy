@@ -8,4 +8,4 @@ export default () => {
         new SpriteSheet('tiles', tileImage),
         new SpriteSheet('font', fontImage),
     ];
-}
+};

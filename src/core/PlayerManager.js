@@ -49,7 +49,7 @@ export default class PlayerManager extends Manager {
         }
 
         this.entity.add(MeleeCommand, {
-            target
+            target,
         });
     }
 

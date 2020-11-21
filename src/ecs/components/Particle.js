@@ -7,7 +7,7 @@ export class Particle extends Component {
         fg2s: [],
         bgs: [],
         glyphs: ['·'],
-        speed: .05,
+        speed: 0.05,
         age: 0,
         x: 0,
         y: 0,
@@ -15,8 +15,8 @@ export class Particle extends Component {
         startY: 0,
         direction: {
             x: 0,
-            y: 0
-        }
+            y: 0,
+        },
     };
 
     get isExpired() {

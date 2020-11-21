@@ -30,7 +30,6 @@ export class Glyph extends Component {
             }
         }
 
-
         return this.fg2;
     }
 

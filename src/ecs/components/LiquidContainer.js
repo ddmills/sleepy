@@ -8,7 +8,7 @@ export class LiquidContainer extends Component {
         maxVolume: 10,
         overridePrimary: false,
         overrideSecondary: false,
-    }
+    };
 
     onTryDrink(evt) {
         if (this.isEmpty) {
@@ -34,13 +34,15 @@ export class LiquidContainer extends Component {
             return `[empty] ${this.volume}/${this.maxVolume}`;
         }
 
-        return `[${liquids[this.contents].name}] ${this.volume}/${this.maxVolume}`;
+        return `[${liquids[this.contents].name}] ${this.volume}/${
+            this.maxVolume
+        }`;
     }
 
     get primaryColorOverride() {
         if (this.overridePrimary && this.liquid) {
             return this.liquid.primary;
-        };
+        }
 
         return null;
     }
@@ -48,7 +50,7 @@ export class LiquidContainer extends Component {
     get secondaryColorOverride() {
         if (this.overrideSecondary && this.liquid) {
             return this.liquid.secondary;
-        };
+        }
 
         return null;
     }

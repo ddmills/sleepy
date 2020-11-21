@@ -21,7 +21,7 @@ export default class ParticleSystem extends System {
         e.add(Particle, {
             ...properties,
             x,
-            y
+            y,
         });
     }
 
@@ -34,14 +34,14 @@ export default class ParticleSystem extends System {
             particleData: {
                 direction: {
                     x: 0,
-                    y: 1
+                    y: 1,
                 },
                 glyphs: ['░', '▒', '▓', '█'],
                 fg1s: ['cyan', 'blue'],
-                speed: .04,
+                speed: 0.04,
                 lifetime: 600,
-                ...particleData
-            }
+                ...particleData,
+            },
         });
     }
 
@@ -80,7 +80,7 @@ export default class ParticleSystem extends System {
                     particle.glyph,
                     particle.fg1,
                     particle.fg2,
-                    particle.bg,
+                    particle.bg
                 );
             }
         });

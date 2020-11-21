@@ -33,7 +33,6 @@ export default class CursorSystem extends System {
     }
 
     toggle() {
-
         if (this.isEnabled) {
             this.disable();
         } else {
@@ -48,7 +47,9 @@ export default class CursorSystem extends System {
     }
 
     getEntities() {
-        return this.game.map.getEntitiesAt(this.x, this.y).filter((e) => e.has(Visible));
+        return this.game.map
+            .getEntitiesAt(this.x, this.y)
+            .filter((e) => e.has(Visible));
     }
 
     update(dt) {
@@ -85,7 +86,9 @@ export default class CursorSystem extends System {
                     `█${c}`,
                     '#ddd'
                 );
-                const len = this.game.renderer.computeTextWidth(entity.moniker.display);
+                const len = this.game.renderer.computeTextWidth(
+                    entity.moniker.display
+                );
                 this.game.renderer.drawText(
                     this.x - len - 1.5,
                     this.y + i,

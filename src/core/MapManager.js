@@ -50,7 +50,7 @@ export default class MapManager extends Manager {
                 return;
             }
 
-            const type = Math.random() < .5 ? 'PineTree' : 'SmallPineTree';
+            const type = Math.random() < 0.5 ? 'PineTree' : 'SmallPineTree';
             const entity = this.game.ecs.createPrefab(type);
 
             entity.position.setPos(x, y);
@@ -100,8 +100,8 @@ export default class MapManager extends Manager {
     onSaveGame() {
         return {
             map: {
-                lookup: this.#lookup.serialize()
-            }
+                lookup: this.#lookup.serialize(),
+            },
         };
     }
 
@@ -110,7 +110,7 @@ export default class MapManager extends Manager {
     }
 
     getPosition(entityId) {
-        return this.#lookup.getPosition(entityId)
+        return this.#lookup.getPosition(entityId);
     }
 
     setPosition(x, y, entityId) {
@@ -122,23 +122,25 @@ export default class MapManager extends Manager {
     }
 
     getEntitiesAt(x, y) {
-        return this.getEntityIdsAt(x, y).map((id) => this.game.ecs.getEntity(id));
+        return this.getEntityIdsAt(x, y).map((id) =>
+            this.game.ecs.getEntity(id)
+        );
     }
 
     isAdjacent(x1, y1, x2, y2) {
-        return Math.abs(x1 - x2) <= 1 && Math.abs(y1 -y2) <= 1;
+        return Math.abs(x1 - x2) <= 1 && Math.abs(y1 - y2) <= 1;
     }
 
     getNeighborEntities(x, y) {
         return [
-            this.getEntitiesAt(x - 1, y - 1),   // TOP LEFT
-            this.getEntitiesAt(x, y - 1),       // TOP
-            this.getEntitiesAt(x + 1, y - 1),   // TOP RIGHT
-            this.getEntitiesAt(x - 1, y),       // LEFT
-            this.getEntitiesAt(x + 1, y),       // RIGHT
-            this.getEntitiesAt(x - 1, y + 1),   // BOTTOM LEFT
-            this.getEntitiesAt(x, y + 1),       // BOTTOM
-            this.getEntitiesAt(x + 1, y + 1),   // BOTTOM RIGHT
+            this.getEntitiesAt(x - 1, y - 1), // TOP LEFT
+            this.getEntitiesAt(x, y - 1), // TOP
+            this.getEntitiesAt(x + 1, y - 1), // TOP RIGHT
+            this.getEntitiesAt(x - 1, y), // LEFT
+            this.getEntitiesAt(x + 1, y), // RIGHT
+            this.getEntitiesAt(x - 1, y + 1), // BOTTOM LEFT
+            this.getEntitiesAt(x, y + 1), // BOTTOM
+            this.getEntitiesAt(x + 1, y + 1), // BOTTOM RIGHT
         ];
     }
 

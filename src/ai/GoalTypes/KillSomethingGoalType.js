@@ -11,7 +11,7 @@ export class KillSomethingGoalType extends GoalType {
 
     static takeAction = (entity, goal) => {
         let evt = entity.fireEvent('try-melee', {
-            target: goal.target
+            target: goal.target,
         });
 
         if (evt.handled) {

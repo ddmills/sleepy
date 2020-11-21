@@ -6,10 +6,12 @@ export default class FOVSystem extends System {
     constructor(game) {
         super(game);
 
-        this.fov = new FOV.PreciseShadowcasting((x, y) => this.isSquareVisible(x, y));
+        this.fov = new FOV.PreciseShadowcasting((x, y) =>
+            this.isSquareVisible(x, y)
+        );
 
         this.query = this.game.ecs.createQuery({
-            all: [Visible]
+            all: [Visible],
         });
     }
 
@@ -20,17 +22,15 @@ export default class FOVSystem extends System {
     }
 
     setVisible(x, y, amount, range) {
-        this.game.map
-            .getEntitiesAt(x, y)
-            .forEach((e) => {
-                e.add(Visible, {
-                    range,
-                    amount
-                });
-                if (e.has(Explorable) && !e.has(Explored)) {
-                    e.add(Explored);
-                }
+        this.game.map.getEntitiesAt(x, y).forEach((e) => {
+            e.add(Visible, {
+                range,
+                amount,
             });
+            if (e.has(Explorable) && !e.has(Explored)) {
+                e.add(Explored);
+            }
+        });
     }
 
     computeFOV() {

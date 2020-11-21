@@ -26,13 +26,13 @@ export default class FastMap {
     }
 
     idx(x, y) {
-        return (y * this.width) + x;
+        return y * this.width + x;
     }
 
     coord(idx) {
         return {
             x: Math.trunc(idx % this.width),
-            y: Math.trunc(idx / this.width)
+            y: Math.trunc(idx / this.width),
         };
     }
 
@@ -64,14 +64,16 @@ export default class FastMap {
             this.#data[i] = new Set(data.entries[i]);
 
             data.entries[i].forEach((id) => {
-                this.#idHash.set(id, coord)
+                this.#idHash.set(id, coord);
             });
         }
     }
 
     set(x, y, id) {
         if (this.isOutOfBounds(x, y)) {
-            console.warn(`Trying to set an entity ${id} position out-of-bounds ${x}, ${y}`);
+            console.warn(
+                `Trying to set an entity ${id} position out-of-bounds ${x}, ${y}`
+            );
             return;
         }
 

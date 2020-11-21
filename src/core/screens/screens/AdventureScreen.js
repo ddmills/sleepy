@@ -28,7 +28,7 @@ import {
     DIR_SW,
     DIR_SE,
     DIR_NE,
-    delta as directionDelta
+    delta as directionDelta,
 } from '../../../enums/Directions';
 import { SCREEN_MAIN_MENU } from '../ScreenType';
 import { Drinkable } from '../../../ecs/components/Drinkable';
@@ -56,7 +56,12 @@ export default class AdventureScreen extends Screen {
             };
             const targets = this.game.map
                 .getEntitiesAt(targetPosition.x, targetPosition.y)
-                .filter((e) => this.game.factions.areEntitiesHostile(e, this.game.player.entity));
+                .filter((e) =>
+                    this.game.factions.areEntitiesHostile(
+                        e,
+                        this.game.player.entity
+                    )
+                );
 
             if (targets.length > 0) {
                 this.game.player.melee(targets[0]);
@@ -74,7 +79,7 @@ export default class AdventureScreen extends Screen {
 
         if (drinkable) {
             drinkable.fireEvent('try-drink', {
-                target: this.game.player.entity
+                target: this.game.player.entity,
             });
         } else {
             console.log('there is nothing here to interact with.');

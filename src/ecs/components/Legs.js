@@ -19,14 +19,20 @@ export class Legs extends Component {
         const targetX = position.x + evt.data.x;
         const targetY = position.y + evt.data.y;
 
-        const targetTileEntities = window.game.map.getEntitiesAt(targetX, targetY);
+        const targetTileEntities = window.game.map.getEntitiesAt(
+            targetX,
+            targetY
+        );
 
         if (targetTileEntities.some((entity) => entity.has(Blocker))) {
             return;
         }
 
         const nonHostile = targetTileEntities.find((entity) => {
-            return entity.has(Faction) && !window.game.factions.areEntitiesHostile(entity, this.entity);
+            return (
+                entity.has(Faction) &&
+                !window.game.factions.areEntitiesHostile(entity, this.entity)
+            );
         });
 
         // swap locations

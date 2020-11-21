@@ -1,4 +1,10 @@
-import { Explorable, Explored, Glyph, Position, Visible } from '../ecs/components';
+import {
+    Explorable,
+    Explored,
+    Glyph,
+    Position,
+    Visible,
+} from '../ecs/components';
 import System from './System';
 
 export default class RenderSystem extends System {
@@ -12,7 +18,7 @@ export default class RenderSystem extends System {
         });
         this.#explored = game.ecs.createQuery({
             all: [Glyph, Position, Explored],
-            none: [Visible]
+            none: [Visible],
         });
     }
 

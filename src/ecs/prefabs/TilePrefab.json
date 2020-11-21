@@ -10,8 +10,8 @@
         {
             "type": "Glyph",
             "properties": {
-                "char": ".",
-                "primary": "#444"
+                "ch": ".",
+                "fg1": "#444"
             }
         }
     ]

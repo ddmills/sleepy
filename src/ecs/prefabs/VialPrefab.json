@@ -11,9 +11,9 @@
         {
             "type": "Glyph",
             "properties": {
-                "char": "!",
-                "primary": "#66a3dc",
-                "secondary": "#8bb9d5"
+                "ch": "!",
+                "fg2": "#66a3dc",
+                "fg1": "transparent"
             }
         },
         {
@@ -24,7 +24,9 @@
             "properties": {
                 "contents": 1,
                 "volume": 5,
-                "maxVolume": 10
+                "maxVolume": 10,
+                "overridePrimary": true,
+                "overrideSecondary": true
             }
         }
     ]

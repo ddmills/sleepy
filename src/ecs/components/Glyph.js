@@ -1,10 +1,44 @@
 import { Component } from 'geotic';
+import { LiquidContainer } from './LiquidContainer';
 
 export class Glyph extends Component {
     static properties = {
-        primary: '#ddd',
-        secondary: '#666',
-        background: null,
-        char: '?',
+        fg1: '#ddd',
+        fg2: '#666',
+        bg: null,
+        ch: '?',
     };
+
+    get primary() {
+        if (this.entity.has(LiquidContainer)) {
+            const col = this.entity.liquidContainer.primaryColorOverride;
+
+            if (col) {
+                return col;
+            }
+        }
+
+        return this.fg1;
+    }
+
+    get secondary() {
+        if (this.entity.has(LiquidContainer)) {
+            const col = this.entity.liquidContainer.secondaryColorOverride;
+
+            if (col) {
+                return col;
+            }
+        }
+
+
+        return this.fg2;
+    }
+
+    get background() {
+        return this.bg;
+    }
+
+    get char() {
+        return this.ch;
+    }
 }

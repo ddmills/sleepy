@@ -3,6 +3,7 @@ import Manager from './Manager';
 import FastMap from '../utils/FastMap';
 import { BoredGoalType } from '../ai/GoalTypes';
 import { Position } from '../ecs/components';
+import { LIQUID_BLOOD, LIQUID_HONEY, LIQUID_WATER } from '../enums/LiquidTypes';
 
 export default class MapManager extends Manager {
     #lookup;
@@ -59,6 +60,23 @@ export default class MapManager extends Manager {
             const position = this.getRandomEmptyPosition();
             const vial = this.game.ecs.createPrefab('Vial');
 
+            vial.liquidContainer.contents = LIQUID_BLOOD;
+            vial.position.setPos(position.x, position.y);
+        }
+
+        for (let i = 0; i < 4; i++) {
+            const position = this.getRandomEmptyPosition();
+            const vial = this.game.ecs.createPrefab('Vial');
+
+            vial.liquidContainer.contents = LIQUID_WATER;
+            vial.position.setPos(position.x, position.y);
+        }
+
+        for (let i = 0; i < 4; i++) {
+            const position = this.getRandomEmptyPosition();
+            const vial = this.game.ecs.createPrefab('Vial');
+
+            vial.liquidContainer.contents = LIQUID_HONEY;
             vial.position.setPos(position.x, position.y);
         }
 

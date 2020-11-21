@@ -25,7 +25,7 @@ export default class ParticleSystem extends System {
         });
     }
 
-    createEmitter(x, y) {
+    createEmitter(x, y, particleData = {}) {
         const e = this.game.ecs.createEntity();
 
         e.add(ParticleEmitter, {
@@ -33,13 +33,14 @@ export default class ParticleSystem extends System {
             y,
             particleData: {
                 direction: {
-                    x: -1,
-                    y: .24
+                    x: 0,
+                    y: 1
                 },
                 glyphs: ['░', '▒', '▓', '█'],
                 fg1s: ['cyan', 'blue'],
-                speed: .08,
-                lifetime: 600
+                speed: .04,
+                lifetime: 600,
+                ...particleData
             }
         });
     }

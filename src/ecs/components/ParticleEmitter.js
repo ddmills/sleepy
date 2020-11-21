@@ -4,8 +4,8 @@ import { Particle } from './Particle';
 export class ParticleEmitter extends Component {
     static properties = {
         particleData: {},
-        duration: 1000,
-        rate: 10,
+        duration: 800,
+        rate: 3,
         age: 0,
         x: 0,
         y: 0,

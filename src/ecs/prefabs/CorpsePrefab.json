@@ -11,8 +11,8 @@
         {
             "type": "Glyph",
             "properties": {
-                "char": "%",
-                "primary": "#730d14"
+                "ch": "%",
+                "fg1": "#730d14"
             }
         }
     ]

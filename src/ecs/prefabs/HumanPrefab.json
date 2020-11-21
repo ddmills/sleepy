@@ -5,8 +5,8 @@
         {
             "type": "Glyph",
             "properties": {
-                "char": "h",
-                "primary": "pink"
+                "ch": "h",
+                "fg1": "pink"
             }
         },
         {

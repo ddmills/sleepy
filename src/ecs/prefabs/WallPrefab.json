@@ -11,9 +11,9 @@
         {
             "type": "Glyph",
             "properties": {
-                "char": "═",
-                "primary": "brown",
-                "secondary": "##336633"
+                "ch": "═",
+                "fg1": "brown",
+                "fg2": "##336633"
             }
         }
     ]

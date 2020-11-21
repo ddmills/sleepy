@@ -5,8 +5,8 @@
         {
             "type": "Glyph",
             "properties": {
-                "char": "h",
-                "primary": "#ccc"
+                "ch": "h",
+                "fg1": "#ccc"
             }
         },
         {

@@ -5,9 +5,9 @@
         {
             "type": "Glyph",
             "properties": {
-                "char": "♠",
-                "primary": "#336633",
-                "secondary": "brown"
+                "ch": "♠",
+                "fg1": "#336633",
+                "fg2": "brown"
             }
         }
     ]

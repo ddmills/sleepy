@@ -24,9 +24,9 @@
         {
             "type": "Glyph",
             "properties": {
-                "char": "@",
-                "primary": "#d6d6d6",
-                "secondary": "#66a3dc"
+                "ch": "@",
+                "fg1": "#d6d6d6",
+                "fg2": "#66a3dc"
             }
         },
         {

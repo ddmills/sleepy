@@ -1,11 +1,13 @@
 import { Component } from 'geotic';
-import { drinkLiquid, liquids, LIQUID_HEALING } from '../../enums/LiquidTypes';
+import { drinkLiquid, liquids, LIQUID_BLOOD } from '../../enums/LiquidTypes';
 
 export class LiquidContainer extends Component {
     static properties = {
-        contents: LIQUID_HEALING,
+        contents: LIQUID_BLOOD,
         volume: 10,
         maxVolume: 10,
+        overridePrimary: false,
+        overrideSecondary: false,
     }
 
     onTryDrink(evt) {
@@ -19,15 +21,35 @@ export class LiquidContainer extends Component {
         evt.handle();
     }
 
+    get liquid() {
+        return !this.isEmpty && liquids[this.contents];
+    }
+
     get isEmpty() {
-        return !this.contents || this.volume <= 0;
+        return isNaN(this.contents) || this.volume <= 0;
     }
 
     get display() {
         if (this.isEmpty) {
-            return 'empty';
+            return `[empty] ${this.volume}/${this.maxVolume}`;
         }
 
-        return `${this.volume} drams of ${liquids[this.contents].name}`;
+        return `[${liquids[this.contents].name}] ${this.volume}/${this.maxVolume}`;
+    }
+
+    get primaryColorOverride() {
+        if (this.overridePrimary && this.liquid) {
+            return this.liquid.primary;
+        };
+
+        return null;
+    }
+
+    get secondaryColorOverride() {
+        if (this.overrideSecondary && this.liquid) {
+            return this.liquid.secondary;
+        };
+
+        return null;
     }
 }

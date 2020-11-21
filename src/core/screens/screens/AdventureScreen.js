@@ -119,7 +119,9 @@ export default class AdventureScreen extends Screen {
             this.onInteract();
         }
         if (cmd.type === INPUT_CMD_INVENTORY) {
-            this.game.screens.setScreen(SCREEN_INVENTORY);
+            this.game.screens.setScreen(SCREEN_INVENTORY, {
+                entity: this.game.player.entity
+            });
         }
         if (cmd.type === INPUT_CMD_CANCEL) {
             if (this.game.cursor.isEnabled) {

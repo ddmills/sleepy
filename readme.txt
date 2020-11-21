@@ -61,6 +61,8 @@ built with geotic - https://github.com/ddmills/geotic
     - switch
     - moving block
     - statues that can animate
+    - line-of-sight as a mechanic
+        - count down while entity keeps LoS
 
 # inspo
 - https://github.com/Bozar/cursedSouls

@@ -3,12 +3,14 @@ import {
     SCREEN_ADVENTURE,
     SCREEN_DEATH,
     SCREEN_INVENTORY,
+    SCREEN_INTERACT_MODAL,
 } from './ScreenType';
 import AdventureScreen from './screens/AdventureScreen';
 import MainMenuScreen from './screens/MainMenuScreen';
 import DeathScreen from './screens/DeathScreen';
 import Manager from '../Manager';
 import InventoryScreen from './screens/InventoryScreen';
+import InteractModalScreen from './screens/InteractModalScreen';
 
 export default class ScreenManager extends Manager {
     #screenType = SCREEN_MAIN_MENU;
@@ -21,6 +23,7 @@ export default class ScreenManager extends Manager {
             [SCREEN_ADVENTURE]: new AdventureScreen(game),
             [SCREEN_DEATH]: new DeathScreen(game),
             [SCREEN_INVENTORY]: new InventoryScreen(game),
+            [SCREEN_INTERACT_MODAL]: new InteractModalScreen(game),
         };
     }
 
@@ -28,10 +31,10 @@ export default class ScreenManager extends Manager {
         return this.#screens[this.#screenType];
     }
 
-    setScreen(screenType) {
-        this.screen.onLeave();
+    setScreen(screenType, ctx = {}) {
+        this.screen.onLeave(ctx);
         this.#screenType = screenType;
-        this.screen.onEnter();
+        this.screen.onEnter(ctx);
     }
 
     onInputCommand(cmd) {

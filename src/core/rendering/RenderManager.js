@@ -72,6 +72,10 @@ export default class Renderer extends Manager {
         this.display.clear();
     }
 
+    clearArea(x, y, width, height) {
+        this.display.clearArea(x, y, width, height);
+    }
+
     pxToTile(xPx, yPx) {
         const x = Math.trunc(xPx / this.tileWidth);
         const y = Math.trunc(yPx / this.tileHeight);

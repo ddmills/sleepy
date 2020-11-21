@@ -58,19 +58,20 @@ export default class CursorSystem extends System {
         }
 
         const entities = this.getEntities().filter((e) => e.has(Moniker));
+        const screen = this.game.camera.worldToScreen(this.x, this.y);
 
-        if (this.x < this.game.map.width / 2) {
+        if (screen.x < this.game.camera.width / 2) {
             entities.forEach((entity, i) => {
                 const c = i === 0 ? '◄' : ' ';
                 this.game.renderer.drawText(
-                    this.x + 1,
-                    this.y + i,
+                    screen.x + 1,
+                    screen.y + i,
                     `${c}█`,
                     '#ddd'
                 );
                 this.game.renderer.drawText(
-                    this.x + 2,
-                    this.y + i,
+                    screen.x + 2,
+                    screen.y + i,
                     entity.moniker.display + ' ',
                     '#111133',
                     'white',
@@ -81,8 +82,8 @@ export default class CursorSystem extends System {
             entities.forEach((entity, i) => {
                 const c = i === 0 ? '►' : ' ';
                 this.game.renderer.drawText(
-                    this.x - 1,
-                    this.y + i,
+                    screen.x - 1,
+                    screen.y + i,
                     `█${c}`,
                     '#ddd'
                 );
@@ -90,8 +91,8 @@ export default class CursorSystem extends System {
                     entity.moniker.display
                 );
                 this.game.renderer.drawText(
-                    this.x - len - 1.5,
-                    this.y + i,
+                    screen.x - len - 1.5,
+                    screen.y + i,
                     ' ' + entity.moniker.display,
                     '#111133',
                     'white',
@@ -100,6 +101,6 @@ export default class CursorSystem extends System {
             });
         }
 
-        this.game.renderer.draw(this.x, this.y, 'X', 'yellow');
+        this.game.renderer.draw(screen.x, screen.y, 'X', 'yellow');
     }
 }

@@ -8,6 +8,10 @@ export default class PlayerManager extends Manager {
         return this.game.ecs.getEntity(this.#entityId);
     }
 
+    get id() {
+        return this.#entityId;
+    }
+
     get isTurn() {
         return this.entity.actor.hasEnergy;
     }

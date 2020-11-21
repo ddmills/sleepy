@@ -8,8 +8,13 @@ export default class Renderer extends Manager {
     #spritesheets = {};
     #display = null;
 
-    width = 24;
-    height = 24;
+    get width() {
+        return this.game.camera.width;
+    }
+
+    get height() {
+        return this.game.camera.height;
+    }
 
     get tileWidth() {
         return this.#tileWidth;

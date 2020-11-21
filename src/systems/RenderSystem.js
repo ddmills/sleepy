@@ -28,9 +28,16 @@ export default class RenderSystem extends System {
 
         this.#explored.get().forEach((renderable) => {
             const pos = renderable.position.getPos();
+
+            if (!this.game.camera.isInView(pos.x, pos.y)) {
+                return;
+            }
+
+            const screen = this.game.camera.worldToScreen(pos.x, pos.y);
+
             this.game.renderer.draw(
-                pos.x,
-                pos.y,
+                screen.x,
+                screen.y,
                 renderable.glyph.char,
                 '#283131',
                 '#283131'
@@ -39,9 +46,16 @@ export default class RenderSystem extends System {
 
         this.#query.get().forEach((renderable) => {
             const pos = renderable.position.getPos();
+
+            if (!this.game.camera.isInView(pos.x, pos.y)) {
+                return;
+            }
+
+            const screen = this.game.camera.worldToScreen(pos.x, pos.y);
+
             this.game.renderer.draw(
-                pos.x,
-                pos.y,
+                screen.x,
+                screen.y,
                 renderable.glyph.char,
                 renderable.glyph.primary,
                 renderable.glyph.secondary,

@@ -44,6 +44,10 @@ export default class AdventureScreen extends Screen {
         this.game.renderer.clear();
         this.game.commands.pushDomain(INPUT_DOMAIN_ADVENTURE);
         this.game.FOVSystem.computeFOV();
+
+        const position = this.game.player.position;
+
+        this.game.camera.setFocus(position.x, position.y);
     }
 
     onLeave() {

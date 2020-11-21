@@ -70,19 +70,29 @@ export default class ParticleSystem extends System {
 
             if (particle.isExpired) {
                 entity.destroy();
-            } else {
-                particle.x += particle.direction.x * particle.speed;
-                particle.y += particle.direction.y * particle.speed;
-
-                this.game.renderer.draw(
-                    Math.round(particle.x),
-                    Math.round(particle.y),
-                    particle.glyph,
-                    particle.fg1,
-                    particle.fg2,
-                    particle.bg
-                );
+                return;
             }
+
+            particle.x += particle.direction.x * particle.speed;
+            particle.y += particle.direction.y * particle.speed;
+
+            if (!this.game.camera.isInView(particle.x, particle.y)) {
+                return;
+            }
+
+            const screen = this.game.camera.worldToScreen(
+                particle.x,
+                particle.y
+            );
+
+            this.game.renderer.draw(
+                Math.round(screen.x),
+                Math.round(screen.y),
+                particle.glyph,
+                particle.fg1,
+                particle.fg2,
+                particle.bg
+            );
         });
     }
 }

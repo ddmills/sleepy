@@ -20,6 +20,7 @@ import MeleeSystem from '../systems/MeleeSystem';
 import DeathSystem from '../systems/DeathSystem';
 import ParticleSystem from '../systems/ParticleSystem';
 import FactionManager from './FactionManager';
+import CameraManager from './CameraManager';
 
 export default class Game {
     #lastUpdate;
@@ -31,6 +32,7 @@ export default class Game {
     constructor() {
         this.engine = new ECS();
         this.clock = new ClockManager(this);
+        this.camera = new CameraManager(this);
         this.renderer = new Renderer(this);
         this.state = new GameStateManager(this);
         this.mouse = new MouseManager(this);

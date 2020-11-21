@@ -80,6 +80,11 @@ built with geotic - https://github.com/ddmills/geotic
     - extract events names to enum
     - give interactions a priority
         - "Drink" should appear before "Drop"
+    - map and camera
+
+- interesting
+    - chiro = hand
+    - nex = death
 
 # inspo
 - https://github.com/Bozar/cursedSouls
@@ -97,6 +102,7 @@ built with geotic - https://github.com/ddmills/geotic
 - https://iknowkingrabbit.itch.io/mas-darkest-pack
 - https://www.youtube.com/watch?v=LKCRim02opc
 - https://cesium.com/docs/tutorials/particle-systems/
+- https://tekeli.li/onomastikon/
 
 - particles requirements
     - ability to configure speed

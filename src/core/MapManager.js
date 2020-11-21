@@ -7,8 +7,8 @@ import { LIQUID_BLOOD, LIQUID_HONEY, LIQUID_WATER } from '../enums/LiquidTypes';
 
 export default class MapManager extends Manager {
     #lookup;
-    #width = 24;
-    #height = 24;
+    #width = 48;
+    #height = 48;
 
     get width() {
         return this.#width;
@@ -40,9 +40,9 @@ export default class MapManager extends Manager {
         this.#lookup.clear();
         const generator = new MapGenerator.Uniform(this.width, this.height, {
             timeLimit: 8000,
-            roomWidth: [2, 5],
-            roomHeight: [2, 5],
-            roomDugPercentage: 0.9,
+            roomWidth: [2, 8],
+            roomHeight: [2, 8],
+            roomDugPercentage: 0.8,
         });
 
         generator.create((x, y, v) => {
@@ -126,6 +126,10 @@ export default class MapManager extends Manager {
 
     setPosition(x, y, entityId) {
         this.#lookup.set(x, y, entityId);
+
+        if (entityId === this.game.player.id) {
+            this.game.camera.setFocus(x, y);
+        }
     }
 
     getEntitiesAt(x, y) {

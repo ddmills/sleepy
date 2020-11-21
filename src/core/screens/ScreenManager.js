@@ -13,8 +13,13 @@ import InventoryScreen from './screens/InventoryScreen';
 import InteractModalScreen from './screens/InteractModalScreen';
 
 export default class ScreenManager extends Manager {
-    #screenType = SCREEN_MAIN_MENU;
     #screens = {};
+    #screenStack = [
+        {
+            type: SCREEN_MAIN_MENU,
+            ctx: {},
+        },
+    ];
 
     constructor(game) {
         super(game);
@@ -27,14 +32,41 @@ export default class ScreenManager extends Manager {
         };
     }
 
+    get screenType() {
+        return this.#screenStack[this.#screenStack.length - 1].type;
+    }
+
+    get screenCtx() {
+        return this.#screenStack[this.#screenStack.length - 1].ctx;
+    }
+
     get screen() {
-        return this.#screens[this.#screenType];
+        return this.#screens[this.screenType];
     }
 
     setScreen(screenType, ctx = {}) {
         this.screen.onLeave(ctx);
-        this.#screenType = screenType;
-        this.screen.onEnter(ctx);
+        this.#screenStack.pop();
+        this.#screenStack.push({
+            type: screenType,
+            ctx,
+        });
+        this.screen.onEnter(this.screenCtx);
+    }
+
+    pushScreen(screenType, ctx = {}) {
+        this.screen.onLeave(ctx);
+        this.#screenStack.push({
+            type: screenType,
+            ctx,
+        });
+        this.screen.onEnter(this.screenCtx);
+    }
+
+    popScreen(ctx = {}) {
+        this.screen.onLeave(ctx);
+        this.#screenStack.pop();
+        this.screen.onEnter(this.screenCtx);
     }
 
     onInputCommand(cmd) {

@@ -63,6 +63,9 @@ built with geotic - https://github.com/ddmills/geotic
     - statues that can animate
     - line-of-sight as a mechanic
         - count down while entity keeps LoS
+- items
+    - {effect} {base} of {modifer}
+    - Heavy Dagger of Vampirism
 
 # inspo
 - https://github.com/Bozar/cursedSouls

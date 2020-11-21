@@ -32,7 +32,11 @@ import {
     DIR_NE,
     delta as directionDelta,
 } from '../../../enums/Directions';
-import { SCREEN_INVENTORY, SCREEN_MAIN_MENU } from '../ScreenType';
+import {
+    SCREEN_INTERACT_MODAL,
+    SCREEN_INVENTORY,
+    SCREEN_MAIN_MENU,
+} from '../ScreenType';
 import { Drinkable } from '../../../ecs/components/Drinkable';
 import { Loot } from '../../../ecs/components';
 
@@ -81,7 +85,9 @@ export default class AdventureScreen extends Screen {
         const lootable = entities.find((entity) => entity.has(Loot));
 
         if (lootable) {
-            this.game.player.entity.inventory.addLoot(lootable);
+            lootable.fireEvent('try-pickup', {
+                target: this.game.player.entity,
+            });
         } else {
             console.log('there is nothing here to interact with.');
         }
@@ -91,15 +97,17 @@ export default class AdventureScreen extends Screen {
         const position = this.game.player.position;
         const entities = this.game.map.getEntitiesAt(position.x, position.y);
 
-        const drinkable = entities.find((entity) => entity.has(Drinkable));
-
-        if (drinkable) {
-            drinkable.fireEvent('try-drink', {
-                target: this.game.player.entity,
+        const item = entities.find((entity) => {
+            const evt = entity.fireEvent('get-interactions', {
+                interactions: [],
             });
-        } else {
-            console.log('there is nothing here to interact with.');
-        }
+            return evt.data.interactions.length > 0;
+        });
+
+        this.game.screens.pushScreen(SCREEN_INTERACT_MODAL, {
+            entity: item,
+            target: this.game.player.entity,
+        });
     }
 
     onInputCommand(cmd) {
@@ -119,8 +127,8 @@ export default class AdventureScreen extends Screen {
             this.onInteract();
         }
         if (cmd.type === INPUT_CMD_INVENTORY) {
-            this.game.screens.setScreen(SCREEN_INVENTORY, {
-                entity: this.game.player.entity
+            this.game.screens.pushScreen(SCREEN_INVENTORY, {
+                entity: this.game.player.entity,
             });
         }
         if (cmd.type === INPUT_CMD_CANCEL) {

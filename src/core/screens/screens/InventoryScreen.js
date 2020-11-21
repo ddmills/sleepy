@@ -6,7 +6,7 @@ import {
     INPUT_CMD_MOVE_S,
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
-import { SCREEN_ADVENTURE, SCREEN_INTERACT_MODAL } from '../ScreenType';
+import { SCREEN_INTERACT_MODAL } from '../ScreenType';
 
 export default class InventoryScreen extends Screen {
     #selectedIdx = 0;
@@ -36,7 +36,7 @@ export default class InventoryScreen extends Screen {
         const item = items[idx];
 
         if (item) {
-            this.game.screens.setScreen(SCREEN_INTERACT_MODAL, {
+            this.game.screens.pushScreen(SCREEN_INTERACT_MODAL, {
                 entity: item,
                 target: this.#entity,
             });
@@ -45,7 +45,7 @@ export default class InventoryScreen extends Screen {
 
     onInputCommand(cmd) {
         if (cmd.type === INPUT_CMD_CANCEL) {
-            this.game.screens.setScreen(SCREEN_ADVENTURE);
+            this.game.screens.popScreen();
         }
 
         if (cmd.type === INPUT_CMD_MOVE_N) {
@@ -63,7 +63,11 @@ export default class InventoryScreen extends Screen {
 
     onUpdate(dt) {
         this.game.renderer.clear();
-        this.game.renderer.drawTextCenter(3, `~ ${this.#entity.moniker.display} Inventory ~`, 'yellow');
+        this.game.renderer.drawTextCenter(
+            3,
+            `~ ${this.#entity.moniker.display} Inventory ~`,
+            'yellow'
+        );
 
         const items = this.#entity.inventory.content;
         const idx = this.#selectedIdx % items.length;

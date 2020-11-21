@@ -74,7 +74,12 @@ export default class Display {
     }
 
     clearArea(x, y, width, height) {
-        this.ctx.clearRect(x * this.tileWidth, y * this.tileHeight, this.tileWidth * width, this.tileHeight * height);
+        this.ctx.clearRect(
+            x * this.tileWidth,
+            y * this.tileHeight,
+            this.tileWidth * width,
+            this.tileHeight * height
+        );
     }
 
     fillTile(x, y, color) {

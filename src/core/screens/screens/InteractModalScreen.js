@@ -7,6 +7,7 @@ import {
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import { SCREEN_ADVENTURE, SCREEN_INVENTORY } from '../ScreenType';
+import { IsInventoried } from '../../../ecs/components';
 
 export default class InteractModalScreen extends Screen {
     #width = 16;
@@ -30,8 +31,12 @@ export default class InteractModalScreen extends Screen {
         this.#entity = ctx.entity;
         this.#target = ctx.target;
 
+        this.resetInteractions();
+    }
+
+    resetInteractions() {
         const evt = this.#entity.fireEvent('get-interactions', {
-            interactions: []
+            interactions: [],
         });
 
         this.#interactions = evt.data.interactions;
@@ -57,15 +62,18 @@ export default class InteractModalScreen extends Screen {
             this.#entity.fireEvent(interaction.evt, {
                 target: this.#target,
             });
-            this.game.screens.setScreen(SCREEN_INVENTORY, {
-                entity: this.#target,
-            });
+
+            if (!this.#entity.has(IsInventoried)) {
+                this.game.screens.popScreen();
+            } else {
+                this.resetInteractions();
+            }
         }
     }
 
     onInputCommand(cmd) {
         if (cmd.type === INPUT_CMD_CANCEL) {
-            this.game.screens.setScreen(SCREEN_ADVENTURE);
+            this.game.screens.popScreen();
         }
 
         if (cmd.type === INPUT_CMD_MOVE_N) {
@@ -82,8 +90,16 @@ export default class InteractModalScreen extends Screen {
     }
 
     onUpdate(dt) {
-        this.game.renderer.clear();
-        this.game.renderer.drawTextCenter(this.top + 2, `${this.#entity.moniker.display}`);
+        this.game.renderer.clearArea(
+            this.top,
+            this.left,
+            this.#width,
+            this.#height
+        );
+        this.game.renderer.drawTextCenter(
+            this.top + 2,
+            `${this.#entity.moniker.display}`
+        );
 
         for (let i = this.left; i < this.left + this.#width; i++) {
             this.game.renderer.draw(i, this.top, '─');
@@ -98,7 +114,11 @@ export default class InteractModalScreen extends Screen {
         this.game.renderer.draw(this.left, this.top, '┌');
         this.game.renderer.draw(this.left + this.#width, this.top, '┐');
         this.game.renderer.draw(this.left, this.top + this.#height, '└');
-        this.game.renderer.draw(this.left + this.#width, this.top + this.#height, '┘');
+        this.game.renderer.draw(
+            this.left + this.#width,
+            this.top + this.#height,
+            '┘'
+        );
 
         const idx = this.#selectedIdx % this.#interactions.length;
 

@@ -50,7 +50,7 @@ export class LiquidContainer extends Component {
             return;
         }
 
-        drinkLiquid(evt.data.target, this.contents, this.volume);
+        drinkLiquid(evt.data.interactor, this.contents, this.volume);
         this.volume = 0;
         evt.handle();
     }

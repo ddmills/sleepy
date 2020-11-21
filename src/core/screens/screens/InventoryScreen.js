@@ -10,12 +10,14 @@ import { SCREEN_INTERACT_MODAL } from '../ScreenType';
 
 export default class InventoryScreen extends Screen {
     #selectedIdx = 0;
-    #entity;
+    #accessible;
+    #accessor;
 
     onEnter(ctx) {
         this.game.commands.pushDomain(INPUT_DOMAIN_MAIN_MENU);
         this.#selectedIdx = 0;
-        this.#entity = ctx.entity;
+        this.#accessible = ctx.accessible;
+        this.#accessor = ctx.accessor;
     }
 
     onLeave() {
@@ -31,14 +33,14 @@ export default class InventoryScreen extends Screen {
     }
 
     selectItem() {
-        const items = this.#entity.inventory.content;
+        const items = this.#accessible.inventory.content;
         const idx = this.#selectedIdx % items.length;
-        const item = items[idx];
+        const interactable = items[idx];
 
-        if (item) {
+        if (interactable) {
             this.game.screens.pushScreen(SCREEN_INTERACT_MODAL, {
-                entity: item,
-                target: this.#entity,
+                interactable,
+                interactor: this.#accessor,
             });
         }
     }
@@ -65,11 +67,11 @@ export default class InventoryScreen extends Screen {
         this.game.renderer.clear();
         this.game.renderer.drawTextCenter(
             3,
-            `~ ${this.#entity.moniker.display} Inventory ~`,
+            `~ ${this.#accessible.moniker.display} Inventory ~`,
             'yellow'
         );
 
-        const items = this.#entity.inventory.content;
+        const items = this.#accessible.inventory.content;
         const idx = this.#selectedIdx % items.length;
 
         if (items.length === 0) {

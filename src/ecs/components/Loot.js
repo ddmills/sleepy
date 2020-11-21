@@ -4,11 +4,25 @@ import { IsInventoried } from './IsInventoried';
 
 export class Loot extends Component {
     onGetInteractions(evt) {
-        if (this.entity.has(IsInventoried)) {
-            evt.data.interactions.push({
-                name: 'Drop',
-                evt: 'try-drop',
-            });
+        const interactor = evt.data.interactor;
+        const isInventoried = this.entity.has(IsInventoried);
+
+        if (!interactor.has(Inventory)) {
+            return;
+        }
+
+        if (isInventoried) {
+            if (interactor.inventory.hasLoot(this.entity)) {
+                evt.data.interactions.push({
+                    name: 'Drop',
+                    evt: 'try-drop',
+                });
+            } else {
+                evt.data.interactions.push({
+                    name: 'Take',
+                    evt: 'try-take',
+                });
+            }
         } else {
             evt.data.interactions.push({
                 name: 'Pickup',
@@ -18,9 +32,16 @@ export class Loot extends Component {
     }
 
     onTryPickup(evt) {
-        if (evt.data.target.has(Inventory)) {
-            evt.data.target.inventory.addLoot(this.entity);
-            evt.handle();
-        }
+        evt.data.interactor.inventory.addLoot(this.entity);
+        evt.handle();
+    }
+
+    onTryTake(evt) {
+        const owner = this.entity.isInventoried.owner;
+
+        owner.inventory.removeLoot(this.entity);
+        evt.data.interactor.inventory.addLoot(this.entity);
+
+        evt.handle();
     }
 }

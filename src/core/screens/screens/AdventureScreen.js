@@ -85,7 +85,7 @@ export default class AdventureScreen extends Screen {
 
         if (lootable) {
             lootable.fireEvent('try-pickup', {
-                target: this.game.player.entity,
+                interactor: this.game.player.entity,
             });
         } else {
             console.log('there is nothing here to interact with.');
@@ -98,6 +98,7 @@ export default class AdventureScreen extends Screen {
 
         const item = entities.find((entity) => {
             const evt = entity.fireEvent('get-interactions', {
+                interactor: this.game.player.entity,
                 interactions: [],
             });
             return evt.data.interactions.length > 0;
@@ -105,8 +106,8 @@ export default class AdventureScreen extends Screen {
 
         if (item) {
             this.game.screens.pushScreen(SCREEN_INTERACT_MODAL, {
-                entity: item,
-                target: this.game.player.entity,
+                interactor: this.game.player.entity,
+                interactable: item,
             });
         }
     }
@@ -129,7 +130,8 @@ export default class AdventureScreen extends Screen {
         }
         if (cmd.type === INPUT_CMD_INVENTORY) {
             this.game.screens.pushScreen(SCREEN_INVENTORY, {
-                entity: this.game.player.entity,
+                accessible: this.game.player.entity,
+                accessor: this.game.player.entity,
             });
         }
         if (cmd.type === INPUT_CMD_CANCEL) {

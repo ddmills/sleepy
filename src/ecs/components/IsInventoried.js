@@ -1,10 +1,13 @@
 import { Component } from 'geotic';
-import { Inventory } from './Inventory';
 
 export class IsInventoried extends Component {
+    static properties = {
+        owner: '<Entity>',
+    };
+
     onTryDrop(evt) {
-        if (evt.data.target.has(Inventory)) {
-            evt.data.target.inventory.dropLoot(this.entity);
-        }
+        this.owner.inventory.dropLoot(this.entity);
+
+        evt.handle();
     }
 }

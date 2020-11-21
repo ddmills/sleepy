@@ -9,8 +9,16 @@ export class Inventory extends Component {
     };
 
     addLoot(loot) {
-        loot.add(IsInventoried);
+        loot.add(IsInventoried, {
+            owner: this.entity,
+        });
         this.content.push(loot);
+    }
+
+    hasLoot(loot) {
+        const idx = this.content.indexOf(loot);
+
+        return idx >= 0;
     }
 
     removeLoot(loot) {
@@ -32,7 +40,8 @@ export class Inventory extends Component {
 
     onTryOpen(evt) {
         game.screens.pushScreen(SCREEN_INVENTORY, {
-            entity: this.entity,
+            accessible: this.entity,
+            accessor: evt.data.interactor,
         });
         evt.handle();
     }

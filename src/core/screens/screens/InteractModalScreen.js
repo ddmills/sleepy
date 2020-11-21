@@ -6,16 +6,14 @@ import {
     INPUT_CMD_MOVE_S,
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
-import { SCREEN_ADVENTURE, SCREEN_INVENTORY } from '../ScreenType';
-import { IsInventoried } from '../../../ecs/components';
 
 export default class InteractModalScreen extends Screen {
     #width = 16;
     #height = 16;
     #selectedIdx = 0;
     #interactions = [];
-    #entity;
-    #target;
+    #interactable;
+    #interactor;
 
     get left() {
         return (this.game.renderer.width - this.#width) / 2;
@@ -28,14 +26,15 @@ export default class InteractModalScreen extends Screen {
     onEnter(ctx) {
         this.game.commands.pushDomain(INPUT_DOMAIN_MAIN_MENU);
         this.#selectedIdx = 0;
-        this.#entity = ctx.entity;
-        this.#target = ctx.target;
+        this.#interactable = ctx.interactable;
+        this.#interactor = ctx.interactor;
 
         this.resetInteractions();
     }
 
     resetInteractions() {
-        const evt = this.#entity.fireEvent('get-interactions', {
+        const evt = this.#interactable.fireEvent('get-interactions', {
+            interactor: this.#interactor,
             interactions: [],
         });
 
@@ -59,8 +58,8 @@ export default class InteractModalScreen extends Screen {
         const interaction = this.#interactions[idx];
 
         if (interaction) {
-            this.#entity.fireEvent(interaction.evt, {
-                target: this.#target,
+            this.#interactable.fireEvent(interaction.evt, {
+                interactor: this.#interactor,
             });
 
             this.resetInteractions();
@@ -95,7 +94,7 @@ export default class InteractModalScreen extends Screen {
         );
         this.game.renderer.drawTextCenter(
             this.top + 2,
-            `${this.#entity.moniker.display}`
+            `${this.#interactable.moniker.display}`
         );
 
         for (let i = this.left; i < this.left + this.#width; i++) {

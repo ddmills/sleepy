@@ -2,7 +2,7 @@ import { Map as MapGenerator } from 'rot-js';
 import Manager from './Manager';
 import FastMap from '../utils/FastMap';
 import { BoredGoalType } from '../ai/GoalTypes';
-import { IsInventoried, Position } from '../ecs/components';
+import { Door, IsInventoried, Position } from '../ecs/components';
 import { LIQUID_BLOOD, LIQUID_HONEY, LIQUID_WATER } from '../enums/LiquidTypes';
 
 export default class MapManager extends Manager {
@@ -55,6 +55,22 @@ export default class MapManager extends Manager {
 
             entity.position.setPos(x, y);
         });
+
+        var rooms = generator.getRooms();
+        for (var i = 0; i < rooms.length; i++) {
+            var room = rooms[i];
+
+            room.getDoors((x, y) => {
+                const hasDoor = this.getEntitiesAt(x, y).some((e) => e.has(Door));
+
+                if (hasDoor) {
+                    return;
+                }
+
+                const door = this.game.ecs.createPrefab('Door');
+                door.position.setPos(x, y);
+            });
+        }
 
         for (let i = 0; i < 3; i++) {
             const position = this.getRandomEmptyPosition();

@@ -37,7 +37,7 @@ import {
     SCREEN_INVENTORY,
     SCREEN_MAIN_MENU,
 } from '../ScreenType';
-import { Loot } from '../../../ecs/components';
+import { Door, Loot } from '../../../ecs/components';
 
 export default class AdventureScreen extends Screen {
     onEnter() {
@@ -64,19 +64,27 @@ export default class AdventureScreen extends Screen {
                 x: playerPosition.x + delta.x,
                 y: playerPosition.y + delta.y,
             };
-            const targets = this.game.map
-                .getEntitiesAt(targetPosition.x, targetPosition.y)
-                .filter((e) =>
+            const entities = this.game.map.getEntitiesAt(targetPosition.x, targetPosition.y)
+
+            const hostileEntities = entities.filter((e) =>
                     this.game.factions.areEntitiesHostile(
                         e,
                         this.game.player.entity
                     )
                 );
 
-            if (targets.length > 0) {
-                this.game.player.melee(targets[0]);
+            if (hostileEntities.length > 0) {
+                this.game.player.melee(hostileEntities[0]);
             } else {
-                this.game.player.move(dir);
+                const doorEntity = entities.find((e) => e.has(Door));
+
+                if (doorEntity && !doorEntity.door.isOpen) {
+                    doorEntity.fireEvent('try-open-door', {
+                        interactor: this.game.player.entity,
+                    });
+                } else {
+                    this.game.player.move(dir);
+                }
             }
         }
     }
@@ -98,7 +106,8 @@ export default class AdventureScreen extends Screen {
 
     onInteract() {
         const position = this.game.player.position;
-        const entities = this.game.map.getEntitiesAt(position.x, position.y);
+        const entities = this.game.map.getEntitiesAt(position.x, position.y)
+            .filter((e) => !e.isPlayer);
 
         const item = entities.find((entity) => {
             const evt = entity.fireEvent('get-interactions', {

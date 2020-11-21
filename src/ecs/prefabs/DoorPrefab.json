@@ -1,0 +1,32 @@
+{
+    "name": "Door",
+    "inherit": ["GameObject"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Door"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "+",
+                "fg1": "#a66b44"
+            }
+        },
+        {
+            "type": "Door",
+            "properties": {
+                "chOpen": "'",
+                "chClosed": "+"
+            }
+        },
+        {
+            "type": "Blocker"
+        },
+        {
+            "type": "Shadowcaster"
+        }
+    ]
+}

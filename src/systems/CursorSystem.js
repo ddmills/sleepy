@@ -72,7 +72,7 @@ export default class CursorSystem extends System {
                     this.game.renderer.drawText(
                         this.x + 2,
                         this.y + i,
-                        entity.moniker.name + ' ',
+                        entity.moniker.display + ' ',
                         '#111133',
                         'white',
                         '#ddd'
@@ -89,11 +89,11 @@ export default class CursorSystem extends System {
                         `█${c}`,
                         '#ddd'
                     );
-                    const len = this.game.renderer.computeTextWidth(entity.moniker.name);
+                    const len = this.game.renderer.computeTextWidth(entity.moniker.display);
                     this.game.renderer.drawText(
                         this.x - len - 1.5,
                         this.y + i,
-                        ' ' + entity.moniker.name,
+                        ' ' + entity.moniker.display,
                         '#111133',
                         'white',
                         '#ddd'

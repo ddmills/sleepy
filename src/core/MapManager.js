@@ -57,6 +57,13 @@ export default class MapManager extends Manager {
 
         for (let i = 0; i < 4; i++) {
             const position = this.getRandomEmptyPosition();
+            const vial = this.game.ecs.createPrefab('Vial');
+
+            vial.position.setPos(position.x, position.y);
+        }
+
+        for (let i = 0; i < 4; i++) {
+            const position = this.getRandomEmptyPosition();
             const wanderer = this.game.ecs.createPrefab('HumanWanderer');
 
             wanderer.position.setPos(position.x, position.y);

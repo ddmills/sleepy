@@ -1,0 +1,31 @@
+{
+    "name": "Vial",
+    "inherit": ["GameObject"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Vial"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "char": "!",
+                "primary": "#66a3dc",
+                "secondary": "#8bb9d5"
+            }
+        },
+        {
+            "type": "Drinkable"
+        },
+        {
+            "type": "LiquidContainer",
+            "properties": {
+                "contents": 1,
+                "volume": 5,
+                "maxVolume": 10
+            }
+        }
+    ]
+}

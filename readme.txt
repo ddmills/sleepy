@@ -38,7 +38,14 @@ built with geotic - https://github.com/ddmills/geotic
         - unique name, strong
     - followers = n beings
 - your intuition tells you...
-
+- Interesting interactions
+    - incapacitate/tie enemy up
+    - interrogate enemy
+    - brainwash enemy
+    - actors can know "secrets"
+        - "There is a hidden vault in area x,y in the northwest corner!"
+        - "The password to the goblin hideout is 'clobber'!"
+        - "Treasure map" with x,y coordinates. "you'll need a shovel!"
 - puzzles
     - sokoban style
     - flip switch, unlock door
@@ -47,8 +54,7 @@ built with geotic - https://github.com/ddmills/geotic
     - logic grid puzzle quests
     - chest/door with three shapes
         - three matching shapes scattered in dungeon
-        - chest can be smashed open (contents also break)
-        - chest can be fiddled open ()
+        - chest can be smashed open (contents may be destroyed)
 - traps
     - hidden dart gun
     - pressure plate
@@ -78,14 +84,12 @@ built with geotic - https://github.com/ddmills/geotic
     - block game input
     - change colors over time
     - change glyphs over time
-
 - particle effect
     - name
     - systems array
         - system
         - delay
         - position
-
 - particle system
     - lifetime (ms)
         - min

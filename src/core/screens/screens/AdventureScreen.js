@@ -15,6 +15,7 @@ import {
     INPUT_CMD_LOOK,
     INPUT_CMD_SCREEN_CAPTURE_START,
     INPUT_CMD_SCREEN_CAPTURE_END,
+    INPUT_CMD_INTERACT,
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_ADVENTURE } from '../../input/InputDomainType';
 import {
@@ -30,6 +31,7 @@ import {
     delta as directionDelta
 } from '../../../enums/Directions';
 import { SCREEN_MAIN_MENU } from '../ScreenType';
+import { Drinkable } from '../../../ecs/components/Drinkable';
 
 export default class AdventureScreen extends Screen {
     onEnter() {
@@ -64,6 +66,21 @@ export default class AdventureScreen extends Screen {
         }
     }
 
+    onInteract() {
+        const position = this.game.player.position;
+        const entities = this.game.map.getEntitiesAt(position.x, position.y);
+
+        const drinkable = entities.find((entity) => entity.has(Drinkable));
+
+        if (drinkable) {
+            drinkable.fireEvent('try-drink', {
+                target: this.game.player.entity
+            });
+        } else {
+            console.log('there is nothing here to interact with.');
+        }
+    }
+
     onInputCommand(cmd) {
         if (cmd.type === INPUT_CMD_SAVE) {
             this.game.state.saveGame();
@@ -73,6 +90,9 @@ export default class AdventureScreen extends Screen {
         }
         if (cmd.type === INPUT_CMD_LOOK) {
             this.game.cursor.toggle();
+        }
+        if (cmd.type === INPUT_CMD_INTERACT) {
+            this.onInteract();
         }
         if (cmd.type === INPUT_CMD_CANCEL) {
             if (this.game.cursor.isEnabled) {

@@ -21,6 +21,7 @@ import {
     INPUT_CMD_LOOK,
     INPUT_CMD_SCREEN_CAPTURE_START,
     INPUT_CMD_SCREEN_CAPTURE_END,
+    INPUT_CMD_INTERACT,
 } from './InputCommandType';
 import {
     KEY_S,
@@ -42,6 +43,7 @@ import {
     KEY_L,
     KEY_F5,
     KEY_F6,
+    KEY_I,
 } from './KeyCodes';
 
 const cmd = (domain, type, name, isKeyboard, key, shift, ctrl, alt, meta) =>
@@ -81,4 +83,5 @@ export default [
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_LOOK,                 'look',                   true, KEY_L,        false, false, false, false),
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_SCREEN_CAPTURE_START, 'start capture screen',   true, KEY_F5,       false, false, false, false),
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_SCREEN_CAPTURE_END,   'end capture screen',     true, KEY_F6,       false, false, false, false),
+    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_INTERACT,             'interact',               true, KEY_I,        false, false, false, false),
 ];

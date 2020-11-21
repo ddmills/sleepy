@@ -37,7 +37,6 @@ import {
     SCREEN_INVENTORY,
     SCREEN_MAIN_MENU,
 } from '../ScreenType';
-import { Drinkable } from '../../../ecs/components/Drinkable';
 import { Loot } from '../../../ecs/components';
 
 export default class AdventureScreen extends Screen {
@@ -104,10 +103,12 @@ export default class AdventureScreen extends Screen {
             return evt.data.interactions.length > 0;
         });
 
-        this.game.screens.pushScreen(SCREEN_INTERACT_MODAL, {
-            entity: item,
-            target: this.game.player.entity,
-        });
+        if (item) {
+            this.game.screens.pushScreen(SCREEN_INTERACT_MODAL, {
+                entity: item,
+                target: this.game.player.entity,
+            });
+        }
     }
 
     onInputCommand(cmd) {

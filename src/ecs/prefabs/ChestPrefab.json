@@ -1,0 +1,22 @@
+{
+    "name": "Chest",
+    "inherit": ["GameObject"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Chest"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "⌂",
+                "fg1": "#a66b44"
+            }
+        },
+        {
+            "type": "Inventory"
+        }
+    ]
+}

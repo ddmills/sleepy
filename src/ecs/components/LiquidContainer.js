@@ -10,17 +10,6 @@ export class LiquidContainer extends Component {
         overrideSecondary: false,
     };
 
-    onTryDrink(evt) {
-        if (this.isEmpty) {
-            console.log('The container is empty.');
-            return;
-        }
-
-        drinkLiquid(evt.data.target, this.contents, this.volume);
-        this.volume = 0;
-        evt.handle();
-    }
-
     get liquid() {
         return !this.isEmpty && liquids[this.contents];
     }
@@ -53,5 +42,27 @@ export class LiquidContainer extends Component {
         }
 
         return null;
+    }
+
+    onTryDrink(evt) {
+        if (this.isEmpty) {
+            console.log('The container is empty.');
+            return;
+        }
+
+        drinkLiquid(evt.data.target, this.contents, this.volume);
+        this.volume = 0;
+        evt.handle();
+    }
+
+    onGetInteractions(evt) {
+        if (this.isEmpty) {
+            return;
+        }
+
+        evt.data.interactions.push({
+            name: 'Drink',
+            evt: 'try-drink',
+        });
     }
 }

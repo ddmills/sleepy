@@ -63,11 +63,7 @@ export default class InteractModalScreen extends Screen {
                 target: this.#target,
             });
 
-            if (!this.#entity.has(IsInventoried)) {
-                this.game.screens.popScreen();
-            } else {
-                this.resetInteractions();
-            }
+            this.resetInteractions();
         }
     }
 
@@ -90,6 +86,7 @@ export default class InteractModalScreen extends Screen {
     }
 
     onUpdate(dt) {
+        this.game.renderer.clear();
         this.game.renderer.clearArea(
             this.top,
             this.left,

@@ -56,7 +56,18 @@ export default class MapManager extends Manager {
             entity.position.setPos(x, y);
         });
 
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 3; i++) {
+            const position = this.getRandomEmptyPosition();
+            const chest = this.game.ecs.createPrefab('Chest');
+
+            const vial = this.game.ecs.createPrefab('Vial');
+            vial.liquidContainer.contents = LIQUID_HONEY;
+
+            chest.position.setPos(position.x, position.y);
+            chest.inventory.addLoot(vial);
+        }
+
+        for (let i = 0; i < 3; i++) {
             const position = this.getRandomEmptyPosition();
             const vial = this.game.ecs.createPrefab('Vial');
 
@@ -64,7 +75,7 @@ export default class MapManager extends Manager {
             vial.position.setPos(position.x, position.y);
         }
 
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 3; i++) {
             const position = this.getRandomEmptyPosition();
             const vial = this.game.ecs.createPrefab('Vial');
 
@@ -72,7 +83,7 @@ export default class MapManager extends Manager {
             vial.position.setPos(position.x, position.y);
         }
 
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 3; i++) {
             const position = this.getRandomEmptyPosition();
             const vial = this.game.ecs.createPrefab('Vial');
 
@@ -88,7 +99,7 @@ export default class MapManager extends Manager {
             wanderer.brain.pushGoal(BoredGoalType.create());
         }
 
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 8; i++) {
             const position = this.getRandomEmptyPosition();
             const goblin = this.game.ecs.createPrefab('Goblin');
 

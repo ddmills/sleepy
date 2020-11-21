@@ -1,5 +1,4 @@
 export { Actor } from './Actor';
-export { Drinkable } from './Drinkable';
 export { LiquidContainer } from './LiquidContainer';
 export { Loot } from './Loot';
 export { Inventory } from './Inventory';

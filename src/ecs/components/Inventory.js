@@ -1,4 +1,6 @@
 import { Component } from 'geotic';
+import { game } from '../../core/Game';
+import { SCREEN_INVENTORY } from '../../core/screens/ScreenType';
 import { IsInventoried } from './IsInventoried';
 
 export class Inventory extends Component {
@@ -26,5 +28,19 @@ export class Inventory extends Component {
         const pos = this.entity.position.getPos();
 
         loot.position.setPos(pos.x, pos.y);
+    }
+
+    onTryOpen(evt) {
+        game.screens.pushScreen(SCREEN_INVENTORY, {
+            entity: this.entity,
+        });
+        evt.handle();
+    }
+
+    onGetInteractions(evt) {
+        evt.data.interactions.push({
+            name: 'Open',
+            evt: 'try-open',
+        });
     }
 }

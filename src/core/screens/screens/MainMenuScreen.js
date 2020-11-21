@@ -42,7 +42,7 @@ export default class MainMenuScreen extends Screen {
         this.game.renderer.drawText(1, 8, `save       [ctrl+s]`);
         this.game.renderer.drawText(1, 9, `load       [ctrl+l]`);
         this.game.renderer.drawText(1, 10, `confirm    [enter]`);
-        this.game.renderer.drawText(1, 11, `cancel    [esc]`);
+        this.game.renderer.drawText(1, 11, `cancel     [esc]`);
 
         this.game.renderer.drawTextCenter(14, `set out into the forest...`);
     }

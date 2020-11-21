@@ -13,3 +13,4 @@ export * as PineTreePrefab from './PineTreePrefab.json';
 export * as SmallPineTreePrefab from './SmallPineTreePrefab.json';
 export * as WallPrefab from './WallPrefab.json';
 export * as GoblinPrefab from './GoblinPrefab.json';
+export * as ChestPrefab from './ChestPrefab.json';

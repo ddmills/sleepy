@@ -46,6 +46,8 @@ built with geotic - https://github.com/ddmills/geotic
         - "There is a hidden vault in area x,y in the northwest corner!"
         - "The password to the goblin hideout is 'clobber'!"
         - "Treasure map" with x,y coordinates. "you'll need a shovel!"
+    - magically capture an entity into a box/container
+        - release out when broken
 - puzzles
     - sokoban style
     - flip switch, unlock door
@@ -66,6 +68,18 @@ built with geotic - https://github.com/ddmills/geotic
 - items
     - {effect} {base} of {modifer}
     - Heavy Dagger of Vampirism
+
+- todos
+    - rendering layers
+        - background (grass)
+        - ground (corpses)
+        - items (loot)
+        - interactables (switches, chests)
+        - beings (enemies, player)
+    - ui glyphs/sheet
+    - extract events names to enum
+    - give interactions a priority
+        - "Drink" should appear before "Drop"
 
 # inspo
 - https://github.com/Bozar/cursedSouls
@@ -106,7 +120,7 @@ built with geotic - https://github.com/ddmills/geotic
         - fg1 [a, b, c, ..., z] - primary
         - fg2 [a, b, c, ..., z] - secondary
         - bg [a, b, c, ..., z] - background
-    - glyph - changes froom a-to-z over the lifetime
+    - glyph - changes from a-to-z over the lifetime
         - [a, b, c, ..., z]
     - emission-rate (particles-per-second)
     - duration (ms)

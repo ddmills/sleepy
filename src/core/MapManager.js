@@ -2,7 +2,7 @@ import { Map as MapGenerator } from 'rot-js';
 import Manager from './Manager';
 import FastMap from '../utils/FastMap';
 import { BoredGoalType } from '../ai/GoalTypes';
-import { Position } from '../ecs/components';
+import { IsInventoried, Position } from '../ecs/components';
 import { LIQUID_BLOOD, LIQUID_HONEY, LIQUID_WATER } from '../enums/LiquidTypes';
 
 export default class MapManager extends Manager {
@@ -117,14 +117,11 @@ export default class MapManager extends Manager {
         this.#lookup.set(x, y, entityId);
     }
 
-    getEntityIdsAt(x, y) {
-        return this.#lookup.get(x, y);
-    }
-
     getEntitiesAt(x, y) {
-        return this.getEntityIdsAt(x, y).map((id) =>
-            this.game.ecs.getEntity(id)
-        );
+        return this.#lookup
+            .get(x, y)
+            .map((id) => this.game.ecs.getEntity(id))
+            .filter((e) => !e.has(IsInventoried));
     }
 
     isAdjacent(x1, y1, x2, y2) {

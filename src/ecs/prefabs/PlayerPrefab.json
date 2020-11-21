@@ -33,6 +33,9 @@
             "type": "IsPlayer"
         },
         {
+            "type": "Inventory"
+        },
+        {
             "type": "Logger"
         }
     ]

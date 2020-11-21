@@ -1,5 +1,5 @@
 import {
-    Explorable,
+    IsInventoried,
     Explored,
     Glyph,
     Position,
@@ -15,6 +15,7 @@ export default class RenderSystem extends System {
         super(game);
         this.#query = game.ecs.createQuery({
             all: [Glyph, Position, Visible],
+            not: [IsInventoried],
         });
         this.#explored = game.ecs.createQuery({
             all: [Glyph, Position, Explored],

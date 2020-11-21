@@ -14,4 +14,6 @@ export const INPUT_CMD_LOAD = 12;
 export const INPUT_CMD_LOOK = 13;
 export const INPUT_CMD_SCREEN_CAPTURE_START = 14;
 export const INPUT_CMD_SCREEN_CAPTURE_END = 15;
-export const INPUT_CMD_INTERACT = 16;
+export const INPUT_CMD_PICKUP = 16;
+export const INPUT_CMD_INTERACT = 17;
+export const INPUT_CMD_INVENTORY = 19;

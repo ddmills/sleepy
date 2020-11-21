@@ -1,6 +1,9 @@
 export { Actor } from './Actor';
 export { Drinkable } from './Drinkable';
 export { LiquidContainer } from './LiquidContainer';
+export { Loot } from './Loot';
+export { Inventory } from './Inventory';
+export { IsInventoried } from './IsInventoried';
 export { Brain } from './Brain';
 export { Body } from './Body';
 export { Goal } from './Goal';

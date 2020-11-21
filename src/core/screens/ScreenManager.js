@@ -1,8 +1,14 @@
-import { SCREEN_MAIN_MENU, SCREEN_ADVENTURE, SCREEN_DEATH } from './ScreenType';
+import {
+    SCREEN_MAIN_MENU,
+    SCREEN_ADVENTURE,
+    SCREEN_DEATH,
+    SCREEN_INVENTORY,
+} from './ScreenType';
 import AdventureScreen from './screens/AdventureScreen';
 import MainMenuScreen from './screens/MainMenuScreen';
 import DeathScreen from './screens/DeathScreen';
 import Manager from '../Manager';
+import InventoryScreen from './screens/InventoryScreen';
 
 export default class ScreenManager extends Manager {
     #screenType = SCREEN_MAIN_MENU;
@@ -14,6 +20,7 @@ export default class ScreenManager extends Manager {
             [SCREEN_MAIN_MENU]: new MainMenuScreen(game),
             [SCREEN_ADVENTURE]: new AdventureScreen(game),
             [SCREEN_DEATH]: new DeathScreen(game),
+            [SCREEN_INVENTORY]: new InventoryScreen(game),
         };
     }
 

@@ -16,6 +16,8 @@ import {
     INPUT_CMD_SCREEN_CAPTURE_START,
     INPUT_CMD_SCREEN_CAPTURE_END,
     INPUT_CMD_INTERACT,
+    INPUT_CMD_PICKUP,
+    INPUT_CMD_INVENTORY,
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_ADVENTURE } from '../../input/InputDomainType';
 import {
@@ -30,8 +32,9 @@ import {
     DIR_NE,
     delta as directionDelta,
 } from '../../../enums/Directions';
-import { SCREEN_MAIN_MENU } from '../ScreenType';
+import { SCREEN_INVENTORY, SCREEN_MAIN_MENU } from '../ScreenType';
 import { Drinkable } from '../../../ecs/components/Drinkable';
+import { Loot } from '../../../ecs/components';
 
 export default class AdventureScreen extends Screen {
     onEnter() {
@@ -71,6 +74,19 @@ export default class AdventureScreen extends Screen {
         }
     }
 
+    onPickupCommand() {
+        const position = this.game.player.position;
+        const entities = this.game.map.getEntitiesAt(position.x, position.y);
+
+        const lootable = entities.find((entity) => entity.has(Loot));
+
+        if (lootable) {
+            this.game.player.entity.inventory.addLoot(lootable);
+        } else {
+            console.log('there is nothing here to interact with.');
+        }
+    }
+
     onInteract() {
         const position = this.game.player.position;
         const entities = this.game.map.getEntitiesAt(position.x, position.y);
@@ -96,8 +112,14 @@ export default class AdventureScreen extends Screen {
         if (cmd.type === INPUT_CMD_LOOK) {
             this.game.cursor.toggle();
         }
+        if (cmd.type === INPUT_CMD_PICKUP) {
+            this.onPickupCommand();
+        }
         if (cmd.type === INPUT_CMD_INTERACT) {
             this.onInteract();
+        }
+        if (cmd.type === INPUT_CMD_INVENTORY) {
+            this.game.screens.setScreen(SCREEN_INVENTORY);
         }
         if (cmd.type === INPUT_CMD_CANCEL) {
             if (this.game.cursor.isEnabled) {

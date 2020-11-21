@@ -20,6 +20,9 @@
             "type": "Drinkable"
         },
         {
+            "type": "Loot"
+        },
+        {
             "type": "LiquidContainer",
             "properties": {
                 "contents": 1,

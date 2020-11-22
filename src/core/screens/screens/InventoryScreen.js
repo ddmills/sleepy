@@ -88,7 +88,16 @@ export default class InventoryScreen extends Screen {
                 this.game.renderer.drawText(1, ypos, '-');
             }
 
-            this.game.renderer.drawText(2, ypos, item.moniker.display);
+            this.game.renderer.draw(
+                2,
+                ypos,
+                item.glyph.char,
+                item.glyph.primary,
+                item.glyph.secondary,
+                item.glyph.background
+            );
+
+            this.game.renderer.drawText(4, ypos, item.moniker.display);
         });
 
         this.game.renderer.drawText(1, 1, '← back [esc]');

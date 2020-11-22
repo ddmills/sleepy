@@ -6,6 +6,7 @@ export const INPUT_CMD_MOVE_E = 4;
 export const INPUT_CMD_MOVE_SW = 5;
 export const INPUT_CMD_MOVE_S = 6;
 export const INPUT_CMD_MOVE_SE = 7;
+
 export const INPUT_CMD_WAIT = 8;
 export const INPUT_CMD_CONFIRM = 9;
 export const INPUT_CMD_CANCEL = 10;
@@ -17,3 +18,12 @@ export const INPUT_CMD_SCREEN_CAPTURE_END = 15;
 export const INPUT_CMD_PICKUP = 16;
 export const INPUT_CMD_INTERACT = 17;
 export const INPUT_CMD_INVENTORY = 19;
+
+export const INPUT_CMD_SELECT_NW = 20;
+export const INPUT_CMD_SELECT_N = 21;
+export const INPUT_CMD_SELECT_NE = 22;
+export const INPUT_CMD_SELECT_W = 23;
+export const INPUT_CMD_SELECT_E = 24;
+export const INPUT_CMD_SELECT_SW = 25;
+export const INPUT_CMD_SELECT_S = 26;
+export const INPUT_CMD_SELECT_SE = 27;

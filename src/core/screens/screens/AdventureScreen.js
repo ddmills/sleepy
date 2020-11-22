@@ -18,6 +18,14 @@ import {
     INPUT_CMD_INTERACT,
     INPUT_CMD_PICKUP,
     INPUT_CMD_INVENTORY,
+    INPUT_CMD_SELECT_NW,
+    INPUT_CMD_SELECT_N,
+    INPUT_CMD_SELECT_NE,
+    INPUT_CMD_SELECT_W,
+    INPUT_CMD_SELECT_E,
+    INPUT_CMD_SELECT_SW,
+    INPUT_CMD_SELECT_S,
+    INPUT_CMD_SELECT_SE
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_ADVENTURE } from '../../input/InputDomainType';
 import {
@@ -104,9 +112,8 @@ export default class AdventureScreen extends Screen {
         }
     }
 
-    onInteract() {
-        const position = this.game.player.position;
-        const entities = this.game.map.getEntitiesAt(position.x, position.y)
+    onInteract(x, y) {
+        const entities = this.game.map.getEntitiesAt(x, y)
             .filter((e) => !e.isPlayer);
 
         const item = entities.find((entity) => {
@@ -125,6 +132,17 @@ export default class AdventureScreen extends Screen {
         }
     }
 
+    onInteractDirection(dir) {
+        const delta = directionDelta(dir);
+        const playerPosition = this.game.player.position;
+        const targetPosition = {
+            x: playerPosition.x + delta.x,
+            y: playerPosition.y + delta.y,
+        };
+
+        this.onInteract(targetPosition.x, targetPosition.y);
+    }
+
     onInputCommand(cmd) {
         if (cmd.type === INPUT_CMD_SAVE) {
             this.game.state.saveGame();
@@ -139,7 +157,9 @@ export default class AdventureScreen extends Screen {
             this.onPickupCommand();
         }
         if (cmd.type === INPUT_CMD_INTERACT) {
-            this.onInteract();
+            const pos = this.game.player.position;
+
+            this.onInteract(pos.x, pos.y);
         }
         if (cmd.type === INPUT_CMD_INVENTORY) {
             this.game.screens.pushScreen(SCREEN_INVENTORY, {
@@ -186,6 +206,30 @@ export default class AdventureScreen extends Screen {
         }
         if (cmd.type === INPUT_CMD_MOVE_SE) {
             this.onDirectionInput(DIR_SE);
+        }
+        if (cmd.type === INPUT_CMD_SELECT_NW) {
+            this.onInteractDirection(DIR_NW);
+        }
+        if (cmd.type === INPUT_CMD_SELECT_N) {
+            this.onInteractDirection(DIR_N);
+        }
+        if (cmd.type === INPUT_CMD_SELECT_NE) {
+            this.onInteractDirection(DIR_NE);
+        }
+        if (cmd.type === INPUT_CMD_SELECT_W) {
+            this.onInteractDirection(DIR_W);
+        }
+        if (cmd.type === INPUT_CMD_SELECT_E) {
+            this.onInteractDirection(DIR_E);
+        }
+        if (cmd.type === INPUT_CMD_SELECT_SW) {
+            this.onInteractDirection(DIR_SW);
+        }
+        if (cmd.type === INPUT_CMD_SELECT_S) {
+            this.onInteractDirection(DIR_S);
+        }
+        if (cmd.type === INPUT_CMD_SELECT_SE) {
+            this.onInteractDirection(DIR_SE);
         }
     }
 

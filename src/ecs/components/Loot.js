@@ -26,12 +26,12 @@ export class Loot extends Component {
         } else {
             evt.data.interactions.push({
                 name: 'Pickup',
-                evt: 'try-pickup',
+                evt: 'try-pick-up',
             });
         }
     }
 
-    onTryPickup(evt) {
+    onTryPickUp(evt) {
         evt.data.interactor.inventory.addLoot(this.entity);
         evt.handle();
     }

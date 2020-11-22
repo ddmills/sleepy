@@ -15,3 +15,4 @@ export * as WallPrefab from './WallPrefab.json';
 export * as GoblinPrefab from './GoblinPrefab.json';
 export * as ChestPrefab from './ChestPrefab.json';
 export * as DoorPrefab from './DoorPrefab.json';
+export * as StonePrefab from './StonePrefab.json';

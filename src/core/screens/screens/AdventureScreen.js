@@ -16,7 +16,7 @@ import {
     INPUT_CMD_SCREEN_CAPTURE_START,
     INPUT_CMD_SCREEN_CAPTURE_END,
     INPUT_CMD_INTERACT,
-    INPUT_CMD_PICKUP,
+    INPUT_CMD_PICK_UP,
     INPUT_CMD_INVENTORY,
     INPUT_CMD_SELECT_NW,
     INPUT_CMD_SELECT_N,
@@ -100,18 +100,18 @@ export default class AdventureScreen extends Screen {
         }
     }
 
-    onPickupCommand() {
+    onPickUpCommand() {
         const position = this.game.player.position;
         const entities = this.game.map.getEntitiesAt(position.x, position.y);
 
         const lootable = entities.find((entity) => entity.has(Loot));
 
         if (lootable) {
-            lootable.fireEvent('try-pickup', {
+            lootable.fireEvent('try-pick-up', {
                 interactor: this.game.player.entity,
             });
         } else {
-            console.log('there is nothing here to interact with.');
+            console.log('there is nothing here to pick up.');
         }
     }
 
@@ -157,8 +157,8 @@ export default class AdventureScreen extends Screen {
         if (cmd.type === INPUT_CMD_LOOK) {
             this.game.cursor.toggle();
         }
-        if (cmd.type === INPUT_CMD_PICKUP) {
-            this.onPickupCommand();
+        if (cmd.type === INPUT_CMD_PICK_UP) {
+            this.onPickUpCommand();
         }
         if (cmd.type === INPUT_CMD_INTERACT) {
             const pos = this.game.player.position;

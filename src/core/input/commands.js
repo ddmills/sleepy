@@ -22,7 +22,7 @@ import {
     INPUT_CMD_SCREEN_CAPTURE_START,
     INPUT_CMD_SCREEN_CAPTURE_END,
     INPUT_CMD_INTERACT,
-    INPUT_CMD_PICKUP,
+    INPUT_CMD_PICK_UP,
     INPUT_CMD_INVENTORY,
     INPUT_CMD_SELECT_NW,
     INPUT_CMD_SELECT_N,
@@ -110,7 +110,7 @@ export default [
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_LOOK,                 'look',                   true, KEY_L,        false, false, false, false),
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_SCREEN_CAPTURE_START, 'start capture screen',   true, KEY_F5,       false, false, false, false),
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_SCREEN_CAPTURE_END,   'end capture screen',     true, KEY_F6,       false, false, false, false),
-    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_PICKUP,               'pickup',                 true, KEY_G,        false, false, false, false),
+    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_PICK_UP,               'pick up',                 true, KEY_G,        false, false, false, false),
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_INTERACT,             'interact',               true, KEY_J,        false, false, false, false),
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_INVENTORY,            'inventory',              true, KEY_I,        false, false, false, false),
 ];

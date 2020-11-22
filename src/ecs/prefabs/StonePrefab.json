@@ -1,0 +1,22 @@
+{
+    "name": "Stone",
+    "inherit": ["GameObject"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Stone"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": ":",
+                "fg1": "#c8b5b7"
+            }
+        },
+        {
+            "type": "Loot"
+        }
+    ]
+}

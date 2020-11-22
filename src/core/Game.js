@@ -62,6 +62,19 @@ export default class Game {
         requestAnimationFrame(this.loop.bind(this));
     }
 
+    updateAdventureSystems(dt) {
+        this.hungerSystem.update(dt);
+        this.actionSystem.update(dt);
+        this.movementSystem.update(dt);
+        this.meleeSystem.update(dt);
+        this.deathSystem.update(dt);
+        this.FOVSystem.update(dt);
+        this.renderSystem.update(dt);
+        this.particles.update(dt);
+        this.UISystem.update(dt);
+        this.cursor.update(dt);
+    }
+
     loop(t) {
         const now = Date.now();
         const dt = now - this.#lastUpdate;

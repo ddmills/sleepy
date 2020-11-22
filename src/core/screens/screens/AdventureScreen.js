@@ -41,6 +41,7 @@ import {
     delta as directionDelta,
 } from '../../../enums/Directions';
 import {
+    SCREEN_CURSOR,
     SCREEN_INTERACT_MODAL,
     SCREEN_INVENTORY,
     SCREEN_MAIN_MENU,
@@ -63,39 +64,35 @@ export default class AdventureScreen extends Screen {
     }
 
     onDirectionInput(dir) {
-        if (this.game.cursor.isEnabled) {
-            this.game.cursor.move(dir);
+        const delta = directionDelta(dir);
+        const playerPosition = this.game.player.position;
+        const targetPosition = {
+            x: playerPosition.x + delta.x,
+            y: playerPosition.y + delta.y,
+        };
+        const entities = this.game.map.getEntitiesAt(
+            targetPosition.x,
+            targetPosition.y
+        );
+
+        const hostileEntities = entities.filter((e) =>
+            this.game.factions.areEntitiesHostile(
+                e,
+                this.game.player.entity
+            )
+        );
+
+        if (hostileEntities.length > 0) {
+            this.game.player.melee(hostileEntities[0]);
         } else {
-            const delta = directionDelta(dir);
-            const playerPosition = this.game.player.position;
-            const targetPosition = {
-                x: playerPosition.x + delta.x,
-                y: playerPosition.y + delta.y,
-            };
-            const entities = this.game.map.getEntitiesAt(
-                targetPosition.x,
-                targetPosition.y
-            );
+            const doorEntity = entities.find((e) => e.has(Door));
 
-            const hostileEntities = entities.filter((e) =>
-                this.game.factions.areEntitiesHostile(
-                    e,
-                    this.game.player.entity
-                )
-            );
-
-            if (hostileEntities.length > 0) {
-                this.game.player.melee(hostileEntities[0]);
+            if (doorEntity && !doorEntity.door.isOpen) {
+                doorEntity.fireEvent('try-open-door', {
+                    interactor: this.game.player.entity,
+                });
             } else {
-                const doorEntity = entities.find((e) => e.has(Door));
-
-                if (doorEntity && !doorEntity.door.isOpen) {
-                    doorEntity.fireEvent('try-open-door', {
-                        interactor: this.game.player.entity,
-                    });
-                } else {
-                    this.game.player.move(dir);
-                }
+                this.game.player.move(dir);
             }
         }
     }
@@ -155,7 +152,10 @@ export default class AdventureScreen extends Screen {
             this.game.state.loadGame();
         }
         if (cmd.type === INPUT_CMD_LOOK) {
-            this.game.cursor.toggle();
+            game.screens.pushScreen(SCREEN_CURSOR, {
+                onResult: () => game.screens.popScreen(),
+                onCancel: () => game.screens.popScreen(),
+            });
         }
         if (cmd.type === INPUT_CMD_PICK_UP) {
             this.onPickUpCommand();
@@ -172,11 +172,7 @@ export default class AdventureScreen extends Screen {
             });
         }
         if (cmd.type === INPUT_CMD_CANCEL) {
-            if (this.game.cursor.isEnabled) {
-                this.game.cursor.disable();
-            } else {
-                this.game.screens.setScreen(SCREEN_MAIN_MENU);
-            }
+            this.game.screens.setScreen(SCREEN_MAIN_MENU);
         }
         if (cmd.type === INPUT_CMD_SCREEN_CAPTURE_START) {
             this.game.screenCapture.startCapture();
@@ -238,15 +234,6 @@ export default class AdventureScreen extends Screen {
     }
 
     onUpdate(dt) {
-        this.game.hungerSystem.update(dt);
-        this.game.actionSystem.update(dt);
-        this.game.movementSystem.update(dt);
-        this.game.meleeSystem.update(dt);
-        this.game.deathSystem.update(dt);
-        this.game.FOVSystem.update(dt);
-        this.game.renderSystem.update(dt);
-        this.game.particles.update(dt);
-        this.game.UISystem.update(dt);
-        this.game.cursor.update(dt);
+        this.game.updateAdventureSystems(dt);
     }
 }

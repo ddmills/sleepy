@@ -39,21 +39,32 @@ export class Inventory extends Component {
         return idx >= 0;
     }
 
-    removeLoot(loot) {
+    removeLoot(loot, quantity) {
+        const isStackable = loot.has(Stackable);
+
+        if (isStackable && !isNaN(quantity)) {
+            loot.stackable.split(quantity);
+
+            return this.removeLoot(loot);
+        }
+
         const idx = this.content.indexOf(loot);
 
         if (idx >= 0) {
             this.content.splice(idx, 1);
             loot.remove(IsInventoried);
         }
+
+        return loot;
     }
 
-    dropLoot(loot) {
-        this.removeLoot(loot);
-
+    dropLoot(loot, quantity) {
+        const ob = this.removeLoot(loot, quantity);
         const pos = this.entity.position.getPos();
 
-        loot.position.setPos(pos.x, pos.y);
+        ob.position.setPos(pos.x, pos.y);
+
+        return ob;
     }
 
     onTryOpen(evt) {

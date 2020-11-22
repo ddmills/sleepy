@@ -24,6 +24,16 @@ export default class ECS extends Manager {
         });
     }
 
+    cloneEntity(entity) {
+        const data = entity.serialize();
+
+        data.id = this.engine.generateId();
+
+        this.engine.deserialize(data);
+
+        return this.engine.getEntity(data.id);
+    }
+
     onNewGame() {
         for (let entity of this.#engine.entities.all) {
             entity.destroy();

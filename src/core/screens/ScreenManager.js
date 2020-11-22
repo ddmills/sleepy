@@ -4,6 +4,7 @@ import {
     SCREEN_DEATH,
     SCREEN_INVENTORY,
     SCREEN_INTERACT_MODAL,
+    SCREEN_CURSOR,
 } from './ScreenType';
 import AdventureScreen from './screens/AdventureScreen';
 import MainMenuScreen from './screens/MainMenuScreen';
@@ -11,6 +12,7 @@ import DeathScreen from './screens/DeathScreen';
 import Manager from '../Manager';
 import InventoryScreen from './screens/InventoryScreen';
 import InteractModalScreen from './screens/InteractModalScreen';
+import CursorScreen from './screens/CursorScreen';
 
 export default class ScreenManager extends Manager {
     #screens = {};
@@ -29,6 +31,7 @@ export default class ScreenManager extends Manager {
             [SCREEN_DEATH]: new DeathScreen(game),
             [SCREEN_INVENTORY]: new InventoryScreen(game),
             [SCREEN_INTERACT_MODAL]: new InteractModalScreen(game),
+            [SCREEN_CURSOR]: new CursorScreen(game),
         };
     }
 
@@ -45,8 +48,11 @@ export default class ScreenManager extends Manager {
     }
 
     setScreen(screenType, ctx = {}) {
-        this.screen.onLeave(ctx);
-        this.#screenStack.pop();
+        while (this.#screenStack.length > 0) {
+            this.screen.onLeave(ctx);
+            this.#screenStack.pop();
+        }
+
         this.#screenStack.push({
             type: screenType,
             ctx,

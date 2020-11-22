@@ -19,6 +19,9 @@
             "type": "Loot"
         },
         {
+            "type": "Throwable"
+        },
+        {
             "type": "Stackable",
             "properties": {
                 "identifier": "STACKABLE_STONE"

@@ -20,6 +20,9 @@
             "type": "Loot"
         },
         {
+            "type": "Throwable"
+        },
+        {
             "type": "LiquidContainer",
             "properties": {
                 "contents": 1,

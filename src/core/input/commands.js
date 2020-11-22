@@ -32,7 +32,6 @@ import {
     INPUT_CMD_SELECT_SW,
     INPUT_CMD_SELECT_S,
     INPUT_CMD_SELECT_SE,
-
 } from './InputCommandType';
 import {
     KEY_S,

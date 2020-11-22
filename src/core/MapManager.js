@@ -61,7 +61,9 @@ export default class MapManager extends Manager {
             var room = rooms[i];
 
             room.getDoors((x, y) => {
-                const hasDoor = this.getEntitiesAt(x, y).some((e) => e.has(Door));
+                const hasDoor = this.getEntitiesAt(x, y).some((e) =>
+                    e.has(Door)
+                );
 
                 if (hasDoor) {
                     return;

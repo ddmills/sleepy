@@ -5,7 +5,7 @@ import { Shadowcaster } from './Shadowcaster';
 export class Door extends Component {
     static properties = {
         isOpen: false,
-        chOpen: '\'',
+        chOpen: "'",
         chClosed: '+',
     };
 

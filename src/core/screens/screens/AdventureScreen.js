@@ -25,7 +25,7 @@ import {
     INPUT_CMD_SELECT_E,
     INPUT_CMD_SELECT_SW,
     INPUT_CMD_SELECT_S,
-    INPUT_CMD_SELECT_SE
+    INPUT_CMD_SELECT_SE,
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_ADVENTURE } from '../../input/InputDomainType';
 import {
@@ -72,14 +72,17 @@ export default class AdventureScreen extends Screen {
                 x: playerPosition.x + delta.x,
                 y: playerPosition.y + delta.y,
             };
-            const entities = this.game.map.getEntitiesAt(targetPosition.x, targetPosition.y)
+            const entities = this.game.map.getEntitiesAt(
+                targetPosition.x,
+                targetPosition.y
+            );
 
             const hostileEntities = entities.filter((e) =>
-                    this.game.factions.areEntitiesHostile(
-                        e,
-                        this.game.player.entity
-                    )
-                );
+                this.game.factions.areEntitiesHostile(
+                    e,
+                    this.game.player.entity
+                )
+            );
 
             if (hostileEntities.length > 0) {
                 this.game.player.melee(hostileEntities[0]);
@@ -113,7 +116,8 @@ export default class AdventureScreen extends Screen {
     }
 
     onInteract(x, y) {
-        const entities = this.game.map.getEntitiesAt(x, y)
+        const entities = this.game.map
+            .getEntitiesAt(x, y)
             .filter((e) => !e.isPlayer);
 
         const item = entities.find((entity) => {

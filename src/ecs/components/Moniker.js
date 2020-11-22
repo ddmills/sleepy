@@ -1,5 +1,6 @@
 import { Component } from 'geotic';
 import { LiquidContainer } from './LiquidContainer';
+import { Stackable } from './Stackable';
 
 export class Moniker extends Component {
     static properties = {
@@ -11,6 +12,14 @@ export class Moniker extends Component {
 
         if (hasLiquid) {
             const disp = this.entity.liquidContainer.display;
+
+            return `${this.name} ${disp}`;
+        }
+
+        const hasStackable = this.entity.has(Stackable);
+
+        if (hasStackable) {
+            const disp = this.entity.stackable.display;
 
             return `${this.name} ${disp}`;
         }

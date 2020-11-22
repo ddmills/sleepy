@@ -17,6 +17,12 @@
         },
         {
             "type": "Loot"
+        },
+        {
+            "type": "Stackable",
+            "properties": {
+                "identifier": "STACKABLE_STONE"
+            }
         }
     ]
 }

@@ -62,6 +62,12 @@ export default class InteractModalScreen extends Screen {
                 interactor: this.#interactor,
             });
 
+            if (this.#interactable.isDestroyed) {
+                this.game.screens.popScreen();
+
+                return;
+            }
+
             this.resetInteractions();
         }
     }

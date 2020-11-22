@@ -106,11 +106,12 @@ export default [
     cmd(INPUT_DOMAIN_DEFAULT,   INPUT_CMD_SELECT_S,             'select s',               true, KEY_X,        true,  false, false, false),
     cmd(INPUT_DOMAIN_DEFAULT,   INPUT_CMD_SELECT_S,             'select s2',              true, KEY_DOWN,     true,  false, false, false),
     cmd(INPUT_DOMAIN_DEFAULT,   INPUT_CMD_SELECT_SE,            'select se',              true, KEY_C,        true,  false, false, false),
+    cmd(INPUT_DOMAIN_DEFAULT,   INPUT_CMD_INTERACT,             'select',                 true, KEY_S,        true,  false, false, false),
 
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_LOOK,                 'look',                   true, KEY_L,        false, false, false, false),
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_SCREEN_CAPTURE_START, 'start capture screen',   true, KEY_F5,       false, false, false, false),
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_SCREEN_CAPTURE_END,   'end capture screen',     true, KEY_F6,       false, false, false, false),
-    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_PICK_UP,               'pick up',                 true, KEY_G,        false, false, false, false),
+    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_PICK_UP,              'pick up',                true, KEY_G,        false, false, false, false),
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_INTERACT,             'interact',               true, KEY_J,        false, false, false, false),
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_INVENTORY,            'inventory',              true, KEY_I,        false, false, false, false),
 ];

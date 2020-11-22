@@ -98,6 +98,16 @@ export default class InteractModalScreen extends Screen {
             this.#width,
             this.#height
         );
+
+        this.game.renderer.draw(
+            this.top + 2,
+            this.left + 2,
+            this.#interactable.glyph.char,
+            this.#interactable.glyph.primary,
+            this.#interactable.glyph.secondary,
+            this.#interactable.glyph.background
+        );
+
         this.game.renderer.drawTextCenter(
             this.top + 2,
             `${this.#interactable.moniker.display}`

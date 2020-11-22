@@ -57,14 +57,27 @@ built with geotic - https://github.com/ddmills/geotic
     - chest/door with three shapes
         - three matching shapes scattered in dungeon
         - chest can be smashed open (contents may be destroyed)
-- traps
-    - hidden dart gun
-    - pressure plate
-    - switch
-    - moving block
+
+- mechanisms
+    - pressure plate (add weight to activate)
+    - switch (on/off, must be flicked')
+    - moving block (push to move)
+    - button (can throw stone to activate)
     - statues that can animate
-    - line-of-sight as a mechanic
-        - count down while entity keeps LoS
+    - hidden dart gun
+    - line-of-sight (can X be seen?)
+    - underground passageway
+        - entrance covered by statue or moving block (?)
+        - get to the other side of "pond"
+    - treasure chest on a pressure plate
+        - put something in the chest to trigger the plate
+    - door requires matching key
+    - "fire machine" - way to toggle fire
+    - treasure maps
+        - reveal a location and x/y to dig
+    - timer
+    - bomb
+
 - items
     - {effect} {base} of {modifer}
     - Heavy Dagger of Vampirism

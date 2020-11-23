@@ -25,10 +25,12 @@ import {
 } from '../../../enums/Directions';
 import { bresenhamLine, bresenhamLineExclusive } from '../../../utils/BresenhamLine';
 import { CURSOR_SEGMENT_INTEREST, CURSOR_SEGMENT_NONE, getCursorSegmentTypeColor, getCursorSegmentTypeGlyph } from '../../../enums/CursorSegments';
+import { game } from '../../Game';
 
 const NOOP = () => {};
 
 export default class CursorScreen extends Screen {
+    #start = {};
     #onResult = NOOP;
     #onCancel = NOOP;
     #getSegmentTypes = NOOP;
@@ -39,6 +41,7 @@ export default class CursorScreen extends Screen {
         this.game.renderer.clear();
         this.game.FOVSystem.computeFOV();
         this.game.cursor.enable();
+        this.#start = ctx.start || this.game.player.position;
         this.#onResult = ctx.onResult || NOOP;
         this.#onCancel = ctx.onCancel || NOOP;
         this.#getSegmentTypes = ctx.getSegmentTypes || NOOP;
@@ -56,6 +59,7 @@ export default class CursorScreen extends Screen {
 
     onConfirm() {
         this.#onResult({
+            start: this.#start,
             position: {
                 x: this.game.cursor.x,
                 y: this.game.cursor.y
@@ -103,10 +107,9 @@ export default class CursorScreen extends Screen {
     onUpdate(dt) {
         this.game.updateAdventureSystems(dt);
 
-        const start = this.game.player.position;
         const line = bresenhamLine(
-            start.x,
-            start.y,
+            this.#start.x,
+            this.#start.y,
             this.game.cursor.x,
             this.game.cursor.y,
         );

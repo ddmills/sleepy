@@ -26,6 +26,9 @@
             "type": "Blocker"
         },
         {
+            "type": "Explorable"
+        },
+        {
             "type": "Shadowcaster"
         }
     ]

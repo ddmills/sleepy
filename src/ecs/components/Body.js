@@ -15,4 +15,8 @@ export class Body extends Component {
 
         corpse.position.setPos(pos.x, pos.y);
     }
+
+    onProjectileHit(evt) {
+        evt.data.stopProjectile = true;
+    }
 }

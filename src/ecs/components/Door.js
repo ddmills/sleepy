@@ -13,12 +13,39 @@ export class Door extends Component {
         return this.isOpen ? this.chOpen : this.chClosed;
     }
 
-    onTryOpen(evt) {
-        game.screens.pushScreen(SCREEN_INVENTORY, {
-            accessible: this.entity,
-            accessor: evt.data.interactor,
-        });
-        evt.handle();
+    openDoor() {
+        if (this.isOpen) {
+            return;
+        }
+
+        this.isOpen = true;
+
+        const glyph = this.entity.glyph;
+
+        if (glyph) {
+            glyph.ch = this.ch;
+        }
+
+        this.entity.remove(Blocker);
+        this.entity.remove(Shadowcaster);
+    }
+
+    closeDoor() {
+        if (!this.isOpen) {
+            return;
+        }
+        // todo: check if entity blocking door
+
+        this.isOpen = false;
+
+        const glyph = this.entity.glyph;
+
+        if (glyph) {
+            glyph.ch = this.ch;
+        }
+
+        this.entity.add(Blocker);
+        this.entity.add(Shadowcaster);
     }
 
     onGetInteractions(evt) {
@@ -36,34 +63,21 @@ export class Door extends Component {
     }
 
     onTryCloseDoor(evt) {
-        // todo: check if entity blocking door
-
-        this.isOpen = false;
-
-        const glyph = this.entity.glyph;
-
-        if (glyph) {
-            glyph.ch = this.ch;
-        }
-
-        this.entity.add(Blocker);
-        this.entity.add(Shadowcaster);
-
+        this.closeDoor();
         evt.handle();
     }
 
     onTryOpenDoor(evt) {
-        this.isOpen = true;
+        this.openDoor();
+        evt.handle();
+    }
 
-        const glyph = this.entity.glyph;
-
-        if (glyph) {
-            glyph.ch = this.ch;
+    onProjectileHit(evt) {
+        if (!this.isOpen) {
+            evt.data.stopProjectile = true;
+            evt.data.deflectProjectile = false;
         }
 
-        this.entity.remove(Blocker);
-        this.entity.remove(Shadowcaster);
-
-        evt.handle();
+        this.openDoor();
     }
 }

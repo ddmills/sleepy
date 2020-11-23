@@ -1,0 +1,28 @@
+{
+    "name": "GlassShard",
+    "inherit": ["GameObject"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Glass shard"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "«",
+                "fg1": "#c8b5b7"
+            }
+        },
+        {
+            "type": "Loot"
+        },
+        {
+            "type": "Stackable",
+            "properties": {
+                "identifier": "STACKABLE_GLASS_SHARD"
+            }
+        }
+    ]
+}

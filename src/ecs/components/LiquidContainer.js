@@ -8,6 +8,7 @@ export class LiquidContainer extends Component {
         maxVolume: 10,
         overridePrimary: false,
         overrideSecondary: false,
+        isPourable: false,
     };
 
     get liquid() {
@@ -44,6 +45,40 @@ export class LiquidContainer extends Component {
         return null;
     }
 
+    pour(x, y, quantity) {
+        if (!this.isPourable) {
+            console.log('The container connot be poured.');
+            return;
+        }
+
+        if (isNaN(quantity) || quantity >= this.volume) {
+            quantity = this.volume;
+        }
+
+        this.volume -= quantity;
+
+        const pool = this.ecs.createPrefab('Pool', {
+            liquidContainer: {
+                contents: this.contents,
+                volume: quantity,
+            }
+        });
+        pool.position.setPos(x, y);
+    }
+
+    onTryPour(evt) {
+        if (this.isEmpty) {
+            console.log('The container is empty.');
+            return;
+        }
+
+        const pos = evt.data.interactor.position.getPos();
+
+        this.pour(pos.x, pos.y, evt.data.volume);
+
+        evt.handle();
+    }
+
     onTryDrink(evt) {
         if (this.isEmpty) {
             console.log('The container is empty.');
@@ -64,5 +99,12 @@ export class LiquidContainer extends Component {
             name: 'Drink',
             evt: 'try-drink',
         });
+
+        if (this.isPourable) {
+            evt.data.interactions.push({
+                name: 'Pour',
+                evt: 'try-pour',
+            });
+        }
     }
 }

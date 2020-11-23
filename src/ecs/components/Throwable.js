@@ -59,13 +59,29 @@ export class Throwable extends Component {
                     const prev = trajectory[i - 1];
 
                     this.entity.position.setPos(prev.x, prev.y);
+                    this.entity.fireEvent('collide-ground', {
+                        initiator,
+                        x: prev.x,
+                        y: prev.y,
+                    });
                 } else {
                     this.entity.position.setPos(position.x, position.y);
+                    this.entity.fireEvent('collide', {
+                        initiator,
+                        hit,
+                        x: position.x,
+                        y: position.y,
+                    });
                 }
 
                 break;
             } else if (i === trajectory.length - 1) {
                 this.entity.position.setPos(position.x, position.y);
+                this.entity.fireEvent('collide-ground', {
+                    initiator,
+                    x: position.x,
+                    y: position.y,
+                });
             }
         }
     }

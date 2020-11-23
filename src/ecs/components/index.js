@@ -3,6 +3,7 @@ export { LiquidContainer } from './LiquidContainer';
 export { Door } from './Door';
 export { Loot } from './Loot';
 export { Throwable } from './Throwable';
+export { FragileGlass } from './FragileGlass';
 export { Stackable } from './Stackable';
 export { Inventory } from './Inventory';
 export { IsInventoried } from './IsInventoried';

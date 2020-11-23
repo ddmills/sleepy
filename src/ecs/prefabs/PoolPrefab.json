@@ -1,39 +1,29 @@
 {
-    "name": "Vial",
+    "name": "Pool",
     "inherit": ["GameObject"],
     "components": [
         {
             "type": "Moniker",
             "properties": {
-                "name": "Vial"
+                "name": "Pool"
             }
         },
         {
             "type": "Glyph",
             "properties": {
-                "ch": "!",
+                "ch": "≈",
                 "fg2": "#66a3dc",
                 "fg1": "transparent"
             }
         },
         {
-            "type": "Loot"
-        },
-        {
-            "type": "Throwable"
-        },
-        {
-            "type": "FragileGlass"
-        },
-        {
             "type": "LiquidContainer",
             "properties": {
                 "contents": 1,
-                "volume": 5,
-                "maxVolume": 10,
+                "volume": 10,
+                "maxVolume": 100,
                 "overridePrimary": true,
-                "overrideSecondary": true,
-                "isPourable": true
+                "overrideSecondary": true
             }
         }
     ]

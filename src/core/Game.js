@@ -21,6 +21,7 @@ import DeathSystem from '../systems/DeathSystem';
 import ParticleSystem from '../systems/ParticleSystem';
 import FactionManager from './FactionManager';
 import CameraManager from './CameraManager';
+import FPSMonitoringSystem from '../systems/FPSMonitoringSystem';
 
 export default class Game {
     #lastUpdate;
@@ -54,6 +55,7 @@ export default class Game {
         this.UISystem = new UISystem(this);
         this.cursor = new CursorSystem(this);
         this.particles = new ParticleSystem(this);
+        this.fps = new FPSMonitoringSystem(this);
     }
 
     start() {
@@ -79,6 +81,7 @@ export default class Game {
         const dt = now - this.#lastUpdate;
 
         this.screens.update(dt);
+        this.fps.update(dt);
 
         this.#lastUpdate = now;
 

@@ -9,6 +9,7 @@ export class LiquidContainer extends Component {
         overridePrimary: false,
         overrideSecondary: false,
         isPourable: false,
+        destroyOnEmpty: false,
     };
 
     get liquid() {
@@ -45,9 +46,20 @@ export class LiquidContainer extends Component {
         return null;
     }
 
+    _checkDestroyOnEmpty() {
+        if (this.destroyOnEmpty && this.isEmpty) {
+            this.entity.destroy();
+        }
+    }
+
     pour(x, y, quantity) {
         if (!this.isPourable) {
             console.log('The container connot be poured.');
+            return;
+        }
+
+        if (this.volume <= 0) {
+            console.log('The contianer is empty and cannot be poured.');
             return;
         }
 
@@ -64,6 +76,7 @@ export class LiquidContainer extends Component {
             }
         });
         pool.position.setPos(x, y);
+        this._checkDestroyOnEmpty();
     }
 
     onTryPour(evt) {
@@ -87,6 +100,7 @@ export class LiquidContainer extends Component {
 
         drinkLiquid(evt.data.interactor, this.contents, this.volume);
         this.volume = 0;
+        this._checkDestroyOnEmpty();
         evt.handle();
     }
 

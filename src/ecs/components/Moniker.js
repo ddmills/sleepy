@@ -1,4 +1,5 @@
 import { Component } from 'geotic';
+import { Door } from './Door';
 import { LiquidContainer } from './LiquidContainer';
 import { Stackable } from './Stackable';
 
@@ -20,6 +21,14 @@ export class Moniker extends Component {
 
         if (hasStackable) {
             const disp = this.entity.stackable.display;
+
+            return `${this.name} ${disp}`;
+        }
+
+        const hasDoor = this.entity.has(Door);
+
+        if (hasDoor) {
+            const disp = this.entity.door.display;
 
             return `${this.name} ${disp}`;
         }

@@ -7,8 +7,8 @@ import { LIQUID_BLOOD, LIQUID_HONEY, LIQUID_WATER } from '../enums/LiquidTypes';
 
 export default class MapManager extends Manager {
     #lookup;
-    #width = 48;
-    #height = 48;
+    #width = 32;
+    #height = 32;
 
     get width() {
         return this.#width;

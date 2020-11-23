@@ -72,7 +72,6 @@ export default class Game {
         this.renderSystem.update(dt);
         this.particles.update(dt);
         this.UISystem.update(dt);
-        this.cursor.update(dt);
     }
 
     loop(t) {

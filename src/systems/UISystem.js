@@ -26,7 +26,7 @@ export default class UISystem extends System {
             1,
             this.game.renderer.height - 2,
             `${hp.value}/${hp.max}`,
-            'red'
+            '#ce5454'
         );
     }
 }

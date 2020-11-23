@@ -23,12 +23,17 @@ import {
     DIR_SE,
     DIR_NE
 } from '../../../enums/Directions';
+import { bresenhamLine, bresenhamLineExclusive } from '../../../utils/BresenhamLine';
+import { CURSOR_SEGMENT_INTEREST, CURSOR_SEGMENT_NONE, getCursorSegmentTypeColor, getCursorSegmentTypeGlyph } from '../../../enums/CursorSegments';
 
 const NOOP = () => {};
 
 export default class CursorScreen extends Screen {
     #onResult = NOOP;
     #onCancel = NOOP;
+    #getSegmentTypes = NOOP;
+    #drawLine = false;
+    #drawTags = false;
 
     onEnter(ctx) {
         this.game.renderer.clear();
@@ -36,6 +41,9 @@ export default class CursorScreen extends Screen {
         this.game.cursor.enable();
         this.#onResult = ctx.onResult || NOOP;
         this.#onCancel = ctx.onCancel || NOOP;
+        this.#getSegmentTypes = ctx.getSegmentTypes || NOOP;
+        this.#drawLine = Boolean(ctx.drawLine);
+        this.#drawTags = Boolean(ctx.drawTags);
     }
 
     onLeave() {
@@ -94,5 +102,43 @@ export default class CursorScreen extends Screen {
 
     onUpdate(dt) {
         this.game.updateAdventureSystems(dt);
+
+        const start = this.game.player.position;
+        const line = bresenhamLine(
+            start.x,
+            start.y,
+            this.game.cursor.x,
+            this.game.cursor.y,
+        );
+
+        let cursorColor = getCursorSegmentTypeColor(CURSOR_SEGMENT_INTEREST)
+
+        if (this.#drawLine) {
+            const types = this.#getSegmentTypes(line);
+
+            line.forEach((segment, idx) => {
+                const type = types[idx];
+
+                if (type === CURSOR_SEGMENT_NONE || isNaN(type)) {
+                    return;
+                }
+
+                const color = getCursorSegmentTypeColor(type);
+                const glyph = getCursorSegmentTypeGlyph(type);
+
+                const screen = this.game.camera.worldToScreen(segment.x, segment.y);
+                this.game.renderer.draw(screen.x, screen.y, glyph, color);
+
+                if (idx === line.length - 1) {
+                    cursorColor = color;
+                }
+            });
+        }
+
+        if (this.#drawTags) {
+            this.game.cursor.drawTags();
+        }
+
+        this.game.cursor.drawCursor(cursorColor);
     }
 }

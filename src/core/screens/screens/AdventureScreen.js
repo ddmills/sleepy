@@ -153,6 +153,7 @@ export default class AdventureScreen extends Screen {
         }
         if (cmd.type === INPUT_CMD_LOOK) {
             game.screens.pushScreen(SCREEN_CURSOR, {
+                drawTags: true,
                 onResult: () => game.screens.popScreen(),
                 onCancel: () => game.screens.popScreen(),
             });

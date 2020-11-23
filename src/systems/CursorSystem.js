@@ -52,11 +52,13 @@ export default class CursorSystem extends System {
             .filter((e) => e.has(Visible));
     }
 
-    update(dt) {
-        if (!this.#isEnabled) {
-            return;
-        }
+    drawCursor(color = 'yellow') {
+        const screen = this.game.camera.worldToScreen(this.x, this.y);
 
+        this.game.renderer.draw(screen.x, screen.y, 'X', color);
+    }
+
+    drawTags() {
         const entities = this.getEntities().filter((e) => e.has(Moniker));
         const screen = this.game.camera.worldToScreen(this.x, this.y);
 
@@ -100,7 +102,5 @@ export default class CursorSystem extends System {
                 );
             });
         }
-
-        this.game.renderer.draw(screen.x, screen.y, 'X', 'yellow');
     }
 }

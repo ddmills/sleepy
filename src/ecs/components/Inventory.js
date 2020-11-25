@@ -9,6 +9,10 @@ export class Inventory extends Component {
         content: '<EntityArray>',
     };
 
+    onDestroyed() {
+        this.content.forEach((entity) => entity.destroy());
+    }
+
     getStackable(stackableIdentifier) {
         return this.content.find((entity) => {
             return entity.has(Stackable) && entity.stackable.identifier === stackableIdentifier;

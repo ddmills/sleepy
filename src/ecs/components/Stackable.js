@@ -1,4 +1,5 @@
 import { Component } from 'geotic';
+import { game } from '../../core/Game';
 import { STACKABLE_DEFAULT } from '../../enums/Stackables';
 import { IsInventoried } from './IsInventoried';
 

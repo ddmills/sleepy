@@ -14,7 +14,6 @@ export { Eater } from './Eater';
 export { Moniker } from './Moniker';
 export { Logger } from './Logger';
 export { Position } from './Position';
-export { MapLayer } from './MapLayer';
 export { Glyph } from './Glyph';
 export { Arms } from './Arms';
 export { Legs } from './Legs';

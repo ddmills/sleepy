@@ -1,4 +1,5 @@
 import { Component } from 'geotic';
+import { game } from '../../core/Game';
 import { drinkLiquid, liquids, LIQUID_BLOOD } from '../../enums/LiquidTypes';
 
 export class LiquidContainer extends Component {
@@ -54,12 +55,12 @@ export class LiquidContainer extends Component {
 
     pour(x, y, quantity) {
         if (!this.isPourable) {
-            console.log('The container connot be poured.');
+            console.warn('The container connot be poured.');
             return;
         }
 
         if (this.volume <= 0) {
-            console.log('The contianer is empty and cannot be poured.');
+            console.warn('The contianer is empty and cannot be poured.');
             return;
         }
 
@@ -81,7 +82,7 @@ export class LiquidContainer extends Component {
 
     onTryPour(evt) {
         if (this.isEmpty) {
-            console.log('The container is empty.');
+            console.warn('The container is empty.');
             return;
         }
 
@@ -94,7 +95,7 @@ export class LiquidContainer extends Component {
 
     onTryDrink(evt) {
         if (this.isEmpty) {
-            console.log('The container is empty.');
+            console.warn('The container is empty.');
             return;
         }
 

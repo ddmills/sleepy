@@ -1,10 +1,16 @@
 import { Component } from 'geotic';
-import { SUCCESS, INVALID, FAILURE } from '../../ai/GoalActionResult';
+import { INVALID, FAILURE } from '../../ai/GoalActionResult';
 
 export class Brain extends Component {
     static properties = {
         goals: '<EntityArray>',
     };
+
+    onDestroyed() {
+        this.goals.forEach((entity) => {
+            entity.destroy();
+        });
+    }
 
     onTakeAction(evt) {
         while (this.peekGoal() && this.peekGoal().isFinished()) {

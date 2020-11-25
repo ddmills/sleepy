@@ -14,7 +14,6 @@ import GameStateManager from './GameStateManager';
 import ClockManager from './ClockManager';
 import CursorSystem from '../systems/CursorSystem';
 import MapManager from './MapManager';
-import ScreenCaptureManager from './ScreenCaptureManager';
 import FOVSystem from '../systems/FOVSystem';
 import MeleeSystem from '../systems/MeleeSystem';
 import DeathSystem from '../systems/DeathSystem';
@@ -31,19 +30,18 @@ export default class Game {
     }
 
     constructor() {
-        this.engine = new ECS();
+        this.engine = new ECS(this);
+        this.mouse = new MouseManager(this);
         this.clock = new ClockManager(this);
         this.camera = new CameraManager(this);
         this.renderer = new Renderer(this);
         this.state = new GameStateManager(this);
-        this.mouse = new MouseManager(this);
         this.map = new MapManager(this);
         this.factions = new FactionManager(this);
         this.player = new PlayerManager(this);
         this.screens = new ScreenManager(this);
         this.commands = new CommandManager(this);
         this.input = new InputController(this);
-        this.screenCapture = new ScreenCaptureManager(this);
 
         this.hungerSystem = new HungerSystem(this);
         this.actionSystem = new ActionSystem(this);
@@ -60,7 +58,6 @@ export default class Game {
 
     start() {
         this.#lastUpdate = Date.now();
-        this.state.newGame();
         requestAnimationFrame(this.loop.bind(this));
     }
 
@@ -74,6 +71,7 @@ export default class Game {
         this.renderSystem.update(dt);
         this.particles.update(dt);
         this.UISystem.update(dt);
+        this.map.update(dt);
     }
 
     loop(t) {

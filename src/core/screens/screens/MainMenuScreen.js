@@ -3,6 +3,7 @@ import {
     INPUT_CMD_CONFIRM,
     INPUT_CMD_SAVE,
     INPUT_CMD_LOAD,
+    INPUT_CMD_NEW_GAME,
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import { SCREEN_ADVENTURE } from '../ScreenType';
@@ -16,10 +17,19 @@ export default class MainMenuScreen extends Screen {
         this.game.commands.popDomain(INPUT_DOMAIN_MAIN_MENU);
     }
 
+    onNewGame() {
+        if (this.game.state.isStarted) {
+            this.game.screens.setScreen(SCREEN_ADVENTURE);
+        } else {
+            const save = prompt('Enter save name', 'test');
+
+            this.game.state.newGame(save);
+        }
+    }
+
     onInputCommand(cmd) {
         if (cmd.type === INPUT_CMD_CONFIRM) {
-            this.game.state.newGame();
-            this.game.screens.setScreen(SCREEN_ADVENTURE);
+            this.onNewGame();
         }
 
         if (cmd.type === INPUT_CMD_SAVE) {
@@ -28,6 +38,10 @@ export default class MainMenuScreen extends Screen {
 
         if (cmd.type === INPUT_CMD_LOAD) {
             this.game.state.loadGame();
+        }
+
+        if (cmd.type === INPUT_CMD_NEW_GAME) {
+            this.game.state.newGame();
         }
     }
 

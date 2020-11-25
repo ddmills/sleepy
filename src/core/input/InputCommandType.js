@@ -13,8 +13,8 @@ export const INPUT_CMD_CANCEL = 10;
 export const INPUT_CMD_SAVE = 11;
 export const INPUT_CMD_LOAD = 12;
 export const INPUT_CMD_LOOK = 13;
-export const INPUT_CMD_SCREEN_CAPTURE_START = 14;
-export const INPUT_CMD_SCREEN_CAPTURE_END = 15;
+
+
 export const INPUT_CMD_PICK_UP = 16;
 export const INPUT_CMD_INTERACT = 17;
 export const INPUT_CMD_INVENTORY = 19;
@@ -27,3 +27,4 @@ export const INPUT_CMD_SELECT_E = 24;
 export const INPUT_CMD_SELECT_SW = 25;
 export const INPUT_CMD_SELECT_S = 26;
 export const INPUT_CMD_SELECT_SE = 27;
+export const INPUT_CMD_NEW_GAME = 28;

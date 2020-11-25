@@ -5,6 +5,7 @@ import { SCREEN_MAIN_MENU } from '../ScreenType';
 
 export default class DeathScreen extends Screen {
     onEnter() {
+        this.game.state.gameOver();
         this.game.commands.pushDomain(INPUT_DOMAIN_MAIN_MENU);
     }
 

@@ -1,4 +1,3 @@
-import ecs from '../ecs';
 import { Actor } from '../ecs/components';
 import System from './System';
 
@@ -20,7 +19,7 @@ export default class ActionSystem extends System {
 
         let entity = sorted[0];
 
-        if (!entity.actor.hasEnergy) {
+        if (entity && !entity.actor.hasEnergy) {
             this.game.clock.incrementTick(-1 * entity.actor.energy);
 
             entities.forEach((entity) => {
@@ -28,7 +27,7 @@ export default class ActionSystem extends System {
             });
         }
 
-        while (entity.actor.hasEnergy && !entity.isPlayer) {
+        while (entity && entity.actor.hasEnergy && !entity.isPlayer) {
             entity.fireEvent('take-action');
             entity = sorted.shift();
         }

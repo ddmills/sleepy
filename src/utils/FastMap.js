@@ -98,7 +98,13 @@ export default class FastMap {
     }
 
     getPosition(id) {
-        return this.#idHash.get(id);
+        const pos = this.#idHash.get(id);
+
+        if (!pos) {
+            console.warn('Cannot get position', id);
+        }
+
+        return pos;
     }
 
     remove(id) {

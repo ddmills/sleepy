@@ -27,7 +27,7 @@ export default class ClockManager extends Manager {
         };
     }
 
-    onSaveGame() {
+    getSaveGameData() {
         return {
             tick: this.tick,
             tickDelta: this.tickDelta,

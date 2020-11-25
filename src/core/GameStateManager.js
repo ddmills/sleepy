@@ -60,10 +60,10 @@ export default class GameStateManager extends Manager {
 
         const data = {
             filename: this.filename,
-            clock: this.game.clock.onSaveGame(),
-            map: this.game.map.onSaveGame(),
-            player: this.game.player.onSaveGame(),
-            world: this.game.world.onSaveGame(),
+            clock: this.game.clock.getSaveGameData(),
+            map: this.game.map.getSaveGameData(),
+            player: this.game.player.getSaveGameData(),
+            world: this.game.world.getSaveGameData(),
         };
 
         console.log('save data', data);

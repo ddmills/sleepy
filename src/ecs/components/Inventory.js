@@ -13,6 +13,13 @@ export class Inventory extends Component {
         this.content.forEach((entity) => entity.destroy());
     }
 
+    onQueryOwnership(evt) {
+        this.content.forEach((entity) => {
+            evt.data.result.add(entity);
+            entity.fireEvent('query-ownership', { result: evt.data.result });
+        });
+    }
+
     getStackable(stackableIdentifier) {
         return this.content.find((entity) => {
             return entity.has(Stackable) && entity.stackable.identifier === stackableIdentifier;

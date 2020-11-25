@@ -44,7 +44,12 @@ export default class PlayerManager extends Manager {
 
     getSaveGameData() {
         const entityId = this.entity.id;
-        const serialized = this.entity.serialize();
+
+        // gather all entities for player
+        const evt = this.entity.fireEvent('query-ownership', { result: new Set([this.entity]) });
+        const serialized = this.game.ecs.serialize(Array.from(evt.data.result));
+
+        console.log(serialized);
 
         return {
             entityId,

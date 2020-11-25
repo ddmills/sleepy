@@ -6,6 +6,10 @@ export class IsInventoried extends Component {
         owner: '<Entity>',
     };
 
+    onQueryOwnership(evt) {
+        evt.data.result.add(this.entity);
+    }
+
     onTryDrop(evt) {
         this.owner.inventory.dropLoot(this.entity);
 

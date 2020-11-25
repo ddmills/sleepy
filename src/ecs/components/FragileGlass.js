@@ -5,7 +5,7 @@ export class FragileGlass extends Component {
     shatter(x, y) {
         const shards = this.ecs.createPrefab('GlassShard', {
             stackable: {
-                quantity: 7
+                quantity: 3
             }
         });
 

@@ -18,23 +18,23 @@ export class Sector {
     }
 
     get id() {
-        return this.y * this.world.width + this.x;
+        return this.world.idx(this.x, this.y);
     }
 
     get northSector() {
-        return this.world.getSector(this.#x, this.#y - 1);
+        return this.world.getSectorByCoord(this.#x, this.#y - 1);
     }
 
     get southSector() {
-        return this.world.getSector(this.#x, this.#y + 1);
+        return this.world.getSectorByCoord(this.#x, this.#y + 1);
     }
 
     get eastSector() {
-        return this.world.getSector(this.#x + 1, this.#y);
+        return this.world.getSectorByCoord(this.#x + 1, this.#y);
     }
 
     get westSector() {
-        return this.world.getSector(this.#x - 1, this.#y);
+        return this.world.getSectorByCoord(this.#x - 1, this.#y);
     }
 
     constructor(world, x, y) {

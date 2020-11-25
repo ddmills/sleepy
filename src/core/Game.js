@@ -21,6 +21,7 @@ import ParticleSystem from '../systems/ParticleSystem';
 import FactionManager from './FactionManager';
 import CameraManager from './CameraManager';
 import FPSMonitoringSystem from '../systems/FPSMonitoringSystem';
+import { WorldManager } from './WorldManager';
 
 export default class Game {
     #lastUpdate;
@@ -36,6 +37,7 @@ export default class Game {
         this.camera = new CameraManager(this);
         this.renderer = new Renderer(this);
         this.state = new GameStateManager(this);
+        this.world = new WorldManager(this);
         this.map = new MapManager(this);
         this.factions = new FactionManager(this);
         this.player = new PlayerManager(this);
@@ -58,6 +60,7 @@ export default class Game {
 
     start() {
         this.#lastUpdate = Date.now();
+        this.boundLoop = this.loop.bind(this);
         requestAnimationFrame(this.loop.bind(this));
     }
 
@@ -83,7 +86,7 @@ export default class Game {
 
         this.#lastUpdate = now;
 
-        requestAnimationFrame(this.loop.bind(this));
+        requestAnimationFrame(this.boundLoop);
     }
 }
 

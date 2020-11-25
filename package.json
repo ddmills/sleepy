@@ -43,7 +43,7 @@
     },
     "dependencies": {
         "color-parse": "^1.4.2",
-        "geotic": "^3.4.0",
+        "geotic": "^3.5.0",
         "rot-js": "^2.1.5"
     }
 }

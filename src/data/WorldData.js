@@ -3,7 +3,6 @@ import data from './world.json';
 
 export default class WorldData {
     #sectors = [];
-    #seed = [];
 
     get width() {
         return data.width;
@@ -13,18 +12,25 @@ export default class WorldData {
         return data.height;
     }
 
-    get seed() {
-        return this.#seed;
+    idx(x, y) {
+        return y * this.width + x;
     }
 
-    constructor(seed) {
-        this.#seed = seed;
+    coord(idx) {
+        return {
+            x: Math.trunc(idx % this.width),
+            y: Math.trunc(idx / this.width),
+        };
+    }
+
+    constructor() {
         this.#sectors = [];
 
         for (let x = 0; x < data.width; x++) {
             for (let y = 0; y < data.height; y++) {
                 const sector = Sector.parseData(this, data.sectors[y][x], x, y);
-                this.#sectors.push(sector);
+
+                this.#sectors[sector.id] = sector;
             }
         }
     }
@@ -34,18 +40,20 @@ export default class WorldData {
     }
 
     getStartingSector() {
-        return this.getSector(0, 0);
+        return this.getSector(2);
     }
 
-    getSector(x, y) {
+    getSectorByCoord(x, y) {
+        return this.getSector(this.idx(x, y));
+    }
+
+    getSector(idx) {
+        const { x, y } = this.coord(idx);
+
         if (this.isOutOfBounds(x, y)) {
             return new Sector(this, x, y);
         }
 
-        const s = this.#sectors.find((s) => {
-            return s.x === x && s.y === y;
-        });
-
-        return s;
+        return this.#sectors[idx];
     }
 }

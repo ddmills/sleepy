@@ -17,19 +17,17 @@ export default class MainMenuScreen extends Screen {
         this.game.commands.popDomain(INPUT_DOMAIN_MAIN_MENU);
     }
 
-    onNewGame() {
+    onConfirm() {
         if (this.game.state.isStarted) {
             this.game.screens.setScreen(SCREEN_ADVENTURE);
         } else {
-            const save = prompt('Enter save name', 'test');
-
-            this.game.state.newGame(save);
+            this.game.state.newGame();
         }
     }
 
     onInputCommand(cmd) {
         if (cmd.type === INPUT_CMD_CONFIRM) {
-            this.onNewGame();
+            this.onConfirm();
         }
 
         if (cmd.type === INPUT_CMD_SAVE) {

@@ -39,8 +39,8 @@ export default class Game {
         this.map = new MapManager(this);
         this.factions = new FactionManager(this);
         this.player = new PlayerManager(this);
-        this.screens = new ScreenManager(this);
         this.commands = new CommandManager(this);
+        this.screens = new ScreenManager(this);
         this.input = new InputController(this);
 
         this.hungerSystem = new HungerSystem(this);

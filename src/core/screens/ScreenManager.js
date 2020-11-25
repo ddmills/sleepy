@@ -18,12 +18,7 @@ import LoadSectorScreen from './screens/LoadSectorScreen';
 
 export default class ScreenManager extends Manager {
     #screens = {};
-    #screenStack = [
-        {
-            type: SCREEN_MAIN_MENU,
-            ctx: {},
-        },
-    ];
+    #screenStack = [];
 
     constructor(game) {
         super(game);
@@ -36,6 +31,7 @@ export default class ScreenManager extends Manager {
             [SCREEN_CURSOR]: new CursorScreen(game),
             [SCREEN_LOAD_SECTOR]: new LoadSectorScreen(game),
         };
+        this.setScreen(SCREEN_MAIN_MENU);
     }
 
     get screenType() {

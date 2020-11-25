@@ -16,9 +16,11 @@ export default class GameStateManager extends Manager {
         this.#isStarted = false;
     }
 
-    newGame(savefile) {
-        this.#savefile = savefile;
-        this.deleteSaveFile(savefile);
+    newGame() {
+        console.log('NEW GAME');
+        this.#savefile = prompt('Enter save name', 'test');
+
+        this.deleteSaveFile(this.#savefile);
 
         this.game.clock.onNewGame();
         this.game.engine.onNewGame();

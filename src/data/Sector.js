@@ -172,7 +172,7 @@ export class Sector {
             });
         }
 
-        for (let i = 0; i < 12; i++) {
+        for (let i = 0; i < 8; i++) {
             const position = game.map.getRandomEmptyPosition();
             const stone = game.ecs.createPrefab('Stone');
 
@@ -224,7 +224,7 @@ export class Sector {
             wanderer.brain.pushGoal(BoredGoalType.create());
         }
 
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 5; i++) {
             const position = game.map.getRandomEmptyPosition();
             const goblin = game.ecs.createPrefab('Goblin');
 

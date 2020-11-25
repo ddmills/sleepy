@@ -13,8 +13,6 @@ import {
     INPUT_CMD_SAVE,
     INPUT_CMD_LOAD,
     INPUT_CMD_LOOK,
-    INPUT_CMD_SCREEN_CAPTURE_START,
-    INPUT_CMD_SCREEN_CAPTURE_END,
     INPUT_CMD_INTERACT,
     INPUT_CMD_PICK_UP,
     INPUT_CMD_INVENTORY,
@@ -31,7 +29,6 @@ import { INPUT_DOMAIN_ADVENTURE } from '../../input/InputDomainType';
 import {
     DIR_N,
     DIR_W,
-    DIR_Z,
     DIR_E,
     DIR_S,
     DIR_NW,
@@ -174,12 +171,6 @@ export default class AdventureScreen extends Screen {
         }
         if (cmd.type === INPUT_CMD_CANCEL) {
             this.game.screens.setScreen(SCREEN_MAIN_MENU);
-        }
-        if (cmd.type === INPUT_CMD_SCREEN_CAPTURE_START) {
-            this.game.screenCapture.startCapture();
-        }
-        if (cmd.type === INPUT_CMD_SCREEN_CAPTURE_END) {
-            this.game.screenCapture.endCapture();
         }
         if (cmd.type === INPUT_CMD_WAIT) {
             this.game.player.wait();

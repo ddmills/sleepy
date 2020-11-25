@@ -42,7 +42,7 @@ export default class PlayerManager extends Manager {
         this.game.ecs.deserialize(data.entity);
     }
 
-    onSaveGame() {
+    getSaveGameData() {
         const entityId = this.entity.id;
         const serialized = this.entity.serialize();
 
@@ -93,9 +93,5 @@ export default class PlayerManager extends Manager {
         }
 
         this.entity.fireEvent('energy-consumed', turns * 1000);
-    }
-
-    onLoadGame(data) {
-        // this.#entityId = data.playerEntityId;
     }
 }

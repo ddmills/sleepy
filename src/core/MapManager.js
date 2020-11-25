@@ -54,7 +54,7 @@ export default class MapManager extends Manager {
         this.game.FOVSystem.computeFOV();
     }
 
-    onSaveGame() {
+    getSaveGameData() {
         const data = this.#lookup.serialize();
 
         this.game.state.saveSectorPositionData(this.game.world.sectorId, data);

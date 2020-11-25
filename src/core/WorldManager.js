@@ -33,7 +33,7 @@ export class WorldManager extends Manager {
         };
     }
 
-    onSaveGame() {
+    getSaveGameData() {
         // TODO only save sector data??
         // const data = Array.from(this.game.ecs.entities.all).filter((e) => e.has(IsPlayer));
         // this.game.state.saveSectorEntityData(this.sector.id, this.game.ecs.serialize(data));

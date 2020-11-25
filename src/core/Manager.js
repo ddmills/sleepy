@@ -10,7 +10,5 @@ export default class Manager {
     }
 
     onNewGame() {}
-    onSaveGame() {}
-    onLoadGame(data) {}
-    onSectorLoaded() {}
+    getSaveGameData() {}
 }

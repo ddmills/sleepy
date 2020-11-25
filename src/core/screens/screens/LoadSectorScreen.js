@@ -13,19 +13,21 @@ export default class LoadSectorScreen extends Screen {
 
         this.renderLoadingText();
 
-        setTimeout(() => {
-            if (this.#prevousSector) {
-                this.game.player.onSectorUnload(this.#prevousSector);
-                this.game.map.onSectorUnload(this.#prevousSector);
-                this.game.engine.onSectorUnload(this.#prevousSector);
-            }
+        if (ctx.prevousSector) {
+            const data = this.game.state.saveGame();
 
-            this.game.engine.onSectorLoaded(this.#nextSector, ctx.entry);
-            this.game.map.onSectorLoaded(this.#nextSector, ctx.entry);
-            this.game.player.onSectorLoaded(this.#nextSector, ctx.entry);
+            data.world.sectorId = ctx.nextSector.id;
+            data.map.playerPosition = ctx.entry;
 
-            this.game.screens.setScreen(SCREEN_ADVENTURE);
-        }, 1000);
+            this.game.state.loadGameData(data);
+
+            return;
+        }
+
+        this.game.world.onSectorLoaded(ctx.nextSector, ctx.entry);
+        this.game.map.onSectorLoaded(ctx.nextSector, ctx.entry);
+
+        this.game.screens.setScreen(SCREEN_ADVENTURE);
     }
 
     onLeave() {
@@ -36,9 +38,7 @@ export default class LoadSectorScreen extends Screen {
         this.game.renderer.clear();
         if (this.#prevousSector) {
             const prevText = `You are leaving sector ${this.#prevousSector.id}`;
-            this.game.renderer.drawTextCenter(10, prevText, '#ce5454');
-            const nextText = `and entering sector ${this.#nextSector.id}`;
-            this.game.renderer.drawTextCenter(11, nextText, '#ce5454');
+            this.game.renderer.drawTextCenter(11, prevText, '#ce5454');
         } else {
             const nextText = `You are entering sector ${this.#nextSector.id}`;
             this.game.renderer.drawTextCenter(11, nextText, '#ce5454');

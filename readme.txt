@@ -113,11 +113,11 @@ built with geotic - https://github.com/ddmills/geotic
             - flavor based on sector type
         - Moving to another sector (AKA saving current sector)
             - take `Player` entity out, serialize them
-            - throw persuing enemies into Limbo (?) state
+            - ? throw persuing enemies into Limbo (?) state
                 - limbo actors enter new sector when necessary (?)
                 - or always keep neighbor sectors loaded in memory (?)
-            - serialize all remaining entity data
-                - perhaps add a 'DoNotSave' component for entities we don't care about?
+            - ? serialize all remaining entity data
+                - ? perhaps add a 'DoNotSave' component for entities we don't care about?
             - serialize map positional data
             - serialize last-visited tick (?) - useful to repopulate if revisiting
             - pull save game from storage
@@ -125,9 +125,99 @@ built with geotic - https://github.com/ddmills/geotic
             - load(or generate) next sector
             - populate player entity into sector
             - start game on adventure screen
-        - simply "saving" the game:
-            - serialize/store player entity
-            - serialize all current sector data as 'currentSector'
+
+- teardown
+    - PLAYER:
+        - delete player entity id
+    - MAP:
+        - clear all positions
+    - WORLD:
+        - delete all sector data
+    - ENGINE:
+        - delete all entities
+
+savefile = {
+    filename: '',
+    clock: {},
+    player: {
+        entityId,
+        data,
+        position (?)
+    },
+    world: {
+        sectorId,
+        exploredSectors
+    }
+}
+savefile-x-entities: []
+savefile-x-positions: []
+
+
+- setup(savefile)
+    - CLOCK:
+        - set times
+    - PLAYER:
+        - deserialize player
+    - WORLD:
+        - enter "load sector" screen
+    - MAP:
+        -
+    - ENGINE:
+
+
+- save
+    - CLOCK:
+        - store time
+    - PLAYER:
+        - serialize player data
+            - entityId
+            - nested data
+            - position
+    - MAP:
+        - save position data
+    - WORLD
+        - save sector ID
+        - save 'explored' sectors
+        - extract all 'SectorConstrained' related data
+            - geotic (ability to serialize only given array of entities)
+            - save into filename
+
+- NEW GAME
+    - get filename
+        - cleanup if exists
+    - teardown
+    - create 'player' object and set sector = 0
+    - setup(
+        player,
+        filename
+    )
+
+- NEW SECTOR
+    - data = save()
+    - set next sectorId
+    - set entry point
+    - setup(data)
+
+
+- SAVE GAME
+    - PLAYER:
+        - serialize player data
+            - entityId
+            - nested data
+            - position
+            - sector ID
+        - destroy player entity (?)
+    - MAP:
+        - save position data
+    - WORLD:
+        - save sector data
+
+- LOAD
+    - get filename
+        - check if exists
+    - teardown
+    - setup
+
 
 - interesting
     - chiro = hand

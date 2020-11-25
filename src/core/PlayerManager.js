@@ -3,7 +3,6 @@ import { MeleeCommand, MoveCommand } from '../ecs/components';
 
 export default class PlayerManager extends Manager {
     #entityId = null;
-    #playerData = null;
 
     get entity() {
         return this.game.ecs.getEntity(this.#entityId);
@@ -21,54 +20,43 @@ export default class PlayerManager extends Manager {
         return this.entity.position.getPos();
     }
 
-    onNewGame() {
-        const position = this.game.map.getRandomEmptyPosition();
-        const player = this.game.ecs.createPrefab('Player');
+    getSetupData() {
+        // TODO
+        // player.fireEvent('query-owned-entities', { ids });
+        // player.fireEvent('dereference-unowned-entities');
+        // serialize all "owned"
+        const entity = this.game.ecs.createPrefab('Player');
+        const entityId = entity.id;
+        const serialized = entity.serialize();
 
-        player.position.setPos(position.x, position.y);
+        entity.destroy();
 
-        this.#entityId = player.id;
-
-        this.#playerData = this.serializePlayer();
-    }
-
-    serializePlayer() {
         return {
-            entityId: this.id,
-            entity: this.entity.serialize(),
-            position: this.position,
+            entityId,
+            entity: serialized, // TODO inventory
         };
     }
 
-    deserializePlayer(data) {
+    setup(data) {
+        this.#entityId = data.entityId;
+        this.game.ecs.deserialize(data.entity);
+    }
+
+    onSaveGame() {
+        const entityId = this.entity.id;
+        const serialized = this.entity.serialize();
+
+        return {
+            entityId,
+            entity: serialized, // TODO inventory
+        };
+    }
+
+    teardown() {
         if (this.entity) {
             this.entity.destroy();
         }
-        this.game.ecs.deserialize(data.entity);
-
-        const entity = this.game.ecs.getEntity(data.entityId);
-
-        this.#entityId = entity.id;
-
-        entity.position.setPos(data.position.x, data.position.y);
-
-    }
-
-    onSectorUnload() {
-        this.#playerData = this.serializePlayer();
-        this.entity.destroy();
-    }
-
-    onSectorLoaded(sector, entry) {
-        this.deserializePlayer(this.#playerData);
-
-        if (entry) {
-            this.entity.position.setPos(entry.x, entry.y);
-        } else {
-            const position = this.game.map.getRandomEmptyPosition();
-
-            this.entity.position.setPos(position.x, position.y);
-        }
+        this.#entityId = null; // TODO does this need to destroy()?
     }
 
     move(direction) {
@@ -107,13 +95,7 @@ export default class PlayerManager extends Manager {
         this.entity.fireEvent('energy-consumed', turns * 1000);
     }
 
-    onSaveGame() {
-        return {
-            playerEntityId: this.#entityId,
-        };
-    }
-
     onLoadGame(data) {
-        this.#entityId = data.playerEntityId;
+        // this.#entityId = data.playerEntityId;
     }
 }

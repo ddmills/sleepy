@@ -2,10 +2,10 @@ import Manager from './Manager';
 
 export default class GameStateManager extends Manager {
     #isStarted = false;
-    #savefile = 'testing';
+    #filename = 'test';
 
-    get savefile() {
-        return this.#savefile;
+    get filename() {
+        return this.#filename;
     }
 
     get isStarted() {
@@ -16,68 +16,118 @@ export default class GameStateManager extends Manager {
         this.#isStarted = false;
     }
 
-    newGame() {
-        console.log('NEW GAME');
-        this.#savefile = prompt('Enter save name', 'test');
+    initiateTeardown() {
+        console.log('STATE - teardown');
+        this.#isStarted = false;
 
-        this.deleteSaveFile(this.#savefile);
+        this.game.player.teardown();
+        this.game.map.teardown();
+        this.game.engine.teardown();
+        this.game.world.teardown();
+    }
 
-        this.game.clock.onNewGame();
-        this.game.engine.onNewGame();
-        this.game.map.onNewGame();
-        this.game.player.onNewGame();
+    initiateSetup(data) {
+        console.log('STATE - setup');
         this.#isStarted = true;
+
+        this.game.clock.setup(data.clock);
+        this.game.player.setup(data.player);
+        this.game.world.setup(data.world);
+        this.game.map.setup(data.map);
+    }
+
+    newGame() {
+        this.#filename = prompt('Enter save name', 'test');
+        this.deleteFile(this.filename);
+        this.initiateTeardown();
+
+        const data = {
+            filename: this.filename,
+            clock: this.game.clock.getSetupData(),
+            player: this.game.player.getSetupData(),
+            world: this.game.world.getSetupData(),
+            map: this.game.map.getSetupData(),
+        };
+
+        this.initiateSetup(data);
     }
 
     saveGame() {
+        if (!this.isStarted) {
+            console.warn('cannot save game since it\'s not started');
+            return;
+        }
+
         const data = {
-            ...this.game.clock.onSaveGame(),
-            ...this.game.player.onSaveGame(),
-            ...this.game.engine.onSaveGame(),
-            ...this.game.map.onSaveGame(),
+            filename: this.filename,
+            clock: this.game.clock.onSaveGame(),
+            map: this.game.map.onSaveGame(),
+            player: this.game.player.onSaveGame(),
+            world: this.game.world.onSaveGame(),
         };
 
-        localStorage.setItem(this.#savefile, JSON.stringify(data));
+        console.log('save data', data);
+
+        localStorage.setItem(this.filename, JSON.stringify(data));
+
+        return data;
     }
 
-    deleteSaveFile(savefile) {
+    deleteFile(filename) {
         const files = Object.keys(localStorage);
 
         files.forEach((file) => {
-            if (file.startsWith(`${savefile}-`)) {
+            if (file.startsWith(`${filename}-`)) {
                 localStorage.removeItem(file);
             }
         });
     }
 
     saveSectorPositionData(sectorId, positionData) {
-        localStorage.setItem(`${this.#savefile}-${sectorId}-positions`, JSON.stringify(positionData));
+        localStorage.setItem(`${this.filename}-${sectorId}-positions`, JSON.stringify(positionData));
     }
 
     saveSectorEntityData(sectorId, entityData) {
-        localStorage.setItem(`${this.#savefile}-${sectorId}-entities`, JSON.stringify(entityData));
+        localStorage.setItem(`${this.filename}-${sectorId}-entities`, JSON.stringify(entityData));
     }
 
     loadSectorEntityData(sectorId) {
-        const json = localStorage.getItem(`${this.#savefile}-${sectorId}-entities`);
+        const json = localStorage.getItem(`${this.filename}-${sectorId}-entities`);
 
         return json && JSON.parse(json);
     }
 
     loadSectorPositionData(sectorId) {
-        const json = localStorage.getItem(`${this.#savefile}-${sectorId}-positions`);
+        const json = localStorage.getItem(`${this.filename}-${sectorId}-positions`);
+
+        return json && JSON.parse(json);
+    }
+
+    loadSavefileData(filename) {
+        const json = localStorage.getItem(filename);
 
         return json && JSON.parse(json);
     }
 
     loadGame() {
-        const data = JSON.parse(localStorage.getItem('save'));
+        const filename = prompt('Enter save filename to load', 'test');
 
-        this.game.clock.onLoadGame(data);
-        this.game.engine.onLoadGame(data);
-        this.game.map.onLoadGame(data);
-        this.game.player.onLoadGame(data);
-        this.game.screens.onLoadGame(data);
-        this.#isStarted = true;
+        const data = this.loadSavefileData(filename);
+
+        if (!data) {
+            console.warn(`save file ${filename} not found`);
+        }
+
+        this.#filename = filename;
+
+        console.log('Loading game', data);
+
+        this.initiateTeardown();
+        this.initiateSetup(data);
+    }
+
+    loadGameData(data) {
+        this.initiateTeardown();
+        this.initiateSetup(data);
     }
 }

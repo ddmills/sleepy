@@ -1,15 +1,9 @@
-import { Map as MapGenerator } from 'rot-js';
 import Manager from './Manager';
 import FastMap from '../utils/FastMap';
-import { BoredGoalType } from '../ai/GoalTypes';
-import { Door, IsInventoried, Position } from '../ecs/components';
-import { LIQUID_BLOOD, LIQUID_HONEY, LIQUID_WATER } from '../enums/LiquidTypes';
-import WorldData from '../data/WorldData';
-import { SCREEN_LOAD_SECTOR } from './screens/ScreenType';
+import { IsInventoried, Position } from '../ecs/components';
 
 export default class MapManager extends Manager {
     #playerOutOfBounds = null;
-    #sector;
     #lookup;
     #width = 24;
     #height = 24;
@@ -20,10 +14,6 @@ export default class MapManager extends Manager {
 
     get height() {
         return this.#height;
-    }
-
-    get sector() {
-        return this.#sector;
     }
 
     constructor(game) {
@@ -44,84 +34,43 @@ export default class MapManager extends Manager {
         });
     }
 
-    onNewGame() {
-        const seed = 'hello';
+    getSetupData() {
+        return {};
+    }
 
-        this.data = new WorldData(seed);
+    teardown() {
+        this.#playerOutOfBounds = false;
+        this.#lookup.clear();
+    }
 
-        const start = this.data.getStartingSector();
+    setup(data) {
+        if (data.playerPosition) {
+            this.game.player.entity.position.setPos(data.playerPosition.x, data.playerPosition.y);
+        } else {
+            const position = this.getRandomEmptyPosition();
+            this.game.player.entity.position.setPos(position.x, position.y);
+        }
 
-        this.enterSector(start);
+        this.game.FOVSystem.computeFOV();
     }
 
     onSaveGame() {
+        const data = this.#lookup.serialize();
+
+        this.game.state.saveSectorPositionData(this.game.world.sectorId, data);
+
         return {
-            map: {
-                lookup: this.#lookup.serialize(),
-            },
+            playerPosition: this.game.player.position,
         };
     }
 
-    onLoadGame(data) {
-        this.#lookup.deserialize(data.map.lookup);
-    }
-
-    onSectorUnload(sector) {
-        const data = this.#lookup.serialize();
-
-        this.game.state.saveSectorPositionData(sector.id, data);
-        this.#lookup.clear();
-    }
-
     onSectorLoaded(sector) {
-        this.#sector = sector;
+        this.#playerOutOfBounds = false;
 
         const data = this.game.state.loadSectorPositionData(sector.id);
 
-
         if (data) {
             this.#lookup.deserialize(data);
-        }
-    }
-
-    enterSector(sector, entry) {
-        this.#playerOutOfBounds = null;
-
-        this.game.screens.setScreen(SCREEN_LOAD_SECTOR, {
-            prevousSector: this.#sector,
-            nextSector: sector,
-            entry
-        });
-    }
-
-    clearLookup() {
-        this.#lookup.clear();
-    }
-
-    onPlayerOutOfBounds(x, y) {
-        if (y < 0) {
-            this.enterSector(this.sector.northSector, {
-                x,
-                y: this.height - 1
-            });
-        }
-        if (y >= this.height) {
-            this.enterSector(this.sector.southSector, {
-                x,
-                y: 0
-            });
-        }
-        if (x >= this.width) {
-            this.enterSector(this.sector.eastSector, {
-                x: 0,
-                y,
-            });
-        }
-        if (x < 0) {
-            this.enterSector(this.sector.westSector, {
-                x: this.width - 1,
-                y,
-            });
         }
     }
 
@@ -177,6 +126,33 @@ export default class MapManager extends Manager {
         } while (this.getEntitiesAt(x, y).length > 0);
 
         return { x, y };
+    }
+
+    onPlayerOutOfBounds(x, y) {
+        if (y < 0) {
+            this.game.world.enterSector(this.game.world.sector.northSector, {
+                x,
+                y: this.height - 1
+            });
+        }
+        if (y >= this.height) {
+            this.game.world.enterSector(this.game.world.sector.southSector, {
+                x,
+                y: 0
+            });
+        }
+        if (x >= this.width) {
+            this.game.world.enterSector(this.game.world.sector.eastSector, {
+                x: 0,
+                y,
+            });
+        }
+        if (x < 0) {
+            this.game.world.enterSector(this.game.world.sector.westSector, {
+                x: this.width - 1,
+                y,
+            });
+        }
     }
 
     update(dt) {

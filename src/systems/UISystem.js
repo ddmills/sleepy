@@ -29,8 +29,8 @@ export default class UISystem extends System {
             '#ce5454'
         );
 
-        const sector = this.game.map.sector;
-        const sectorTxt = `sector (${sector.x}, ${sector.y})`;
+        const sector = this.game.world.sector;
+        const sectorTxt = `sector ${sector.id} (${sector.x}, ${sector.y})`;
 
         this.game.renderer.drawText(0, 0, sectorTxt, '#172e2e');
     }

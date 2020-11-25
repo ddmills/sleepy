@@ -24,28 +24,14 @@ export default class ECS extends Manager {
         });
     }
 
+    teardown() {
+        this.destroyEntities();
+    }
+
     destroyEntities() {
         for (let entity of this.#engine.entities.all) {
             entity.destroy();
         }
-    }
-
-    onSectorLoaded(sector) {
-        const data = this.game.state.loadSectorEntityData(sector.id);
-
-        if (data) {
-            this.#engine.deserialize(data);
-        } else {
-            sector.generate(this.game);
-        }
-    }
-
-    onSectorUnload(sector) {
-        const data = this.#engine.serialize();
-
-        this.game.state.saveSectorEntityData(sector.id, data);
-
-        this.destroyEntities();
     }
 
     cloneEntity(entity) {
@@ -56,23 +42,5 @@ export default class ECS extends Manager {
         this.engine.deserialize(data);
 
         return this.engine.getEntity(data.id);
-    }
-
-    onNewGame() {
-        this.destroyEntities();
-    }
-
-    onSaveGame() {
-        return {
-            engine: this.#engine.serialize(),
-        };
-    }
-
-    onLoadGame(data) {
-        for (let entity of this.#engine.entities.all) {
-            entity.destroy();
-        }
-
-        this.#engine.deserialize(data.engine);
     }
 }

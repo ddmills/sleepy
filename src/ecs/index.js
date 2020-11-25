@@ -24,6 +24,30 @@ export default class ECS extends Manager {
         });
     }
 
+    destroyEntities() {
+        for (let entity of this.#engine.entities.all) {
+            entity.destroy();
+        }
+    }
+
+    onSectorLoaded(sector) {
+        const data = this.game.state.loadSectorEntityData(sector.id);
+
+        if (data) {
+            this.#engine.deserialize(data);
+        } else {
+            sector.generate(this.game);
+        }
+    }
+
+    onSectorUnload(sector) {
+        const data = this.#engine.serialize();
+
+        this.game.state.saveSectorEntityData(sector.id, data);
+
+        this.destroyEntities();
+    }
+
     cloneEntity(entity) {
         const data = entity.serialize();
 
@@ -35,9 +59,7 @@ export default class ECS extends Manager {
     }
 
     onNewGame() {
-        for (let entity of this.#engine.entities.all) {
-            entity.destroy();
-        }
+        this.destroyEntities();
     }
 
     onSaveGame() {

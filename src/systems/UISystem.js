@@ -28,5 +28,10 @@ export default class UISystem extends System {
             `${hp.value}/${hp.max}`,
             '#ce5454'
         );
+
+        const sector = this.game.map.sector;
+        const sectorTxt = `sector (${sector.x}, ${sector.y})`;
+
+        this.game.renderer.drawText(0, 0, sectorTxt, '#172e2e');
     }
 }

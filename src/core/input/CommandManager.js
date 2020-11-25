@@ -5,10 +5,19 @@ import Manager from '../Manager';
 export default class CommandManager extends Manager {
     #commands = {};
     #domainStack = [INPUT_DOMAIN_DEFAULT];
+    #isEnabled = true;
 
     constructor(game) {
         super(game);
         commands.forEach((cmd) => this.registerCommand(cmd));
+    }
+
+    disable() {
+        this.#isEnabled = false;
+    }
+
+    enable() {
+        this.#isEnabled = true;
     }
 
     onInputEvent(evt) {

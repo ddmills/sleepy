@@ -1,0 +1,38 @@
+{
+    "width": 2,
+    "height": 2,
+    "sectors": [
+        [
+            {
+                "connectionsNorth": [],
+                "connectionsWest": []
+            },
+            {
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            }
+        ],
+        [
+            {
+                "connectionsNorth": [
+                    {
+                        "type": "path"
+                    }
+                ],
+                "connectionsWest": []
+            },
+            {
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            }
+        ]
+    ]
+}

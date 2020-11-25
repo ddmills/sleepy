@@ -4,11 +4,15 @@ import FastMap from '../utils/FastMap';
 import { BoredGoalType } from '../ai/GoalTypes';
 import { Door, IsInventoried, Position } from '../ecs/components';
 import { LIQUID_BLOOD, LIQUID_HONEY, LIQUID_WATER } from '../enums/LiquidTypes';
+import WorldData from '../data/WorldData';
+import { SCREEN_LOAD_SECTOR } from './screens/ScreenType';
 
 export default class MapManager extends Manager {
+    #playerOutOfBounds = null;
+    #sector;
     #lookup;
-    #width = 32;
-    #height = 32;
+    #width = 24;
+    #height = 24;
 
     get width() {
         return this.#width;
@@ -16,6 +20,10 @@ export default class MapManager extends Manager {
 
     get height() {
         return this.#height;
+    }
+
+    get sector() {
+        return this.#sector;
     }
 
     constructor(game) {
@@ -37,106 +45,13 @@ export default class MapManager extends Manager {
     }
 
     onNewGame() {
-        this.#lookup.clear();
-        const generator = new MapGenerator.Uniform(this.width, this.height, {
-            timeLimit: 8000,
-            roomWidth: [2, 8],
-            roomHeight: [2, 8],
-            roomDugPercentage: 0.8,
-        });
+        const seed = 'hello';
 
-        generator.create((x, y, v) => {
-            if (v !== 1) {
-                return;
-            }
+        this.data = new WorldData(seed);
 
-            const type = Math.random() < 0.5 ? 'PineTree' : 'SmallPineTree';
-            const entity = this.game.ecs.createPrefab(type);
+        const start = this.data.getStartingSector();
 
-            entity.position.setPos(x, y);
-        });
-
-        var rooms = generator.getRooms();
-        for (var i = 0; i < rooms.length; i++) {
-            var room = rooms[i];
-
-            room.getDoors((x, y) => {
-                const hasDoor = this.getEntitiesAt(x, y).some((e) =>
-                    e.has(Door)
-                );
-
-                if (hasDoor) {
-                    return;
-                }
-
-                if (Math.random() > .25) {
-                    return;
-                }
-
-                const door = this.game.ecs.createPrefab('Door');
-                door.position.setPos(x, y);
-            });
-        }
-
-        for (let i = 0; i < 12; i++) {
-            const position = this.getRandomEmptyPosition();
-            const stone = this.game.ecs.createPrefab('Stone');
-
-            stone.position.setPos(position.x, position.y);
-        }
-
-        for (let i = 0; i < 3; i++) {
-            const position = this.getRandomEmptyPosition();
-            const chest = this.game.ecs.createPrefab('Chest');
-
-            const stone = this.game.ecs.createPrefab('Stone');
-            const vial = this.game.ecs.createPrefab('Vial');
-            vial.liquidContainer.contents = LIQUID_HONEY;
-
-            chest.position.setPos(position.x, position.y);
-            chest.inventory.addLoot(vial);
-            chest.inventory.addLoot(stone);
-        }
-
-        for (let i = 0; i < 3; i++) {
-            const position = this.getRandomEmptyPosition();
-            const vial = this.game.ecs.createPrefab('Vial');
-
-            vial.liquidContainer.contents = LIQUID_BLOOD;
-            vial.position.setPos(position.x, position.y);
-        }
-
-        for (let i = 0; i < 3; i++) {
-            const position = this.getRandomEmptyPosition();
-            const vial = this.game.ecs.createPrefab('Vial');
-
-            vial.liquidContainer.contents = LIQUID_WATER;
-            vial.position.setPos(position.x, position.y);
-        }
-
-        for (let i = 0; i < 3; i++) {
-            const position = this.getRandomEmptyPosition();
-            const vial = this.game.ecs.createPrefab('Vial');
-
-            vial.liquidContainer.contents = LIQUID_HONEY;
-            vial.position.setPos(position.x, position.y);
-        }
-
-        for (let i = 0; i < 6; i++) {
-            const position = this.getRandomEmptyPosition();
-            const wanderer = this.game.ecs.createPrefab('HumanWanderer');
-
-            wanderer.position.setPos(position.x, position.y);
-            wanderer.brain.pushGoal(BoredGoalType.create());
-        }
-
-        for (let i = 0; i < 10; i++) {
-            const position = this.getRandomEmptyPosition();
-            const goblin = this.game.ecs.createPrefab('Goblin');
-
-            goblin.position.setPos(position.x, position.y);
-            goblin.brain.pushGoal(BoredGoalType.create());
-        }
+        this.enterSector(start);
     }
 
     onSaveGame() {
@@ -151,11 +66,78 @@ export default class MapManager extends Manager {
         this.#lookup.deserialize(data.map.lookup);
     }
 
+    onSectorUnload(sector) {
+        const data = this.#lookup.serialize();
+
+        this.game.state.saveSectorPositionData(sector.id, data);
+        this.#lookup.clear();
+    }
+
+    onSectorLoaded(sector) {
+        this.#sector = sector;
+
+        const data = this.game.state.loadSectorPositionData(sector.id);
+
+
+        if (data) {
+            this.#lookup.deserialize(data);
+        }
+    }
+
+    enterSector(sector, entry) {
+        this.#playerOutOfBounds = null;
+
+        this.game.screens.setScreen(SCREEN_LOAD_SECTOR, {
+            prevousSector: this.#sector,
+            nextSector: sector,
+            entry
+        });
+    }
+
+    clearLookup() {
+        this.#lookup.clear();
+    }
+
+    onPlayerOutOfBounds(x, y) {
+        if (y < 0) {
+            this.enterSector(this.sector.northSector, {
+                x,
+                y: this.height - 1
+            });
+        }
+        if (y >= this.height) {
+            this.enterSector(this.sector.southSector, {
+                x,
+                y: 0
+            });
+        }
+        if (x >= this.width) {
+            this.enterSector(this.sector.eastSector, {
+                x: 0,
+                y,
+            });
+        }
+        if (x < 0) {
+            this.enterSector(this.sector.westSector, {
+                x: this.width - 1,
+                y,
+            });
+        }
+    }
+
     getPosition(entityId) {
         return this.#lookup.getPosition(entityId);
     }
 
     setPosition(x, y, entityId) {
+        if (this.#lookup.isOutOfBounds(x, y)) {
+            if (this.game.player.id === entityId) {
+                this.#playerOutOfBounds = { x, y };
+            }
+
+            return;
+        }
+
         this.#lookup.set(x, y, entityId);
 
         if (entityId === this.game.player.id) {
@@ -195,5 +177,11 @@ export default class MapManager extends Manager {
         } while (this.getEntitiesAt(x, y).length > 0);
 
         return { x, y };
+    }
+
+    update(dt) {
+        if (this.#playerOutOfBounds) {
+            this.onPlayerOutOfBounds(this.#playerOutOfBounds.x, this.#playerOutOfBounds.y);
+        }
     }
 }

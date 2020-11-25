@@ -1,3 +1,4 @@
+import { game } from '../core/Game';
 import { Particle, ParticleEmitter } from '../ecs/components';
 import System from './System';
 

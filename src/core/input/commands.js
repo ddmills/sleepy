@@ -19,8 +19,6 @@ import {
     INPUT_CMD_SAVE,
     INPUT_CMD_LOAD,
     INPUT_CMD_LOOK,
-    INPUT_CMD_SCREEN_CAPTURE_START,
-    INPUT_CMD_SCREEN_CAPTURE_END,
     INPUT_CMD_INTERACT,
     INPUT_CMD_PICK_UP,
     INPUT_CMD_INVENTORY,
@@ -32,6 +30,7 @@ import {
     INPUT_CMD_SELECT_SW,
     INPUT_CMD_SELECT_S,
     INPUT_CMD_SELECT_SE,
+    INPUT_CMD_NEW_GAME,
 } from './InputCommandType';
 import {
     KEY_S,
@@ -51,11 +50,10 @@ import {
     KEY_DOWN,
     KEY_SPACE,
     KEY_L,
-    KEY_F5,
-    KEY_F6,
     KEY_I,
     KEY_G,
     KEY_J,
+    KEY_N,
 } from './KeyCodes';
 
 const cmd = (domain, type, name, isKeyboard, key, shift, ctrl, alt, meta) =>
@@ -77,8 +75,9 @@ export default [
     cmd(INPUT_DOMAIN_DEFAULT,   INPUT_CMD_CONFIRM,              'confirm',                true, KEY_ENTER,    false, false, false, false),
     cmd(INPUT_DOMAIN_DEFAULT,   INPUT_CMD_CONFIRM,              'confirm2',               true, KEY_SPACE,    false, true,  false, false),
     cmd(INPUT_DOMAIN_DEFAULT,   INPUT_CMD_CANCEL,               'cancel',                 true, KEY_ESCAPE,   false, false, false, false),
-    cmd(INPUT_DOMAIN_DEFAULT,   INPUT_CMD_SAVE,                 'save',                   true, KEY_S,        false, true,  false, false),
-    cmd(INPUT_DOMAIN_DEFAULT,   INPUT_CMD_LOAD,                 'load',                   true, KEY_L,        false, true,  false, false),
+    cmd(INPUT_DOMAIN_MAIN_MENU, INPUT_CMD_SAVE,                 'save',                   true, KEY_S,        false, true,  false, false),
+    cmd(INPUT_DOMAIN_MAIN_MENU, INPUT_CMD_LOAD,                 'load',                   true, KEY_L,        false, true,  false, false),
+    cmd(INPUT_DOMAIN_MAIN_MENU, INPUT_CMD_NEW_GAME,             'new game',               true, KEY_N,        false, false, false, false),
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_WAIT,                 'wait',                   true, KEY_S,        false, false, false, false),
 
     cmd(INPUT_DOMAIN_DEFAULT,   INPUT_CMD_MOVE_NW,              'move nw',                true, KEY_Q,        false, false, false, false),
@@ -109,8 +108,6 @@ export default [
     cmd(INPUT_DOMAIN_DEFAULT,   INPUT_CMD_INTERACT,             'select',                 true, KEY_S,        true,  false, false, false),
 
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_LOOK,                 'look',                   true, KEY_L,        false, false, false, false),
-    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_SCREEN_CAPTURE_START, 'start capture screen',   true, KEY_F5,       false, false, false, false),
-    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_SCREEN_CAPTURE_END,   'end capture screen',     true, KEY_F6,       false, false, false, false),
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_PICK_UP,              'pick up',                true, KEY_G,        false, false, false, false),
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_INTERACT,             'interact',               true, KEY_J,        false, false, false, false),
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_INVENTORY,            'inventory',              true, KEY_I,        false, false, false, false),

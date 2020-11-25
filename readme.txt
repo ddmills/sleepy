@@ -11,14 +11,20 @@ built with geotic - https://github.com/ddmills/geotic
         - each action has a cost
 - space
     - world
-    - region
+        - region (non-contingous)
+    - sector (each 'sector' belongs to a 'region')
+        - theme (?)
+        - "entrances" - defined by world NSEW (?)
+            - defined by world map
+            - along edge(s): NSEW
+            - types: [open, path, road, tunnel (?)]
     - tile
         - layer
             - background
             - content
             - fx
             - ui
-    - glyph (16x24)
+    - glyph (16)
         - foreground (^)
         - background (*)
         - black/white
@@ -93,7 +99,35 @@ built with geotic - https://github.com/ddmills/geotic
     - extract events names to enum
     - give interactions a priority
         - "Drink" should appear before "Drop"
+    - "default" interaction (?)
     - map and camera
+    - sectors
+        - "world" must make note of data that is cross-sector
+            - treasure map?
+            - region puzzles
+            - quests
+        - serializing (saving) into chunk into 'game state' object
+            - must be able to differentiate between chunk data and entity data (??)
+        - Sector Generator
+            - getRooms()
+            - flavor based on sector type
+        - Moving to another sector (AKA saving current sector)
+            - take `Player` entity out, serialize them
+            - throw persuing enemies into Limbo (?) state
+                - limbo actors enter new sector when necessary (?)
+                - or always keep neighbor sectors loaded in memory (?)
+            - serialize all remaining entity data
+                - perhaps add a 'DoNotSave' component for entities we don't care about?
+            - serialize map positional data
+            - serialize last-visited tick (?) - useful to repopulate if revisiting
+            - pull save game from storage
+            - update/add all given sector data to save file under key (idx based)
+            - load(or generate) next sector
+            - populate player entity into sector
+            - start game on adventure screen
+        - simply "saving" the game:
+            - serialize/store player entity
+            - serialize all current sector data as 'currentSector'
 
 - interesting
     - chiro = hand
@@ -116,6 +150,7 @@ built with geotic - https://github.com/ddmills/geotic
 - https://www.youtube.com/watch?v=LKCRim02opc
 - https://cesium.com/docs/tutorials/particle-systems/
 - https://tekeli.li/onomastikon/
+- https://www.youtube.com/watch?v=F69-t33e8tk
 
 - particles requirements
     - ability to configure speed

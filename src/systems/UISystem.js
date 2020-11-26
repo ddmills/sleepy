@@ -18,7 +18,7 @@ export default class UISystem extends System {
         const str = `${turn}.${subTurn}`;
         const len = Math.ceil(this.game.renderer.computeTextWidth(str));
 
-        this.game.renderer.drawText(this.game.renderer.width - 1 - len, 1, str);
+        this.game.renderer.drawText(this.game.camera.width - 1 - len, 1, str);
 
         const hp = this.game.player.entity.health;
 

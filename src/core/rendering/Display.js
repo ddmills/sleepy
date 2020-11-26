@@ -1,7 +1,6 @@
 export default class Display {
     #ctx;
     #canvas;
-    #canvasDirty;
     #width;
     #height;
     #tileWidth;
@@ -33,8 +32,6 @@ export default class Display {
     }
 
     constructor({ width, height, tileWidth, tileHeight, defaultFg }) {
-        this.#width = width;
-        this.#height = height;
         this.#tileWidth = tileWidth;
         this.#tileHeight = tileHeight;
         this.#defaultFg = defaultFg || '#fff';
@@ -42,15 +39,22 @@ export default class Display {
         this.#canvas = document.createElement('canvas');
         this.#ctx = this.canvas.getContext('2d');
 
+        this.ctx.font = `${this.#tileHeight}px monospace`;
+        this.ctx.textBaseline = 'top';
+
+        this.setSize(width, height);
+    }
+
+    setSize(width, height) {
+        this.#width = width;
+        this.#height = height;
+
         const widthPx = this.tileWidth * this.width;
         const heightPx = this.tileHeight * this.height;
 
         this.canvas.style.cssText = `width: ${widthPx}px; height: ${heightPx}px`;
         this.canvas.width = widthPx;
         this.canvas.height = heightPx;
-
-        this.ctx.font = `${this.#tileHeight}px monospace`;
-        this.ctx.textBaseline = 'top';
     }
 
     draw(x, y, sprite, fg1, fg2, bg) {

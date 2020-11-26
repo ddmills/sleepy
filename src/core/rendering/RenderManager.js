@@ -8,14 +8,6 @@ export default class Renderer extends Manager {
     #spritesheets = {};
     #display = null;
 
-    get width() {
-        return this.game.camera.width;
-    }
-
-    get height() {
-        return this.game.camera.height;
-    }
-
     get tileWidth() {
         return this.#tileWidth;
     }
@@ -40,13 +32,17 @@ export default class Renderer extends Manager {
         });
 
         this.#display = new Display({
-            width: this.width,
-            height: this.height,
+            width: this.game.camera.width,
+            height: this.game.camera.height,
             tileWidth: this.tileWidth,
             tileHeight: this.tileHeight,
         });
 
         document.body.appendChild(this.display.canvas);
+    }
+
+    resizeDisplay(width, height) {
+        this.display.setSize(width, height);
     }
 
     draw(x, y, char, fg1 = '#d6d6d6', fg2 = '#333', bg) {
@@ -70,7 +66,7 @@ export default class Renderer extends Manager {
     drawTextCenter(y, text, fg1 = '#d6d6d6', fg2 = '#333', bg) {
         const len = this.computeTextWidth(text);
 
-        this.drawText((this.width - len) / 2, y, text, fg1, fg2, bg);
+        this.drawText((this.game.camera.width - len) / 2, y, text, fg1, fg2, bg);
     }
 
     clear() {

@@ -91,17 +91,17 @@ export default class InteractModalScreen extends Screen {
     }
 
     onUpdate(dt) {
-        this.game.renderer.clear();
+        this.game.renderSystem.update(dt);
         this.game.renderer.clearArea(
-            this.top,
             this.left,
+            this.top,
             this.#width,
             this.#height
         );
 
         this.game.renderer.draw(
-            this.top + 2,
             this.left + 2,
+            this.top + 2,
             this.#interactable.glyph.char,
             this.#interactable.glyph.primary,
             this.#interactable.glyph.secondary,

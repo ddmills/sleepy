@@ -1,0 +1,29 @@
+- puzzles
+    - sokoban style
+    - flip switch, unlock door
+    - kill enemy, get key, unlock door
+    - sliding puzzle
+    - logic grid puzzle quests
+    - chest/door with three shapes
+        - three matching shapes scattered in dungeon
+        - chest can be smashed open (contents may be destroyed)
+
+- mechanisms
+    - pressure plate (add weight to activate)
+    - switch (on/off, must be flicked')
+    - moving block (push to move)
+    - button (can throw stone to activate)
+    - statues that can animate
+    - hidden dart gun
+    - line-of-sight (can X be seen?)
+    - underground passageway
+        - entrance covered by statue or moving block (?)
+        - get to the other side of "pond"
+    - treasure chest on a pressure plate
+        - put something in the chest to trigger the plate
+    - door requires matching key
+    - "fire machine" - way to toggle fire
+    - treasure maps
+        - reveal a location and x/y to dig
+    - timer
+    - bomb

@@ -1,7 +1,7 @@
 import Manager from './Manager';
 
 export default class CameraManager extends Manager {
-    width = 24;
+    width = 32;
     height = 24;
 
     #focusX = 0;

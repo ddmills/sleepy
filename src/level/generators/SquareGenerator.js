@@ -7,7 +7,12 @@ export class SquareGenerator extends TileGenerator {
     static generate(settings) {
         const width = settings.width;
         const height = settings.height;
-        const connections = settings.connections;
+        const connections = settings.connections || {
+            north: [],
+            south: [],
+            east: [],
+            west: [],
+        };
 
         const tiles = new TileContainer(width, height);
 

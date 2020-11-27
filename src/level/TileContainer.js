@@ -54,4 +54,10 @@ export default class TileContainer {
     tileTypeMatches(x, y, type) {
         return this.getTile(x, y).isType(type);
     }
+
+    combineOther(offsetX, offsetY, tiles) {
+        tiles.data.forEach((tile) => {
+            this.setTileType(tile.x + offsetX, tile.y + offsetY, tile.type);
+        });
+    }
 }

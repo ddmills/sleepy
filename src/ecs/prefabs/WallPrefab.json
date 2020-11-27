@@ -1,6 +1,6 @@
 {
     "name": "Wall",
-    "inherits": ["Tile"],
+    "inherit": ["Tile"],
     "components": [
         {
             "type": "Moniker",
@@ -11,10 +11,16 @@
         {
             "type": "Glyph",
             "properties": {
-                "ch": "═",
-                "fg1": "brown",
-                "fg2": "##336633"
+                "ch": "#",
+                "fg1": "#666",
+                "fg2": "#336633"
             }
+        },
+        {
+            "type": "Blocker"
+        },
+        {
+            "type": "Shadowcaster"
         }
     ]
 }

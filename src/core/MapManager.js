@@ -5,8 +5,8 @@ import { IsInventoried, Position } from '../ecs/components';
 export default class MapManager extends Manager {
     #playerOutOfBounds = null;
     #lookup;
-    #width = 20;
-    #height = 20;
+    #width = 24;
+    #height = 24;
 
     get width() {
         return this.#width;

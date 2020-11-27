@@ -59,13 +59,13 @@ export class Sector {
 
         const generator = getGenerator(this.composition.type);
 
-        const tiles = generator.generate({
+        const tiles = generator.generator.generate({
             width: game.map.width,
             height: game.map.height,
             connections
         });
 
-        ForestTheme.populate(tiles);
+        generator.theme.populate(tiles);
 
 
         for (let i = 0; i < 8; i++) {

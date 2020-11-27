@@ -5,14 +5,14 @@
         [
             {
                 "composition": {
-                    "type": "SQUARE"
+                    "type": "STRONGHOLD"
                 },
                 "connectionsNorth": [],
                 "connectionsWest": []
             },
             {
                 "composition": {
-                    "type": "UNIFORM"
+                    "type": "FOREST"
                 },
                 "connectionsNorth": [],
                 "connectionsWest": [
@@ -36,7 +36,7 @@
             },
             {
                 "composition": {
-                    "type": "UNIFORM"
+                    "type": "FOREST"
                 },
                 "connectionsNorth": [],
                 "connectionsWest": [

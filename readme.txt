@@ -134,3 +134,6 @@ built with geotic - https://github.com/ddmills/geotic
     - emission-rate (particles-per-second)
     - duration (ms)
     - loop (boolean)
+
+- druid - "Man of Oak"
+    - worship the sun, moon & forest

@@ -1,0 +1,12 @@
+*language system*
+
+The player can learn languages. It would be percentage based, zero to 100%. When talking
+to someone who doesn't speak the same language, replace certain words with garbled
+depending on how well the language is known/unknown. Could use markov chains to create
+words of similar size, and give languages a coherent feel. Words should be different
+each playthrough, to discourage memorization.
+
+The more exposed you are to a language, the more you learn. Books could increase knowlede.
+
+Punctuation is important, and facial expressions could be included to help infer when
+the language is not known.

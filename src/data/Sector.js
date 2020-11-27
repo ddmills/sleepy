@@ -1,13 +1,15 @@
-import { Map as MapGenerator, RNG } from 'rot-js';
 import { BoredGoalType } from '../ai/GoalTypes';
 import { Blocker, Door } from '../ecs/components';
 import { LIQUID_BLOOD, LIQUID_HONEY, LIQUID_WATER } from '../enums/LiquidTypes';
+import ForestTheme from '../level/themes/ForestTheme';
+import { getGenerator } from '../level/generators/mapping';
 
 export class Sector {
     #x = 0;
     #y = 0;
     connectionsNorth = [];
     connectionsWest = [];
+    composition = {};
 
     get x() {
         return this.#x;
@@ -49,128 +51,22 @@ export class Sector {
             east: this.eastSector.connectionsWest,
             west: this.connectionsWest,
             south: this.southSector.connectionsNorth,
-        }
+        };
     }
 
     generate(game) {
-        const generator = new MapGenerator.Uniform(game.map.width, game.map.height, {
-            timeLimit: 8000,
-            roomWidth: [2, 8],
-            roomHeight: [2, 8],
-            roomDugPercentage: 0.8,
-        });
-
-        generator.create((x, y, v) => {
-            if (v !== 1) {
-                return;
-            }
-
-            const type = Math.random() < 0.5 ? 'PineTree' : 'SmallPineTree';
-            const entity = game.ecs.createPrefab(type);
-
-            entity.position.setPos(x, y);
-        });
-
         const connections = this.getConnections();
 
-        const northPaths = connections.north.map((north) => {
-            // dig south from top until hit empty
-            for (let i = 0; i < game.map.height; i++) {
-                const blockers = game.map.getEntitiesAt(12, i).filter((e) => e.has(Blocker));
+        const generator = getGenerator(this.composition.type);
 
-                if (blockers.length > 0) {
-                    blockers.forEach((b) => b.destroy());
-                } else {
-                    return true;
-                }
-            }
-
-            return false;
+        const tiles = generator.generate({
+            width: game.map.width,
+            height: game.map.height,
+            connections
         });
 
-        if (northPaths.some((isConnected) => isConnected === false)) {
-            console.log('CONNECTION north FAILED! regenerate');
-        }
+        ForestTheme.populate(tiles);
 
-        const southPaths = connections.south.map((south) => {
-            // dig north from bottom until hit empty
-            for (let i = game.map.height - 1; i > 0; i--) {
-                const blockers = game.map.getEntitiesAt(12, i).filter((e) => e.has(Blocker));
-
-                if (blockers.length > 0) {
-                    blockers.forEach((b) => b.destroy());
-                } else {
-                    return true;
-                }
-            }
-
-            return false;
-        });
-
-        if (southPaths.some((isConnected) => isConnected === false)) {
-            console.log('CONNECTION south FAILED! regenerate');
-        }
-
-        const westPaths = connections.west.map((west) => {
-            // dig east from left until hit empty
-            for (let i = 0; i < game.map.width; i++) {
-                const blockers = game.map.getEntitiesAt(i, 12).filter((e) => e.has(Blocker));
-
-                if (blockers.length > 0) {
-                    blockers.forEach((b) => b.destroy());
-                } else {
-                    return true;
-                }
-            }
-
-            return false;
-        });
-
-        if (westPaths.some((isConnected) => isConnected === false)) {
-            console.log('CONNECTION west FAILED! regenerate');
-        }
-
-        const eastPaths = connections.east.map((east) => {
-            // dig west from right until hit empty
-            for (let i = game.map.width - 1; i > 0; i--) {
-                const blockers = game.map.getEntitiesAt(i, 12).filter((e) => e.has(Blocker));
-
-                if (blockers.length > 0) {
-                    blockers.forEach((b) => b.destroy());
-                } else {
-                    return true;
-                }
-            }
-
-            return false;
-        });
-
-        if (eastPaths.some((isConnected) => isConnected === false)) {
-            console.log('CONNECTION east FAILED! regenerate');
-        }
-
-
-        var rooms = generator.getRooms();
-        for (var i = 0; i < rooms.length; i++) {
-            var room = rooms[i];
-
-            room.getDoors((x, y) => {
-                const hasDoor = game.map.getEntitiesAt(x, y).some((e) =>
-                    e.has(Door)
-                );
-
-                if (hasDoor) {
-                    return;
-                }
-
-                if (Math.random() > .25) {
-                    return;
-                }
-
-                const door = game.ecs.createPrefab('Door');
-                door.position.setPos(x, y);
-            });
-        }
 
         for (let i = 0; i < 8; i++) {
             const position = game.map.getRandomEmptyPosition();
@@ -238,6 +134,7 @@ export class Sector {
 
         sector.connectionsNorth = data.connectionsNorth;
         sector.connectionsWest = data.connectionsWest;
+        sector.composition = data.composition;
 
         return sector;
     }

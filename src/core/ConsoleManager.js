@@ -4,7 +4,7 @@ import Manager from './Manager';
 export default class ConsoleManager extends Manager {
     #messages = [];
     #events = [];
-    #viewCount = 5;
+    #viewCount = 2;
 
     event(type, data) {
         this.#events.push({ type, data });

@@ -1,4 +1,4 @@
-import { MoveCommand, Position } from '../ecs/components';
+import { IsDestroying, MoveCommand, Position } from '../ecs/components';
 import * as Directions from '../enums/Directions';
 import System from './System';
 
@@ -9,6 +9,7 @@ export default class MovementSystem extends System {
         super(game);
         this.#query = game.ecs.createQuery({
             all: [MoveCommand, Position],
+            not: [IsDestroying],
         });
     }
 

@@ -1,0 +1,22 @@
+http://anderoonies.github.io/2020/04/07/brogue-generation-2.html
+
+# interior castle gen algorithm
+
+Based off of a simple binary space partitioning algorithm, but to
+account for corridors.
+
+
+1. start with one big filled in room
+2. choose a random direction (D)
+3. choose a random point along the direction in the room
+    - if the room top or bottom do not touch an exterior edge, favor a cut
+      that is 1-width wide (creating a corridor). mark the room as a
+      "corridor" room
+    - include "max corridor" and "min corridor" counts
+4. continue subdividing until sufficiently cut up
+5. connect the BSP leaf notes with a door or destroy the wall completely
+    - do not destroy wall completely if one of the rooms is a "corridor" room
+6. for each corridor room
+    - add doors on both ends
+7. do this once for each "floor"
+8. for each floor - 1, find staircase locations that overlap between floor and floor+1

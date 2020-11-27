@@ -3,7 +3,8 @@ import {
     Explored,
     Glyph,
     Position,
-    Visible,
+    IsVisible,
+    IsDestroying,
 } from '../ecs/components';
 import System from './System';
 
@@ -14,12 +15,12 @@ export default class RenderSystem extends System {
     constructor(game) {
         super(game);
         this.#query = game.ecs.createQuery({
-            all: [Glyph, Position, Visible],
-            not: [IsInventoried],
+            all: [Glyph, Position, IsVisible],
+            not: [IsInventoried, IsDestroying],
         });
         this.#explored = game.ecs.createQuery({
             all: [Glyph, Position, Explored],
-            none: [Visible],
+            none: [IsVisible, IsDestroying],
         });
     }
 

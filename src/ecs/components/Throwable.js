@@ -6,7 +6,7 @@ import { bresenhamLine } from '../../utils/BresenhamLine';
 import { Blocker } from './Blocker';
 import { Body } from './Body';
 import { Inventory } from './Inventory';
-import { Visible } from './Visible';
+import { IsVisible } from './IsVisible';
 
 export class Throwable extends Component {
     onGetInteractions(evt) {
@@ -122,8 +122,8 @@ export class Throwable extends Component {
 
                     // todo: fire "query" event on each item in path
                     const entities = game.map.getEntitiesAt(x, y);
-                    const blocker = entities.find((entity) => entity.has(Visible) && entity.has(Blocker));
-                    const body = entities.find((entity) => entity.has(Visible) && entity.has(Body));
+                    const blocker = entities.find((entity) => entity.has(IsVisible) && entity.has(Blocker));
+                    const body = entities.find((entity) => entity.has(IsVisible) && entity.has(Body));
 
                     if (blocker) {
                         lineValid = false;

@@ -1,5 +1,5 @@
 import { SCREEN_DEATH } from '../core/screens/ScreenType';
-import { Dead, IsPlayer } from '../ecs/components';
+import { Dead, IsDestroying, IsPlayer } from '../ecs/components';
 import System from './System';
 
 export default class DeathSystem extends System {
@@ -9,6 +9,7 @@ export default class DeathSystem extends System {
         super(game);
         this.#query = game.ecs.createQuery({
             all: [Dead],
+            none: [IsDestroying],
         });
     }
 
@@ -19,7 +20,7 @@ export default class DeathSystem extends System {
             if (entity.has(IsPlayer)) {
                 this.game.screens.setScreen(SCREEN_DEATH);
             } else {
-                entity.destroy();
+                entity.add(IsDestroying);
             }
         });
     }

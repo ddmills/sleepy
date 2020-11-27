@@ -1,4 +1,4 @@
-import { IsPlayer, Moniker, Visible } from '../ecs/components';
+import { IsPlayer, Moniker, IsVisible } from '../ecs/components';
 import { liquids } from './LiquidTypes';
 
 export const CONSOLE_EVENT_DAMAGE = 0;
@@ -29,7 +29,7 @@ const mapping = {
             return `${getMonikerSubject(data.target)} takes ${data.damage.value} ${data.damage.type} damage from ${getMonikerIndirectObject(data.source)}`;
         },
         shouldAppear(data) {
-            return (data.target.has(IsPlayer) || data.target.has(Visible));
+            return (data.target.has(IsPlayer) || data.target.has(IsVisible));
         }
     },
     [CONSOLE_EVENT_DEAD]: {
@@ -37,7 +37,7 @@ const mapping = {
             return `${getMonikerSubject(data.target)} takes ${data.damage.value} ${data.damage.type} damage from ${getMonikerIndirectObject(data.source)} and dies`;
         },
         shouldAppear(data) {
-            return (data.target.has(IsPlayer) || data.target.has(Visible));
+            return (data.target.has(IsPlayer) || data.target.has(IsVisible));
         }
     },
     [CONSOLE_EVENT_SHATTER]: {
@@ -49,7 +49,7 @@ const mapping = {
             }
         },
         shouldAppear(data) {
-            return true;
+            return data.target.has(IsVisible);
         }
     }
 };

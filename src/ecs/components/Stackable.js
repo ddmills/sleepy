@@ -1,6 +1,7 @@
 import { Component } from 'geotic';
 import { game } from '../../core/Game';
 import { STACKABLE_DEFAULT } from '../../enums/Stackables';
+import { IsDestroying } from './IsDestroying';
 import { IsInventoried } from './IsInventoried';
 
 export class Stackable extends Component {
@@ -20,7 +21,7 @@ export class Stackable extends Component {
     addOther(other) {
         this.increment(other.stackable.quantity);
         other.stackable.quantity = 0;
-        other.destroy();
+        other.add(IsDestroying);
     }
 
     split(quantity) {

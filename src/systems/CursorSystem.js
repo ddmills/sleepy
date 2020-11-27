@@ -1,4 +1,4 @@
-import { Moniker, Visible } from '../ecs/components';
+import { Moniker, IsVisible } from '../ecs/components';
 import * as Directions from '../enums/Directions';
 import System from './System';
 
@@ -49,7 +49,7 @@ export default class CursorSystem extends System {
     getEntities() {
         return this.game.map
             .getEntitiesAt(this.x, this.y)
-            .filter((e) => e.has(Visible));
+            .filter((e) => e.has(IsVisible));
     }
 
     drawCursor(color = 'yellow') {

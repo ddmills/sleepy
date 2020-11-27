@@ -1,4 +1,5 @@
 export { Actor } from './Actor';
+export { IsDestroying } from './IsDestroying';
 export { LiquidContainer } from './LiquidContainer';
 export { Door } from './Door';
 export { Loot } from './Loot';
@@ -23,7 +24,7 @@ export { IsPlayer } from './IsPlayer';
 export { Wandering } from './Wandering';
 export { Blocker } from './Blocker';
 export { Shadowcaster } from './Shadowcaster';
-export { Visible } from './Visible';
+export { IsVisible } from './IsVisible';
 export { Explorable } from './Explorable';
 export { Explored } from './Explored';
 export { Health } from './Health';

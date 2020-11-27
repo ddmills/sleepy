@@ -2,6 +2,7 @@ import { Component } from 'geotic';
 import { game } from '../../core/Game';
 import { CONSOLE_EVENT_SHATTER } from '../../enums/ConsoleEvents';
 import { Dead } from './Dead';
+import { IsDestroying } from './IsDestroying';
 import { LiquidContainer } from './LiquidContainer';
 
 export class FragileGlass extends Component {
@@ -27,7 +28,7 @@ export class FragileGlass extends Component {
             });
         }
 
-        this.entity.add(Dead);
+        this.entity.add(IsDestroying);
     }
 
     onCollideGround(evt) {

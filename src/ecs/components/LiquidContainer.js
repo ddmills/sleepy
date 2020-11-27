@@ -1,6 +1,7 @@
 import { Component } from 'geotic';
 import { game } from '../../core/Game';
 import { drinkLiquid, liquids, LIQUID_BLOOD } from '../../enums/LiquidTypes';
+import { IsDestroying } from './IsDestroying';
 
 export class LiquidContainer extends Component {
     static properties = {
@@ -49,7 +50,7 @@ export class LiquidContainer extends Component {
 
     _checkDestroyOnEmpty() {
         if (this.destroyOnEmpty && this.isEmpty) {
-            this.entity.destroy();
+            this.entity.add(IsDestroying);
         }
     }
 

@@ -23,6 +23,7 @@ import CameraManager from './CameraManager';
 import FPSMonitoringSystem from '../systems/FPSMonitoringSystem';
 import { WorldManager } from './WorldManager';
 import ConsoleManager from './ConsoleManager';
+import DestroySystem from '../systems/DestroySystem';
 
 export default class Game {
     #lastUpdate;
@@ -58,6 +59,7 @@ export default class Game {
         this.cursor = new CursorSystem(this);
         this.particles = new ParticleSystem(this);
         this.fps = new FPSMonitoringSystem(this);
+        this.destroySystem = new DestroySystem(this);
     }
 
     start() {
@@ -75,9 +77,10 @@ export default class Game {
         this.FOVSystem.update(dt);
         this.renderSystem.update(dt);
         this.particles.update(dt);
-        this.console.render(dt);
         this.UISystem.update(dt);
         this.map.update(dt);
+        this.destroySystem.update(dt);
+        this.console.render(dt);
     }
 
     loop(t) {

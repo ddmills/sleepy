@@ -1,4 +1,7 @@
 import { Component } from 'geotic';
+import { game } from '../../core/Game';
+import { CONSOLE_EVENT_SHATTER } from '../../enums/ConsoleEvents';
+import { Dead } from './Dead';
 import { LiquidContainer } from './LiquidContainer';
 
 export class FragileGlass extends Component {
@@ -12,10 +15,19 @@ export class FragileGlass extends Component {
         shards.position.setPos(x, y);
 
         if (this.entity.has(LiquidContainer)) {
-            this.entity.liquidContainer.pour(x, y);
+            if (this.entity.liquidContainer.pour(x, y)) {
+                game.console.event(CONSOLE_EVENT_SHATTER, {
+                    target: this.entity,
+                    liquid: this.entity.liquidContainer.contents
+                });
+            };
+        } else {
+            game.console.event(CONSOLE_EVENT_SHATTER, {
+                target: this.entity,
+            });
         }
 
-        this.entity.destroy();
+        this.entity.add(Dead);
     }
 
     onCollideGround(evt) {

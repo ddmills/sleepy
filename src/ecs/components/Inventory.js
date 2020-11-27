@@ -3,6 +3,7 @@ import { game } from '../../core/Game';
 import { SCREEN_INVENTORY } from '../../core/screens/ScreenType';
 import { IsInventoried } from './IsInventoried';
 import { Stackable } from './Stackable';
+import { Visible } from './Visible';
 
 export class Inventory extends Component {
     static properties = {

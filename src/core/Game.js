@@ -22,6 +22,7 @@ import FactionManager from './FactionManager';
 import CameraManager from './CameraManager';
 import FPSMonitoringSystem from '../systems/FPSMonitoringSystem';
 import { WorldManager } from './WorldManager';
+import ConsoleManager from './ConsoleManager';
 
 export default class Game {
     #lastUpdate;
@@ -44,6 +45,7 @@ export default class Game {
         this.commands = new CommandManager(this);
         this.screens = new ScreenManager(this);
         this.input = new InputController(this);
+        this.console = new ConsoleManager(this);
 
         this.hungerSystem = new HungerSystem(this);
         this.actionSystem = new ActionSystem(this);
@@ -73,6 +75,7 @@ export default class Game {
         this.FOVSystem.update(dt);
         this.renderSystem.update(dt);
         this.particles.update(dt);
+        this.console.render(dt);
         this.UISystem.update(dt);
         this.map.update(dt);
     }

@@ -1,4 +1,5 @@
 import { Component } from 'geotic';
+import { game } from '../../core/Game';
 import { Blocker } from './Blocker';
 import { Faction } from './Faction';
 

@@ -10,7 +10,7 @@ export class Arms extends Component {
 
         const damage = {
             type: 'blunt',
-            value: 5,
+            value: 5
         };
 
         const map = window.game.map;
@@ -34,7 +34,10 @@ export class Arms extends Component {
             glyphs: ['-'],
         });
 
-        evt.data.target.fireEvent('damage', damage);
+        evt.data.target.fireEvent('damage', {
+            source: this.entity,
+            damage,
+        });
 
         this.entity.fireEvent('energy-consumed', 800);
 

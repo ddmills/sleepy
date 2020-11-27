@@ -56,12 +56,12 @@ export class LiquidContainer extends Component {
     pour(x, y, quantity) {
         if (!this.isPourable) {
             console.warn('The container connot be poured.');
-            return;
+            return false;
         }
 
         if (this.volume <= 0) {
             console.warn('The contianer is empty and cannot be poured.');
-            return;
+            return false;
         }
 
         if (isNaN(quantity) || quantity >= this.volume) {
@@ -78,6 +78,8 @@ export class LiquidContainer extends Component {
         });
         pool.position.setPos(x, y);
         this._checkDestroyOnEmpty();
+
+        return true;
     }
 
     onTryPour(evt) {

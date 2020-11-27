@@ -7,7 +7,7 @@ export const LIQUID_HONEY = 3;
 export const liquids = {
     [LIQUID_WATER]: {
         name: 'water',
-        colorDesc: 'blue',
+        colorDesc: 'watery',
         primary: '#66a3dc',
         secondary: '#8bb9d5',
         onDrink: (entity) => {
@@ -16,7 +16,7 @@ export const liquids = {
     },
     [LIQUID_BLOOD]: {
         name: 'blood',
-        colorDesc: 'red',
+        colorDesc: 'bloody',
         primary: '#ce2a36',
         secondary: '#e0c1c2',
         onDrink: (entity, volume) => {
@@ -28,7 +28,7 @@ export const liquids = {
     },
     [LIQUID_HONEY]: {
         name: 'honey',
-        colorDesc: 'golden',
+        colorDesc: 'gooey golden',
         primary: '#d6aa3a',
         secondary: '#f4d260',
         onDrink: (entity, volume) => {

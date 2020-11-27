@@ -8,6 +8,10 @@ export class Moniker extends Component {
         name: 'Unknown',
     };
 
+    get simpleDisplay() {
+        return this.name;
+    }
+
     get display() {
         const hasLiquid = this.entity.has(LiquidContainer);
 

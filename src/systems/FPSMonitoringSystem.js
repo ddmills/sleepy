@@ -8,6 +8,6 @@ export default class FPSMonitoringSystem extends System {
         const textWidth = this.game.renderer.computeTextWidth(display);
         const x = this.game.camera.width - textWidth;
 
-        this.game.renderer.drawText(x, this.game.renderer.height - 1, display, '#172e2e');
+        this.game.renderer.drawText(x, this.game.camera.height - 1, display, '#172e2e');
     }
 }

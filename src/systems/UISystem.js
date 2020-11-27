@@ -24,7 +24,7 @@ export default class UISystem extends System {
 
         this.game.renderer.drawText(
             1,
-            this.game.renderer.height - 2,
+            1,
             `${hp.value}/${hp.max}`,
             '#ce5454'
         );

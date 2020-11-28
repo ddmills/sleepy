@@ -4,6 +4,8 @@ import TileGenerator from '../TileGenerator';
 import { TILE_TYPE_FLOOR, TILE_TYPE_WALL } from '../TileData';
 import { pickRandom, randomInt } from '../../utils/rand';
 import { SquareGenerator } from './SquareGenerator';
+import { computeAStar } from '../../utils/AStar';
+import { diagonalDistance } from '../../utils/diagonalDistance';
 
 const VERTICAL = 0;
 const HORIZONTAL = 1;
@@ -70,13 +72,15 @@ export class DenseCastleGenerator extends TileGenerator {
         const height = settings.height;
         const connections = settings.connections;
 
-        const minRoomWidth = settings.minRoomWidth || 4;
-        const minRoomHeight = settings.minRoomHeight || 4;
+        const minRoomWidth = settings.minRoomWidth || 3;
+        const minRoomHeight = settings.minRoomHeight || 3;
 
         const maxRoomWidth = settings.maxRoomWidth || 12;
         const maxRoomHeight = settings.maxRoomHeight || 12;
 
         const splitIgnoreChance = settings.splitIgnoreChance || 0.8;
+
+        const loopiness = settings.loopiness || 35;
 
         const tiles = new TileContainer(width, height);
 
@@ -232,6 +236,64 @@ export class DenseCastleGenerator extends TileGenerator {
                 tiles.setTileType(door.x, door.y, TILE_TYPE_FLOOR);
             }
         });
+
+        // for every cell in the grid
+        // cell must be WALL
+        // cells on either side must be FLOOR
+        // must be 20 spaces apart
+
+        const cost = (a, b) => {
+            if (a.x == b.x && a.y == b.y) {
+                return 0;
+            }
+
+            if (tiles.tileTypeMatches(b.x, b.y, TILE_TYPE_FLOOR)) {
+                return diagonalDistance(a, b);
+            }
+
+            return Infinity;
+        };
+
+        const tryAddLoop = (a, b) => {
+            if (a.isType(TILE_TYPE_FLOOR) && b.isType(TILE_TYPE_FLOOR)) {
+                // compute distance between a and b
+                const start = {
+                    x: b.x,
+                    y: b.y,
+                };
+                const goal = {
+                    x: a.x,
+                    y: a.y,
+                };
+                const path = computeAStar(start, goal, cost);
+
+                if (path.success && path.cost >= loopiness) {
+                    return true;
+                }
+            }
+
+            return false;
+        };
+
+        tiles.data
+            .filter((tile) => tile.isType(TILE_TYPE_WALL))
+            .forEach((tile) => {
+                const north = tiles.getTile(tile.x, tile.y - 1);
+                const south = tiles.getTile(tile.x, tile.y + 1);
+
+                if (tryAddLoop(north, south)) {
+                    tiles.setTileType(tile.x, tile.y, TILE_TYPE_FLOOR)
+                    return;
+                }
+
+                const east = tiles.getTile(tile.x - 1, tile.y);
+                const west = tiles.getTile(tile.x + 1, tile.y);
+
+                if (tryAddLoop(east, west)) {
+                    tiles.setTileType(tile.x, tile.y, TILE_TYPE_FLOOR)
+                    return;
+                }
+            });
 
         digConnections(tiles, connections);
 

@@ -20,3 +20,5 @@ account for corridors.
     - add doors on both ends
 7. do this once for each "floor"
 8. for each floor - 1, find staircase locations that overlap between floor and floor+1
+
+? Run quad tree algorithm then BSP dungeon from that, for non-rectangular areas

@@ -62,7 +62,7 @@ export default class Grid {
 
     get(x, y) {
         if (this.isOutOfBounds(x, y)) {
-            return this.defaultValueGenerator();
+            return this.#defaultValueGenerator();
         }
 
         return this.#data[this.idx(x, y)];

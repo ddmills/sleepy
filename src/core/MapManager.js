@@ -5,8 +5,8 @@ import { IsInventoried, Position } from '../ecs/components';
 export default class MapManager extends Manager {
     #playerOutOfBounds = null;
     #lookup;
-    #width = 24;
-    #height = 24;
+    #width = 32;
+    #height = 32;
 
     get width() {
         return this.#width;
@@ -45,7 +45,10 @@ export default class MapManager extends Manager {
 
     setup(data) {
         if (data.playerPosition) {
-            this.game.player.entity.position.setPos(data.playerPosition.x, data.playerPosition.y);
+            this.game.player.entity.position.setPos(
+                data.playerPosition.x,
+                data.playerPosition.y
+            );
         } else {
             const position = this.getRandomEmptyPosition();
             this.game.player.entity.position.setPos(position.x, position.y);
@@ -132,13 +135,13 @@ export default class MapManager extends Manager {
         if (y < 0) {
             this.game.world.enterSector(this.game.world.sector.northSector, {
                 x,
-                y: this.height - 1
+                y: this.height - 1,
             });
         }
         if (y >= this.height) {
             this.game.world.enterSector(this.game.world.sector.southSector, {
                 x,
-                y: 0
+                y: 0,
             });
         }
         if (x >= this.width) {
@@ -157,7 +160,10 @@ export default class MapManager extends Manager {
 
     update(dt) {
         if (this.#playerOutOfBounds) {
-            this.onPlayerOutOfBounds(this.#playerOutOfBounds.x, this.#playerOutOfBounds.y);
+            this.onPlayerOutOfBounds(
+                this.#playerOutOfBounds.x,
+                this.#playerOutOfBounds.y
+            );
         }
     }
 }

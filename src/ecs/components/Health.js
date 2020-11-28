@@ -1,6 +1,9 @@
 import { Component } from 'geotic';
 import { game } from '../../core/Game';
-import { CONSOLE_EVENT_DAMAGE, CONSOLE_EVENT_DEAD } from '../../enums/ConsoleEvents';
+import {
+    CONSOLE_EVENT_DAMAGE,
+    CONSOLE_EVENT_DEAD,
+} from '../../enums/ConsoleEvents';
 import { Dead } from './Dead';
 
 export class Health extends Component {

@@ -14,7 +14,7 @@ export class Door extends Component {
     }
 
     get display() {
-        return this.isOpen ? '[open]' : '[closed]'
+        return this.isOpen ? '[open]' : '[closed]';
     }
 
     openDoor() {

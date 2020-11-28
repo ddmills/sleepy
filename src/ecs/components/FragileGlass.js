@@ -9,8 +9,8 @@ export class FragileGlass extends Component {
     shatter(x, y) {
         const shards = this.ecs.createPrefab('GlassShard', {
             stackable: {
-                quantity: 3
-            }
+                quantity: 3,
+            },
         });
 
         shards.position.setPos(x, y);
@@ -19,9 +19,9 @@ export class FragileGlass extends Component {
             if (this.entity.liquidContainer.pour(x, y)) {
                 game.console.event(CONSOLE_EVENT_SHATTER, {
                     target: this.entity,
-                    liquid: this.entity.liquidContainer.contents
+                    liquid: this.entity.liquidContainer.contents,
                 });
-            };
+            }
         } else {
             game.console.event(CONSOLE_EVENT_SHATTER, {
                 target: this.entity,

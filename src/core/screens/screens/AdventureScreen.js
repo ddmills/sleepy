@@ -73,10 +73,7 @@ export default class AdventureScreen extends Screen {
         );
 
         const hostileEntities = entities.filter((e) =>
-            this.game.factions.areEntitiesHostile(
-                e,
-                this.game.player.entity
-            )
+            this.game.factions.areEntitiesHostile(e, this.game.player.entity)
         );
 
         if (hostileEntities.length > 0) {

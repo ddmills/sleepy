@@ -31,7 +31,7 @@ export class Stackable extends Component {
         }
 
         const clone = game.engine.cloneEntity(this.entity);
-        clone.stackable.quantity -= quantity;;
+        clone.stackable.quantity -= quantity;
 
         this.quantity = quantity;
 

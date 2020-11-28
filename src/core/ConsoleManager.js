@@ -18,13 +18,15 @@ export default class ConsoleManager extends Manager {
         this.#events.forEach(({ type, data }) => {
             if (shouldAppear(type, data)) {
                 this.#messages.push({
-                    text: getMessage(type, data)
+                    text: getMessage(type, data),
                 });
             }
         });
         this.#events = [];
 
-        const msgs = this.#messages.slice(Math.max(this.#messages.length - this.#viewCount, 0));
+        const msgs = this.#messages.slice(
+            Math.max(this.#messages.length - this.#viewCount, 0)
+        );
         const height = Math.min(msgs.length, this.#viewCount);
 
         msgs.forEach((message, i) => {

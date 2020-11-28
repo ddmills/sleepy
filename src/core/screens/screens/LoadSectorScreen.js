@@ -9,7 +9,7 @@ export default class LoadSectorScreen extends Screen {
         this.game.commands.disable();
 
         this.#prevousSector = ctx.prevousSector;
-        this.#nextSector = ctx.nextSector
+        this.#nextSector = ctx.nextSector;
 
         this.renderLoadingText();
 

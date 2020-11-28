@@ -21,7 +21,7 @@ export default class TileContainer {
         return this.#grid.data;
     }
 
-    constructor(width, height, defaultType=TILE_TYPE_FLOOR) {
+    constructor(width, height, defaultType = TILE_TYPE_FLOOR) {
         this.#grid = new Grid(width, height, createTileData);
         this.#defaultType = defaultType;
         this.clear();

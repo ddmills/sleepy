@@ -1,7 +1,5 @@
 export default class TileGenerator {
-    static generate() {
-    }
+    static generate() {}
 
-    static populate() {
-    }
+    static populate() {}
 }

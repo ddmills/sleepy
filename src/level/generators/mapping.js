@@ -7,17 +7,17 @@ import ForestTheme from '../themes/ForestTheme';
 const mapping = {
     ['FOREST']: {
         generator: UniformGenerator,
-        theme: ForestTheme
+        theme: ForestTheme,
     },
     ['SQUARE']: {
         generator: SquareGenerator,
-        theme: CastleTheme
+        theme: CastleTheme,
     },
     ['STRONGHOLD']: {
         generator: DenseCastleGenerator,
-        theme: CastleTheme
+        theme: CastleTheme,
     },
-}
+};
 
 export const getGenerator = (name) => {
     return mapping[name];

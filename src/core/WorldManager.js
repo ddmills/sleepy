@@ -35,7 +35,9 @@ export class WorldManager extends Manager {
 
     getSaveGameData() {
         // TODO only save sector data??
-        const data = Array.from(this.game.ecs.entities.all).filter((e) => !e.has(IsPlayer));
+        const data = Array.from(this.game.ecs.entities.all).filter(
+            (e) => !e.has(IsPlayer)
+        );
         const serialized = this.game.ecs.serialize(data);
 
         console.log('serialized map data', serialized);
@@ -46,7 +48,7 @@ export class WorldManager extends Manager {
 
         return {
             sectorId: this.sector.id,
-            exploredSectorIds: []
+            exploredSectorIds: [],
         };
     }
 
@@ -55,7 +57,7 @@ export class WorldManager extends Manager {
 
         this.game.screens.setScreen(SCREEN_LOAD_SECTOR, {
             nextSector: sector,
-            entry: data.position
+            entry: data.position,
         });
     }
 
@@ -82,7 +84,7 @@ export class WorldManager extends Manager {
         this.game.screens.setScreen(SCREEN_LOAD_SECTOR, {
             prevousSector: this.sector,
             nextSector: sector,
-            entry
+            entry,
         });
     }
 }

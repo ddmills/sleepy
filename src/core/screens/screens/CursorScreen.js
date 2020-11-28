@@ -21,10 +21,18 @@ import {
     DIR_NW,
     DIR_SW,
     DIR_SE,
-    DIR_NE
+    DIR_NE,
 } from '../../../enums/Directions';
-import { bresenhamLine, bresenhamLineExclusive } from '../../../utils/BresenhamLine';
-import { CURSOR_SEGMENT_INTEREST, CURSOR_SEGMENT_NONE, getCursorSegmentTypeColor, getCursorSegmentTypeGlyph } from '../../../enums/CursorSegments';
+import {
+    bresenhamLine,
+    bresenhamLineExclusive,
+} from '../../../utils/BresenhamLine';
+import {
+    CURSOR_SEGMENT_INTEREST,
+    CURSOR_SEGMENT_NONE,
+    getCursorSegmentTypeColor,
+    getCursorSegmentTypeGlyph,
+} from '../../../enums/CursorSegments';
 import { game } from '../../Game';
 
 const NOOP = () => {};
@@ -62,8 +70,8 @@ export default class CursorScreen extends Screen {
             start: this.#start,
             position: {
                 x: this.game.cursor.x,
-                y: this.game.cursor.y
-            }
+                y: this.game.cursor.y,
+            },
         });
     }
 
@@ -111,10 +119,10 @@ export default class CursorScreen extends Screen {
             this.#start.x,
             this.#start.y,
             this.game.cursor.x,
-            this.game.cursor.y,
+            this.game.cursor.y
         );
 
-        let cursorColor = getCursorSegmentTypeColor(CURSOR_SEGMENT_INTEREST)
+        let cursorColor = getCursorSegmentTypeColor(CURSOR_SEGMENT_INTEREST);
 
         if (this.#drawLine) {
             const types = this.#getSegmentTypes(line);
@@ -129,7 +137,10 @@ export default class CursorScreen extends Screen {
                 const color = getCursorSegmentTypeColor(type);
                 const glyph = getCursorSegmentTypeGlyph(type);
 
-                const screen = this.game.camera.worldToScreen(segment.x, segment.y);
+                const screen = this.game.camera.worldToScreen(
+                    segment.x,
+                    segment.y
+                );
                 this.game.renderer.draw(screen.x, screen.y, glyph, color);
 
                 if (idx === line.length - 1) {

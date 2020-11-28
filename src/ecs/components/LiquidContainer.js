@@ -75,7 +75,7 @@ export class LiquidContainer extends Component {
             liquidContainer: {
                 contents: this.contents,
                 volume: quantity,
-            }
+            },
         });
         pool.position.setPos(x, y);
         this._checkDestroyOnEmpty();

@@ -33,4 +33,4 @@ export class UniformGenerator extends TileGenerator {
 
         return tiles;
     }
-};
+}

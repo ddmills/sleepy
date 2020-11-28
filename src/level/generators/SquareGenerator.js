@@ -30,4 +30,4 @@ export class SquareGenerator extends TileGenerator {
 
         return tiles;
     }
-};
+}

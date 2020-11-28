@@ -62,11 +62,10 @@ export class Sector {
         const tiles = generator.generator.generate({
             width: game.map.width,
             height: game.map.height,
-            connections
+            connections,
         });
 
         generator.theme.populate(tiles);
-
 
         for (let i = 0; i < 8; i++) {
             const position = game.map.getRandomEmptyPosition();

@@ -23,7 +23,7 @@ export default class ClockManager extends Manager {
     getSetupData() {
         return {
             tick: 0,
-            tickDelta: 0
+            tickDelta: 0,
         };
     }
 
@@ -36,7 +36,7 @@ export default class ClockManager extends Manager {
 
     setup(data) {
         this.#tick = data.tick;
-        this.#tickDelta = data.tickDelta
+        this.#tickDelta = data.tickDelta;
     }
 
     incrementTick(delta) {

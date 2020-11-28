@@ -14,7 +14,6 @@ export const INPUT_CMD_SAVE = 11;
 export const INPUT_CMD_LOAD = 12;
 export const INPUT_CMD_LOOK = 13;
 
-
 export const INPUT_CMD_PICK_UP = 16;
 export const INPUT_CMD_INTERACT = 17;
 export const INPUT_CMD_INVENTORY = 19;

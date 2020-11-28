@@ -41,7 +41,7 @@ export default class Grid {
 
     clear() {
         for (let i = 0; i < this.size; i++) {
-            const { x, y} = this.coord(i);
+            const { x, y } = this.coord(i);
 
             this.#data[i] = this.#defaultValueGenerator(x, y);
         }

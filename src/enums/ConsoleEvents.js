@@ -26,32 +26,44 @@ const getMonikerIndirectObject = (entity) => {
 const mapping = {
     [CONSOLE_EVENT_DAMAGE]: {
         message(data) {
-            return `${getMonikerSubject(data.target)} takes ${data.damage.value} ${data.damage.type} damage from ${getMonikerIndirectObject(data.source)}`;
+            return `${getMonikerSubject(data.target)} takes ${
+                data.damage.value
+            } ${data.damage.type} damage from ${getMonikerIndirectObject(
+                data.source
+            )}`;
         },
         shouldAppear(data) {
-            return (data.target.has(IsPlayer) || data.target.has(IsVisible));
-        }
+            return data.target.has(IsPlayer) || data.target.has(IsVisible);
+        },
     },
     [CONSOLE_EVENT_DEAD]: {
         message(data) {
-            return `${getMonikerSubject(data.target)} takes ${data.damage.value} ${data.damage.type} damage from ${getMonikerIndirectObject(data.source)} and dies`;
+            return `${getMonikerSubject(data.target)} takes ${
+                data.damage.value
+            } ${data.damage.type} damage from ${getMonikerIndirectObject(
+                data.source
+            )} and dies`;
         },
         shouldAppear(data) {
-            return (data.target.has(IsPlayer) || data.target.has(IsVisible));
-        }
+            return data.target.has(IsPlayer) || data.target.has(IsVisible);
+        },
     },
     [CONSOLE_EVENT_SHATTER]: {
         message(data) {
             if (isNaN(data.liquid)) {
                 return `${getMonikerSubject(data.target)} shatters!`;
             } else {
-                return `${getMonikerSubject(data.target)} shatters and spills its ${liquids[data.liquid].colorDesc} contents!`;
+                return `${getMonikerSubject(
+                    data.target
+                )} shatters and spills its ${
+                    liquids[data.liquid].colorDesc
+                } contents!`;
             }
         },
         shouldAppear(data) {
             return data.target.has(IsVisible);
-        }
-    }
+        },
+    },
 };
 
 export const getMessage = (evt, data) => {
@@ -61,4 +73,3 @@ export const getMessage = (evt, data) => {
 export const shouldAppear = (evt, data) => {
     return mapping[evt].shouldAppear(data);
 };
-

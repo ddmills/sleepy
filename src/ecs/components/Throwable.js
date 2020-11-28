@@ -1,7 +1,12 @@
 import { Component } from 'geotic';
 import { game } from '../../core/Game';
 import { SCREEN_ADVENTURE, SCREEN_CURSOR } from '../../core/screens/ScreenType';
-import { CURSOR_SEGMENT_INVALID, CURSOR_SEGMENT_INTEREST, CURSOR_SEGMENT_UNKNOWN, CURSOR_SEGMENT_NONE } from '../../enums/CursorSegments';
+import {
+    CURSOR_SEGMENT_INVALID,
+    CURSOR_SEGMENT_INTEREST,
+    CURSOR_SEGMENT_UNKNOWN,
+    CURSOR_SEGMENT_NONE,
+} from '../../enums/CursorSegments';
 import { bresenhamLine } from '../../utils/BresenhamLine';
 import { Blocker } from './Blocker';
 import { Body } from './Body';
@@ -27,7 +32,7 @@ export class Throwable extends Component {
     throw(trajectory, initiator) {
         this.entity.fireEvent('thrown', {
             initiator,
-            trajectory
+            trajectory,
         });
 
         for (let i = 0; i < trajectory.length; i++) {
@@ -100,12 +105,12 @@ export class Throwable extends Component {
                     cursor.start.x,
                     cursor.start.y,
                     cursor.position.x,
-                    cursor.position.y,
+                    cursor.position.y
                 );
                 const trajectory = line.map((pos) => ({
                     x: pos.x,
                     y: pos.y,
-                    entities: game.map.getEntitiesAt(pos.x, pos.y)
+                    entities: game.map.getEntitiesAt(pos.x, pos.y),
                 }));
 
                 this.throw(trajectory, evt.data.interactor);
@@ -115,15 +120,19 @@ export class Throwable extends Component {
             },
             getSegmentTypes: (line) => {
                 let lineValid = true;
-                const result = line.map(({x, y}, idx) => {
+                const result = line.map(({ x, y }, idx) => {
                     if (idx === 0) {
                         return CURSOR_SEGMENT_NONE;
                     }
 
                     // todo: fire "query" event on each item in path
                     const entities = game.map.getEntitiesAt(x, y);
-                    const blocker = entities.find((entity) => entity.has(IsVisible) && entity.has(Blocker));
-                    const body = entities.find((entity) => entity.has(IsVisible) && entity.has(Body));
+                    const blocker = entities.find(
+                        (entity) => entity.has(IsVisible) && entity.has(Blocker)
+                    );
+                    const body = entities.find(
+                        (entity) => entity.has(IsVisible) && entity.has(Body)
+                    );
 
                     if (blocker) {
                         lineValid = false;
@@ -134,7 +143,9 @@ export class Throwable extends Component {
                         return CURSOR_SEGMENT_INTEREST;
                     }
 
-                    return !lineValid ? CURSOR_SEGMENT_INVALID : CURSOR_SEGMENT_UNKNOWN;
+                    return !lineValid
+                        ? CURSOR_SEGMENT_INVALID
+                        : CURSOR_SEGMENT_UNKNOWN;
                 });
 
                 const interestIdx = result.indexOf(CURSOR_SEGMENT_INTEREST);
@@ -145,7 +156,7 @@ export class Throwable extends Component {
                 }
 
                 return result;
-            }
+            },
         });
     }
 }

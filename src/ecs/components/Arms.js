@@ -10,7 +10,7 @@ export class Arms extends Component {
 
         const damage = {
             type: 'blunt',
-            value: 5
+            value: 5,
         };
 
         const map = window.game.map;

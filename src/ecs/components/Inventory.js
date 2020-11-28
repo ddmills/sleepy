@@ -22,7 +22,10 @@ export class Inventory extends Component {
 
     getStackable(stackableIdentifier) {
         return this.content.find((entity) => {
-            return entity.has(Stackable) && entity.stackable.identifier === stackableIdentifier;
+            return (
+                entity.has(Stackable) &&
+                entity.stackable.identifier === stackableIdentifier
+            );
         });
     }
 

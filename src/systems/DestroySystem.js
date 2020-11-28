@@ -8,7 +8,7 @@ export default class DestroySystem extends System {
         super(game);
 
         this.#query = game.ecs.createQuery({
-            all: [IsDestroying]
+            all: [IsDestroying],
         });
     }
 

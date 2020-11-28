@@ -16,15 +16,15 @@ export default class RenderSystem extends System {
         super(game);
         this.#query = game.ecs.createQuery({
             all: [Glyph, Position, IsVisible],
-            not: [IsInventoried, IsDestroying],
+            none: [IsInventoried, IsDestroying],
         });
         this.#explored = game.ecs.createQuery({
             all: [Glyph, Position, Explored],
-            none: [IsVisible, IsDestroying],
+            none: [IsInventoried, IsVisible, IsDestroying],
         });
     }
 
-    render() {
+    render(dt) {
         this.game.renderer.clear();
 
         this.#explored.get().forEach((renderable) => {

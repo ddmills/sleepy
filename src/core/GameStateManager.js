@@ -54,7 +54,7 @@ export default class GameStateManager extends Manager {
 
     saveGame() {
         if (!this.isStarted) {
-            console.warn('cannot save game since it\'s not started');
+            console.warn("cannot save game since it's not started");
             return;
         }
 
@@ -84,21 +84,31 @@ export default class GameStateManager extends Manager {
     }
 
     saveSectorPositionData(sectorId, positionData) {
-        localStorage.setItem(`${this.filename}-${sectorId}-positions`, JSON.stringify(positionData));
+        localStorage.setItem(
+            `${this.filename}-${sectorId}-positions`,
+            JSON.stringify(positionData)
+        );
     }
 
     saveSectorEntityData(sectorId, entityData) {
-        localStorage.setItem(`${this.filename}-${sectorId}-entities`, JSON.stringify(entityData));
+        localStorage.setItem(
+            `${this.filename}-${sectorId}-entities`,
+            JSON.stringify(entityData)
+        );
     }
 
     loadSectorEntityData(sectorId) {
-        const json = localStorage.getItem(`${this.filename}-${sectorId}-entities`);
+        const json = localStorage.getItem(
+            `${this.filename}-${sectorId}-entities`
+        );
 
         return json && JSON.parse(json);
     }
 
     loadSectorPositionData(sectorId) {
-        const json = localStorage.getItem(`${this.filename}-${sectorId}-positions`);
+        const json = localStorage.getItem(
+            `${this.filename}-${sectorId}-positions`
+        );
 
         return json && JSON.parse(json);
     }

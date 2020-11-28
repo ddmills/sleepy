@@ -16,6 +16,6 @@ export class TileData {
     isType(type) {
         return this.type === type;
     }
-};
+}
 
 export const createTileData = (x, y) => new TileData(x, y);

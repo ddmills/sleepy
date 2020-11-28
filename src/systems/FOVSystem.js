@@ -1,5 +1,11 @@
 import { FOV } from 'rot-js';
-import { Explorable, Explored, IsDestroying, Shadowcaster, IsVisible } from '../ecs/components';
+import {
+    Explorable,
+    Explored,
+    IsDestroying,
+    Shadowcaster,
+    IsVisible,
+} from '../ecs/components';
 import System from './System';
 
 export default class FOVSystem extends System {

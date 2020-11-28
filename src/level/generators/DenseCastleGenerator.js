@@ -32,7 +32,7 @@ const splitNodeVertical = (node, cut) => {
         offsetX: node.offsetX + cut,
         offsetY: node.offsetY,
         width: node.width - cut,
-        height: node.height
+        height: node.height,
     };
     return [left, right];
 };
@@ -58,7 +58,7 @@ const splitNodeHorizontal = (node, cut) => {
         offsetX: node.offsetX,
         offsetY: node.offsetY + cut,
         width: node.width,
-        height: node.height - cut
+        height: node.height - cut,
     };
 
     return [top, bottom];
@@ -71,7 +71,12 @@ export class DenseCastleGenerator extends TileGenerator {
         const connections = settings.connections;
 
         const minRoomWidth = settings.minRoomWidth || 4;
-        const minRoomHeight = settings.minRoomWidth || 4;
+        const minRoomHeight = settings.minRoomHeight || 4;
+
+        const maxRoomWidth = settings.maxRoomWidth || 12;
+        const maxRoomHeight = settings.maxRoomHeight || 12;
+
+        const splitIgnoreChance = settings.splitIgnoreChance || 0.8;
 
         const tiles = new TileContainer(width, height);
 
@@ -85,38 +90,40 @@ export class DenseCastleGenerator extends TileGenerator {
             }
         }
 
-        const nodes = [{
-            isLeaf: true,
-            parentId: null,
-            siblingId: null,
-            id: createNodeId(),
-            offsetX: 0,
-            offsetY: 0,
-            height: height - 1,
-            width: width - 1
-        }];
+        const nodes = [
+            {
+                isLeaf: true,
+                parentId: null,
+                siblingId: null,
+                id: createNodeId(),
+                offsetX: 0,
+                offsetY: 0,
+                height: height - 1,
+                width: width - 1,
+            },
+        ];
 
         const graph = [];
-
-        let ignoreSplitPercent = 0.1;
 
         while (nodes.length > 0) {
             const node = nodes.pop();
             graph.push(node);
 
-            const ignoreSplit = Math.random() < ignoreSplitPercent
+            if (node.width < maxRoomWidth && node.height < maxRoomHeight) {
+                const ignoreSplit = Math.random() < splitIgnoreChance;
 
-            if (ignoreSplit) {
-                continue
+                if (ignoreSplit) {
+                    continue;
+                }
             }
 
             const directions = [];
 
-            if ((node.width - minRoomWidth - 1) > minRoomWidth) {
+            if (node.width - minRoomWidth - 1 > minRoomWidth) {
                 directions.push(VERTICAL);
             }
 
-            if ((node.height - minRoomHeight - 1) > minRoomHeight) {
+            if (node.height - minRoomHeight - 1 > minRoomHeight) {
                 directions.push(HORIZONTAL);
             }
 
@@ -127,11 +134,17 @@ export class DenseCastleGenerator extends TileGenerator {
             const direction = pickRandom(directions);
 
             if (direction === VERTICAL) {
-                const cut = randomInt(minRoomWidth + 1, node.width - minRoomWidth - 1);
+                const cut = randomInt(
+                    minRoomWidth + 1,
+                    node.width - minRoomWidth - 1
+                );
 
                 nodes.push(...splitNodeVertical(node, cut));
             } else {
-                const cut = randomInt(minRoomHeight + 1, node.height - minRoomHeight - 1);
+                const cut = randomInt(
+                    minRoomHeight + 1,
+                    node.height - minRoomHeight - 1
+                );
 
                 nodes.push(...splitNodeHorizontal(node, cut));
             }
@@ -139,21 +152,26 @@ export class DenseCastleGenerator extends TileGenerator {
             node.isLeaf = false;
         }
 
-        console.log(graph);
-
         graph.forEach((node) => {
             if (node.parentId === null) {
-                console.log('skipping root node', node);
                 return;
             }
 
             if (node.isLeaf) {
                 for (let i = 0; i < node.width; i++) {
-                    tiles.setTileType(node.offsetX + i, node.offsetY, TILE_TYPE_WALL);
+                    tiles.setTileType(
+                        node.offsetX + i,
+                        node.offsetY,
+                        TILE_TYPE_WALL
+                    );
                 }
 
                 for (let j = 0; j < node.height; j++) {
-                    tiles.setTileType(node.offsetX, node.offsetY + j, TILE_TYPE_WALL);
+                    tiles.setTileType(
+                        node.offsetX,
+                        node.offsetY + j,
+                        TILE_TYPE_WALL
+                    );
                 }
                 return;
             }
@@ -170,43 +188,44 @@ export class DenseCastleGenerator extends TileGenerator {
             let hasSib = false;
 
             if (sibling.offsetX < node.offsetX) {
-                console.log('sibling is LEFT!');
                 hasSib = true;
                 for (let i = 1; i < node.height; i++) {
                     const x = node.offsetX;
                     const y = node.offsetY + i;
                     const tile = tiles.getTile(x, y);
 
-                    // check tiles before and after are clear?
                     if (
-                        tiles.tileTypeMatches(x - 1, y, TILE_TYPE_FLOOR) && tiles.tileTypeMatches(x + 1, y, TILE_TYPE_FLOOR)
+                        tiles.tileTypeMatches(x - 1, y, TILE_TYPE_FLOOR) &&
+                        tiles.tileTypeMatches(x + 1, y, TILE_TYPE_FLOOR)
                     ) {
                         doorCandidates.push(tile);
                     }
                 }
             } else if (sibling.offsetY < node.offsetY) {
-                console.log('sibling is TOP!');
                 hasSib = true;
                 for (let i = 1; i < node.width; i++) {
                     const x = node.offsetX + i;
                     const y = node.offsetY;
                     const tile = tiles.getTile(x, y);
 
-                    // check tiles before and after are clear?
                     if (
-                        tiles.tileTypeMatches(x, y - 1, TILE_TYPE_FLOOR) && tiles.tileTypeMatches(x, y + 1, TILE_TYPE_FLOOR)
+                        tiles.tileTypeMatches(x, y - 1, TILE_TYPE_FLOOR) &&
+                        tiles.tileTypeMatches(x, y + 1, TILE_TYPE_FLOOR)
                     ) {
                         doorCandidates.push(tile);
                     }
-
-                    doorCandidates.push(tile);
                 }
             }
 
             const door = pickRandom(doorCandidates);
 
             if (hasSib && !door) {
-                console.warn('cannot make door!?', node, node.width, node.height);
+                console.warn(
+                    'cannot make door!?',
+                    node,
+                    node.width,
+                    node.height
+                );
             }
 
             if (door) {
@@ -218,4 +237,4 @@ export class DenseCastleGenerator extends TileGenerator {
 
         return tiles;
     }
-};
+}

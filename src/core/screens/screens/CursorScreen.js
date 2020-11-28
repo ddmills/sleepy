@@ -24,8 +24,7 @@ import {
     DIR_NE,
 } from '../../../enums/Directions';
 import {
-    bresenhamLine,
-    bresenhamLineExclusive,
+    bresenhamLine
 } from '../../../utils/BresenhamLine';
 import {
     CURSOR_SEGMENT_INTEREST,
@@ -34,6 +33,9 @@ import {
     getCursorSegmentTypeGlyph,
 } from '../../../enums/CursorSegments';
 import { game } from '../../Game';
+import { computeAStar } from '../../../utils/AStar';
+import { Blocker } from '../../../ecs/components';
+import { diagonalDistance } from '../../../utils/diagonalDistance';
 
 const NOOP = () => {};
 
@@ -115,12 +117,41 @@ export default class CursorScreen extends Screen {
     onUpdate(dt) {
         this.game.updateAdventureSystems(dt);
 
-        const line = bresenhamLine(
-            this.#start.x,
-            this.#start.y,
-            this.game.cursor.x,
-            this.game.cursor.y
-        );
+        // const line = bresenhamLine(
+        //     this.#start.x,
+        //     this.#start.y,
+        //     this.game.cursor.x,
+        //     this.game.cursor.y
+        // );
+
+        const start = {
+            x: this.#start.x,
+            y: this.#start.y,
+        };
+
+        const end = {
+            x: this.game.cursor.x,
+            y: this.game.cursor.y,
+        };
+
+        const cost = (a, b) => {
+            if (a.x == b.x && a.y == b.y) {
+                return 0;
+            }
+
+            const entities = game.map.getEntitiesAt(b.x, b.y);
+
+            if (entities.some((entity) => entity.has(Blocker))) {
+                return Infinity;
+            }
+
+            return diagonalDistance(a, b);
+        };
+
+        const result = computeAStar(start, end, cost);
+        const line = result.path;
+
+        this.game.renderer.drawText(3, 3, `${result.cost}`, 'cyan');
 
         let cursorColor = getCursorSegmentTypeColor(CURSOR_SEGMENT_INTEREST);
 

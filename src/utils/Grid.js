@@ -71,4 +71,17 @@ export default class Grid {
     isOutOfBounds(x, y) {
         return x < 0 || y < 0 || x >= this.width || y >= this.height;
     }
+
+    getNeighbors(x, y) {
+        return [
+            this.get(x - 1, y - 1), // TOP LEFT
+            this.get(x, y - 1), // TOP
+            this.get(x + 1, y - 1), // TOP RIGHT
+            this.get(x - 1, y), // LEFT
+            this.get(x + 1, y), // RIGHT
+            this.get(x - 1, y + 1), // BOTTOM LEFT
+            this.get(x, y + 1), // BOTTOM
+            this.get(x + 1, y + 1), // BOTTOM RIGHT
+        ];
+    }
 }

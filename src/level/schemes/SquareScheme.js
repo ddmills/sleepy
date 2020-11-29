@@ -1,9 +1,9 @@
 import { digConnections } from '../LevelConnections';
 import TileContainer from '../TileContainer';
-import TileGenerator from '../TileGenerator';
 import { TILE_TYPE_FLOOR, TILE_TYPE_WALL } from '../TileData';
+import TileScheme from '../TileScheme';
 
-export class SquareGenerator extends TileGenerator {
+export class SquareScheme extends TileScheme {
     static generate(settings) {
         const width = settings.width;
         const height = settings.height;

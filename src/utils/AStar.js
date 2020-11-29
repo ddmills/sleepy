@@ -39,7 +39,19 @@ const getNeighbors = (x, y) => [
 
 const key = (pos) => `${pos.x},${pos.y}`;
 
-export const computeAStar = (start, goal, cost, heuristic = diagonalDistance) => {
+const defaultSettings = {
+    start: {},
+    goal: {},
+    cost: () => {},
+    allowDiagonals: true
+};
+
+export const computeAStar = (settings = defaultSettings) => {
+    const heuristic = settings.allowDiagonals ? diagonalDistance : manhattanDistance;
+    const start = settings.start;
+    const goal = settings.goal;
+    const cost = settings.cost;
+
     const open = new PriorityQueue();
     const cameFrom = {};
     const costSoFar = {};
@@ -50,7 +62,9 @@ export const computeAStar = (start, goal, cost, heuristic = diagonalDistance) =>
         success: false,
         path: [],
         costs: [],
-        cost: Infinity
+        cost: Infinity,
+        start,
+        goal
     };
 
     if (cost(start, goal) === Infinity) {
@@ -79,7 +93,7 @@ export const computeAStar = (start, goal, cost, heuristic = diagonalDistance) =>
 
         for (let next of neighbors) {
             const nextKey = key(next);
-            const graphCost = cost(current, next);
+            const graphCost = nextKey === goalKey ? 0 : cost(current, next);
 
             if (graphCost === Infinity) {
                 continue;

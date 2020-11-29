@@ -1,4 +1,4 @@
-export default class TileGenerator {
+export default class TileScheme {
     static generate() {}
 
     static populate() {}

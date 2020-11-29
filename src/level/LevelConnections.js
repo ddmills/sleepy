@@ -1,70 +1,66 @@
-import { TILE_TYPE_FLOOR } from './TileData';
+import { computeAStar } from '../utils/AStar';
+import { manhattanDistance } from '../utils/ManhattanDistance';
+import { TILE_TYPE_FLOOR, TILE_TYPE_WALL } from './TileData';
 
-export const digConnections = (tiles, connections) => {
-    const northPaths = connections.north.map((north) => {
-        // dig south from top until hit empty
-        for (let i = 0; i < tiles.height; i++) {
-            if (tiles.tileTypeMatches(12, i, TILE_TYPE_FLOOR)) {
-                return true;
-            } else {
-                tiles.setTileType(12, i, TILE_TYPE_FLOOR);
-            }
+const getClosestTile = (tiles, target) => {
+    let closest = null;
+    let closestDistance = null;
+
+    tiles.data.forEach((tile) => {
+        if (!tile.isType(TILE_TYPE_FLOOR)) {
+            return;
         }
 
-        return false;
-    });
+        const distance = manhattanDistance(tile, target);
 
-    if (northPaths.some((isConnected) => isConnected === false)) {
-        console.log('CONNECTION north FAILED! regenerate');
-    }
-
-    const southPaths = connections.south.map((south) => {
-        for (let i = tiles.height - 1; i > 0; i--) {
-            if (tiles.tileTypeMatches(12, i, TILE_TYPE_FLOOR)) {
-                return true;
-            } else {
-                tiles.setTileType(12, i, TILE_TYPE_FLOOR);
-            }
+        if (distance < closestDistance || closest === null) {
+            closest = tile;
+            closestDistance = distance;
+            return;
         }
-
-        return false;
     });
 
-    if (southPaths.some((isConnected) => isConnected === false)) {
-        console.log('CONNECTION south FAILED! regenerate');
+    return closest;
+}
+
+export const digExit = (tiles, exit) => {
+    const source = getClosestTile(tiles, exit);
+
+    if (source.x === exit.x && source.y === exit.y) {
+        tiles.setTileType(exit.x, exit.y, TILE_TYPE_FLOOR);
+        return;
     }
 
-    const westPaths = connections.west.map((west) => {
-        // dig east from left until hit empty
-        for (let i = 0; i < tiles.width; i++) {
-            if (tiles.tileTypeMatches(i, 12, TILE_TYPE_FLOOR)) {
-                return true;
-            } else {
-                tiles.setTileType(i, 12, TILE_TYPE_FLOOR);
+    tiles.setTileType(source.x, source.y, TILE_TYPE_WALL);
+    tiles.setTileType(exit.x, exit.y, TILE_TYPE_WALL);
+
+    const result = computeAStar({
+        start: {
+            x: exit.x,
+            y: exit.y
+        },
+        goal: {
+            x: source.x,
+            y: source.y,
+        },
+        cost: (a, b) => {
+            if (tiles.isOnEdge(b.x, b.y)) {
+                return Infinity
             }
-        }
 
-        return false;
-    });
-
-    if (westPaths.some((isConnected) => isConnected === false)) {
-        console.log('CONNECTION west FAILED! regenerate');
-    }
-
-    const eastPaths = connections.east.map((east) => {
-        // dig west from right until hit empty
-        for (let i = tiles.width - 1; i > 0; i--) {
-            if (tiles.tileTypeMatches(i, 12, TILE_TYPE_FLOOR)) {
-                return true;
-            } else {
-                tiles.setTileType(i, 12, TILE_TYPE_FLOOR);
+            if (tiles.tileTypeMatches(b.x, b.y, TILE_TYPE_WALL)) {
+                return manhattanDistance(a, b);
             }
-        }
 
-        return false;
+            return Infinity;
+        }
     });
 
-    if (eastPaths.some((isConnected) => isConnected === false)) {
-        console.log('CONNECTION east FAILED! regenerate');
-    }
+    result.path.forEach((segment) => {
+        tiles.setTileType(segment.x, segment.y, TILE_TYPE_FLOOR);
+    });
+};
+
+export const digExits = (tiles, exits) => {
+    exits.forEach((exit) => digExit(tiles, exit));
 };

@@ -1,14 +1,14 @@
 import { Map as MapGenerator } from 'rot-js';
-import { digConnections } from '../LevelConnections';
+import { digExits } from '../LevelConnections';
 import TileContainer from '../TileContainer';
-import TileGenerator from '../TileGenerator';
 import { TILE_TYPE_FLOOR, TILE_TYPE_WALL } from '../TileData';
+import TileScheme from '../TileScheme';
 
-export class UniformGenerator extends TileGenerator {
+export class UniformScheme extends TileScheme {
     static generate(settings) {
         const width = settings.width;
         const height = settings.height;
-        const connections = settings.connections;
+        const exits = settings.exits;
 
         const tiles = new TileContainer(width, height);
 
@@ -29,7 +29,7 @@ export class UniformGenerator extends TileGenerator {
             }
         });
 
-        digConnections(tiles, connections);
+        digExits(tiles, exits);
 
         return tiles;
     }

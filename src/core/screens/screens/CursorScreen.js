@@ -124,31 +124,26 @@ export default class CursorScreen extends Screen {
         //     this.game.cursor.y
         // );
 
-        const start = {
-            x: this.#start.x,
-            y: this.#start.y,
-        };
+        const result = computeAStar({
+            start: {
+                x: this.#start.x,
+                y: this.#start.y,
+            },
+            goal: {
+                x: this.game.cursor.x,
+                y: this.game.cursor.y,
+            },
+            cost: (a, b) => {
+                const entities = game.map.getEntitiesAt(b.x, b.y);
 
-        const end = {
-            x: this.game.cursor.x,
-            y: this.game.cursor.y,
-        };
+                if (entities.some((entity) => entity.has(Blocker))) {
+                    return Infinity;
+                }
 
-        const cost = (a, b) => {
-            if (a.x == b.x && a.y == b.y) {
-                return 0;
+                return diagonalDistance(a, b);
             }
+        });
 
-            const entities = game.map.getEntitiesAt(b.x, b.y);
-
-            if (entities.some((entity) => entity.has(Blocker))) {
-                return Infinity;
-            }
-
-            return diagonalDistance(a, b);
-        };
-
-        const result = computeAStar(start, end, cost);
         const line = result.path;
 
         this.game.renderer.drawText(3, 3, `${result.cost}`, 'cyan');

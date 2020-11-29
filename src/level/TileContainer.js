@@ -35,6 +35,10 @@ export default class TileContainer {
         this.#grid.get(x, y).type = type;
     }
 
+    setTileTheme(x, y, theme) {
+        this.#grid.get(x, y).theme = theme;
+    }
+
     getTileType(x, y) {
         return this.getTile(x, y).type;
     }
@@ -58,6 +62,15 @@ export default class TileContainer {
     combineOther(offsetX, offsetY, tiles) {
         tiles.data.forEach((tile) => {
             this.setTileType(tile.x + offsetX, tile.y + offsetY, tile.type);
+            this.setTileTheme(tile.x + offsetX, tile.y + offsetY, tile.theme);
         });
+    }
+
+    isOnEdge(x, y) {
+        return x === 0 || y === 0 || x === this.width - 1 || y === this.height - 1;
+    }
+
+    setTheme(theme) {
+        this.data.forEach((tile) => this.setTileTheme(tile.x, tile.y, theme));
     }
 }

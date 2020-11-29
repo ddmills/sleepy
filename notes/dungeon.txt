@@ -22,3 +22,18 @@ account for corridors.
 8. for each floor - 1, find staircase locations that overlap between floor and floor+1
 
 ? Run quad tree algorithm then BSP dungeon from that, for non-rectangular areas
+
+
+1. generators will create "tile containers"
+2. tile containers have: exits and a theme
+3. tile containers can have sub-containers
+4. can claim "ownership" of walls or not
+
+# goal dig tunnel from point to AREA
+1. rank tiles in AREA by distance to point
+2. pick lowest ranking tile
+3. compute A* path from point to point
+    - points on map edge have infinite coast
+
+> from @redblobgames regarding floodfill
+>"Connected components" is the algorithm you're looking for I think, and it uses flood fill underneath. Go through each tile. Start flood fill. Mark everything you find with the id of the starting tile. Skip any tiles that already have an id. Everything connected will end up with the same id.

@@ -1,11 +1,10 @@
-import { digConnections } from '../LevelConnections';
+import { digExits } from '../LevelConnections';
 import TileContainer from '../TileContainer';
-import TileGenerator from '../TileGenerator';
 import { TILE_TYPE_FLOOR, TILE_TYPE_WALL } from '../TileData';
 import { pickRandom, randomInt } from '../../utils/rand';
-import { SquareGenerator } from './SquareGenerator';
 import { computeAStar } from '../../utils/AStar';
 import { diagonalDistance } from '../../utils/diagonalDistance';
+import TileScheme from '../TileScheme';
 
 const VERTICAL = 0;
 const HORIZONTAL = 1;
@@ -66,14 +65,14 @@ const splitNodeHorizontal = (node, cut) => {
     return [top, bottom];
 };
 
-export class DenseCastleGenerator extends TileGenerator {
+export class DenseCastleScheme extends TileScheme {
     static generate(settings) {
         const width = settings.width;
         const height = settings.height;
-        const connections = settings.connections;
+        const exits = settings.exits || [];
 
-        const minRoomWidth = settings.minRoomWidth || 3;
-        const minRoomHeight = settings.minRoomHeight || 3;
+        const minRoomWidth = settings.minRoomWidth || 4;
+        const minRoomHeight = settings.minRoomHeight || 4;
 
         const maxRoomWidth = settings.maxRoomWidth || 12;
         const maxRoomHeight = settings.maxRoomHeight || 12;
@@ -237,16 +236,7 @@ export class DenseCastleGenerator extends TileGenerator {
             }
         });
 
-        // for every cell in the grid
-        // cell must be WALL
-        // cells on either side must be FLOOR
-        // must be 20 spaces apart
-
         const cost = (a, b) => {
-            if (a.x == b.x && a.y == b.y) {
-                return 0;
-            }
-
             if (tiles.tileTypeMatches(b.x, b.y, TILE_TYPE_FLOOR)) {
                 return diagonalDistance(a, b);
             }
@@ -256,7 +246,6 @@ export class DenseCastleGenerator extends TileGenerator {
 
         const tryAddLoop = (a, b) => {
             if (a.isType(TILE_TYPE_FLOOR) && b.isType(TILE_TYPE_FLOOR)) {
-                // compute distance between a and b
                 const start = {
                     x: b.x,
                     y: b.y,
@@ -265,7 +254,11 @@ export class DenseCastleGenerator extends TileGenerator {
                     x: a.x,
                     y: a.y,
                 };
-                const path = computeAStar(start, goal, cost);
+                const path = computeAStar({
+                    start,
+                    goal,
+                    cost
+                });
 
                 if (path.success && path.cost >= loopiness) {
                     return true;
@@ -295,7 +288,7 @@ export class DenseCastleGenerator extends TileGenerator {
                 }
             });
 
-        digConnections(tiles, connections);
+        digExits(tiles, exits);
 
         return tiles;
     }

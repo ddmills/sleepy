@@ -4,14 +4,14 @@
     "sectors": [
         [
             {
-                "composition": {
-                    "type": "STRONGHOLD"
+                "generator": {
+                    "type": "FOREST_STRONGHOLD"
                 },
                 "connectionsNorth": [],
                 "connectionsWest": []
             },
             {
-                "composition": {
+                "generator": {
                     "type": "FOREST"
                 },
                 "connectionsNorth": [],
@@ -24,8 +24,8 @@
         ],
         [
             {
-                "composition": {
-                    "type": "SQUARE"
+                "generator": {
+                    "type": "FOREST_STRONGHOLD"
                 },
                 "connectionsNorth": [
                     {
@@ -35,7 +35,7 @@
                 "connectionsWest": []
             },
             {
-                "composition": {
+                "generator": {
                     "type": "FOREST"
                 },
                 "connectionsNorth": [],

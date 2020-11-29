@@ -5,14 +5,14 @@
         [
             {
                 "generator": {
-                    "type": "FOREST_STRONGHOLD"
+                    "type": "FOREST_CABINS"
                 },
                 "connectionsNorth": [],
                 "connectionsWest": []
             },
             {
                 "generator": {
-                    "type": "FOREST_CABINS"
+                    "type": "FOREST"
                 },
                 "connectionsNorth": [],
                 "connectionsWest": [

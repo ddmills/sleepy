@@ -1,5 +1,7 @@
+import { BoredGoalType } from '../../ai/GoalTypes';
 import { game } from '../../core/Game';
 import { LIQUID_HONEY } from '../../enums/LiquidTypes';
+import { randomInt } from '../../utils/rand';
 import { TILE_TYPE_FLOOR, TILE_TYPE_WALL } from '../TileData';
 import TileThemePopulator from './TileThemePopulator';
 
@@ -25,23 +27,24 @@ export default class CabinTheme extends TileThemePopulator {
 
         room.borderTiles.forEach((tile) => this.populateTile(tile));
 
-        let spawnedChest = false;
+        this.trySpawn(room, (tile) => {
+            const chest = game.ecs.createPrefab('Chest');
+            const stone = game.ecs.createPrefab('Stone');
+            const vial = game.ecs.createPrefab('Vial');
 
-        room.interiorTiles.forEach((tile) => {
-            if (!spawnedChest && Math.random() < .1) {
-                if (tile.isType(TILE_TYPE_FLOOR)) {
-                    const chest = game.ecs.createPrefab('Chest');
-                    const stone = game.ecs.createPrefab('Stone');
-                    const vial = game.ecs.createPrefab('Vial');
-
-                    vial.liquidContainer.contents = LIQUID_HONEY;
-                    chest.position.setPos(tile.x, tile.y);
-                    chest.inventory.addLoot(vial);
-                    chest.inventory.addLoot(stone);
-
-                    spawnedChest = true;
-                }
-            }
+            vial.liquidContainer.contents = LIQUID_HONEY;
+            chest.position.setPos(tile.x, tile.y);
+            chest.inventory.addLoot(vial);
+            chest.inventory.addLoot(stone);
         });
+
+        for (let i = 0; i < randomInt(0, 3); i++) {
+            this.trySpawn(room, (tile) => {
+                const wanderer = game.ecs.createPrefab('HumanWanderer');
+
+                wanderer.position.setPos(tile.x, tile.y);
+                wanderer.brain.pushGoal(BoredGoalType.create());
+            });
+        }
     }
 }

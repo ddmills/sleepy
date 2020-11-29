@@ -1,4 +1,5 @@
 import { computeAStar } from '../utils/AStar';
+import { diagonalDistance } from '../utils/diagonalDistance';
 import { manhattanDistance } from '../utils/ManhattanDistance';
 import { TILE_TYPE_FLOOR, TILE_TYPE_WALL } from './TileData';
 
@@ -35,13 +36,13 @@ export const digExit = (tiles, exit) => {
     tiles.setTileType(exit.x, exit.y, TILE_TYPE_WALL);
 
     const result = computeAStar({
-        start: {
-            x: exit.x,
-            y: exit.y
-        },
         goal: {
             x: source.x,
             y: source.y,
+        },
+        start: {
+            x: exit.x,
+            y: exit.y,
         },
         cost: (a, b) => {
             if (tiles.isOnEdge(b.x, b.y)) {
@@ -49,7 +50,7 @@ export const digExit = (tiles, exit) => {
             }
 
             if (tiles.tileTypeMatches(b.x, b.y, TILE_TYPE_WALL)) {
-                return manhattanDistance(a, b);
+                return diagonalDistance(a, b);
             }
 
             return Infinity;
@@ -59,6 +60,15 @@ export const digExit = (tiles, exit) => {
     result.path.forEach((segment) => {
         tiles.setTileType(segment.x, segment.y, TILE_TYPE_FLOOR);
     });
+
+    if (result.success) {
+        const door = result.path[result.path.length - 2];
+        const room = tiles.getRoomForTile(door.x, door.y);
+
+        if (room) {
+            room.addExit(door.x, door.y);
+        }
+    }
 };
 
 export const digExits = (tiles, exits) => {

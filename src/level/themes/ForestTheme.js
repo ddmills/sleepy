@@ -1,4 +1,7 @@
+import { BoredGoalType } from '../../ai/GoalTypes';
 import { game } from '../../core/Game';
+import { LIQUID_BLOOD, LIQUID_HONEY, LIQUID_WATER } from '../../enums/LiquidTypes';
+import { randomInt } from '../../utils/rand';
 import { TILE_TYPE_FLOOR, TILE_TYPE_WALL } from '../TileData';
 import TileThemePopulator from './TileThemePopulator';
 
@@ -24,5 +27,41 @@ export default class ForestTheme extends TileThemePopulator {
                 }
             }
         });
+
+        for (let i = 0; i < randomInt(0, 2); i++) {
+            this.trySpawn(room, (tile) => {
+                const goblin = game.ecs.createPrefab('Goblin');
+
+                goblin.position.setPos(tile.x, tile.y);
+                goblin.brain.pushGoal(BoredGoalType.create());
+            });
+        }
+
+        for (let i = 0; i < randomInt(0, 1); i++) {
+            this.trySpawn(room, (tile) => {
+                const vial = game.ecs.createPrefab('Vial');
+
+                vial.liquidContainer.contents = LIQUID_BLOOD;
+                vial.position.setPos(tile.x, tile.y);
+            });
+        }
+
+        for (let i = 0; i < randomInt(0, 1); i++) {
+            this.trySpawn(room, (tile) => {
+                const vial = game.ecs.createPrefab('Vial');
+
+                vial.liquidContainer.contents = LIQUID_WATER;
+                vial.position.setPos(tile.x, tile.y);
+            });
+        }
+
+        for (let i = 0; i < randomInt(0, 1); i++) {
+            this.trySpawn(room, (tile) => {
+                const vial = game.ecs.createPrefab('Vial');
+
+                vial.liquidContainer.contents = LIQUID_HONEY;
+                vial.position.setPos(tile.x, tile.y);
+            });
+        }
     }
 }

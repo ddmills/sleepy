@@ -1,0 +1,13 @@
+loot and monsters should spawn based on 3 things:
+
+1. Room theme
+2. Sector faction(s)
+3. Sector level
+
+monsters should drop loop based on:
+
+1. monster difficulty
+2. monster faction
+3. sector level
+4. room theme
+5. Individual loot tables

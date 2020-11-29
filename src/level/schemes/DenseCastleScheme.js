@@ -290,7 +290,14 @@ export class DenseCastleScheme extends TileScheme {
                 const south = tiles.getTile(tile.x, tile.y + 1);
 
                 if (tryAddLoop(north, south)) {
-                    tiles.setTileType(tile.x, tile.y, TILE_TYPE_FLOOR)
+                    tiles.setTileType(tile.x, tile.y, TILE_TYPE_FLOOR);
+
+                    const room = tiles.getRoomForTile(tile.x, tile.y);
+
+                    if (room) {
+                        room.addExit(tile.x, tile.y);
+                    }
+
                     return;
                 }
 
@@ -298,7 +305,14 @@ export class DenseCastleScheme extends TileScheme {
                 const west = tiles.getTile(tile.x + 1, tile.y);
 
                 if (tryAddLoop(east, west)) {
-                    tiles.setTileType(tile.x, tile.y, TILE_TYPE_FLOOR)
+                    tiles.setTileType(tile.x, tile.y, TILE_TYPE_FLOOR);
+
+                    const room = tiles.getRoomForTile(tile.x, tile.y);
+
+                    if (room) {
+                        room.addExit(tile.x, tile.y);
+                    }
+
                     return;
                 }
             });

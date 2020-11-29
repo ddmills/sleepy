@@ -98,58 +98,7 @@ export class Sector {
             theme.populateTile(tile);
         });
 
-        // for (let i = 0; i < 3; i++) {
-        //     const position = game.map.getRandomEmptyPosition();
-        //     const chest = game.ecs.createPrefab('Chest');
-
-        //     const stone = game.ecs.createPrefab('Stone');
-        //     const vial = game.ecs.createPrefab('Vial');
-        //     vial.liquidContainer.contents = LIQUID_HONEY;
-
-        //     chest.position.setPos(position.x, position.y);
-        //     chest.inventory.addLoot(vial);
-        //     chest.inventory.addLoot(stone);
-        // }
-
-        // for (let i = 0; i < 3; i++) {
-        //     const position = game.map.getRandomEmptyPosition();
-        //     const vial = game.ecs.createPrefab('Vial');
-
-        //     vial.liquidContainer.contents = LIQUID_BLOOD;
-        //     vial.position.setPos(position.x, position.y);
-        // }
-
-        // for (let i = 0; i < 3; i++) {
-        //     const position = game.map.getRandomEmptyPosition();
-        //     const vial = game.ecs.createPrefab('Vial');
-
-        //     vial.liquidContainer.contents = LIQUID_WATER;
-        //     vial.position.setPos(position.x, position.y);
-        // }
-
-        // for (let i = 0; i < 3; i++) {
-        //     const position = game.map.getRandomEmptyPosition();
-        //     const vial = game.ecs.createPrefab('Vial');
-
-        //     vial.liquidContainer.contents = LIQUID_HONEY;
-        //     vial.position.setPos(position.x, position.y);
-        // }
-
-        // for (let i = 0; i < 6; i++) {
-        //     const position = game.map.getRandomEmptyPosition();
-        //     const wanderer = game.ecs.createPrefab('HumanWanderer');
-
-        //     wanderer.position.setPos(position.x, position.y);
-        //     wanderer.brain.pushGoal(BoredGoalType.create());
-        // }
-
-        // for (let i = 0; i < 5; i++) {
-        //     const position = game.map.getRandomEmptyPosition();
-        //     const goblin = game.ecs.createPrefab('Goblin');
-
-        //     goblin.position.setPos(position.x, position.y);
-        //     goblin.brain.pushGoal(BoredGoalType.create());
-        // }
+        this.tiles = tiles;
     }
 
     static parseData(world, data, x, y) {

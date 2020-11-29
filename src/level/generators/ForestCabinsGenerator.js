@@ -8,7 +8,6 @@ export class ForestCabinsGenerator {
         const tiles = UniformScheme.generate({
             width: settings.width,
             height: settings.height,
-            exits: settings.exits
         });
 
         tiles.rooms.forEach((room) => room.theme = TILE_THEME_FOREST);
@@ -21,7 +20,7 @@ export class ForestCabinsGenerator {
             room.includeWalls = true;
         }
 
-        const distancedRooms = mediumRooms.filter((r) => r != room);
+        const distancedRooms = mediumRooms.filter((r) => r !== room);
         const room2 = pickRandom(distancedRooms);
 
         if (room2) {

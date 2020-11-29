@@ -8,7 +8,7 @@ export class UniformScheme extends TileScheme {
     static generate(settings) {
         const width = settings.width;
         const height = settings.height;
-        const exits = settings.exits;
+        const exits = settings.exits || [];
         const tiles = new TileContainer(width, height);
 
         const generator = new MapGenerator.Uniform(width, height, {

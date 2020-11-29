@@ -117,36 +117,12 @@ export default class CursorScreen extends Screen {
     onUpdate(dt) {
         this.game.updateAdventureSystems(dt);
 
-        // const line = bresenhamLine(
-        //     this.#start.x,
-        //     this.#start.y,
-        //     this.game.cursor.x,
-        //     this.game.cursor.y
-        // );
-
-        const result = computeAStar({
-            start: {
-                x: this.#start.x,
-                y: this.#start.y,
-            },
-            goal: {
-                x: this.game.cursor.x,
-                y: this.game.cursor.y,
-            },
-            cost: (a, b) => {
-                const entities = game.map.getEntitiesAt(b.x, b.y);
-
-                if (entities.some((entity) => entity.has(Blocker))) {
-                    return Infinity;
-                }
-
-                return diagonalDistance(a, b);
-            }
-        });
-
-        const line = result.path;
-
-        this.game.renderer.drawText(3, 3, `${result.cost}`, 'cyan');
+        const line = bresenhamLine(
+            this.#start.x,
+            this.#start.y,
+            this.game.cursor.x,
+            this.game.cursor.y
+        );
 
         let cursorColor = getCursorSegmentTypeColor(CURSOR_SEGMENT_INTEREST);
 

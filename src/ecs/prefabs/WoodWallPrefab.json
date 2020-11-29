@@ -1,0 +1,19 @@
+{
+    "name": "WoodWall",
+    "inherit": ["Wall"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Wooden wall"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "H",
+                "fg1": "#923e2b"
+            }
+        }
+    ]
+}

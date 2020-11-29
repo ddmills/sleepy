@@ -86,22 +86,17 @@ export class Sector {
             exits,
         });
 
+        tiles.rooms.forEach((room) => {
+            const theme = getThemePopulator(room.theme);
 
-        tiles.data.forEach((tile) => {
-            const theme = getThemePopulator(tile.theme);
-            theme.populateTile(tile);
+            theme.populateRoom(room);
         });
 
+        tiles.getUnassignedTiles().forEach((tile) => {
+            const theme = getThemePopulator(tile.theme);
 
-        // theme.populate(tiles);
-
-
-        for (let i = 0; i < 20; i++) {
-            const position = game.map.getRandomEmptyPosition();
-            const stone = game.ecs.createPrefab('Stone');
-
-            stone.position.setPos(position.x, position.y);
-        }
+            theme.populateTile(tile);
+        });
 
         // for (let i = 0; i < 3; i++) {
         //     const position = game.map.getRandomEmptyPosition();

@@ -37,3 +37,25 @@ account for corridors.
 
 > from @redblobgames regarding floodfill
 >"Connected components" is the algorithm you're looking for I think, and it uses flood fill underneath. Go through each tile. Start flood fill. Mark everything you find with the id of the starting tile. Skip any tiles that already have an id. Everything connected will end up with the same id.
+
+
+room requirements:
+- id (?) cuid
+- tiles [smart getter (?)]
+- width
+- height
+- exits [tiles or coords (?)]
+- offsetX
+- offsetY
+- theme ?
+- container (reference parent)
+
+TileData
+- x, y
+- roomId
+- type (floor, wall, oob, void)
+
+TileContainer
+- addRoom(room);
+- addTile();
+

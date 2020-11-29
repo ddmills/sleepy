@@ -161,6 +161,15 @@ export class DenseCastleScheme extends TileScheme {
             }
 
             if (node.isLeaf) {
+                const room = tiles.createRoom(
+                    node.offsetX + 1,
+                    node.offsetY + 1,
+                    node.width - 1,
+                    node.height - 1
+                );
+
+                room.includeWalls = true;
+
                 for (let i = 0; i < node.width; i++) {
                     tiles.setTileType(
                         node.offsetX + i,
@@ -232,6 +241,12 @@ export class DenseCastleScheme extends TileScheme {
             }
 
             if (door) {
+                const room = tiles.getRoomForTile(door.x, door.y);
+
+                if (room) {
+                    room.addExit(door.x, door.y);
+                }
+
                 tiles.setTileType(door.x, door.y, TILE_TYPE_FLOOR);
             }
         });

@@ -9,7 +9,6 @@ export class UniformScheme extends TileScheme {
         const width = settings.width;
         const height = settings.height;
         const exits = settings.exits;
-
         const tiles = new TileContainer(width, height);
 
         const generator = new MapGenerator.Uniform(width, height, {
@@ -27,6 +26,18 @@ export class UniformScheme extends TileScheme {
             if (v === 1) {
                 tiles.setTileType(x, y, TILE_TYPE_WALL);
             }
+        });
+
+        generator.getRooms().forEach((r) => {
+            const room = tiles.createRoom(
+                r.getLeft(),
+                r.getTop(),
+                (r.getRight() - r.getLeft()) + 1,
+                (r.getBottom() - r.getTop()) + 1
+            );
+            r.getDoors((x, y) => {
+                room.addExit(x, y);
+            });
         });
 
         digExits(tiles, exits);

@@ -47,7 +47,7 @@ export default class MainMenuScreen extends Screen {
         this.game.renderer.clear();
         this.game.renderer.drawText(1, 1, `Knossonia`, 'cyan');
 
-        this.game.renderer.drawText(1, 4, `move       [w, a, d, x]`);
+        this.game.renderer.drawText(1, 4, `move       [q, w, e, a, d, z, x, c]`);
         this.game.renderer.drawText(1, 5, `look       [l]`);
         this.game.renderer.drawText(1, 6, `interact   [shift+direction]`);
         this.game.renderer.drawText(1, 7, `interact   [j]`);
@@ -58,5 +58,6 @@ export default class MainMenuScreen extends Screen {
         this.game.renderer.drawText(1, 12, `cancel     [esc]`);
 
         this.game.renderer.drawTextCenter(14, `set out into the forest...`);
+        this.game.renderer.drawTextCenter(16, `press [enter]`);
     }
 }

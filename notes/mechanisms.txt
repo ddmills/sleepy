@@ -7,6 +7,8 @@
     - chest/door with three shapes
         - three matching shapes scattered in dungeon
         - chest can be smashed open (contents may be destroyed)
+- generate with cyclic state graphs
+    - http://ctrl500.com/tech/handcrafted-feel-dungeon-generation-unexplored-explores-cyclic-dungeon-generation/
 
 - mechanisms
     - pressure plate (add weight to activate)

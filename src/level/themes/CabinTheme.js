@@ -25,7 +25,7 @@ export default class CabinTheme extends TileThemePopulator {
             }
         });
 
-        room.borderTiles.forEach((tile) => this.populateTile(tile));
+        room.tiles.forEach((tile) => this.populateTile(tile));
 
         this.trySpawn(room, (tile) => {
             const chest = game.ecs.createPrefab('Chest');

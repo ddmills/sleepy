@@ -1,0 +1,15 @@
+# town generation
+
+1. define some "padding" away from the map edge
+    - note this should probably be at least at a minumum 2 tiles
+      one for the border and another for pathways
+2. try to fit a building in the padding area
+3. must have at least 1 space between buildings
+4. add buildings until `n` or can't fill anymore
+5. for each building, add at least one door
+    - prefer doors facing the "center" of the map
+    - prefer doors away from corners
+6. for each external building door, a* path to all other doors
+    - avoid paths that are right next to buildings (higher cost)
+7. put road down on path
+8. path and road from map exits to closest roads

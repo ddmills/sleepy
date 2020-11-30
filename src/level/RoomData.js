@@ -23,6 +23,22 @@ export default class RoomData {
         }));
     }
 
+    get left() {
+        return this.includeWalls ? this.x - 1 : this.x;
+    }
+
+    get right() {
+        return this.includeWalls ? this.x + this.width + 1 : this.x + this.width;
+    }
+
+    get top() {
+        return this.includeWalls ? this.y - 1 : this.y;
+    }
+
+    get bottom() {
+        return this.includeWalls ? this.y + this.height + 1 : this.y + this.height;
+    }
+
     get borderTiles() {
         const start = this.includeWalls ? -1 : 0;
         const endWidth = this.includeWalls ? this.width + 1 : this.width;
@@ -103,5 +119,18 @@ export default class RoomData {
         container.addRoom(room);
 
         return room;
+    }
+
+    containsPoint(x, y) {
+        return x <= this.right && x >= this.left && y <= this.bottom && y >= this.top;
+    }
+
+    intersects(left, top, right, bottom) {
+        const c1 = left < this.right;
+        const c2 = right > this.left;
+        const c3 = top < this.bottom;
+        const c4 = bottom > this.top;
+
+        return c1 && c2 && c3 && c4;
     }
 }

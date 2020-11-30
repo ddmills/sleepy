@@ -106,6 +106,7 @@ built with geotic - https://github.com/ddmills/geotic
 - https://cesium.com/docs/tutorials/particle-systems/
 - https://tekeli.li/onomastikon/
 - https://www.youtube.com/watch?v=F69-t33e8tk
+- http://www.roguebasin.com/index.php?title=Harmonist
 
 - particles requirements
     - ability to configure speed

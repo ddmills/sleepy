@@ -109,4 +109,8 @@ export default class TileContainer {
             return !this.getRoomForTile(tile.x, tile.y);
         });
     }
+
+    getNeighbors(x, y) {
+        return this.#grid.getNeighbors(x, y);
+    }
 }

@@ -19,3 +19,4 @@ export * as DoorPrefab from './DoorPrefab.json';
 export * as StonePrefab from './StonePrefab.json';
 export * as GlassShardPrefab from './GlassShardPrefab.json';
 export * as PoolPrefab from './PoolPrefab.json';
+export * as DirtPathwayPrefab from './DirtPathwayPrefab.json';

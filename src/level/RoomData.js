@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid'
-import { TILE_THEME_CASTLE, TILE_THEME_FOREST } from './themes/TileTheme';
+import { TILE_THEME_FOREST } from './themes/TileTheme';
+import { TILE_TYPE_FLOOR } from './TileData';
 
 export default class RoomData {
     id = 0;
@@ -99,6 +100,7 @@ export default class RoomData {
     }
 
     addRelativeExit(x, y) {
+        this.#container.setTileType(this.x + x, this.y + y, TILE_TYPE_FLOOR);
         this.#exitCoords.push({ x, y });
     }
 

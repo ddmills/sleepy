@@ -1,0 +1,22 @@
+{
+    "name": "DirtPathway",
+    "inherit": ["GameObject"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Dirt path"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "░",
+                "fg1": "#a66b44"
+            }
+        },
+        {
+            "type": "Explorable"
+        }
+    ]
+}

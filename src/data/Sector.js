@@ -80,23 +80,15 @@ export class Sector {
         const exits = this.getExits();
         const generator = getGenerator(this.generator.type);
 
-        const tiles = generator.generate({
+        const settings = {
             width: game.map.width,
             height: game.map.height,
             exits,
-        });
+        };
 
-        tiles.rooms.forEach((room) => {
-            const theme = getThemePopulator(room.theme);
+        const tiles = generator.generate(settings);
 
-            theme.populateRoom(room);
-        });
-
-        tiles.getUnassignedTiles().forEach((tile) => {
-            const theme = getThemePopulator(tile.theme);
-
-            theme.populateTile(tile);
-        });
+        generator.populate(settings, tiles);
 
         this.tiles = tiles;
     }

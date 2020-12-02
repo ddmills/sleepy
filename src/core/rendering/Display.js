@@ -5,6 +5,7 @@ export default class Display {
     height;
     tileWidth;
     tileHeight;
+    _dirtyCells = new Set();
     clearColor = '#141a23';
 
     constructor({ width, height, tileWidth, tileHeight }) {
@@ -39,14 +40,19 @@ export default class Display {
         const img = sprite.colorize(fg1, fg2);
 
         this.ctx.fillStyle = bg || this.clearColor;
-        this.ctx.fillRect(pixelX, pixelY, sprite.width, sprite.height);
+
+        if (this.isDirty(x, y) || bg) {
+            this.ctx.fillRect(pixelX, pixelY, sprite.width, sprite.height);
+        }
 
         this.ctx.drawImage(img, pixelX, pixelY);
+        this._markDirty(x, y);
     }
 
     clear() {
         this.ctx.fillStyle = this.clearColor;
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        this._dirtyCells.clear();
     }
 
     clearArea(x, y, width, height) {
@@ -71,5 +77,13 @@ export default class Display {
             this.tileWidth,
             this.tileHeight
         );
+    }
+
+    _markDirty(x, y) {
+        this._dirtyCells.add(`${x},${y}`);
+    }
+
+    isDirty(x, y) {
+        this._dirtyCells.has(`${x},${y}`);
     }
 }

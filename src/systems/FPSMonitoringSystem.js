@@ -2,8 +2,15 @@ import System from './System';
 
 export default class FPSMonitoringSystem extends System {
     update(dt) {
+        const sector = this.game.world.sector;
+        let sectorTxt = '';
+
+        if (sector) {
+            sectorTxt = `(${sector.x}, ${sector.y})`;
+        };
+
         const fps = Math.trunc(1000 / dt);
-        const display = `${fps}`;
+        const display = `${sectorTxt} ${fps}`;
 
         const textWidth = this.game.renderer.computeTextWidth(display);
         const x = this.game.camera.width - textWidth;

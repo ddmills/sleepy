@@ -43,4 +43,8 @@ export default class ClockManager extends Manager {
         this.#tickDelta = delta;
         this.#tick += delta;
     }
+
+    update(dt) {
+        this.#tickDelta = 0;
+    }
 }

@@ -23,10 +23,5 @@ export default class UISystem extends System {
         const hp = this.game.player.entity.health;
 
         this.game.renderer.drawText(1, 1, `${hp.value}/${hp.max}`, '#ce5454');
-
-        const sector = this.game.world.sector;
-        const sectorTxt = `sector ${sector.id} (${sector.x}, ${sector.y})`;
-
-        this.game.renderer.drawText(0, 0, sectorTxt, '#172e2e');
     }
 }

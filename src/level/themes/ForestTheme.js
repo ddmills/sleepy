@@ -28,7 +28,7 @@ export default class ForestTheme extends TileThemePopulator {
             }
         });
 
-        for (let i = 0; i < randomInt(0, 2); i++) {
+        for (let i = 0; i < randomInt(0, 1); i++) {
             this.trySpawn(room, (tile) => {
                 const goblin = game.ecs.createPrefab('Goblin');
 

@@ -69,8 +69,9 @@ export default class Game {
     }
 
     updateAdventureSystems(dt) {
-        this.hungerSystem.update(dt);
+        this.clock.update(dt);
         this.actionSystem.update(dt);
+        this.hungerSystem.update(dt);
         this.movementSystem.update(dt);
         this.meleeSystem.update(dt);
         this.deathSystem.update(dt);

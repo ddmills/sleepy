@@ -27,11 +27,14 @@ export default class RenderSystem extends System {
     render(dt) {
         this.game.renderer.clear();
 
-        this.#explored.get().forEach((renderable) => {
+        const explored = Array.from(this.#explored.get());
+
+        for (let i = 0; i < explored.length; i++) {
+            const renderable = explored[i];
             const pos = renderable.position.getPos();
 
             if (!this.game.camera.isInView(pos.x, pos.y)) {
-                return;
+                continue;
             }
 
             const screen = this.game.camera.worldToScreen(pos.x, pos.y);
@@ -43,13 +46,16 @@ export default class RenderSystem extends System {
                 '#283131',
                 '#283131'
             );
-        });
+        };
 
-        this.#query.get().forEach((renderable) => {
+        const renderables = Array.from(this.#query.get());
+
+        for (let i = 0; i < renderables.length; i++) {
+            const renderable = renderables[i];
             const pos = renderable.position.getPos();
 
             if (!this.game.camera.isInView(pos.x, pos.y)) {
-                return;
+                continue;
             }
 
             const screen = this.game.camera.worldToScreen(pos.x, pos.y);
@@ -62,7 +68,7 @@ export default class RenderSystem extends System {
                 renderable.glyph.secondary,
                 renderable.glyph.background
             );
-        });
+        }
     }
 
     update(dt) {

@@ -1,4 +1,4 @@
-import colorParse from 'color-parse';
+import { parseColor } from '../../utils/ColorParser';
 
 const isWhite = (r, g, b) => r === 255 && g === 255 && b === 255;
 const isBlack = (r, g, b) => r === 0 && g === 0 && b === 0;
@@ -9,7 +9,7 @@ export default class Sprite {
     #sheet = null;
     #x = null;
     #y = null;
-    #cache = {};
+    _cache = {};
 
     get glyph() {
         return this.#glyph;
@@ -74,15 +74,13 @@ export default class Sprite {
     }
 
     colorize(primaryCss, secondaryCss) {
-        const primary = colorParse(primaryCss).values;
-        const secondary = colorParse(secondaryCss).values;
+        const primary = parseColor(primaryCss);
+        const secondary = parseColor(secondaryCss);
 
-        const key = `${primary[0]},${primary[1]},${primary[2]},${primary.alpha}-${secondary[0]},${secondary[1]},${secondary[2]},${secondary.alpha}`;
+        const key = `${primary.key}-${secondary.key}`;
 
-        if (key in this.#cache) {
-            const data = this.#cache[key];
-
-            return data;
+        if (this._cache.hasOwnProperty(key)) {
+            return this._cache[key];
         }
 
         const pixels = this.#ctx.getImageData(0, 0, this.width, this.height);
@@ -96,12 +94,12 @@ export default class Sprite {
                 pixels.data[i] = primary[0];
                 pixels.data[i + 1] = primary[1];
                 pixels.data[i + 2] = primary[2];
-                pixels.data[i + 4] = primary.alpha;
+                pixels.data[i + 4] = primary[3];
             } else {
                 pixels.data[i] = secondary[0];
                 pixels.data[i + 1] = secondary[1];
                 pixels.data[i + 2] = secondary[2];
-                pixels.data[i + 4] = secondary.alpha;
+                pixels.data[i + 4] = secondary[3];
             }
         }
 
@@ -112,7 +110,7 @@ export default class Sprite {
 
         cvs.getContext('2d').putImageData(pixels, 0, 0);
 
-        this.#cache[key] = cvs;
+        this._cache[key] = cvs;
 
         return cvs;
     }

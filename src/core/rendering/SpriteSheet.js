@@ -3,16 +3,11 @@ import Sprite from './Sprite';
 
 export default class SpriteSheet {
     #name = null;
-    #image = null;
     #defaultGlyph = '?';
     #sprites = {};
 
     get name() {
         return this.#name;
-    }
-
-    get image() {
-        return this.#image;
     }
 
     get width() {
@@ -31,17 +26,12 @@ export default class SpriteSheet {
         return 16;
     }
 
-    get spriteWidth() {
-        return this.image.width / this.spriteCountX;
-    }
-
-    get spriteHeight() {
-        return this.image.height / this.spriteCountY;
-    }
-
     constructor(name, image) {
         this.#name = name;
-        this.#image = image;
+        this.image = image;
+
+        this.spriteWidth = this.image.width / this.spriteCountX;
+        this.spriteHeight = this.image.height / this.spriteCountY;
 
         cp437.forEach((row, i) => {
             row.forEach((glyph, j) => {

@@ -1,53 +1,28 @@
 export default class Display {
-    #ctx;
-    #canvas;
-    #width;
-    #height;
-    #tileWidth;
-    #tileHeight;
-    #defaultFg;
+    ctx;
+    canvas;
+    width;
+    height;
+    tileWidth;
+    tileHeight;
+    clearColor = '#141a23';
 
-    get tileWidth() {
-        return this.#tileWidth;
-    }
+    constructor({ width, height, tileWidth, tileHeight }) {
+        this.tileWidth = tileWidth;
+        this.tileHeight = tileHeight;
 
-    get tileHeight() {
-        return this.#tileHeight;
-    }
+        this.canvas = document.createElement('canvas');
+        this.ctx = this.canvas.getContext('2d', { alpha: false });
 
-    get width() {
-        return this.#width;
-    }
-
-    get height() {
-        return this.#height;
-    }
-
-    get canvas() {
-        return this.#canvas;
-    }
-
-    get ctx() {
-        return this.#ctx;
-    }
-
-    constructor({ width, height, tileWidth, tileHeight, defaultFg }) {
-        this.#tileWidth = tileWidth;
-        this.#tileHeight = tileHeight;
-        this.#defaultFg = defaultFg || '#fff';
-
-        this.#canvas = document.createElement('canvas');
-        this.#ctx = this.canvas.getContext('2d');
-
-        this.ctx.font = `${this.#tileHeight}px monospace`;
+        this.ctx.font = `${this.tileHeight}px monospace`;
         this.ctx.textBaseline = 'top';
 
         this.setSize(width, height);
     }
 
     setSize(width, height) {
-        this.#width = width;
-        this.#height = height;
+        this.width = width;
+        this.height = height;
 
         const widthPx = this.tileWidth * this.width;
         const heightPx = this.tileHeight * this.height;
@@ -63,22 +38,20 @@ export default class Display {
 
         const img = sprite.colorize(fg1, fg2);
 
-        if (bg) {
-            this.ctx.fillStyle = bg;
-            this.ctx.fillRect(pixelX, pixelY, sprite.width, sprite.height);
-        } else {
-            this.ctx.clearRect(pixelX, pixelY, this.tileWidth, this.tileHeight);
-        }
+        this.ctx.fillStyle = bg || this.clearColor;
+        this.ctx.fillRect(pixelX, pixelY, sprite.width, sprite.height);
 
         this.ctx.drawImage(img, pixelX, pixelY);
     }
 
     clear() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.fillStyle = this.clearColor;
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
     clearArea(x, y, width, height) {
-        this.ctx.clearRect(
+        this.ctx.fillStyle = this.clearColor;
+        this.ctx.fillRect(
             x * this.tileWidth,
             y * this.tileHeight,
             this.tileWidth * width,

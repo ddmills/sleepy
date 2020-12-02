@@ -45,7 +45,7 @@ export default class Renderer extends Manager {
         this.display.setSize(width, height);
     }
 
-    draw(x, y, char, fg1 = '#d6d6d6', fg2 = '#333', bg) {
+    draw(x, y, char, fg1 = '#c6d5da', fg2 = '#333', bg) {
         const sprite = this.#spritesheets.tiles.getSprite(char);
 
         this.display.draw(x, y, sprite, fg1, fg2, bg);
@@ -55,7 +55,7 @@ export default class Renderer extends Manager {
         return text.length * 0.5;
     }
 
-    drawText(x, y, text, fg1 = '#d6d6d6', fg2 = '#333', bg) {
+    drawText(x, y, text, fg1 = '#c6d5da', fg2 = '#333', bg) {
         for (let i = 0; i < text.length; i++) {
             const sprite = this.#spritesheets.font.getSprite(text.charAt(i));
 
@@ -63,7 +63,7 @@ export default class Renderer extends Manager {
         }
     }
 
-    drawTextCenter(y, text, fg1 = '#d6d6d6', fg2 = '#333', bg) {
+    drawTextCenter(y, text, fg1 = '#c6d5da', fg2 = '#333', bg) {
         const len = this.computeTextWidth(text);
 
         this.drawText(

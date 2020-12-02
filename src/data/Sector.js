@@ -1,9 +1,5 @@
-import { BoredGoalType } from '../ai/GoalTypes';
 import { game } from '../core/Game';
-import { LIQUID_BLOOD, LIQUID_HONEY, LIQUID_WATER } from '../enums/LiquidTypes';
 import { getGenerator } from '../level/generators/generators';
-import CastleTheme from '../level/themes/CastleTheme';
-import { getThemePopulator } from '../level/themes/TileTheme';
 
 export class Sector {
     #x = 0;

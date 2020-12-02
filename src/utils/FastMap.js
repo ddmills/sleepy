@@ -1,27 +1,27 @@
 export default class FastMap {
-    #width = 0;
-    #height = 0;
-    #data = [];
-    #idHash = new Map();
+    _width = 0;
+    _height = 0;
+    _data = [];
+    _idHash = new Map();
 
     get width() {
-        return this.#width;
+        return this._width;
     }
 
     get height() {
-        return this.#height;
+        return this._height;
     }
 
     get size() {
-        return this.#width * this.#height;
+        return this._width * this._height;
     }
 
     constructor(width, height) {
-        this.#width = width;
-        this.#height = height;
+        this._width = width;
+        this._height = height;
 
         for (let i = 0; i < this.size; i++) {
-            this.#data[i] = new Set();
+            this._data[i] = new Set();
         }
     }
 
@@ -37,15 +37,15 @@ export default class FastMap {
     }
 
     clear() {
-        this.#idHash.clear();
+        this._idHash.clear();
 
         for (let i = 0; i < this.size; i++) {
-            this.#data[i].clear();
+            this._data[i].clear();
         }
     }
 
     serialize() {
-        const entries = this.#data.map((d) => Array.from(d));
+        const entries = this._data.map((d) => Array.from(d));
 
         return {
             width: this.width,
@@ -55,16 +55,16 @@ export default class FastMap {
     }
 
     deserialize(data) {
-        this.#width = data.width;
-        this.#height = data.height;
-        this.#idHash = new Map();
+        this._width = data.width;
+        this._height = data.height;
+        this._idHash = new Map();
 
         for (let i = 0; i < data.entries.length; i++) {
             const coord = this.coord(i);
-            this.#data[i] = new Set(data.entries[i]);
+            this._data[i] = new Set(data.entries[i]);
 
             data.entries[i].forEach((id) => {
-                this.#idHash.set(id, coord);
+                this._idHash.set(id, coord);
             });
         }
     }
@@ -81,8 +81,8 @@ export default class FastMap {
 
         this.remove(id);
 
-        this.#idHash.set(id, { x, y });
-        this.#data[idx].add(id);
+        this._idHash.set(id, { x, y });
+        this._data[idx].add(id);
     }
 
     get(x, y) {
@@ -90,15 +90,15 @@ export default class FastMap {
             return [];
         }
 
-        return Array.from(this.#data[this.idx(x, y)]);
+        return Array.from(this._data[this.idx(x, y)]);
     }
 
     has(id) {
-        return this.#idHash.has(id);
+        return this._idHash.has(id);
     }
 
     getPosition(id) {
-        const pos = this.#idHash.get(id);
+        const pos = this._idHash.get(id);
 
         if (!pos) {
             console.warn('Cannot get position', id);
@@ -115,8 +115,8 @@ export default class FastMap {
         const pos = this.getPosition(id);
         const idx = this.idx(pos.x, pos.y);
 
-        this.#idHash.delete(id);
-        this.#data[idx].delete(id);
+        this._idHash.delete(id);
+        this._data[idx].delete(id);
     }
 
     isOutOfBounds(x, y) {

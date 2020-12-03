@@ -20,7 +20,7 @@ export default class Grid {
         return this.#data;
     }
 
-    constructor(width, height, defaultValueGenerator) {
+    constructor(width, height, defaultValueGenerator = () => null) {
         this.#width = width;
         this.#height = height;
         this.#defaultValueGenerator = defaultValueGenerator;
@@ -83,5 +83,11 @@ export default class Grid {
             this.get(x, y + 1), // BOTTOM
             this.get(x + 1, y + 1), // BOTTOM RIGHT
         ];
+    }
+
+    clearAndResize(width, height) {
+        this.#width = width;
+        this.#height = height;
+        this.clear();
     }
 }

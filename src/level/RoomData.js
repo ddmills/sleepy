@@ -46,6 +46,7 @@ export default class RoomData {
         const endHeight = this.includeWalls ? this.height + 1 : this.height;
         const borders = [];
 
+        // TODO this loop can be a lot simpler...
         for (let i = start; i < endWidth; i++) {
             for (let j = start; j < endHeight; j++) {
                 if (i === start || i === endWidth - 1|| j === start || j === endHeight - 1) {

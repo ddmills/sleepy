@@ -90,6 +90,7 @@ export default class Game {
 
         this.screens.update(dt);
         this.fps.update(dt);
+        this.renderer.render();
 
         this.#lastUpdate = now;
 

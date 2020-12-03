@@ -67,7 +67,7 @@ export default class Renderer extends Manager {
         const len = this.computeTextWidth(text);
 
         this.drawText(
-            (this.game.camera.width - len) / 2,
+            Math.ceil((this.game.camera.width - len) / 2),
             y,
             text,
             fg1,
@@ -89,5 +89,9 @@ export default class Renderer extends Manager {
         const y = Math.trunc(yPx / this.tileHeight);
 
         return { x, y };
+    }
+
+    render() {
+        this.display.render();
     }
 }

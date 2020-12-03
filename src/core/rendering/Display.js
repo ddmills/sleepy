@@ -1,3 +1,5 @@
+import Grid from '../../utils/Grid';
+
 export default class Display {
     ctx;
     canvas;
@@ -5,12 +7,14 @@ export default class Display {
     height;
     tileWidth;
     tileHeight;
-    _dirtyCells = new Set();
+    cells;
     clearColor = '#141a23';
 
     constructor({ width, height, tileWidth, tileHeight }) {
         this.tileWidth = tileWidth;
         this.tileHeight = tileHeight;
+
+        this.cells = new Grid(width * 2, height, () => null);
 
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d', { alpha: false });
@@ -31,59 +35,50 @@ export default class Display {
         this.canvas.style.cssText = `width: ${widthPx}px; height: ${heightPx}px`;
         this.canvas.width = widthPx;
         this.canvas.height = heightPx;
+
+        this.cells.clearAndResize(width * 2, height);
     }
 
     draw(x, y, sprite, fg1, fg2, bg) {
-        const pixelX = x * this.tileWidth;
-        const pixelY = y * this.tileHeight;
-
-        const img = sprite.colorize(fg1, fg2);
-
-        this.ctx.fillStyle = bg || this.clearColor;
-
-        if (this.isDirty(x, y) || bg) {
-            this.ctx.fillRect(pixelX, pixelY, sprite.width, sprite.height);
-        }
-
-        this.ctx.drawImage(img, pixelX, pixelY);
-        this._markDirty(x, y);
+        this.cells.set(x * 2, y, {
+            img: sprite.colorize(fg1, fg2),
+            width: sprite.width,
+            height: sprite.height,
+            bg,
+            x,
+            y,
+        });
     }
 
     clear() {
         this.ctx.fillStyle = this.clearColor;
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-        this._dirtyCells.clear();
+        this.cells.clear();
     }
 
     clearArea(x, y, width, height) {
-        this.ctx.fillStyle = this.clearColor;
-        this.ctx.fillRect(
-            x * this.tileWidth,
-            y * this.tileHeight,
-            this.tileWidth * width,
-            this.tileHeight * height
-        );
-    }
-
-    fillTile(x, y, color) {
-        this.ctx.fillStyle = color;
-        this.ctx.fillRect(x, y, this.tileWidth, this.tileHeight);
+        for (let i = 0; i < width; i++) {
+            for (let j = 0; j < height; j++) {
+                this.clearTile(x + i, y + j);
+            }
+        }
     }
 
     clearTile(x, y) {
-        this.ctx.clearRect(
-            x * this.tileWidth,
-            y * this.tileHeight,
-            this.tileWidth,
-            this.tileHeight
-        );
+        this.cells.set(x * 2, y, null);
     }
 
-    _markDirty(x, y) {
-        this._dirtyCells.add(`${x},${y}`);
-    }
+    render() {
+        this.cells.data.filter((c) => c).forEach((cell) => {
+            const pixelX = cell.x * this.tileWidth;
+            const pixelY = cell.y * this.tileHeight;
 
-    isDirty(x, y) {
-        this._dirtyCells.has(`${x},${y}`);
+            if (cell.bg) {
+                this.ctx.fillStyle = cell.bg;
+                this.ctx.fillRect(pixelX, pixelY, sprite.width, sprite.height);
+            }
+
+            this.ctx.drawImage(cell.img, pixelX, pixelY);
+        });
     }
 }

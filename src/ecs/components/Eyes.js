@@ -1,20 +1,21 @@
 import { Component } from 'geotic';
-import { Faction } from './Faction';
+import { game } from '../../core/Game';
+import { FactionMember } from './FactionMember';
 
 export class Eyes extends Component {
     onTryDetectHostiles(evt) {
-        const position = window.game.map.getPosition(this.entity.id);
+        const position = game.map.getPosition(this.entity.id);
 
         if (!position) {
             return;
         }
 
-        const target = window.game.map
+        const target = game.map
             .getNeighborEntities(position.x, position.y)
             .flat()
-            .filter((e) => e.has(Faction))
+            .filter((e) => e.has(FactionMember))
             .find((neighbor) => {
-                return window.game.factions.areEntitiesHostile(
+                return game.factions.areEntitiesHostile(
                     this.entity,
                     neighbor
                 );

@@ -16,7 +16,7 @@
             }
         },
         {
-            "type": "Faction",
+            "type": "FactionMember",
             "properties": {
                 "name": "goblins"
             }

@@ -1,7 +1,7 @@
 import { Component } from 'geotic';
 import { game } from '../../core/Game';
 import { Blocker } from './Blocker';
-import { Faction } from './Faction';
+import { FactionMember } from './FactionMember';
 
 export class Legs extends Component {
     onTryMove(evt) {
@@ -9,7 +9,7 @@ export class Legs extends Component {
         const targetX = position.x + evt.data.x;
         const targetY = position.y + evt.data.y;
 
-        const targetTileEntities = window.game.map.getEntitiesAt(
+        const targetTileEntities = game.map.getEntitiesAt(
             targetX,
             targetY
         );
@@ -19,10 +19,8 @@ export class Legs extends Component {
         }
 
         const nonHostile = targetTileEntities.find((entity) => {
-            return (
-                entity.has(Faction) &&
-                !window.game.factions.areEntitiesHostile(entity, this.entity)
-            );
+            return entity.factionMember &&
+                !game.factions.areEntitiesHostile(entity, this.entity);
         });
 
         // swap locations

@@ -29,7 +29,7 @@ export { Explorable } from './Explorable';
 export { Explored } from './Explored';
 export { Health } from './Health';
 export { Dead } from './Dead';
-export { Faction } from './Faction';
+export { FactionMember } from './FactionMember';
 export { Eyes } from './Eyes';
 export { Particle } from './Particle';
 export { ParticleEmitter } from './ParticleEmitter';

@@ -33,6 +33,12 @@
             "type": "IsPlayer"
         },
         {
+            "type": "FactionMember",
+            "properties": {
+                "name": "player"
+            }
+        },
+        {
             "type": "Inventory"
         },
         {

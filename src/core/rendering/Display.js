@@ -75,7 +75,7 @@ export default class Display {
 
             if (cell.bg) {
                 this.ctx.fillStyle = cell.bg;
-                this.ctx.fillRect(pixelX, pixelY, sprite.width, sprite.height);
+                this.ctx.fillRect(pixelX, pixelY, cell.width, cell.height);
             }
 
             this.ctx.drawImage(cell.img, pixelX, pixelY);

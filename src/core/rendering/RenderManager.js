@@ -1,4 +1,6 @@
 import Manager from '../Manager';
+import Canvas2DRenderingBackend from './Canvas2DRenderingBackend';
+import CanvasWebGLRenderingBackend from './CanvasWebGLRenderingBackend';
 import Display from './Display';
 import spritesheets from './spritesheets';
 
@@ -31,7 +33,7 @@ export default class Renderer extends Manager {
             this.#spritesheets[spritesheet.name] = spritesheet;
         });
 
-        this.#display = new Display({
+        this.#display = new CanvasWebGLRenderingBackend({
             width: this.game.camera.width,
             height: this.game.camera.height,
             tileWidth: this.tileWidth,

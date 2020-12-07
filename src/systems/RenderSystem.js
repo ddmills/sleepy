@@ -43,8 +43,8 @@ export default class RenderSystem extends System {
                 screen.x,
                 screen.y,
                 renderable.glyph.char,
-                '#283131',
-                '#283131'
+                '#2c3538',
+                '#2c3538'
             );
         };
 

@@ -13,7 +13,7 @@ export default class FactionManager extends Manager {
         super(game);
 
         this.setRelation(FACTION_PLAYER, FACTION_GOBLIN, -300);
-        this.setRelation(FACTION_PLAYER, FACTION_VILLAGER, 300);
+        this.setRelation(FACTION_PLAYER, FACTION_VILLAGER, 120);
         this.setRelation(FACTION_GOBLIN, FACTION_VILLAGER, -400);
     }
 
@@ -53,8 +53,6 @@ export default class FactionManager extends Manager {
         const memberA = entityA.get(FactionMember);
         const memberB = entityB.get(FactionMember);
 
-        console.log(memberA, memberB);
-
         if (memberA && memberB) {
             const factionA = memberA.faction;
             const factionB = memberB.faction;
@@ -69,5 +67,29 @@ export default class FactionManager extends Manager {
         const relation = this.getEntityRelation(entityA, entityB);
 
         return relation < -200;
+    }
+
+    getDisplay(value) {
+        if (value <= -300) {
+            return 'Aggressive';
+        }
+
+        if (value <= -200) {
+            return 'Unfriendly';
+        }
+
+        if (value >= 300) {
+            return 'Loyal';
+        }
+
+        if (value >= 200) {
+            return 'Friendly';
+        }
+
+        if (value >= 100) {
+            return 'Amicable';
+        }
+
+        return 'Neutral';
     }
 }

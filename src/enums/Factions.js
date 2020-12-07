@@ -9,18 +9,22 @@ export const factions = {
     player: new Faction({
         id: FACTION_PLAYER,
         name: 'player',
+        display: 'Player',
     }),
     villager: new Faction({
         id: FACTION_VILLAGER,
         name: 'villager',
+        display: 'Villager',
     }),
     goblin: new Faction({
         id: FACTION_GOBLIN,
         name: 'goblin',
+        display: 'Goblin',
     }),
     nature: new Faction({
         id: FACTION_NATURE,
         name: 'nature',
+        display: 'Nature',
     }),
 };
 

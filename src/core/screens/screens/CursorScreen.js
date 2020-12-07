@@ -34,7 +34,7 @@ import {
 } from '../../../enums/CursorSegments';
 import { game } from '../../Game';
 import { computeAStar } from '../../../utils/AStar';
-import { Blocker } from '../../../ecs/components';
+import { Blocker, FactionMember } from '../../../ecs/components';
 import { diagonalDistance } from '../../../utils/diagonalDistance';
 
 const NOOP = () => {};
@@ -153,6 +153,22 @@ export default class CursorScreen extends Screen {
 
         if (this.#drawTags) {
             this.game.cursor.drawTags();
+        }
+
+        const target = this.game.cursor
+            .getEntities()
+            .filter((e) => e.has(FactionMember))
+            .pop();
+
+        const player = this.game.player.entity;
+
+        if (target) {
+            const faction = target.factionMember.faction;
+            const relation = this.game.factions.getEntityRelation(player, target);
+
+            let disp = this.game.factions.getDisplay(relation);
+
+            this.game.renderer.drawTextCenter(1, `${faction.display} Faction [${disp}]`);
         }
 
         this.game.cursor.drawCursor(cursorColor);

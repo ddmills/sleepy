@@ -12,7 +12,7 @@
         {
             "type": "FactionMember",
             "properties": {
-                "name": "humans"
+                "name": "villager"
             }
         }
     ]

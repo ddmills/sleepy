@@ -1,21 +1,26 @@
 import Faction from '../data/Faction';
 
 export const FACTION_PLAYER = 0;
-export const FACTION_VILLAGERS = 1;
-export const FACTION_GOBLINS = 2;
+export const FACTION_VILLAGER = 1;
+export const FACTION_GOBLIN = 2;
+export const FACTION_NATURE = 3;
 
 export const factions = {
     player: new Faction({
         id: FACTION_PLAYER,
         name: 'player',
     }),
-    villagers: new Faction({
-        id: FACTION_VILLAGERS,
-        name: 'villagers',
+    villager: new Faction({
+        id: FACTION_VILLAGER,
+        name: 'villager',
     }),
-    goblins: new Faction({
-        id: FACTION_GOBLINS,
-        name: 'goblins',
+    goblin: new Faction({
+        id: FACTION_GOBLIN,
+        name: 'goblin',
+    }),
+    nature: new Faction({
+        id: FACTION_NATURE,
+        name: 'nature',
     }),
 };
 

@@ -15,10 +15,7 @@ export class Eyes extends Component {
             .flat()
             .filter((e) => e.has(FactionMember))
             .find((neighbor) => {
-                return game.factions.areEntitiesHostile(
-                    this.entity,
-                    neighbor
-                );
+                return game.factions.areEntitiesHostile(this.entity, neighbor);
             });
 
         if (target) {

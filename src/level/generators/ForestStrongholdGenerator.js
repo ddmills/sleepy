@@ -18,7 +18,7 @@ export class ForestStrongholdGenerator extends SectorGenerator {
                 { x: exitOffset, y: padding - 1 },
                 { x: settings.width - padding - 1, y: exitOffset - 1 },
                 { x: padding + 11, y: padding - 1 },
-            ]
+            ],
         });
 
         const left = UniformScheme.generate({
@@ -26,8 +26,11 @@ export class ForestStrongholdGenerator extends SectorGenerator {
             height: settings.height - padding,
             exits: [
                 { x: exitOffset, y: 0 },
-                { x: padding - 1, y: settings.height - padding - exitOffset - 1 }
-            ]
+                {
+                    x: padding - 1,
+                    y: settings.height - padding - exitOffset - 1,
+                },
+            ],
         });
 
         const bottom = UniformScheme.generate({
@@ -35,8 +38,8 @@ export class ForestStrongholdGenerator extends SectorGenerator {
             height: padding,
             exits: [
                 { x: 0, y: exitOffset - 1 },
-                { x: settings.width - padding - exitOffset - 1, y: 0 }
-            ]
+                { x: settings.width - padding - exitOffset - 1, y: 0 },
+            ],
         });
 
         const right = UniformScheme.generate({
@@ -44,13 +47,13 @@ export class ForestStrongholdGenerator extends SectorGenerator {
             height: settings.height - padding,
             exits: [
                 { x: 0, y: exitOffset - 1 },
-                { x: exitOffset - 1, y: settings.height - padding - 1 }
-            ]
+                { x: exitOffset - 1, y: settings.height - padding - 1 },
+            ],
         });
 
         const castle = DenseCastleScheme.generate({
-            width: (settings.width - (padding * 2)) + 2,
-            height: (settings.height - (padding * 2)) + 2,
+            width: settings.width - padding * 2 + 2,
+            height: settings.height - padding * 2 + 2,
             exits: [{ x: 12, y: 0 }],
         });
 

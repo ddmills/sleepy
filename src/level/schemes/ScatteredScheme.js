@@ -4,7 +4,6 @@ import TileContainer from '../TileContainer';
 import { TILE_TYPE_FLOOR, TILE_TYPE_WALL } from '../TileData';
 import TileScheme from '../TileScheme';
 
-
 export class ScatteredScheme extends TileScheme {
     static generate(settings) {
         const attempt = settings.attempt || 1;
@@ -23,7 +22,9 @@ export class ScatteredScheme extends TileScheme {
         const tiles = new TileContainer(width, height);
 
         if (attempt > maxAttempts) {
-            console.warn(`Failed to generate ScatteredScheme in ${maxAttempts} attempts`);
+            console.warn(
+                `Failed to generate ScatteredScheme in ${maxAttempts} attempts`
+            );
 
             return tiles;
         }
@@ -37,16 +38,29 @@ export class ScatteredScheme extends TileScheme {
                 y: randomInt(padding, settings.height - padding - height),
                 width,
                 height,
-                get top() { return this.y - roomPadding; },
-                get bottom() { return this.y + this.height + roomPadding; },
-                get left() { return this.x - roomPadding; },
-                get right() { return this.x + this.width + roomPadding; },
+                get top() {
+                    return this.y - roomPadding;
+                },
+                get bottom() {
+                    return this.y + this.height + roomPadding;
+                },
+                get left() {
+                    return this.x - roomPadding;
+                },
+                get right() {
+                    return this.x + this.width + roomPadding;
+                },
             };
         };
 
         const overlaps = (box) => {
             return tiles.rooms.some((room) => {
-                return room.intersects(box.left, box.top, box.right, box.bottom)
+                return room.intersects(
+                    box.left,
+                    box.top,
+                    box.right,
+                    box.bottom
+                );
             });
         };
 
@@ -64,7 +78,12 @@ export class ScatteredScheme extends TileScheme {
                         y: box.y + j,
                     };
 
-                    if (i === 0 || i === box.width - 1 || j === 0 || j === box.height - 1) {
+                    if (
+                        i === 0 ||
+                        i === box.width - 1 ||
+                        j === 0 ||
+                        j === box.height - 1
+                    ) {
                         tiles.setTileType(point.x, point.y, TILE_TYPE_WALL);
                     } else {
                         tiles.setTileType(point.x, point.y, TILE_TYPE_FLOOR);

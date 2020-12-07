@@ -4,33 +4,43 @@ import { diagonalDistance } from '../../utils/diagonalDistance';
 import { pickRandom } from '../../utils/rand';
 import { digExits } from '../LevelConnections';
 import { ScatteredScheme } from '../schemes/ScatteredScheme';
-import { getThemePopulator, TILE_THEME_CABIN, TILE_THEME_FOREST } from '../themes/TileTheme';
+import {
+    getThemePopulator,
+    TILE_THEME_CABIN,
+    TILE_THEME_FOREST,
+} from '../themes/TileTheme';
 import { TILE_TYPE_WALL } from '../TileData';
 import { addBorder } from './GeneratorUtils';
 import SectorGenerator from './SectorGenerator';
 
 const isTopLeftCorner = (t, room) => t.x === room.left && t.y === room.top;
-const isBottomLeftCorner = (t, room) => t.x === room.left && t.y === room.bottom - 1;
-const isBottomRightCorner = (t, room) => t.x === room.right - 1 && t.y === room.bottom - 1;
-const isTopRightCorner = (t, room) => t.x === room.right - 1 && t.y === room.top;
+const isBottomLeftCorner = (t, room) =>
+    t.x === room.left && t.y === room.bottom - 1;
+const isBottomRightCorner = (t, room) =>
+    t.x === room.right - 1 && t.y === room.bottom - 1;
+const isTopRightCorner = (t, room) =>
+    t.x === room.right - 1 && t.y === room.top;
 
 export class ForestTownGenerator extends SectorGenerator {
     static generate(settings) {
         const tiles = ScatteredScheme.generate({
             width: settings.width,
             height: settings.height,
-            exits: settings.exits
+            exits: settings.exits,
         });
 
         tiles.setTheme(TILE_THEME_CABIN);
 
         const addDoor = (room) => {
-            const edges = room.borderTiles.filter((t) => !(
-                isTopLeftCorner(t, room)
-                || isBottomLeftCorner(t, room)
-                || isBottomRightCorner(t, room)
-                || isTopRightCorner(t, room)
-            ));
+            const edges = room.borderTiles.filter(
+                (t) =>
+                    !(
+                        isTopLeftCorner(t, room) ||
+                        isBottomLeftCorner(t, room) ||
+                        isBottomRightCorner(t, room) ||
+                        isTopRightCorner(t, room)
+                    )
+            );
 
             const door = pickRandom(edges);
 
@@ -97,18 +107,20 @@ export class ForestTownGenerator extends SectorGenerator {
                     }
 
                     const neighbors = tiles.getNeighbors(b.x, b.y);
-                    const walls = neighbors.filter((n) => n.isType(TILE_TYPE_WALL));
+                    const walls = neighbors.filter((n) =>
+                        n.isType(TILE_TYPE_WALL)
+                    );
 
                     if (walls.length > 0) {
                         return walls.length * 2;
                     }
 
                     if (walkways.has(`${b.x},${b.y}`)) {
-                        return .1;
+                        return 0.1;
                     }
 
                     return diagonalDistance(a, b) * 2;
-                }
+                },
             });
 
             populatePath(path);

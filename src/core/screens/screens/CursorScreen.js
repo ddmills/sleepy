@@ -23,9 +23,7 @@ import {
     DIR_SE,
     DIR_NE,
 } from '../../../enums/Directions';
-import {
-    bresenhamLine
-} from '../../../utils/BresenhamLine';
+import { bresenhamLine } from '../../../utils/BresenhamLine';
 import {
     CURSOR_SEGMENT_INTEREST,
     CURSOR_SEGMENT_NONE,
@@ -164,11 +162,17 @@ export default class CursorScreen extends Screen {
 
         if (target) {
             const faction = target.factionMember.faction;
-            const relation = this.game.factions.getEntityRelation(player, target);
+            const relation = this.game.factions.getEntityRelation(
+                player,
+                target
+            );
 
             let disp = this.game.factions.getDisplay(relation);
 
-            this.game.renderer.drawTextCenter(1, `${faction.display} Faction [${disp}]`);
+            this.game.renderer.drawTextCenter(
+                1,
+                `${faction.display} Faction [${disp}]`
+            );
         }
 
         this.game.cursor.drawCursor(cursorColor);

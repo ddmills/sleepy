@@ -22,7 +22,7 @@ const getClosestTile = (tiles, target) => {
     });
 
     return closest;
-}
+};
 
 export const digExit = (tiles, exit) => {
     const source = getClosestTile(tiles, exit);
@@ -46,7 +46,7 @@ export const digExit = (tiles, exit) => {
         },
         cost: (a, b) => {
             if (tiles.isOnEdge(b.x, b.y)) {
-                return Infinity
+                return Infinity;
             }
 
             if (tiles.tileTypeMatches(b.x, b.y, TILE_TYPE_WALL)) {
@@ -54,7 +54,7 @@ export const digExit = (tiles, exit) => {
             }
 
             return Infinity;
-        }
+        },
     });
 
     result.path.forEach((segment) => {

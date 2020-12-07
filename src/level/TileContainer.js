@@ -88,12 +88,14 @@ export default class TileContainer {
     }
 
     isOnEdge(x, y) {
-        return x === 0 || y === 0 || x === this.width - 1 || y === this.height - 1;
+        return (
+            x === 0 || y === 0 || x === this.width - 1 || y === this.height - 1
+        );
     }
 
     setTheme(theme) {
         this.data.forEach((tile) => this.setTileTheme(tile.x, tile.y, theme));
-        this.rooms.forEach((room) => room.theme = theme);
+        this.rooms.forEach((room) => (room.theme = theme));
     }
 
     getRoomForTile(x, y) {

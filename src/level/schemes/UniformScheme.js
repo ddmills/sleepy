@@ -32,8 +32,8 @@ export class UniformScheme extends TileScheme {
             const room = tiles.createRoom(
                 r.getLeft(),
                 r.getTop(),
-                (r.getRight() - r.getLeft()) + 1,
-                (r.getBottom() - r.getTop()) + 1
+                r.getRight() - r.getLeft() + 1,
+                r.getBottom() - r.getTop() + 1
             );
             r.getDoors((x, y) => {
                 room.addExit(x, y);

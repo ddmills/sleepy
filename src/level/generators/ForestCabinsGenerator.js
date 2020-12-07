@@ -11,9 +11,11 @@ export class ForestCabinsGenerator extends SectorGenerator {
             height: settings.height,
         });
 
-        tiles.rooms.forEach((room) => room.theme = TILE_THEME_FOREST);
+        tiles.rooms.forEach((room) => (room.theme = TILE_THEME_FOREST));
 
-        const mediumRooms = tiles.rooms.filter((r) => r.width >= 3 && r.height >= 3);
+        const mediumRooms = tiles.rooms.filter(
+            (r) => r.width >= 3 && r.height >= 3
+        );
         const room = pickRandom(mediumRooms);
 
         if (room) {
@@ -32,7 +34,7 @@ export class ForestCabinsGenerator extends SectorGenerator {
         const leftovers = tiles.getUnassignedTiles();
 
         leftovers.forEach((tile) => {
-            tile.theme = TILE_THEME_FOREST
+            tile.theme = TILE_THEME_FOREST;
         });
 
         digExits(tiles, settings.exits);

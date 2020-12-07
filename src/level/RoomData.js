@@ -1,4 +1,4 @@
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
 import { TILE_THEME_FOREST } from './themes/TileTheme';
 import { TILE_TYPE_FLOOR } from './TileData';
 
@@ -29,7 +29,9 @@ export default class RoomData {
     }
 
     get right() {
-        return this.includeWalls ? this.x + this.width + 1 : this.x + this.width;
+        return this.includeWalls
+            ? this.x + this.width + 1
+            : this.x + this.width;
     }
 
     get top() {
@@ -37,7 +39,9 @@ export default class RoomData {
     }
 
     get bottom() {
-        return this.includeWalls ? this.y + this.height + 1 : this.y + this.height;
+        return this.includeWalls
+            ? this.y + this.height + 1
+            : this.y + this.height;
     }
 
     get borderTiles() {
@@ -49,11 +53,15 @@ export default class RoomData {
         // TODO this loop can be a lot simpler...
         for (let i = start; i < endWidth; i++) {
             for (let j = start; j < endHeight; j++) {
-                if (i === start || i === endWidth - 1|| j === start || j === endHeight - 1) {
-                    borders.push(this.#container.getTile(
-                        i + this.x,
-                        j + this.y
-                    ));
+                if (
+                    i === start ||
+                    i === endWidth - 1 ||
+                    j === start ||
+                    j === endHeight - 1
+                ) {
+                    borders.push(
+                        this.#container.getTile(i + this.x, j + this.y)
+                    );
                 }
             }
         }
@@ -66,10 +74,7 @@ export default class RoomData {
 
         for (let i = 0; i < this.width; i++) {
             for (let j = 0; j < this.height; j++) {
-                interior.push(this.#container.getTile(
-                    i + this.x,
-                    j + this.y
-                ));
+                interior.push(this.#container.getTile(i + this.x, j + this.y));
             }
         }
 
@@ -125,7 +130,12 @@ export default class RoomData {
     }
 
     containsPoint(x, y) {
-        return x <= this.right && x >= this.left && y <= this.bottom && y >= this.top;
+        return (
+            x <= this.right &&
+            x >= this.left &&
+            y <= this.bottom &&
+            y >= this.top
+        );
     }
 
     intersects(left, top, right, bottom) {

@@ -8,7 +8,7 @@ export class ForestGenerator extends SectorGenerator {
         const tiles = UniformScheme.generate({
             width: settings.width,
             height: settings.height,
-            exits: settings.exits
+            exits: settings.exits,
         });
 
         tiles.setTheme(TILE_THEME_FOREST);

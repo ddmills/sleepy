@@ -19,4 +19,4 @@ export default class SectorGenerator {
             theme.populateTile(tile);
         });
     }
-};
+}

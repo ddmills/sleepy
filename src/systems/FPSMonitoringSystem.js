@@ -7,7 +7,7 @@ export default class FPSMonitoringSystem extends System {
 
         if (sector) {
             sectorTxt = `(${sector.x}, ${sector.y})`;
-        };
+        }
 
         const fps = Math.trunc(1000 / dt);
         const display = `${sectorTxt} ${fps}`;

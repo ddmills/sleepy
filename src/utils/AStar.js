@@ -43,11 +43,13 @@ const defaultSettings = {
     start: {},
     goal: {},
     cost: () => {},
-    allowDiagonals: true
+    allowDiagonals: true,
 };
 
 export const computeAStar = (settings = defaultSettings) => {
-    const heuristic = settings.allowDiagonals ? diagonalDistance : manhattanDistance;
+    const heuristic = settings.allowDiagonals
+        ? diagonalDistance
+        : manhattanDistance;
     const start = settings.start;
     const goal = settings.goal;
     const cost = settings.cost;
@@ -64,25 +66,25 @@ export const computeAStar = (settings = defaultSettings) => {
         costs: [],
         cost: Infinity,
         start,
-        goal
+        goal,
     };
 
     if (cost(start, goal) === Infinity) {
         return result;
     }
 
-    open.put({
-        key: startKey,
-        pos: start
-    }, 0);
+    open.put(
+        {
+            key: startKey,
+            pos: start,
+        },
+        0
+    );
 
     costSoFar[startKey] = 0;
 
     while (!open.isEmpty()) {
-        const {
-            key: currentKey,
-            pos: current
-        } = open.pop();
+        const { key: currentKey, pos: current } = open.pop();
 
         if (currentKey === goalKey) {
             result.success = true;
@@ -106,10 +108,13 @@ export const computeAStar = (settings = defaultSettings) => {
 
                 const priority = newCost + heuristic(next, goal);
 
-                open.put({
-                    key: nextKey,
-                    pos: next
-                }, priority);
+                open.put(
+                    {
+                        key: nextKey,
+                        pos: next,
+                    },
+                    priority
+                );
 
                 cameFrom[nextKey] = current;
             }
@@ -136,4 +141,4 @@ export const computeAStar = (settings = defaultSettings) => {
     }
 
     return result;
-}
+};

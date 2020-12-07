@@ -69,16 +69,18 @@ export default class Display {
     }
 
     render() {
-        this.cells.data.filter((c) => c).forEach((cell) => {
-            const pixelX = cell.x * this.tileWidth;
-            const pixelY = cell.y * this.tileHeight;
+        this.cells.data
+            .filter((c) => c)
+            .forEach((cell) => {
+                const pixelX = cell.x * this.tileWidth;
+                const pixelY = cell.y * this.tileHeight;
 
-            if (cell.bg) {
-                this.ctx.fillStyle = cell.bg;
-                this.ctx.fillRect(pixelX, pixelY, cell.width, cell.height);
-            }
+                if (cell.bg) {
+                    this.ctx.fillStyle = cell.bg;
+                    this.ctx.fillRect(pixelX, pixelY, cell.width, cell.height);
+                }
 
-            this.ctx.drawImage(cell.img, pixelX, pixelY);
-        });
+                this.ctx.drawImage(cell.img, pixelX, pixelY);
+            });
     }
 }

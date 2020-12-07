@@ -272,7 +272,7 @@ export class DenseCastleScheme extends TileScheme {
                 const path = computeAStar({
                     start,
                     goal,
-                    cost
+                    cost,
                 });
 
                 if (path.success && path.cost >= loopiness) {

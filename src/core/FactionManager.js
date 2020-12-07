@@ -1,5 +1,11 @@
 import { FactionMember } from '../ecs/components';
-import { factions, FACTION_GOBLIN, FACTION_PLAYER, FACTION_VILLAGER, getFactionByName } from '../enums/Factions';
+import {
+    factions,
+    FACTION_GOBLIN,
+    FACTION_PLAYER,
+    FACTION_VILLAGER,
+    getFactionByName,
+} from '../enums/Factions';
 import Manager from './Manager';
 
 export default class FactionManager extends Manager {

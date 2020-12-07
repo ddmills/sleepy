@@ -46,28 +46,36 @@ export class Sector {
         const exits = [];
 
         // north
-        exits.push(...this.connectionsNorth.map((c) => ({
-            x: 12,
-            y: 0,
-        })));
+        exits.push(
+            ...this.connectionsNorth.map((c) => ({
+                x: 12,
+                y: 0,
+            }))
+        );
 
         // west
-        exits.push(...this.connectionsWest.map((c) => ({
-            x: 0,
-            y: 12,
-        })));
+        exits.push(
+            ...this.connectionsWest.map((c) => ({
+                x: 0,
+                y: 12,
+            }))
+        );
 
         // east
-        exits.push(...this.eastSector.connectionsWest.map((c) => ({
-            x: game.map.width - 1,
-            y: 12,
-        })));
+        exits.push(
+            ...this.eastSector.connectionsWest.map((c) => ({
+                x: game.map.width - 1,
+                y: 12,
+            }))
+        );
 
         // south
-        exits.push(...this.southSector.connectionsNorth.map((c) => ({
-            x: 12,
-            y: game.map.height - 1,
-        })));
+        exits.push(
+            ...this.southSector.connectionsNorth.map((c) => ({
+                x: 12,
+                y: game.map.height - 1,
+            }))
+        );
 
         return exits;
     }

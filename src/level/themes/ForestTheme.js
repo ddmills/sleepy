@@ -1,6 +1,10 @@
 import { BoredGoalType } from '../../ai/GoalTypes';
 import { game } from '../../core/Game';
-import { LIQUID_BLOOD, LIQUID_HONEY, LIQUID_WATER } from '../../enums/LiquidTypes';
+import {
+    LIQUID_BLOOD,
+    LIQUID_HONEY,
+    LIQUID_WATER,
+} from '../../enums/LiquidTypes';
 import { randomInt } from '../../utils/rand';
 import { TILE_TYPE_FLOOR, TILE_TYPE_WALL } from '../TileData';
 import TileThemePopulator from './TileThemePopulator';
@@ -19,7 +23,7 @@ export default class ForestTheme extends TileThemePopulator {
         room.tiles.forEach((tile) => {
             this.populateTile(tile);
 
-            if (Math.random() < .1) {
+            if (Math.random() < 0.1) {
                 if (tile.isType(TILE_TYPE_FLOOR)) {
                     const stone = game.ecs.createPrefab('Stone');
 

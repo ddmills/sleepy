@@ -2,8 +2,7 @@ import { game } from '../../core/Game';
 import { pickRandom } from '../../utils/rand';
 
 export default class TileThemePopulator {
-    static populateTile(tile) {
-    }
+    static populateTile(tile) {}
 
     static populateRoom(room) {
         room.tiles.forEach((tile) => {
@@ -27,7 +26,7 @@ export default class TileThemePopulator {
         });
     }
 
-    static getRandomEmptyTile(tileArr, attempts=100) {
+    static getRandomEmptyTile(tileArr, attempts = 100) {
         for (let i = 0; i < attempts; i++) {
             const tile = pickRandom(tileArr);
 
@@ -36,7 +35,10 @@ export default class TileThemePopulator {
             }
         }
 
-        console.warn(`ran out of attempts (${attempts}) to place item`, tileArr);
+        console.warn(
+            `ran out of attempts (${attempts}) to place item`,
+            tileArr
+        );
     }
 
     static trySpawn(room, cb) {

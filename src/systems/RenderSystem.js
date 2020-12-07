@@ -46,7 +46,7 @@ export default class RenderSystem extends System {
                 '#2c3538',
                 '#2c3538'
             );
-        };
+        }
 
         const renderables = Array.from(this.#query.get());
 

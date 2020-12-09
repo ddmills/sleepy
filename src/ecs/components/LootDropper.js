@@ -1,11 +1,14 @@
 import { Component } from 'geotic';
-import { SPWN_VIAL_BLOOD } from '../../data/Spawnables';
-import { spawn } from '../../data/Spawner';
+import { spawnLoot } from '../../data/tables/LootSpawn';
 
 export class LootDropper extends Component {
+    static properties = {
+        tables: [],
+    };
+
     onDeath(evt) {
         const pos = this.entity.position.getPos();
 
-        spawn(SPWN_VIAL_BLOOD, pos.x, pos.y);
+        spawnLoot(this.tables, pos.x, pos.y);
     }
 }

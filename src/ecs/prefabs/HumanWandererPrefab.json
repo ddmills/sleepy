@@ -1,4 +1,15 @@
 {
     "name": "HumanWanderer",
-    "inherit": ["Human", "Wanderer"]
+    "inherit": ["Human", "Wanderer"],
+    "components": [
+        {
+            "type": "LootDropper",
+            "properties": {
+                "tables": [
+                    "TBL_LOOT_GOBLIN",
+                    "TBL_LOOT_FOREST"
+                ]
+            }
+        }
+    ]
 }

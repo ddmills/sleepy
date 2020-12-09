@@ -1,0 +1,2 @@
+export const TBL_LOOT_GOBLIN = 'TBL_LOOT_GOBLIN';
+export const TBL_LOOT_FOREST = 'TBL_LOOT_FOREST';

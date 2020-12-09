@@ -22,10 +22,12 @@ export default class ForestTheme extends TileThemePopulator {
         room.tiles.forEach((tile) => {
             this.populateTile(tile);
 
-            if (Math.random() < 0.1) {
-                if (tile.isType(TILE_TYPE_FLOOR)) {
-                    spawn(SPWN_STONE, tile.x, tile.y);
-                }
+            if (Math.random() > 0.05) {
+                return;
+            }
+
+            if (tile.isType(TILE_TYPE_FLOOR)) {
+                spawn(SPWN_STONE, tile.x, tile.y);
             }
         });
 
@@ -36,18 +38,30 @@ export default class ForestTheme extends TileThemePopulator {
         }
 
         for (let i = 0; i < randomInt(0, 1); i++) {
+            if (Math.random() > 0.05) {
+                return;
+            }
+
             this.trySpawn(room, (tile) => {
                 spawn(SPWN_VIAL_BLOOD, tile.x, tile.y);
             });
         }
 
         for (let i = 0; i < randomInt(0, 1); i++) {
+            if (Math.random() > 0.05) {
+                return;
+            }
+
             this.trySpawn(room, (tile) => {
                 spawn(SPWN_VIAL_WATER, tile.x, tile.y);
             });
         }
 
         for (let i = 0; i < randomInt(0, 1); i++) {
+            if (Math.random() > 0.05) {
+                return;
+            }
+
             this.trySpawn(room, (tile) => {
                 spawn(SPWN_VIAL_HONEY, tile.x, tile.y);
             });

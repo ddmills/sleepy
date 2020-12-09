@@ -54,11 +54,12 @@ export default class WeightedTable {
         existing.weight = maxWeight;
     }
 
-    static combine(tableA, tableB) {
+    static combine(tables = []) {
         const table = new WeightedTable();
 
-        tableA.rows.forEach((row) => table.add(row.weight, row.value));
-        tableB.rows.forEach((row) => table.add(row.weight, row.value));
+        tables.forEach((other) => {
+            other.rows.forEach((row) => table.add(row.weight, row.value));
+        });
 
         return table;
     }

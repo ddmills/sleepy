@@ -1,11 +1,11 @@
 {
-    "width": 2,
-    "height": 2,
+    "width": 3,
+    "height": 3,
     "sectors": [
         [
             {
                 "generator": {
-                    "type": "FOREST_TOWN"
+                    "type": "FOREST"
                 },
                 "connectionsNorth": [],
                 "connectionsWest": []
@@ -15,6 +15,56 @@
                     "type": "FOREST_CABINS"
                 },
                 "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "generator": {
+                    "type": "FOREST_STRONGHOLD"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            }
+        ],
+        [
+            {
+                "generator": {
+                    "type": "FOREST_STRONGHOLD"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": []
+            },
+            {
+                "generator": {
+                    "type": "FOREST_TOWN"
+                },
+                "connectionsNorth": [
+                    {
+                        "type": "path"
+                    }
+                ],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "generator": {
+                    "type": "FOREST_CABINS"
+                },
+                "connectionsNorth": [
+                    {
+                        "type": "path"
+                    }
+                ],
                 "connectionsWest": [
                     {
                         "type": "path"
@@ -38,12 +88,27 @@
                 "generator": {
                     "type": "FOREST_STRONGHOLD"
                 },
-                "connectionsNorth": [],
+                "connectionsNorth": [
+                    {
+                        "type": "path"
+                    }
+                ],
                 "connectionsWest": [
                     {
                         "type": "path"
                     }
                 ]
+            },
+            {
+                "generator": {
+                    "type": "FOREST"
+                },
+                "connectionsNorth": [
+                    {
+                        "type": "path"
+                    }
+                ],
+                "connectionsWest": []
             }
         ]
     ]

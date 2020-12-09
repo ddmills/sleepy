@@ -40,6 +40,7 @@ export default class Grid {
     }
 
     clear() {
+        this.#data = [];
         for (let i = 0; i < this.size; i++) {
             const { x, y } = this.coord(i);
 

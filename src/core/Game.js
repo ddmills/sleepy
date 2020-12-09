@@ -36,8 +36,8 @@ export default class Game {
         this.engine = new ECS(this);
         this.mouse = new MouseManager(this);
         this.clock = new ClockManager(this);
-        this.camera = new CameraManager(this);
         this.renderer = new Renderer(this);
+        this.camera = new CameraManager(this);
         this.state = new GameStateManager(this);
         this.world = new WorldManager(this);
         this.map = new MapManager(this);

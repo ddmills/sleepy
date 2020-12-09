@@ -3,6 +3,7 @@ import Manager from './Manager';
 export default class CameraManager extends Manager {
     width = 32;
     height = 24;
+    zoom = 2;
 
     #focusX = 0;
     #focusY = 0;
@@ -10,7 +11,15 @@ export default class CameraManager extends Manager {
     constructor(game) {
         super(game);
         window.addEventListener('resize', this.onWindowResize.bind(this));
-        this.computeSize();
+        this.onWindowResize();
+    }
+
+    get renderedTileWidth() {
+        return this.zoom * this.game.renderer.tileWidth;
+    }
+
+    get renderedTileHeight() {
+        return this.zoom * this.game.renderer.tileHeight;
     }
 
     get topLeftWorldX() {
@@ -34,13 +43,18 @@ export default class CameraManager extends Manager {
     }
 
     computeSize() {
-        this.width = Math.floor(window.innerWidth / 32) - 2;
-        this.height = Math.floor(window.innerHeight / 32) - 2;
+        this.width = Math.floor(window.innerWidth / this.renderedTileWidth) - 2;
+        this.height = Math.floor(window.innerHeight / this.renderedTileHeight) - 2;
     }
 
     onWindowResize() {
         this.computeSize();
-        this.game.renderer.resizeDisplay(this.width, this.height);
+        this.game.renderer.resizeDisplay(this.width, this.height, this.zoom);
+    }
+
+    setZoom(zoom) {
+        this.zoom = zoom;
+        this.onWindowResize();
     }
 
     setFocus(x, y) {

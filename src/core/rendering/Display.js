@@ -5,6 +5,7 @@ export default class Display {
     canvas;
     width;
     height;
+    zoom = 1;
     tileWidth;
     tileHeight;
     cells;
@@ -25,14 +26,15 @@ export default class Display {
         this.setSize(width, height);
     }
 
-    setSize(width, height) {
+    setSize(width, height, zoom) {
         this.width = width;
         this.height = height;
+        this.zoom = zoom;
 
         const widthPx = this.tileWidth * this.width;
         const heightPx = this.tileHeight * this.height;
 
-        this.canvas.style.cssText = `width: ${widthPx}px; height: ${heightPx}px`;
+        this.canvas.style.cssText = `width: ${widthPx}px; height: ${heightPx}px; transform: scale(${this.zoom})`;
         this.canvas.width = widthPx;
         this.canvas.height = heightPx;
 
@@ -52,7 +54,7 @@ export default class Display {
 
     clear() {
         this.ctx.fillStyle = this.clearColor;
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.fillRect(0, 0, this.tileWidth * this.width, this.tileHeight * this.height);
         this.cells.clear();
     }
 

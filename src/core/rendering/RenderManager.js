@@ -3,18 +3,10 @@ import Display from './Display';
 import spritesheets from './spritesheets';
 
 export default class Renderer extends Manager {
-    #tileWidth = 16;
-    #tileHeight = 16;
+    tileWidth = 16;
+    tileHeight = 16;
     #spritesheets = {};
     #display = null;
-
-    get tileWidth() {
-        return this.#tileWidth;
-    }
-
-    get tileHeight() {
-        return this.#tileHeight;
-    }
 
     get display() {
         return this.#display;
@@ -32,8 +24,8 @@ export default class Renderer extends Manager {
         });
 
         this.#display = new Display({
-            width: this.game.camera.width,
-            height: this.game.camera.height,
+            width: 20,
+            height: 20,
             tileWidth: this.tileWidth,
             tileHeight: this.tileHeight,
         });
@@ -41,8 +33,8 @@ export default class Renderer extends Manager {
         document.body.appendChild(this.display.canvas);
     }
 
-    resizeDisplay(width, height) {
-        this.display.setSize(width, height);
+    resizeDisplay(width, height, zoom) {
+        this.display.setSize(width, height, zoom);
     }
 
     draw(x, y, char, fg1 = '#d0d6d8', fg2 = '#333', bg) {

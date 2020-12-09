@@ -16,11 +16,11 @@ export default class InteractModalScreen extends Screen {
     #interactor;
 
     get left() {
-        return (this.game.camera.width - this.#width) / 2;
+        return Math.floor((this.game.camera.width - this.#width) / 2);
     }
 
     get top() {
-        return (this.game.camera.height - this.#height) / 2;
+        return Math.floor((this.game.camera.height - this.#height) / 2);
     }
 
     onEnter(ctx) {

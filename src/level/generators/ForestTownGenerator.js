@@ -1,4 +1,6 @@
 import { game } from '../../core/Game';
+import { SPWN_DIRT_PATH } from '../../data/Spawnables';
+import { spawn } from '../../data/Spawner';
 import { computeAStar } from '../../utils/AStar';
 import { diagonalDistance } from '../../utils/diagonalDistance';
 import { pickRandom } from '../../utils/rand';
@@ -84,9 +86,8 @@ export class ForestTownGenerator extends SectorGenerator {
                     return;
                 }
 
-                const walkway = game.ecs.createPrefab('DirtPathway');
+                spawn(SPWN_DIRT_PATH, segment.x, segment.y);
 
-                walkway.position.setPos(segment.x, segment.y);
                 walkways.add(`${segment.x},${segment.y}`);
             });
         };

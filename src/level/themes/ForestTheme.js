@@ -1,10 +1,12 @@
-import { BoredGoalType } from '../../ai/GoalTypes';
-import { game } from '../../core/Game';
 import {
-    LIQUID_BLOOD,
-    LIQUID_HONEY,
-    LIQUID_WATER,
-} from '../../enums/LiquidTypes';
+    SPWN_GOBLIN_GRUNT,
+    SPWN_PINE_TREE,
+    SPWN_STONE,
+    SPWN_VIAL_BLOOD,
+    SPWN_VIAL_HONEY,
+    SPWN_VIAL_WATER,
+} from '../../data/Spawnables';
+import { spawn } from '../../data/Spawner';
 import { randomInt } from '../../utils/rand';
 import { TILE_TYPE_FLOOR, TILE_TYPE_WALL } from '../TileData';
 import TileThemePopulator from './TileThemePopulator';
@@ -12,10 +14,7 @@ import TileThemePopulator from './TileThemePopulator';
 export default class ForestTheme extends TileThemePopulator {
     static populateTile(tile) {
         if (tile.isType(TILE_TYPE_WALL)) {
-            const type = Math.random() < 0.5 ? 'PineTree' : 'SmallPineTree';
-            const tree = game.ecs.createPrefab(type);
-
-            tree.position.setPos(tile.x, tile.y);
+            spawn(SPWN_PINE_TREE, tile.x, tile.y);
         }
     }
 
@@ -25,46 +24,32 @@ export default class ForestTheme extends TileThemePopulator {
 
             if (Math.random() < 0.1) {
                 if (tile.isType(TILE_TYPE_FLOOR)) {
-                    const stone = game.ecs.createPrefab('Stone');
-
-                    stone.position.setPos(tile.x, tile.y);
+                    spawn(SPWN_STONE, tile.x, tile.y);
                 }
             }
         });
 
         for (let i = 0; i < randomInt(0, 1); i++) {
             this.trySpawn(room, (tile) => {
-                const goblin = game.ecs.createPrefab('Goblin');
-
-                goblin.position.setPos(tile.x, tile.y);
-                goblin.brain.pushGoal(BoredGoalType.create());
+                spawn(SPWN_GOBLIN_GRUNT, tile.x, tile.y);
             });
         }
 
         for (let i = 0; i < randomInt(0, 1); i++) {
             this.trySpawn(room, (tile) => {
-                const vial = game.ecs.createPrefab('Vial');
-
-                vial.liquidContainer.contents = LIQUID_BLOOD;
-                vial.position.setPos(tile.x, tile.y);
+                spawn(SPWN_VIAL_BLOOD, tile.x, tile.y);
             });
         }
 
         for (let i = 0; i < randomInt(0, 1); i++) {
             this.trySpawn(room, (tile) => {
-                const vial = game.ecs.createPrefab('Vial');
-
-                vial.liquidContainer.contents = LIQUID_WATER;
-                vial.position.setPos(tile.x, tile.y);
+                spawn(SPWN_VIAL_WATER, tile.x, tile.y);
             });
         }
 
         for (let i = 0; i < randomInt(0, 1); i++) {
             this.trySpawn(room, (tile) => {
-                const vial = game.ecs.createPrefab('Vial');
-
-                vial.liquidContainer.contents = LIQUID_HONEY;
-                vial.position.setPos(tile.x, tile.y);
+                spawn(SPWN_VIAL_HONEY, tile.x, tile.y);
             });
         }
     }

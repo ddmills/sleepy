@@ -1,49 +1,44 @@
-import { BoredGoalType } from '../../ai/GoalTypes';
-import { game } from '../../core/Game';
-import { LIQUID_HONEY } from '../../enums/LiquidTypes';
+import {
+    SPWN_HUMAN_WANDERER,
+    SPWN_WOOD_DOOR,
+    SPWN_WOOD_WALL,
+    SPWN_WOOD_CHEST,
+    SPWN_STONE,
+    SPWN_VIAL_HONEY,
+} from '../../data/Spawnables';
+import { spawn } from '../../data/Spawner';
 import { randomInt } from '../../utils/rand';
-import { TILE_TYPE_FLOOR, TILE_TYPE_WALL } from '../TileData';
+import { TILE_TYPE_WALL } from '../TileData';
 import TileThemePopulator from './TileThemePopulator';
 
 export default class CabinTheme extends TileThemePopulator {
     static populateTile(tile) {
         if (this.getEntities(tile).length === 0) {
             if (tile.isType(TILE_TYPE_WALL)) {
-                const wall = game.ecs.createPrefab('WoodWall');
-
-                wall.position.setPos(tile.x, tile.y);
+                spawn(SPWN_WOOD_WALL, tile.x, tile.y);
             }
         }
     }
 
     static populateRoom(room) {
         room.exits.forEach((exit) => {
-            const door = game.ecs.createPrefab('Door');
-
             if (this.getEntities(exit).length === 0) {
-                door.position.setPos(exit.x, exit.y);
+                spawn(SPWN_WOOD_DOOR, exit.x, exit.y);
             }
         });
 
         room.tiles.forEach((tile) => this.populateTile(tile));
 
         this.trySpawn(room, (tile) => {
-            const chest = game.ecs.createPrefab('Chest');
-            const stone = game.ecs.createPrefab('Stone');
-            const vial = game.ecs.createPrefab('Vial');
+            const chest = spawn(SPWN_WOOD_CHEST, tile.x, tile.y);
 
-            vial.liquidContainer.contents = LIQUID_HONEY;
-            chest.position.setPos(tile.x, tile.y);
-            chest.inventory.addLoot(vial);
-            chest.inventory.addLoot(stone);
+            chest.inventory.addLoot(spawn(SPWN_VIAL_HONEY));
+            chest.inventory.addLoot(spawn(SPWN_STONE));
         });
 
         for (let i = 0; i < randomInt(0, 3); i++) {
             this.trySpawn(room, (tile) => {
-                const wanderer = game.ecs.createPrefab('HumanWanderer');
-
-                wanderer.position.setPos(tile.x, tile.y);
-                wanderer.brain.pushGoal(BoredGoalType.create());
+                spawn(SPWN_HUMAN_WANDERER, tile.x, tile.y);
             });
         }
     }

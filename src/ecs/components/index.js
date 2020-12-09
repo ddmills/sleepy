@@ -33,3 +33,4 @@ export { FactionMember } from './FactionMember';
 export { Eyes } from './Eyes';
 export { Particle } from './Particle';
 export { ParticleEmitter } from './ParticleEmitter';
+export { LootDropper } from './LootDropper';

@@ -1,5 +1,6 @@
 import { Component } from 'geotic';
-import { game } from '../../core/Game';
+import { SPWN_POOL_LIQUID } from '../../data/Spawnables';
+import { spawn } from '../../data/Spawner';
 import { drinkLiquid, liquids, LIQUID_BLOOD } from '../../enums/LiquidTypes';
 import { IsDestroying } from './IsDestroying';
 
@@ -71,13 +72,11 @@ export class LiquidContainer extends Component {
 
         this.volume -= quantity;
 
-        const pool = this.ecs.createPrefab('Pool', {
-            liquidContainer: {
-                contents: this.contents,
-                volume: quantity,
-            },
+        spawn(SPWN_POOL_LIQUID, x, y, {
+            contents: this.contents,
+            volume: quantity,
         });
-        pool.position.setPos(x, y);
+
         this._checkDestroyOnEmpty();
 
         return true;

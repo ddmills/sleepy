@@ -1,19 +1,18 @@
 import { Component } from 'geotic';
 import { game } from '../../core/Game';
+import { SPWN_GLASS_SHARD } from '../../data/Spawnables';
+import { spawn } from '../../data/Spawner';
 import { CONSOLE_EVENT_SHATTER } from '../../enums/ConsoleEvents';
-import { Dead } from './Dead';
 import { IsDestroying } from './IsDestroying';
 import { LiquidContainer } from './LiquidContainer';
 
 export class FragileGlass extends Component {
     shatter(x, y) {
-        const shards = this.ecs.createPrefab('GlassShard', {
+        spawn(SPWN_GLASS_SHARD, x, y, {
             stackable: {
                 quantity: 3,
             },
         });
-
-        shards.position.setPos(x, y);
 
         if (this.entity.has(LiquidContainer)) {
             if (this.entity.liquidContainer.pour(x, y)) {

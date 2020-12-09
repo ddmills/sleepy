@@ -1,4 +1,10 @@
-import { game } from '../../core/Game';
+import {
+    SPWN_STONE,
+    SPWN_STONE_WALL,
+    SPWN_WOOD_DOOR,
+} from '../../data/Spawnables';
+import { spawn } from '../../data/Spawner';
+import { randomInt } from '../../utils/rand';
 import { TILE_TYPE_WALL } from '../TileData';
 import TileThemePopulator from './TileThemePopulator';
 
@@ -6,22 +12,24 @@ export default class CastleTheme extends TileThemePopulator {
     static populateTile(tile) {
         if (this.getEntities(tile).length === 0) {
             if (tile.isType(TILE_TYPE_WALL)) {
-                const wall = game.ecs.createPrefab('Wall');
-
-                wall.position.setPos(tile.x, tile.y);
+                spawn(SPWN_STONE_WALL, tile.x, tile.y);
             }
         }
     }
 
     static populateRoom(room) {
         room.exits.forEach((exit) => {
-            const door = game.ecs.createPrefab('Door');
-
             if (this.getEntities(exit).length === 0) {
-                door.position.setPos(exit.x, exit.y);
+                spawn(SPWN_WOOD_DOOR, exit.x, exit.y);
             }
         });
 
         room.tiles.forEach((tile) => this.populateTile(tile));
+
+        for (let i = 0; i < randomInt(0, 3); i++) {
+            this.trySpawn(room, (tile) => {
+                spawn(SPWN_STONE, tile.x, tile.y);
+            });
+        }
     }
 }

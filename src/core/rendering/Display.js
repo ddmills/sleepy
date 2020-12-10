@@ -16,6 +16,7 @@ export default class Display {
         this.tileHeight = tileHeight;
 
         this.cells = new Grid(width * 2, height, () => null);
+        this.cells.suppressOOBWarn = true;
 
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d', { alpha: false });

@@ -22,6 +22,7 @@ import {
     INPUT_CMD_INTERACT,
     INPUT_CMD_PICK_UP,
     INPUT_CMD_INVENTORY,
+    INPUT_CMD_EQUIPMENT,
     INPUT_CMD_SELECT_NW,
     INPUT_CMD_SELECT_N,
     INPUT_CMD_SELECT_NE,
@@ -54,6 +55,7 @@ import {
     KEY_G,
     KEY_J,
     KEY_N,
+    KEY_P,
 } from './KeyCodes';
 
 const cmd = (domain, type, name, isKeyboard, key, shift, ctrl, alt, meta) =>
@@ -111,4 +113,5 @@ export default [
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_PICK_UP,              'pick up',                true, KEY_G,        false, false, false, false),
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_INTERACT,             'interact',               true, KEY_J,        false, false, false, false),
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_INVENTORY,            'inventory',              true, KEY_I,        false, false, false, false),
+    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_EQUIPMENT,            'equipment',              true, KEY_P,        false, false, false, false),
 ];

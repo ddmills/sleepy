@@ -8,15 +8,19 @@ export class Equipment extends Component {
     };
 
     onTryEquip(evt) {
-        console.log(evt.data);
         const slots = Object.values(evt.data.interactor.equipmentSlot).filter((slot) => {
-            return this.slotTypes.includes(slot.slotType)
+            return this.slotTypes.includes(slot.slotType) && slot.isEmpty;
         });
 
-        const names = slots.map((slot) => slot.name);
+        const slot = slots[0];
 
-        console.log(`equip ${this.entity.moniker.display} to one of [${names.join(', ')}]`);
-        this.entity.add(IsEquipped);
+        console.log(`equip ${this.entity.moniker.display} to ${slot.name}`);
+        this.entity.add(IsEquipped, {
+            slotKey: slot.key
+        });
+
+        slot.contents = this.entity;
+
         evt.handle();
     }
 

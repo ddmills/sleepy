@@ -1,64 +1,63 @@
 export default class Grid {
-    #width = 0;
-    #height = 0;
-    #data = [];
+    _width = 0;
+    _height = 0;
+    data = [];
+    suppressOOBWarn = false;
     #defaultValueGenerator = () => null;
 
     get width() {
-        return this.#width;
+        return this._width;
     }
 
     get height() {
-        return this.#height;
+        return this._height;
     }
 
     get size() {
-        return this.#width * this.#height;
-    }
-
-    get data() {
-        return this.#data;
+        return this._width * this._height;
     }
 
     constructor(width, height, defaultValueGenerator = () => null) {
-        this.#width = width;
-        this.#height = height;
+        this._width = width;
+        this._height = height;
         this.#defaultValueGenerator = defaultValueGenerator;
 
         this.clear();
     }
 
     idx(x, y) {
-        return y * this.width + x;
+        return y * this._width + x;
     }
 
     coord(idx) {
         return {
-            x: Math.trunc(idx % this.width),
-            y: Math.trunc(idx / this.width),
+            x: Math.trunc(idx % this._width),
+            y: Math.trunc(idx / this._width),
         };
     }
 
     clear() {
-        this.#data = [];
+        this.data = [];
         for (let i = 0; i < this.size; i++) {
             const { x, y } = this.coord(i);
 
-            this.#data[i] = this.#defaultValueGenerator(x, y);
+            this.data[i] = this.#defaultValueGenerator(x, y);
         }
     }
 
     set(x, y, value) {
         if (this.isOutOfBounds(x, y)) {
-            console.warn(
-                `Trying to set out-of-bounds coordinates (${x}, ${y}) to value ${value}`
-            );
+            if (!this.suppressOOBWarn) {
+                console.warn(
+                    `Trying to set out-of-bounds coordinates (${x}, ${y}) to value ${value}`
+                );
+            }
             return;
         }
 
         const idx = this.idx(x, y);
 
-        this.#data[idx] = value;
+        this.data[idx] = value;
     }
 
     get(x, y) {
@@ -66,11 +65,11 @@ export default class Grid {
             return this.#defaultValueGenerator();
         }
 
-        return this.#data[this.idx(x, y)];
+        return this.data[this.idx(x, y)];
     }
 
     isOutOfBounds(x, y) {
-        return x < 0 || y < 0 || x >= this.width || y >= this.height;
+        return x < 0 || y < 0 || x >= this._width || y >= this.height;
     }
 
     getNeighbors(x, y) {
@@ -87,8 +86,8 @@ export default class Grid {
     }
 
     clearAndResize(width, height) {
-        this.#width = width;
-        this.#height = height;
+        this._width = width;
+        this._height = height;
         this.clear();
     }
 }

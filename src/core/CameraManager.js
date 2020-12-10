@@ -23,23 +23,23 @@ export default class CameraManager extends Manager {
     }
 
     get topLeftWorldX() {
-        return Math.min(
+        return Math.floor(Math.min(
             Math.max(0, this.#focusX - this.width / 2),
             Math.max(
                 (this.width - this.game.map.width) / -2,
                 this.game.map.width - this.width
             )
-        );
+        ));
     }
 
     get topLeftWorldY() {
-        return Math.min(
+        return Math.floor(Math.min(
             Math.max(0, this.#focusY - this.height / 2),
             Math.max(
                 (this.height - this.game.map.height) / -2,
                 this.game.map.height - this.height
             )
-        );
+        ));
     }
 
     computeSize() {

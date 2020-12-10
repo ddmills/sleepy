@@ -10,4 +10,8 @@ export class EquipmentSlot extends Component {
         slotType: EQ_SLOT_BODY,
         contents: '<Entity>',
     };
+
+    get isEmpty() {
+        return !this.contents;
+    }
 }

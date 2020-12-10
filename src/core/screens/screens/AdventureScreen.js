@@ -24,6 +24,7 @@ import {
     INPUT_CMD_SELECT_SW,
     INPUT_CMD_SELECT_S,
     INPUT_CMD_SELECT_SE,
+    INPUT_CMD_EQUIPMENT,
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_ADVENTURE } from '../../input/InputDomainType';
 import {
@@ -39,6 +40,7 @@ import {
 } from '../../../enums/Directions';
 import {
     SCREEN_CURSOR,
+    SCREEN_EQUIPMENT,
     SCREEN_INTERACT_MODAL,
     SCREEN_INVENTORY,
     SCREEN_MAIN_MENU,
@@ -163,6 +165,11 @@ export default class AdventureScreen extends Screen {
         if (cmd.type === INPUT_CMD_INVENTORY) {
             this.game.screens.pushScreen(SCREEN_INVENTORY, {
                 accessible: this.game.player.entity,
+                accessor: this.game.player.entity,
+            });
+        }
+        if (cmd.type === INPUT_CMD_EQUIPMENT) {
+            this.game.screens.pushScreen(SCREEN_EQUIPMENT, {
                 accessor: this.game.player.entity,
             });
         }

@@ -99,7 +99,6 @@ export class ScatteredScheme extends TileScheme {
         }
 
         if (tiles.rooms.length < minCount) {
-            console.warn('COULD NOT GET MINIMUM COUNT');
             return this.generate({
                 ...settings,
                 attempt: attempt + 1,

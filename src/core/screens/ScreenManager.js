@@ -6,6 +6,7 @@ import {
     SCREEN_INTERACT_MODAL,
     SCREEN_CURSOR,
     SCREEN_LOAD_SECTOR,
+    SCREEN_EQUIPMENT,
 } from './ScreenType';
 import AdventureScreen from './screens/AdventureScreen';
 import MainMenuScreen from './screens/MainMenuScreen';
@@ -15,6 +16,7 @@ import InventoryScreen from './screens/InventoryScreen';
 import InteractModalScreen from './screens/InteractModalScreen';
 import CursorScreen from './screens/CursorScreen';
 import LoadSectorScreen from './screens/LoadSectorScreen';
+import EquipmentScreen from './screens/EquipmentScreen';
 
 export default class ScreenManager extends Manager {
     #screens = {};
@@ -30,6 +32,7 @@ export default class ScreenManager extends Manager {
             [SCREEN_INTERACT_MODAL]: new InteractModalScreen(game),
             [SCREEN_CURSOR]: new CursorScreen(game),
             [SCREEN_LOAD_SECTOR]: new LoadSectorScreen(game),
+            [SCREEN_EQUIPMENT]: new EquipmentScreen(game),
         };
         this.setScreen(SCREEN_MAIN_MENU);
     }

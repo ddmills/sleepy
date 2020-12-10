@@ -27,3 +27,5 @@ export const INPUT_CMD_SELECT_SW = 25;
 export const INPUT_CMD_SELECT_S = 26;
 export const INPUT_CMD_SELECT_SE = 27;
 export const INPUT_CMD_NEW_GAME = 28;
+
+export const INPUT_CMD_EQUIPMENT = 29;

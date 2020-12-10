@@ -18,6 +18,12 @@
         },
         {
             "type": "Loot"
+        },
+        {
+            "type": "Equipment",
+            "properties": {
+                "slotTypes": ["EQ_SLOT_BODY"]
+            }
         }
     ]
 }

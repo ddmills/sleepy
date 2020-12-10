@@ -10,6 +10,46 @@
             }
         },
         {
+            "type": "EquipmentSlot",
+            "properties": {
+                "name": "Neck",
+                "key": "neck",
+                "slotType": "EQ_SLOT_NECK"
+            }
+        },
+        {
+            "type": "EquipmentSlot",
+            "properties": {
+                "name": "Body",
+                "key": "body",
+                "slotType": "EQ_SLOT_BODY"
+            }
+        },
+        {
+            "type": "EquipmentSlot",
+            "properties": {
+                "name": "Left arm",
+                "key": "armLeft",
+                "slotType": "EQ_SLOT_ARM"
+            }
+        },
+        {
+            "type": "EquipmentSlot",
+            "properties": {
+                "name": "Right arm",
+                "key": "armRight",
+                "slotType": "EQ_SLOT_ARM"
+            }
+        },
+        {
+            "type": "EquipmentSlot",
+            "properties": {
+                "name": "Feet",
+                "key": "feet",
+                "slotType": "EQ_SLOT_FEET"
+            }
+        },
+        {
             "type": "Body"
         },
         {

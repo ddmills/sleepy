@@ -41,7 +41,7 @@ export default class FOVSystem extends System {
     }
 
     computeFOV() {
-        this.query.get().forEach((e) => e.remove(IsVisible));
+        this.query.get().forEach((e) => e.isVisible.destroy());
 
         const pos = this.game.player.position;
 

@@ -66,7 +66,7 @@ export class Inventory extends Component {
 
         if (idx >= 0) {
             this.content.splice(idx, 1);
-            loot.remove(IsInventoried);
+            loot.isInventoried.destroy();
         }
 
         return loot;

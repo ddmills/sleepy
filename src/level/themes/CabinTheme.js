@@ -5,6 +5,8 @@ import {
     SPWN_WOOD_CHEST,
     SPWN_STONE,
     SPWN_VIAL_HONEY,
+    SPWN_AMULET,
+    SPWN_CLOTH_ARMOR,
 } from '../../data/Spawnables';
 import { spawn } from '../../data/Spawner';
 import { randomInt } from '../../utils/rand';
@@ -34,6 +36,8 @@ export default class CabinTheme extends TileThemePopulator {
 
             chest.inventory.addLoot(spawn(SPWN_VIAL_HONEY));
             chest.inventory.addLoot(spawn(SPWN_STONE));
+            chest.inventory.addLoot(spawn(SPWN_AMULET));
+            chest.inventory.addLoot(spawn(SPWN_CLOTH_ARMOR));
         });
 
         for (let i = 0; i < randomInt(0, 3); i++) {

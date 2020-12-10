@@ -6,6 +6,10 @@ export class IsInventoried extends Component {
         owner: '<Entity>',
     };
 
+    isOwnedBy(entity) {
+        return this.owner && this.owner.id === entity.id;
+    }
+
     onQueryOwnership(evt) {
         evt.data.result.add(this.entity);
     }

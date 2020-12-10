@@ -72,7 +72,7 @@ export default class PlayerManager extends Manager {
         }
 
         if (this.entity.has(MoveCommand)) {
-            this.entity.remove(MoveCommand);
+            this.entity.moveCommand.destroy();
         }
 
         this.entity.add(MoveCommand, {
@@ -86,7 +86,7 @@ export default class PlayerManager extends Manager {
         }
 
         if (this.entity.has(MeleeCommand)) {
-            this.entity.remove(MeleeCommand);
+            this.entity.meleeCommand.destroy();
         }
 
         this.entity.add(MeleeCommand, {

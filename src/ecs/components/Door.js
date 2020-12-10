@@ -30,8 +30,8 @@ export class Door extends Component {
             glyph.ch = this.ch;
         }
 
-        this.entity.remove(Blocker);
-        this.entity.remove(Shadowcaster);
+        this.entity.blocker.destroy();
+        this.entity.shadowcaster.destroy();
     }
 
     closeDoor() {

@@ -34,3 +34,6 @@ export { Eyes } from './Eyes';
 export { Particle } from './Particle';
 export { ParticleEmitter } from './ParticleEmitter';
 export { LootDropper } from './LootDropper';
+export { IsEquipped } from './IsEquipped';
+export { Equipment } from './Equipment';
+export { EquipmentSlot } from './EquipmentSlot';

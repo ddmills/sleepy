@@ -20,6 +20,15 @@
             "type": "Loot"
         },
         {
+            "type": "Equipment",
+            "properties": {
+                "slotTypes": [
+                    "EQ_SLOT_NECK",
+                    "EQ_SLOT_ARM"
+                ]
+            }
+        },
+        {
             "type": "Throwable"
         }
     ]

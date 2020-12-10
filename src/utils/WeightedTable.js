@@ -44,14 +44,14 @@ export default class WeightedTable {
                 weight,
                 value,
             });
+        } else {
+            // take maximum weight
+            const maxWeight = Math.max(existing.weight, weight);
 
-            return;
+            existing.weight = maxWeight;
         }
 
-        // take maximum weight
-        const maxWeight = Math.max(existing.weight, weight);
-
-        existing.weight = maxWeight;
+        this.rows.sort((a, b) => a.weight - b.weight);
     }
 
     static combine(tables = []) {

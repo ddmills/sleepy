@@ -20,3 +20,5 @@ export * as StonePrefab from './StonePrefab.json';
 export * as GlassShardPrefab from './GlassShardPrefab.json';
 export * as PoolPrefab from './PoolPrefab.json';
 export * as DirtPathwayPrefab from './DirtPathwayPrefab.json';
+export * as AmuletPrefab from './AmuletPrefab.json';
+export * as ClothArmorPrefab from './ClothArmorPrefab.json';

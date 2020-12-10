@@ -13,3 +13,5 @@ export const SPWN_DIRT_PATH = 'SPWN_DIRT_PATH';
 export const SPWN_CORPSE = 'SPWN_CORPSE';
 export const SPWN_POOL_LIQUID = 'SPWN_POOL_LIQUID';
 export const SPWN_GLASS_SHARD = 'SPWN_GLASS_SHARD';
+export const SPWN_AMULET = 'SPWN_AMULET';
+export const SPWN_CLOTH_ARMOR = 'SPWN_CLOTH_ARMOR';

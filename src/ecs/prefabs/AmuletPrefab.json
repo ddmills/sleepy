@@ -1,0 +1,26 @@
+{
+    "name": "Amulet",
+    "inherit": ["GameObject"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Amulet"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "ü",
+                "fg1": "#44c081",
+                "fg2": "#9eafb3"
+            }
+        },
+        {
+            "type": "Loot"
+        },
+        {
+            "type": "Throwable"
+        }
+    ]
+}

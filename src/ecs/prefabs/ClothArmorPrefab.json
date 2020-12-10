@@ -1,0 +1,23 @@
+{
+    "name": "ClothArmor",
+    "inherit": ["GameObject"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Cloth armor"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "[",
+                "fg1": "#587546",
+                "fg2": "#402f20"
+            }
+        },
+        {
+            "type": "Loot"
+        }
+    ]
+}

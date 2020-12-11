@@ -13,7 +13,11 @@ export class Equipment extends Component {
         });
 
         // TODO: choose slot
-        slots[0].equip(this.entity);
+        const slot = slots[0];
+
+        if (slot) {
+            slot.equip(this.entity);
+        }
 
         evt.handle();
     }

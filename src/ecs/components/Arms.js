@@ -31,7 +31,7 @@ export class Arms extends Component {
         window.game.particles.createParticle(targetPos.x, targetPos.y, {
             lifetime: 140,
             fg1s: ['#8d4c4f', '#730d14'],
-            glyphs: ['-'],
+            glyphs: ['*'],
         });
 
         evt.data.target.fireEvent('damage', {

@@ -23,6 +23,13 @@ export default class InteractModalScreen extends Screen {
         return Math.floor((this.game.camera.height - this.#height) / 2);
     }
 
+    get interactions() {
+        return [...this.#interactions, {
+            name: 'Back',
+            isBack: true,
+        }];
+    }
+
     onEnter(ctx) {
         this.game.commands.pushDomain(INPUT_DOMAIN_MAIN_MENU);
         this.#selectedIdx = 0;
@@ -46,30 +53,41 @@ export default class InteractModalScreen extends Screen {
     }
 
     pointerUp() {
-        Math.max(0, --this.#selectedIdx);
+        this.#selectedIdx--;
+
+        if (this.#selectedIdx < 0) {
+            this.#selectedIdx = this.interactions.length - 1;
+        }
     }
 
     pointerDown() {
         this.#selectedIdx++;
+
+        if (this.#selectedIdx >= this.interactions.length) {
+            this.#selectedIdx = 0;
+        }
     }
 
     selectItem() {
-        const idx = this.#selectedIdx % this.#interactions.length;
-        const interaction = this.#interactions[idx];
+        const idx = this.#selectedIdx % this.interactions.length;
+        const interaction = this.interactions[idx];
 
-        if (interaction) {
-            this.#interactable.fireEvent(interaction.evt, {
-                interactor: this.#interactor,
-            });
-
-            if (this.#interactable.isDestroyed) {
-                this.game.screens.popScreen();
-
-                return;
-            }
-
-            this.resetInteractions();
+        if (interaction.isBack) {
+            this.game.screens.popScreen();
+            return;
         }
+
+        this.#interactable.fireEvent(interaction.evt, {
+            interactor: this.#interactor,
+        });
+
+        if (this.#interactable.isDestroyed) {
+            this.game.screens.popScreen();
+
+            return;
+        }
+
+        this.resetInteractions();
     }
 
     onInputCommand(cmd) {
@@ -131,25 +149,23 @@ export default class InteractModalScreen extends Screen {
             '┘'
         );
 
-        const idx = this.#selectedIdx % this.#interactions.length;
+        const idx = this.#selectedIdx % this.interactions.length;
 
-        if (this.#interactions.length === 0) {
+        if (this.interactions.length === 0) {
             this.game.renderer.drawTextCenter(6, 'There is nothing here.');
         }
 
         const xpos = this.left + 2;
 
-        this.#interactions.forEach((interaction, i) => {
+        this.interactions.forEach((interaction, i) => {
             const isSelected = i === idx;
             const ypos = i + this.top + 5;
 
             if (isSelected) {
-                this.game.renderer.drawText(xpos, ypos, '>', 'yellow');
+                this.game.renderer.drawText(xpos, ypos, `→ ${interaction.name}`, 'yellow');
             } else {
-                this.game.renderer.drawText(xpos, ypos, '-');
+                this.game.renderer.drawText(xpos, ypos, `- ${interaction.name}`);
             }
-
-            this.game.renderer.drawText(xpos + 1, ypos, interaction.name);
         });
     }
 }

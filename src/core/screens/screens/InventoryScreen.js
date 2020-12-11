@@ -13,6 +13,14 @@ export default class InventoryScreen extends Screen {
     #accessible;
     #accessor;
 
+    get items() {
+        return this.#accessible.inventory.content;
+    }
+
+    get selectedItem() {
+        return this.items[this.#selectedIdx];
+    }
+
     onEnter(ctx) {
         this.game.commands.pushDomain(INPUT_DOMAIN_MAIN_MENU);
         this.#selectedIdx = 0;
@@ -25,17 +33,23 @@ export default class InventoryScreen extends Screen {
     }
 
     pointerUp() {
-        Math.max(0, --this.#selectedIdx);
+        this.#selectedIdx--;
+
+        if (this.#selectedIdx < 0) {
+            this.#selectedIdx = this.items.length - 1;
+        }
     }
 
     pointerDown() {
         this.#selectedIdx++;
+
+        if (this.#selectedIdx >= this.items.length) {
+            this.#selectedIdx = 0;
+        }
     }
 
     selectItem() {
-        const items = this.#accessible.inventory.content;
-        const idx = this.#selectedIdx % items.length;
-        const interactable = items[idx];
+        const interactable = this.items[this.#selectedIdx];
 
         if (interactable) {
             this.game.screens.pushScreen(SCREEN_INTERACT_MODAL, {
@@ -71,15 +85,12 @@ export default class InventoryScreen extends Screen {
             'yellow'
         );
 
-        const items = this.#accessible.inventory.content;
-        const idx = this.#selectedIdx % items.length;
-
-        if (items.length === 0) {
+        if (this.items.length === 0) {
             this.game.renderer.drawTextCenter(6, 'There is nothing here.');
         }
 
-        items.forEach((item, i) => {
-            const isSelected = i === idx;
+        this.items.forEach((item, i) => {
+            const isSelected = i === this.#selectedIdx;
             const ypos = i + 5;
 
             if (isSelected) {

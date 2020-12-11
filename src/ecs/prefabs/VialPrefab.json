@@ -28,7 +28,7 @@
         {
             "type": "LiquidContainer",
             "properties": {
-                "contents": 1,
+                "content": 1,
                 "volume": 5,
                 "maxVolume": 10,
                 "overridePrimary": true,

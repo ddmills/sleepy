@@ -4,7 +4,7 @@ import { LIQUID_BLOOD } from '../../enums/LiquidTypes';
 export const createSpawnable = () => {
     const vial = game.ecs.createPrefab('Vial');
 
-    vial.liquidContainer.contents = LIQUID_BLOOD;
+    vial.liquidContainer.content = LIQUID_BLOOD;
 
     return vial;
 };

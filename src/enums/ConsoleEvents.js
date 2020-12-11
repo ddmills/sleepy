@@ -57,7 +57,7 @@ const mapping = {
                     data.target
                 )} shatters and spills its ${
                     liquids[data.liquid].colorDesc
-                } contents!`;
+                } content!`;
             }
         },
         shouldAppear(data) {

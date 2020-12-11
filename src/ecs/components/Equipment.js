@@ -12,14 +12,8 @@ export class Equipment extends Component {
             return this.slotTypes.includes(slot.slotType) && slot.isEmpty;
         });
 
-        const slot = slots[0];
-
-        console.log(`equip ${this.entity.moniker.display} to ${slot.name}`);
-        this.entity.add(IsEquipped, {
-            slotKey: slot.key
-        });
-
-        slot.contents = this.entity;
+        // TODO: choose slot
+        slots[0].equip(this.entity);
 
         evt.handle();
     }
@@ -31,7 +25,7 @@ export class Equipment extends Component {
         console.log(`unequip ${this.entity.moniker.display} from ${slotKey}`, slot);
 
         if (slot) {
-            slot.contents = null;
+            slot.content = null;
         }
 
         this.entity.isEquipped.destroy();
@@ -39,9 +33,15 @@ export class Equipment extends Component {
     }
 
     onGetInteractions(evt) {
+        if (this.entity.isInventoried) {
+            if (!this.entity.isInventoried.isOwnedBy(evt.data.interactor)) {
+                return;
+            }
+        }
+
         if (this.entity.has(IsEquipped)) {
             evt.data.interactions.push({
-                name: 'Unequip',
+                name: `Unequip [${this.entity.isEquipped.slot.name}]`,
                 evt: 'try-unequip',
             });
         } else {

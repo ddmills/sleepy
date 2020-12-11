@@ -6,7 +6,7 @@ import { IsDestroying } from './IsDestroying';
 
 export class LiquidContainer extends Component {
     static properties = {
-        contents: LIQUID_BLOOD,
+        content: LIQUID_BLOOD,
         volume: 10,
         maxVolume: 10,
         overridePrimary: false,
@@ -16,11 +16,11 @@ export class LiquidContainer extends Component {
     };
 
     get liquid() {
-        return !this.isEmpty && liquids[this.contents];
+        return !this.isEmpty && liquids[this.content];
     }
 
     get isEmpty() {
-        return isNaN(this.contents) || this.volume <= 0;
+        return isNaN(this.content) || this.volume <= 0;
     }
 
     get display() {
@@ -28,7 +28,7 @@ export class LiquidContainer extends Component {
             return `[empty] ${this.volume}/${this.maxVolume}`;
         }
 
-        return `[${liquids[this.contents].name}] ${this.volume}/${
+        return `[${liquids[this.content].name}] ${this.volume}/${
             this.maxVolume
         }`;
     }
@@ -73,7 +73,7 @@ export class LiquidContainer extends Component {
         this.volume -= quantity;
 
         spawn(SPWN_POOL_LIQUID, x, y, {
-            contents: this.contents,
+            content: this.content,
             volume: quantity,
         });
 
@@ -101,7 +101,7 @@ export class LiquidContainer extends Component {
             return;
         }
 
-        drinkLiquid(evt.data.interactor, this.contents, this.volume);
+        drinkLiquid(evt.data.interactor, this.content, this.volume);
         this.volume = 0;
         this._checkDestroyOnEmpty();
         evt.handle();

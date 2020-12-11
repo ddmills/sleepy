@@ -18,7 +18,7 @@ export class FragileGlass extends Component {
             if (this.entity.liquidContainer.pour(x, y)) {
                 game.console.event(CONSOLE_EVENT_SHATTER, {
                     target: this.entity,
-                    liquid: this.entity.liquidContainer.contents,
+                    liquid: this.entity.liquidContainer.content,
                 });
             }
         } else {

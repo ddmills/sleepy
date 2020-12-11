@@ -49,7 +49,7 @@ export default class EquipmentScreen extends Screen {
     selectSlot() {
         console.log('select slot', this.selectedSlot);
 
-        const interactable = this.selectedSlot.contents;
+        const interactable = this.selectedSlot.content;
 
         if (interactable) {
             this.game.screens.pushScreen(SCREEN_INTERACT_MODAL, {
@@ -105,14 +105,14 @@ export default class EquipmentScreen extends Screen {
             if (slot.isEmpty) {
                 this.game.renderer.drawText(15, ypos, '[empty]', '#2c3538');
             } else {
-                const contents = slot.contents;
+                const content = slot.content;
                 this.game.renderer.draw(15, ypos,
-                    contents.glyph.char,
-                    contents.glyph.primary,
-                    contents.glyph.secondary,
-                    contents.glyph.background
+                    content.glyph.char,
+                    content.glyph.primary,
+                    content.glyph.secondary,
+                    content.glyph.background
                 );
-                this.game.renderer.drawText(16, ypos, ` ${contents.moniker.display}`);
+                this.game.renderer.drawText(16, ypos, ` ${content.moniker.display}`);
             }
         });
 

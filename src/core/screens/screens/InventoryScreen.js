@@ -83,7 +83,7 @@ export default class InventoryScreen extends Screen {
             const ypos = i + 5;
 
             if (isSelected) {
-                this.game.renderer.drawText(1, ypos, '>', 'yellow');
+                this.game.renderer.drawText(1, ypos, '→', 'yellow');
             } else {
                 this.game.renderer.drawText(1, ypos, '-');
             }
@@ -97,7 +97,15 @@ export default class InventoryScreen extends Screen {
                 item.glyph.background
             );
 
+            const textLen = this.game.renderer.computeTextWidth(item.moniker.display);
+
             this.game.renderer.drawText(4, ypos, item.moniker.display);
+
+            if (item.isEquipped) {
+                const slot = item.isEquipped.slot.name;
+
+                this.game.renderer.drawText(4 + textLen + 0.5, ypos, `[${slot}]`, '#2c3538');
+            }
         });
 
         this.game.renderer.drawText(1, 1, '← back [esc]');

@@ -31,6 +31,18 @@ export class Loot extends Component {
         }
     }
 
+    onEquipped(evt) {
+        if (!evt.data.interactor.has(Inventory)) {
+            return;
+        }
+
+        if (evt.data.interactor.inventory.hasLoot(this.entity)) {
+            return;
+        }
+
+        evt.data.interactor.inventory.addLoot(this.entity);
+    }
+
     onTryPickUp(evt) {
         evt.data.interactor.inventory.addLoot(this.entity);
         evt.handle();

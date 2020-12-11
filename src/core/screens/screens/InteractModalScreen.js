@@ -91,7 +91,6 @@ export default class InteractModalScreen extends Screen {
     }
 
     onUpdate(dt) {
-        this.game.renderSystem.update(dt);
         this.game.renderer.clearArea(
             this.left,
             this.top,

@@ -60,15 +60,25 @@ export default class Display {
     }
 
     clearArea(x, y, width, height) {
+        this.ctx.fillStyle = this.clearColor;
+        this.ctx.fillRect(
+            x * this.tileWidth,
+            y * this.tileHeight,
+            this.tileWidth * width,
+            this.tileHeight * height
+        );
+
+        const offsetX = x * 2;
+
         for (let i = 0; i < width; i++) {
             for (let j = 0; j < height; j++) {
-                this.clearTile(x + i, y + j);
+                const cellX = offsetX + (i * 2);
+                const cellY = y + j;
+
+                this.cells.set(cellX, cellY, undefined);
+                this.cells.set(cellX + 1, cellY, undefined);
             }
         }
-    }
-
-    clearTile(x, y) {
-        this.cells.set(x * 2, y, null);
     }
 
     render() {
@@ -83,7 +93,9 @@ export default class Display {
                     this.ctx.fillRect(pixelX, pixelY, cell.width, cell.height);
                 }
 
-                this.ctx.drawImage(cell.img, pixelX, pixelY);
+                if (cell.img) {
+                    this.ctx.drawImage(cell.img, pixelX, pixelY);
+                }
             });
     }
 }

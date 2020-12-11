@@ -6,6 +6,7 @@ import {
     INPUT_CMD_MOVE_S,
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
+import { SCREEN_INTERACT_MODAL } from '../ScreenType';
 
 export default class EquipmentScreen extends Screen {
     #selectedIdx = 0;
@@ -46,7 +47,16 @@ export default class EquipmentScreen extends Screen {
     }
 
     selectSlot() {
-        console.log('select slot', this.selectedSlot.key);
+        console.log('select slot', this.selectedSlot);
+
+        const interactable = this.selectedSlot.contents;
+
+        if (interactable) {
+            this.game.screens.pushScreen(SCREEN_INTERACT_MODAL, {
+                interactable,
+                interactor: this.#accessor,
+            });
+        }
     }
 
     onInputCommand(cmd) {

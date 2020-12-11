@@ -25,7 +25,15 @@ export class Equipment extends Component {
     }
 
     onTryUnequip(evt) {
-        console.log(`unequip ${this.entity.moniker.display} from ${this.slotTypes}`);
+        const slotKey = this.entity.isEquipped.slotKey;
+        const slot = evt.data.interactor.equipmentSlot[slotKey];
+
+        console.log(`unequip ${this.entity.moniker.display} from ${slotKey}`, slot);
+
+        if (slot) {
+            slot.contents = null;
+        }
+
         this.entity.isEquipped.destroy();
         evt.handle();
     }

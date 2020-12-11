@@ -112,8 +112,8 @@ export default class InteractModalScreen extends Screen {
         this.game.renderer.clearArea(
             this.left,
             this.top,
-            this.#width,
-            this.#height
+            this.#width + 1,
+            this.#height + 1
         );
 
         this.game.renderer.draw(

@@ -20,6 +20,7 @@ export default class Display {
 
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d', { alpha: false });
+        this.ctx.globalCompositeOperation = 'destination-over';
 
         this.ctx.font = `${this.tileHeight}px monospace`;
         this.ctx.textBaseline = 'top';

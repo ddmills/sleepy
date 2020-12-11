@@ -45,7 +45,7 @@ export default class FOVSystem extends System {
 
         const pos = this.game.player.position;
 
-        this.fov.compute(pos.x, pos.y, 5, (x, y, r, visibility) => {
+        this.fov.compute(pos.x, pos.y, 12, (x, y, r, visibility) => {
             this.setVisible(x, y, visibility, r);
         });
     }

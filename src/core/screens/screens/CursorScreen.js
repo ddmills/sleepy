@@ -30,10 +30,7 @@ import {
     getCursorSegmentTypeColor,
     getCursorSegmentTypeGlyph,
 } from '../../../enums/CursorSegments';
-import { game } from '../../Game';
-import { computeAStar } from '../../../utils/AStar';
-import { Blocker, FactionMember } from '../../../ecs/components';
-import { diagonalDistance } from '../../../utils/diagonalDistance';
+import { FactionMember } from '../../../ecs/components';
 
 const NOOP = () => {};
 

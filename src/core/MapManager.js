@@ -108,6 +108,29 @@ export default class MapManager extends Manager {
         return Math.abs(x1 - x2) <= 1 && Math.abs(y1 - y2) <= 1;
     }
 
+    getEntitiesInRect(x, y, width, height) {
+        const entities = [];
+
+        for (let i = x; i < x + width + 1; i++) {
+            for (let j = y; j < y + height + 1; j++) {
+                entities.push(...this.getEntitiesAt(i, j));
+            }
+        }
+
+        return entities;
+    }
+
+    getEntitiesInRange(x, y, range) {
+        const diameter = range * 2;
+
+        return this.getEntitiesInRect(
+            x - range,
+            y - range,
+            diameter,
+            diameter
+        );
+    }
+
     getNeighborEntities(x, y) {
         return [
             this.getEntitiesAt(x - 1, y - 1), // TOP LEFT
@@ -129,6 +152,10 @@ export default class MapManager extends Manager {
         } while (this.getEntitiesAt(x, y).length > 0);
 
         return { x, y };
+    }
+
+    isOutOfbounds(x, y) {
+        return x < 0 || y < 0 || x >= this.width || y >= this.height;
     }
 
     onPlayerOutOfBounds(x, y) {

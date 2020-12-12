@@ -1,0 +1,30 @@
+# Characters
+
+Choose a combination of four:
+
+- Race
+- Class
+- Pact
+- Personality
+
+# Stats
+
+influence by race, class, pact, personality
+
+- Wisdom
+- Dexterity
+- Constitution
+- Intelligence
+- Charisma
+- Strength
+
+# computed attributes
+These are computed based on Stats, status effects, and skills.
+
+- speed
+- dodge ability
+
+# Races
+- Human
+- Goblin
+- Elves

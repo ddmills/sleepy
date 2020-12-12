@@ -1,8 +1,31 @@
 import { Component } from 'geotic';
 import { game } from '../../core/Game';
+import { bresenhamLine } from '../../utils/BresenhamLine';
 import { FactionMember } from './FactionMember';
+import { Shadowcaster } from './Shadowcaster';
 
 export class Eyes extends Component {
+    static properties = {
+        range: 5,
+    };
+
+    canSee(entity) {
+        const start = this.entity.position.getPos();
+        const end = entity.position.getPos();
+
+        const line = bresenhamLine(start.x, start.y, end.x, end.y);
+
+        if (line.length > this.range) {
+            return false;
+        }
+
+        return !line.some((segment) => {
+            return game.map
+                .getEntitiesAt(segment.x, segment.y)
+                .some((entity) => entity.has(Shadowcaster));
+        });
+    }
+
     onTryDetectHostiles(evt) {
         const position = game.map.getPosition(this.entity.id);
 
@@ -10,16 +33,24 @@ export class Eyes extends Component {
             return;
         }
 
-        const target = game.map
-            .getNeighborEntities(position.x, position.y)
-            .flat()
-            .filter((e) => e.has(FactionMember))
-            .find((neighbor) => {
-                return game.factions.areEntitiesHostile(this.entity, neighbor);
-            });
+        // get within square area
+        const targets = game.map
+            .getEntitiesInRange(position.x, position.y, this.range)
+            .filter((e) => {
+                if (!e.actor) {
+                    return false;
+                }
+                if (!game.factions.areEntitiesHostile(this.entity, e)) {
+                    return false;
+                }
 
-        if (target) {
-            evt.data.target = target;
+                return this.canSee(e);
+            })
+
+        if (targets.length > 0) {
+            targets.forEach((e) => {
+                evt.data.targets.add(e);
+            });
             evt.handle();
         }
     }

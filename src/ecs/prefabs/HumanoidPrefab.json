@@ -59,7 +59,10 @@
             "type": "Arms"
         },
         {
-            "type": "Eyes"
+            "type": "Eyes",
+            "properties": {
+                "range": 10
+            }
         },
         {
             "type": "FactionMember",

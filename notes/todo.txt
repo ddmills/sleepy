@@ -1,0 +1,10 @@
+- revamp particles
+    - pause for certain particle effects
+- ranged weapons
+- status effects
+    - bleeding
+    - stunned
+- attributes
+- diametric factions (sworn enemies)
+- faction leaders
+

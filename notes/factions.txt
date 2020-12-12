@@ -1,0 +1,8 @@
+- actors can belong to a faction
+- factions have a relation
+    - negative is bad
+    - positive is good
+- each faction should have leaders
+    - leader = one person
+- diametric factions (sworn enemies)
+    - increasing favor with one will decrease with others

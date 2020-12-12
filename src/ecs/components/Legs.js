@@ -1,7 +1,6 @@
 import { Component } from 'geotic';
 import { game } from '../../core/Game';
 import { Blocker } from './Blocker';
-import { FactionMember } from './FactionMember';
 
 export class Legs extends Component {
     onTryMove(evt) {

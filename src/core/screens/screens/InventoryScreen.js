@@ -7,49 +7,26 @@ import {
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import { SCREEN_INTERACT_MODAL } from '../ScreenType';
+import SelectableList from '../../../utils/SelectableList';
 
 export default class InventoryScreen extends Screen {
-    #selectedIdx = 0;
     #accessible;
     #accessor;
-
-    get items() {
-        return this.#accessible.inventory.content;
-    }
-
-    get selectedItem() {
-        return this.items[this.#selectedIdx];
-    }
+    list = new SelectableList();
 
     onEnter(ctx) {
         this.game.commands.pushDomain(INPUT_DOMAIN_MAIN_MENU);
-        this.#selectedIdx = 0;
         this.#accessible = ctx.accessible;
         this.#accessor = ctx.accessor;
+        this.list.setItems(this.#accessible.inventory.content);
     }
 
     onLeave() {
         this.game.commands.popDomain(INPUT_DOMAIN_MAIN_MENU);
     }
 
-    pointerUp() {
-        this.#selectedIdx--;
-
-        if (this.#selectedIdx < 0) {
-            this.#selectedIdx = this.items.length - 1;
-        }
-    }
-
-    pointerDown() {
-        this.#selectedIdx++;
-
-        if (this.#selectedIdx >= this.items.length) {
-            this.#selectedIdx = 0;
-        }
-    }
-
     selectItem() {
-        const interactable = this.items[this.#selectedIdx];
+        const interactable = this.list.selected;
 
         if (interactable) {
             this.game.screens.pushScreen(SCREEN_INTERACT_MODAL, {
@@ -65,11 +42,11 @@ export default class InventoryScreen extends Screen {
         }
 
         if (cmd.type === INPUT_CMD_MOVE_N) {
-            this.pointerUp();
+            this.list.up();
         }
 
         if (cmd.type === INPUT_CMD_MOVE_S) {
-            this.pointerDown();
+            this.list.down()
         }
 
         if (cmd.type === INPUT_CMD_CONFIRM) {
@@ -85,13 +62,12 @@ export default class InventoryScreen extends Screen {
             'yellow'
         );
 
-        if (this.items.length === 0) {
+        if (this.list.items.length === 0) {
             this.game.renderer.drawTextCenter(6, 'There is nothing here.');
         }
 
-        this.items.forEach((item, i) => {
-            const isSelected = i === this.#selectedIdx;
-            const ypos = i + 5;
+        this.list.data.forEach(({ item, idx, isSelected }) => {
+            const ypos = idx + 5;
 
             if (isSelected) {
                 this.game.renderer.drawText(1, ypos, '→', 'yellow');

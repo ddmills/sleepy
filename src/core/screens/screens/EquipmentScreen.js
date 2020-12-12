@@ -7,49 +7,24 @@ import {
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import { SCREEN_INTERACT_MODAL } from '../ScreenType';
+import SelectableList from '../../../utils/SelectableList';
 
 export default class EquipmentScreen extends Screen {
-    #selectedIdx = 0;
     #accessor;
-
-    get slots() {
-        return Object.values(this.#accessor.equipmentSlot);
-    }
-
-    get selectedSlot() {
-        return this.slots[this.#selectedIdx];
-    }
+    list = new SelectableList();
 
     onEnter(ctx) {
         this.game.commands.pushDomain(INPUT_DOMAIN_MAIN_MENU);
-        this.#selectedIdx = 0;
         this.#accessor = ctx.accessor;
+        this.list.setItems(Object.values(this.#accessor.equipmentSlot));
     }
 
     onLeave() {
         this.game.commands.popDomain(INPUT_DOMAIN_MAIN_MENU);
     }
 
-    pointerUp() {
-        this.#selectedIdx--;
-
-        if (this.#selectedIdx < 0) {
-            this.#selectedIdx = this.slots.length - 1;
-        }
-    }
-
-    pointerDown() {
-        this.#selectedIdx++;
-
-        if (this.#selectedIdx >= this.slots.length) {
-            this.#selectedIdx = 0;
-        }
-    }
-
     selectSlot() {
-        console.log('select slot', this.selectedSlot);
-
-        const interactable = this.selectedSlot.content;
+        const interactable = this.list.selected.content;
 
         if (interactable) {
             this.game.screens.pushScreen(SCREEN_INTERACT_MODAL, {
@@ -65,11 +40,11 @@ export default class EquipmentScreen extends Screen {
         }
 
         if (cmd.type === INPUT_CMD_MOVE_N) {
-            this.pointerUp();
+            this.list.up();
         }
 
         if (cmd.type === INPUT_CMD_MOVE_S) {
-            this.pointerDown();
+            this.list.down();
         }
 
         if (cmd.type === INPUT_CMD_CONFIRM) {
@@ -85,13 +60,13 @@ export default class EquipmentScreen extends Screen {
             'purple'
         );
 
-        if (this.slots.length === 0) {
+        if (this.list.isEmpty) {
             this.game.renderer.drawTextCenter(6, 'There is nothing here.');
         }
 
-        this.slots.forEach((slot, i) => {
-            const isSelected = i === this.#selectedIdx;
-            const ypos = i + 5;
+        this.list.data.forEach(({item, idx, isSelected}) => {
+            const slot = item;
+            const ypos = idx + 5;
             const selectedColor = 'yellow';
 
             if (isSelected) {

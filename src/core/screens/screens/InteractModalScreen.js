@@ -6,14 +6,14 @@ import {
     INPUT_CMD_MOVE_S,
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
+import SelectableList from '../../../utils/SelectableList';
 
 export default class InteractModalScreen extends Screen {
     #width = 16;
     #height = 16;
-    #selectedIdx = 0;
-    #interactions = [];
     #interactable;
     #interactor;
+    list = new SelectableList();
 
     get left() {
         return Math.floor((this.game.camera.width - this.#width) / 2);
@@ -23,54 +23,32 @@ export default class InteractModalScreen extends Screen {
         return Math.floor((this.game.camera.height - this.#height) / 2);
     }
 
-    get interactions() {
-        return [...this.#interactions, {
-            name: 'Back',
-            isBack: true,
-        }];
-    }
-
     onEnter(ctx) {
         this.game.commands.pushDomain(INPUT_DOMAIN_MAIN_MENU);
-        this.#selectedIdx = 0;
         this.#interactable = ctx.interactable;
         this.#interactor = ctx.interactor;
 
-        this.resetInteractions();
+        this.refreshList();
     }
 
-    resetInteractions() {
+    refreshList() {
         const evt = this.#interactable.fireEvent('get-interactions', {
             interactor: this.#interactor,
             interactions: [],
         });
 
-        this.#interactions = evt.data.interactions;
+        this.list.setItems([...evt.data.interactions, {
+            name: 'Back',
+            isBack: true,
+        }]);
     }
 
     onLeave() {
         this.game.commands.popDomain(INPUT_DOMAIN_MAIN_MENU);
     }
 
-    pointerUp() {
-        this.#selectedIdx--;
-
-        if (this.#selectedIdx < 0) {
-            this.#selectedIdx = this.interactions.length - 1;
-        }
-    }
-
-    pointerDown() {
-        this.#selectedIdx++;
-
-        if (this.#selectedIdx >= this.interactions.length) {
-            this.#selectedIdx = 0;
-        }
-    }
-
     selectItem() {
-        const idx = this.#selectedIdx % this.interactions.length;
-        const interaction = this.interactions[idx];
+        const interaction = this.list.selected;
 
         if (interaction.isBack) {
             this.game.screens.popScreen();
@@ -87,7 +65,7 @@ export default class InteractModalScreen extends Screen {
             return;
         }
 
-        this.resetInteractions();
+        this.refreshList();
     }
 
     onInputCommand(cmd) {
@@ -96,11 +74,11 @@ export default class InteractModalScreen extends Screen {
         }
 
         if (cmd.type === INPUT_CMD_MOVE_N) {
-            this.pointerUp();
+            this.list.up();
         }
 
         if (cmd.type === INPUT_CMD_MOVE_S) {
-            this.pointerDown();
+            this.list.down();
         }
 
         if (cmd.type === INPUT_CMD_CONFIRM) {
@@ -149,22 +127,15 @@ export default class InteractModalScreen extends Screen {
             '┘'
         );
 
-        const idx = this.#selectedIdx % this.interactions.length;
-
-        if (this.interactions.length === 0) {
-            this.game.renderer.drawTextCenter(6, 'There is nothing here.');
-        }
-
         const xpos = this.left + 2;
 
-        this.interactions.forEach((interaction, i) => {
-            const isSelected = i === idx;
-            const ypos = i + this.top + 5;
+        this.list.data.forEach(({item, idx, isSelected}) => {
+            const ypos = idx + this.top + 5;
 
             if (isSelected) {
-                this.game.renderer.drawText(xpos, ypos, `→ ${interaction.name}`, 'yellow');
+                this.game.renderer.drawText(xpos, ypos, `→ ${item.name}`, 'yellow');
             } else {
-                this.game.renderer.drawText(xpos, ypos, `- ${interaction.name}`);
+                this.game.renderer.drawText(xpos, ypos, `- ${item.name}`);
             }
         });
     }

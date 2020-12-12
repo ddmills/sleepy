@@ -22,6 +22,10 @@ export default class SelectableList {
         return this._items.length <= 0;
     }
 
+    get length() {
+        return this._items.length;
+    }
+
     constructor(items = [], idx = 0) {
         this._idx = idx;
         this.setItems(items);

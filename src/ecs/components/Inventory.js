@@ -82,7 +82,7 @@ export class Inventory extends Component {
     }
 
     onTryOpen(evt) {
-        game.screens.pushScreen(SCREEN_INVENTORY, {
+        game.screens.replaceScreen(SCREEN_INVENTORY, {
             accessible: this.entity,
             accessor: evt.data.interactor,
         });

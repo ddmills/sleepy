@@ -1,4 +1,6 @@
 import { Component } from 'geotic';
+import { game } from '../../core/Game';
+import { SCREEN_LIST_SELECT } from '../../core/screens/ScreenType';
 import { EQ_SLOT_BODY } from '../../data/EquipmentSlotType';
 import { IsEquipped } from './IsEquipped';
 
@@ -9,17 +11,33 @@ export class Equipment extends Component {
 
     onTryEquip(evt) {
         const slots = Object.values(evt.data.interactor.equipmentSlot).filter((slot) => {
-            return this.slotTypes.includes(slot.slotType) && slot.isEmpty;
+            return this.slotTypes.includes(slot.slotType);
         });
 
-        // TODO: choose slot
-        const slot = slots[0];
+        game.screens.pushScreen(SCREEN_LIST_SELECT, {
+            header: `Equip ${this.entity.moniker.display}`,
+            list: slots,
+            onRenderRow: (slot, x, y, isSelected) => {
+                let text = slot.name;
 
-        if (slot) {
-            slot.equip(this.entity);
-        }
+                if (slot.isEmpty) {
+                    text += ' [empty]';
+                } else {
+                    text += ` [${slot.content.moniker.display}]`;
+                }
 
-        evt.handle();
+                if (isSelected) {
+                    game.renderer.drawText(x, y, `→ ${text}`, 'yellow');
+                } else {
+                    game.renderer.drawText(x, y, `- ${text}`);
+                }
+            },
+            onSelect: (slot) => {
+                slot.unequip();
+                slot.equip(this.entity);
+                evt.handle();
+            }
+        });
     }
 
     onTryUnequip(evt) {

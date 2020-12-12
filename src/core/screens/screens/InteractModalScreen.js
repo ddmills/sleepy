@@ -10,7 +10,7 @@ import SelectableList from '../../../utils/SelectableList';
 
 export default class InteractModalScreen extends Screen {
     #width = 16;
-    #height = 16;
+    #height = 12;
     #interactable;
     #interactor;
     list = new SelectableList();
@@ -130,7 +130,7 @@ export default class InteractModalScreen extends Screen {
         const xpos = this.left + 2;
 
         this.list.data.forEach(({item, idx, isSelected}) => {
-            const ypos = idx + this.top + 5;
+            const ypos = idx + this.top + 4;
 
             if (isSelected) {
                 this.game.renderer.drawText(xpos, ypos, `→ ${item.name}`, 'yellow');

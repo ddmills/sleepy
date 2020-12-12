@@ -5,6 +5,10 @@
     - bleeding
     - stunned
 - attributes
+- status indicator
+    - show symbol above monster head when state changes
 - diametric factions (sworn enemies)
 - faction leaders
-
+- update FOV/LOS algorithm
+    - bresenham lines are not symmetric
+    - http://www.roguebasin.com/index.php?title=Field_of_Vision

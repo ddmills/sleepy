@@ -43,6 +43,7 @@ import {
     SCREEN_EQUIPMENT,
     SCREEN_INTERACT_MODAL,
     SCREEN_INVENTORY,
+    SCREEN_LIST_SELECT,
     SCREEN_MAIN_MENU,
 } from '../ScreenType';
 import { Door, Loot } from '../../../ecs/components';
@@ -113,20 +114,38 @@ export default class AdventureScreen extends Screen {
             .getEntitiesAt(x, y)
             .filter((e) => !e.isPlayer);
 
-        const item = entities.find((entity) => {
+        const items = entities.filter((entity) => {
             const evt = entity.fireEvent('get-interactions', {
                 interactor: this.game.player.entity,
                 interactions: [],
             });
+
             return evt.data.interactions.length > 0;
         });
 
-        if (item) {
+        if (items.length <= 0) {
+            return;
+        }
+
+        if (items.length == 1) {
             this.game.screens.pushScreen(SCREEN_INTERACT_MODAL, {
                 interactor: this.game.player.entity,
-                interactable: item,
+                interactable: items[0],
             });
+            return;
         }
+
+        game.screens.pushScreen(SCREEN_LIST_SELECT, {
+            header: `Choose`,
+            list: items,
+            onGetRowName: (item) => item.moniker.display,
+            onSelect: (item) => {
+                this.game.screens.replaceScreen(SCREEN_INTERACT_MODAL, {
+                    interactor: this.game.player.entity,
+                    interactable: item,
+                });
+            }
+        });
     }
 
     onInteractDirection(dir) {

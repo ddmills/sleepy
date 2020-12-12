@@ -20,9 +20,7 @@ export class Equipment extends Component {
             onRenderRow: (slot, x, y, isSelected) => {
                 let text = slot.name;
 
-                if (slot.isEmpty) {
-                    text += ' [empty]';
-                } else {
+                if (!slot.isEmpty) {
                     text += ` [${slot.content.moniker.display}]`;
                 }
 
@@ -36,6 +34,7 @@ export class Equipment extends Component {
                 slot.unequip();
                 slot.equip(this.entity);
                 evt.handle();
+                game.screens.popScreen();
             }
         });
     }

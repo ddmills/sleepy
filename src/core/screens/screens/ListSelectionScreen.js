@@ -32,7 +32,6 @@ export default class ListSelectionScreen extends Screen {
         this.onSelect = ctx.onSelect || NOOP;
         this.onCancel = ctx.onCancel || NOOP;
         this.onGetRowName = ctx.onGetRowName || NOOP;
-        this.onGetRowName = ctx.onGetRowName || NOOP;
         this.onRenderRow = ctx.onRenderRow || this.defaultRowRender.bind(this);
     }
 
@@ -42,7 +41,6 @@ export default class ListSelectionScreen extends Screen {
 
     selectItem() {
         this.onSelect(this.list.selected);
-        this.game.screens.popScreen();
     }
 
     cancel() {
@@ -113,11 +111,6 @@ export default class ListSelectionScreen extends Screen {
             const ypos = idx + this.top + 4;
 
             this.onRenderRow(item, xpos, ypos, isSelected, idx);
-            // if (isSelected) {
-            //     this.game.renderer.drawText(xpos, ypos, `→ ${text}`, 'yellow');
-            // } else {
-            //     this.game.renderer.drawText(xpos, ypos, `- ${text}`);
-            // }
         });
     }
 }

@@ -8,6 +8,7 @@ import {
     SCREEN_LOAD_SECTOR,
     SCREEN_EQUIPMENT,
     SCREEN_LIST_SELECT,
+    SCREEN_CHARACTER,
 } from './ScreenType';
 import AdventureScreen from './screens/AdventureScreen';
 import MainMenuScreen from './screens/MainMenuScreen';
@@ -19,6 +20,7 @@ import CursorScreen from './screens/CursorScreen';
 import LoadSectorScreen from './screens/LoadSectorScreen';
 import EquipmentScreen from './screens/EquipmentScreen';
 import ListSelectionScreen from './screens/ListSelectionScreen';
+import CharacterScreen from './screens/CharacterScreen';
 
 export default class ScreenManager extends Manager {
     #screens = {};
@@ -36,6 +38,7 @@ export default class ScreenManager extends Manager {
             [SCREEN_LOAD_SECTOR]: new LoadSectorScreen(game),
             [SCREEN_EQUIPMENT]: new EquipmentScreen(game),
             [SCREEN_LIST_SELECT]: new ListSelectionScreen(game),
+            [SCREEN_CHARACTER]: new CharacterScreen(game),
         };
         this.setScreen(SCREEN_MAIN_MENU);
     }

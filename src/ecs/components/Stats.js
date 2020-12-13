@@ -1,4 +1,5 @@
 import { Component } from 'geotic';
+import { capitalize } from 'rot-js/lib/util';
 
 export class Stats extends Component {
     static properties = {
@@ -7,6 +8,10 @@ export class Stats extends Component {
         baseAthleticism: 10,
         baseTrickery: 10,
     };
+
+    _sumMods(modifiers) {
+        return modifiers.reduce((sum, cur) => sum + cur.mod, 0);
+    }
 
     _queryStatModifiers(name) {
         const modifiers = [];
@@ -21,7 +26,7 @@ export class Stats extends Component {
     _queryStatModifierSum(name) {
         const mods = this._queryStatModifiers(name);
 
-        return mods.reduce((sum, cur) => sum + cur.mod, 0);
+        return this._sumMods(mods);
     }
 
     _queryAbilityModifiers(name) {
@@ -37,7 +42,31 @@ export class Stats extends Component {
     _queryAbilityModifierSum(name) {
         const mods = this._queryAbilityModifiers(name);
 
-        return mods.reduce((sum, cur) => sum + cur.mod, 0);
+        return this._sumMods(mods);
+    }
+
+    data(name) {
+        const modifiers = this._queryStatModifiers(name);
+        const base = this[`base${capitalize(name)}`];
+        const modSum = this._sumMods(modifiers);
+        const sum = base + modSum;
+
+        return {
+            name,
+            modifiers,
+            base,
+            sum,
+            modSum,
+        };
+    }
+
+    all() {
+        return {
+            strength: this.data('strength'),
+            dexterity: this.data('dexterity'),
+            athleticism: this.data('athleticism'),
+            trickery: this.data('trickery'),
+        };
     }
 
     strength() {

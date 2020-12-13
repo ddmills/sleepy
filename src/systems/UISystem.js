@@ -13,7 +13,7 @@ export default class UISystem extends System {
 
     update(dt) {
         const turn = this.game.clock.turn;
-        const subTurn = `${this.game.clock.subTurn}`.padEnd(3, '0');
+        const subTurn = `${this.game.clock.subTurn.toFixed(0)}`.padEnd(3, '0');
 
         const str = `${turn}.${subTurn}`;
         const len = Math.ceil(this.game.renderer.computeTextWidth(str));

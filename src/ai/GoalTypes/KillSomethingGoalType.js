@@ -1,6 +1,5 @@
 import { GoalType } from './GoalType';
 import { FAILURE, SUCCESS } from '../GoalActionResult';
-import { Dead } from '../../ecs/components';
 import { computeAStar } from '../../utils/AStar';
 import { game } from '../../core/Game';
 import { diagonalDistance } from '../../utils/diagonalDistance';
@@ -10,7 +9,7 @@ export class KillSomethingGoalType extends GoalType {
     static name = 'KillSomething';
 
     static isFinished = (entity, goal) => {
-        return !goal.target || goal.target.has(Dead) || goal.target.isDestroyed;
+        return !goal.target || goal.target.isDead || goal.target.isDestroyed;
     };
 
     static takeAction = (entity, goal) => {

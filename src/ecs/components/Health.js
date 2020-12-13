@@ -4,7 +4,7 @@ import {
     CONSOLE_EVENT_DAMAGE,
     CONSOLE_EVENT_DEAD,
 } from '../../enums/ConsoleEvents';
-import { Dead } from './Dead';
+import { IsDead } from './IsDead';
 
 export class Health extends Component {
     static properties = {
@@ -23,14 +23,14 @@ export class Health extends Component {
             });
 
             this.value = 0;
-            this.entity.add(Dead);
+            this.entity.add(IsDead);
+        } else {
+            game.console.event(CONSOLE_EVENT_DAMAGE, {
+                target: this.entity,
+                source: evt.data.source,
+                damage: evt.data.damage,
+            });
         }
-
-        game.console.event(CONSOLE_EVENT_DAMAGE, {
-            target: this.entity,
-            source: evt.data.source,
-            damage: evt.data.damage,
-        });
 
         evt.handle();
     }

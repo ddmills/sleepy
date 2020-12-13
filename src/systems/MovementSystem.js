@@ -9,7 +9,7 @@ export default class MovementSystem extends System {
         super(game);
         this.#query = game.ecs.createQuery({
             all: [MoveCommand, Position],
-            not: [IsDestroying],
+            none: [IsDestroying],
         });
     }
 

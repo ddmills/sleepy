@@ -18,7 +18,6 @@ export default class FOVSystem extends System {
 
         this.query = this.game.ecs.createQuery({
             all: [IsVisible],
-            not: [IsDestroying],
         });
     }
 

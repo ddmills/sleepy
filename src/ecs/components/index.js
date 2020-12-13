@@ -27,7 +27,7 @@ export { IsVisible } from './IsVisible';
 export { Explorable } from './Explorable';
 export { Explored } from './Explored';
 export { Health } from './Health';
-export { Dead } from './Dead';
+export { IsDead } from './IsDead';
 export { FactionMember } from './FactionMember';
 export { Eyes } from './Eyes';
 export { Particle } from './Particle';

@@ -1,4 +1,4 @@
-import { Actor, Dead, IsDestroying } from '../ecs/components';
+import { Actor, IsDead, IsDestroying } from '../ecs/components';
 import System from './System';
 
 export default class ActionSystem extends System {
@@ -9,7 +9,7 @@ export default class ActionSystem extends System {
 
         this.#query = game.ecs.createQuery({
             all: [Actor],
-            not: [IsDestroying, Dead],
+            none: [IsDestroying, IsDead],
         });
     }
 

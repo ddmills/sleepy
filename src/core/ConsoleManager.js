@@ -4,7 +4,7 @@ import Manager from './Manager';
 export default class ConsoleManager extends Manager {
     #messages = [];
     #events = [];
-    #viewCount = 2;
+    #viewCount = 4;
 
     event(type, data) {
         this.#events.push({ type, data });
@@ -32,7 +32,7 @@ export default class ConsoleManager extends Manager {
         msgs.forEach((message, i) => {
             this.game.renderer.drawText(
                 0,
-                this.game.camera.height - 1 - (height - i),
+                this.game.camera.height - (height - i),
                 message.text
             );
         });

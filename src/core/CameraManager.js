@@ -4,6 +4,7 @@ export default class CameraManager extends Manager {
     width = 32;
     height = 24;
     zoom = 2;
+    padding = 4;
 
     #focusX = 0;
     #focusY = 0;
@@ -24,22 +25,22 @@ export default class CameraManager extends Manager {
 
     get topLeftWorldX() {
         return Math.floor(Math.min(
-            Math.max(0, this.#focusX - this.width / 2),
+            Math.max(-this.padding, this.#focusX - this.width / 2),
             Math.max(
                 (this.width - this.game.map.width) / -2,
-                this.game.map.width - this.width
-            )
-        ));
+                this.padding + this.game.map.width - this.width
+            ))
+        );
     }
 
     get topLeftWorldY() {
         return Math.floor(Math.min(
-            Math.max(0, this.#focusY - this.height / 2),
+            Math.max(-this.padding, this.#focusY - this.height / 2),
             Math.max(
                 (this.height - this.game.map.height) / -2,
-                this.game.map.height - this.height
-            )
-        ));
+                this.padding + this.game.map.height - this.height
+            ))
+        );
     }
 
     computeSize() {

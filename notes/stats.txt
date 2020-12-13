@@ -1,6 +1,6 @@
 # Primary stats
 
-1. Strength
+1. Strength // brute force
     - blocking
     - lifting
     - hammers
@@ -8,7 +8,7 @@
     - longswords
     - constitution
     - javelins
-2. Dexterity
+2. Dexterity // finesse
     - daggers
     - finesse weapons
     - short swords

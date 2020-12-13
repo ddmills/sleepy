@@ -1,0 +1,66 @@
+# Primary stats
+
+1. Strength
+    - blocking
+    - lifting
+    - hammers
+    - axes
+    - longswords
+    - constitution
+2. Dexterity
+    - daggers
+    - finesse weapons
+    - short swords
+    - polearms
+    - hand axes
+    - dual wielding
+    - tinkering
+3. Athletics
+    - throwing
+    - parrying
+    - dodging
+    - acrobatics
+    - climbing
+    - jumping
+    - sprinting
+4. Trickery
+    - hiding/stealth
+    - moving silently
+    - slight of hand
+    - deception/lying
+    - lock picking
+
+# Desired playstyles
+1. stealthy, quick deadly strikes
+    - use environment to hide
+    - sneak up on enemies
+    - avoid enemies altogether
+    - great escape/retreat ability
+2. berserking tank
+    - charge in
+    - hack and slash
+    - soak damage
+    - weak escape/retreat ability
+3. balanced fighter
+    - uses shields
+    - enrolls others for assistance
+    - use variety of approaches
+4. ranger/tracker
+    - ranged weapons
+    - lay traps
+5. hand-to-hand melee
+    - avoids using weapons
+6. naturalist
+7. necromancer
+
+# uncategorized
+
+- Intelligence
+    - history
+    - medicine
+    - religion
+
+- Cunning
+- Cleaverness
+- Perception
+- Intelligence

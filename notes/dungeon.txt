@@ -1,4 +1,5 @@
 http://anderoonies.github.io/2020/04/07/brogue-generation-2.html
+https://www.reddit.com/r/mapmaking/comments/kbryzb/heres_the_map_for_the_next_stretch_of_my_partys/
 
 # interior castle gen algorithm
 

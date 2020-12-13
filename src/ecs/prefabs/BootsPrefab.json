@@ -1,0 +1,28 @@
+{
+    "name": "Boots",
+    "inherit": ["GameObject"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Boots"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "£",
+                "fg1": "#923e2b"
+            }
+        },
+        {
+            "type": "Loot"
+        },
+        {
+            "type": "Equipment",
+            "properties": {
+                "slotTypes": ["EQ_SLOT_FEET"]
+            }
+        }
+    ]
+}

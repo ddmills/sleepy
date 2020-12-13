@@ -43,6 +43,15 @@
         },
         {
             "type": "Logger"
+        },
+        {
+            "type": "Stats",
+            "properties": {
+                "baseStrength": 12,
+                "baseDexterity": 12,
+                "baseAthleticism": 12,
+                "baseTrickery": 12
+            }
         }
     ]
 }

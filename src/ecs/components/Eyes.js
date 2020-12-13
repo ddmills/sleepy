@@ -1,7 +1,6 @@
 import { Component } from 'geotic';
 import { game } from '../../core/Game';
 import { bresenhamLine } from '../../utils/BresenhamLine';
-import { FactionMember } from './FactionMember';
 import { Shadowcaster } from './Shadowcaster';
 
 export class Eyes extends Component {

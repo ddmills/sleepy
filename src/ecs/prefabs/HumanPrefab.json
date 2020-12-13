@@ -3,6 +3,12 @@
     "inherit": ["Humanoid"],
     "components": [
         {
+            "type": "Race",
+            "properties": {
+                "key": "RACE_HUMAN"
+            }
+        },
+        {
             "type": "Glyph",
             "properties": {
                 "ch": "h",

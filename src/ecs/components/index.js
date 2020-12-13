@@ -37,3 +37,5 @@ export { LootDropper } from './LootDropper';
 export { IsEquipped } from './IsEquipped';
 export { Equipment } from './Equipment';
 export { EquipmentSlot } from './EquipmentSlot';
+export { Stats } from './Stats';
+export { Race } from './Race';

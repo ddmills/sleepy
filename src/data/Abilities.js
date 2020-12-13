@@ -1,0 +1,1 @@
+export const ABILITY_SPEED = 'ABILITY_SPEED';

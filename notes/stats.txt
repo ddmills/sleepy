@@ -4,9 +4,10 @@
     - blocking
     - lifting
     - hammers
-    - axes
+    - heavy axes
     - longswords
     - constitution
+    - javelins
 2. Dexterity
     - daggers
     - finesse weapons
@@ -15,7 +16,9 @@
     - hand axes
     - dual wielding
     - tinkering
-3. Athletics
+    - bows
+    - whips
+3. Athleticism
     - throwing
     - parrying
     - dodging
@@ -23,12 +26,20 @@
     - climbing
     - jumping
     - sprinting
+    - swimming
 4. Trickery
     - hiding/stealth
     - moving silently
     - slight of hand
     - deception/lying
     - lock picking
+    - darts
+    - blowguns
+    - poisons
+5. Tinkering
+    - bombs
+    - traps
+    - alchemy?
 
 # Desired playstyles
 1. stealthy, quick deadly strikes

@@ -19,6 +19,9 @@
             "properties": {
                 "char": "?"
             }
+        },
+        {
+            "type": "Stats"
         }
     ]
 }

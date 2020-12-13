@@ -3,6 +3,7 @@ import { game } from '../core/Game';
 export const LIQUID_WATER = 0;
 export const LIQUID_BLOOD = 1;
 export const LIQUID_HONEY = 3;
+export const LIQUID_OIL = 4;
 
 export const liquids = {
     [LIQUID_WATER]: {

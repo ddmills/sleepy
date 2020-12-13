@@ -26,7 +26,10 @@ export class Legs extends Component {
             nonHostile.position.setPos(position.x, position.y);
         }
 
-        this.entity.fireEvent('energy-consumed', 750);
+        const speed = this.entity.stats.speed();
+        const cost = (1 / speed) * 1000;
+
+        this.entity.fireEvent('energy-consumed', cost);
         this.entity.position.setPos(targetX, targetY);
 
         evt.handle();

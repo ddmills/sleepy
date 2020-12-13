@@ -78,6 +78,10 @@ export class Inventory extends Component {
 
         ob.position.setPos(pos.x, pos.y);
 
+        ob.fireEvent('dropped', {
+            dropper: this.entity,
+        });
+
         return ob;
     }
 

@@ -92,6 +92,7 @@ export class LiquidContainer extends Component {
 
         this.pour(pos.x, pos.y, evt.data.volume);
 
+        evt.data.interactor.fireEvent('energy-consumed', 400);
         evt.handle();
     }
 
@@ -104,6 +105,8 @@ export class LiquidContainer extends Component {
         drinkLiquid(evt.data.interactor, this.content, this.volume);
         this.volume = 0;
         this._checkDestroyOnEmpty();
+
+        evt.data.interactor.fireEvent('energy-consumed', 700);
         evt.handle();
     }
 

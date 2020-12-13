@@ -15,13 +15,9 @@ export class IsInventoried extends Component {
     }
 
     onTryDrop(evt) {
-        const entity = this.entity;
-
         this.owner.inventory.dropLoot(this.entity);
 
-        entity.fireEvent('dropped', {
-            interactor: evt.data.interactor,
-        });
+        evt.data.interactor.fireEvent('energy-consumed', 200);
 
         evt.handle();
     }

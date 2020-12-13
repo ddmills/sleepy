@@ -3,11 +3,6 @@ import { Actor } from './Actor';
 
 export class Arms extends Component {
     onTryMelee(evt) {
-        if (this.entity.has(Actor) && !this.entity.actor.hasEnergy) {
-            console.warn('onTryMelee - No energy??');
-            return;
-        }
-
         const damage = {
             type: 'blunt',
             value: 5,

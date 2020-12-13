@@ -33,6 +33,7 @@ export class Equipment extends Component {
             onSelect: (slot) => {
                 slot.unequip();
                 slot.equip(this.entity);
+                evt.data.interactor.fireEvent('energy-consumed', 200);
                 evt.handle();
                 game.screens.popScreen();
             }
@@ -43,11 +44,11 @@ export class Equipment extends Component {
         const slotKey = this.entity.isEquipped.slotKey;
         const slot = evt.data.interactor.equipmentSlot[slotKey];
 
-        console.log(`unequip ${this.entity.moniker.display} from ${slotKey}`, slot);
-
         if (slot) {
             slot.content = null;
         }
+
+        evt.data.interactor.fireEvent('energy-consumed', 200);
 
         this.entity.isEquipped.destroy();
         evt.handle();

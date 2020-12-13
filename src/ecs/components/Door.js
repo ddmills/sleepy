@@ -19,7 +19,7 @@ export class Door extends Component {
 
     openDoor() {
         if (this.isOpen) {
-            return;
+            return false;
         }
 
         this.isOpen = true;
@@ -32,11 +32,13 @@ export class Door extends Component {
 
         this.entity.blocker.destroy();
         this.entity.shadowcaster.destroy();
+
+        return true;
     }
 
     closeDoor() {
         if (!this.isOpen) {
-            return;
+            return false;
         }
         // todo: check if entity blocking door
 
@@ -50,6 +52,8 @@ export class Door extends Component {
 
         this.entity.add(Blocker);
         this.entity.add(Shadowcaster);
+
+        return true;
     }
 
     onGetInteractions(evt) {
@@ -67,12 +71,16 @@ export class Door extends Component {
     }
 
     onTryCloseDoor(evt) {
-        this.closeDoor();
+        if (this.closeDoor()) {
+            evt.data.interactor.fireEvent('energy-consumed', 800);
+        }
         evt.handle();
     }
 
     onTryOpenDoor(evt) {
-        this.openDoor();
+        if (this.openDoor()) {
+            evt.data.interactor.fireEvent('energy-consumed', 800);
+        }
         evt.handle();
     }
 

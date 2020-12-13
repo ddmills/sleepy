@@ -1,6 +1,5 @@
 import Renderer from './rendering/RenderManager';
 import InputController from './input/InputController';
-import HungerSystem from '../systems/HungerSystem';
 import ActionSystem from '../systems/ActionSystem';
 import RenderSystem from '../systems/RenderSystem';
 import MovementSystem from '../systems/MovementSystem';
@@ -48,7 +47,6 @@ export default class Game {
         this.input = new InputController(this);
         this.console = new ConsoleManager(this);
 
-        this.hungerSystem = new HungerSystem(this);
         this.actionSystem = new ActionSystem(this);
         this.movementSystem = new MovementSystem(this);
         this.meleeSystem = new MeleeSystem(this);
@@ -71,7 +69,6 @@ export default class Game {
     updateAdventureSystems(dt) {
         this.clock.update(dt);
         this.actionSystem.update(dt);
-        this.hungerSystem.update(dt);
         this.movementSystem.update(dt);
         this.meleeSystem.update(dt);
         this.deathSystem.update(dt);

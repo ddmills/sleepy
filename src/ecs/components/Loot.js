@@ -45,6 +45,7 @@ export class Loot extends Component {
 
     onTryPickUp(evt) {
         evt.data.interactor.inventory.addLoot(this.entity);
+        evt.data.interactor.fireEvent('energy-consumed', 100);
         evt.handle();
     }
 
@@ -53,6 +54,7 @@ export class Loot extends Component {
 
         owner.inventory.removeLoot(this.entity);
         evt.data.interactor.inventory.addLoot(this.entity);
+        evt.data.interactor.fireEvent('energy-consumed', 100);
 
         evt.handle();
     }

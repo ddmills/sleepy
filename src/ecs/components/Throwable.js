@@ -113,6 +113,8 @@ export class Throwable extends Component {
                     entities: game.map.getEntitiesAt(pos.x, pos.y),
                 }));
 
+                evt.data.interactor.fireEvent('energy-consumed', 700);
+
                 this.throw(trajectory, evt.data.interactor);
             },
             onCancel: () => {

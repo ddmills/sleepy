@@ -92,6 +92,9 @@ export class Throwable extends Component {
     }
 
     onTryThrow(evt) {
+        const throwing = evt.data.interactor.stats.throwing();
+        const range = Math.floor(throwing / 2);
+
         game.screens.pushScreen(SCREEN_CURSOR, {
             start: evt.data.interactor.position.getPos(),
             drawLine: true,
@@ -107,7 +110,7 @@ export class Throwable extends Component {
                     cursor.position.x,
                     cursor.position.y
                 );
-                const trajectory = line.map((pos) => ({
+                const trajectory = line.slice(0, range + 1).map((pos) => ({
                     x: pos.x,
                     y: pos.y,
                     entities: game.map.getEntitiesAt(pos.x, pos.y),
@@ -122,6 +125,7 @@ export class Throwable extends Component {
             },
             getSegmentTypes: (line) => {
                 let lineValid = true;
+
                 const result = line.map(({ x, y }, idx) => {
                     if (idx === 0) {
                         return CURSOR_SEGMENT_NONE;
@@ -140,7 +144,9 @@ export class Throwable extends Component {
                         lineValid = false;
                     }
 
-                    if (lineValid && body) {
+                    const atMaxRange = idx === range;
+
+                    if (lineValid && (body || atMaxRange)) {
                         lineValid = false;
                         return CURSOR_SEGMENT_INTEREST;
                     }
@@ -153,7 +159,7 @@ export class Throwable extends Component {
                 const interestIdx = result.indexOf(CURSOR_SEGMENT_INTEREST);
                 const blockerIdx = result.indexOf(CURSOR_SEGMENT_INVALID);
 
-                if (interestIdx < 0 && blockerIdx >= 1) {
+                if (interestIdx < blockerIdx && blockerIdx >= 1) {
                     result[blockerIdx - 1] = CURSOR_SEGMENT_INTEREST;
                 }
 

@@ -96,4 +96,11 @@ export class Stats extends Component {
     speed() {
         return this._queryAbilityModifierSum('speed');
     }
+
+    throwing() {
+        const base = this.athleticism();
+        const modifier = this._queryAbilityModifierSum('throwing');
+
+        return base + modifier;
+    }
 }

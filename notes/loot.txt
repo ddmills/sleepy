@@ -11,15 +11,3 @@ monsters should drop loop based on:
 3. sector level
 4. room theme
 5. Individual loot tables
-
-Equipment modifiers
-
-"Balanced Dagger of Vampirism"
-
-Prefixes
-- Heavy
-- Balanced
-
-Postfixes
-- Venem
-- Vampirism

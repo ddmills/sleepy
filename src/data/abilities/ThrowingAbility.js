@@ -4,7 +4,7 @@ import Ability from './Ability';
 
 export default class ThrowingAbility extends Ability {
     constructor() {
-        super(ABILITY_THROWING, 'throwing');
+        super(ABILITY_THROWING, 'throwing', STAT_ATHLETICISM);
     }
 
     compute(entity) {

@@ -1,10 +1,12 @@
 export default class Ability {
     key = -1;
     name = 'ability';
+    baseStat = null;
 
-    constructor(key, name) {
+    constructor(key, name, baseStat) {
         this.key = key;
         this.name = name;
+        this.baseStat = baseStat;
     }
 
     getModifiers(entity) {

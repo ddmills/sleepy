@@ -11,6 +11,9 @@
     - longswords
     - constitution
     - javelins
+    - arbalest
+    - grappling
+    - flails
 2. Dexterity // finesse
     - daggers
     - finesse weapons
@@ -22,6 +25,7 @@
     - bows
     - whips
 3. Athleticism
+    - Brawling/Unarmed
     - throwing
     - parrying
     - dodging
@@ -41,7 +45,7 @@
     - poisons
 5. Tinkering
     - bombs
-    - traps
+    - traps (caltrops)
     - alchemy?
 
 Special Abilities:

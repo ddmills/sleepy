@@ -1,0 +1,72 @@
+Weapons
+https://www.medievalchronicles.com/medieval-weapons/
+
+Equipment modifiers
+
+"Balanced Dagger of Vampirism"
+
+Prefixes
+- Heavy
+- Balanced
+
+Postfixes
+- Venem
+- Vampirism
+
+damage types
+- Bludgeoning/Crushing
+- Piercing/Puncturing
+- Slashing/Cutting
+
+Weapon Classifications (Proficiencies)
+- Hammers
+    - weapons
+        - War hammer 1d8 (STR) - dual
+        - Sledge Hammer 1d12 (STR)
+        - Club (STR)
+        - Mace (STR)
+    - abilities
+        - smash
+        - crack armor
+- Flails
+    - weapons
+        - Ball and Chain - bludgeoning, reach
+        - Flail - piercing, reach
+    - abilities
+        - sweep (aoe)
+- Axes
+    - weapons
+        - Heavy Axe (STR)
+        - Battle Axe (DEX) - dual, throw
+    - abilities
+        - hack
+        - dismember
+- Swordsmanship
+    - weapons
+        - Longsword (STR) - slow
+        - Short Sword (DEX) - dual
+        - Dagger (DEX) - dual, fast, throw
+    - abilities
+        - jab (deal piercing)
+        - parry (bonus to AC for round)
+- Archery
+    - weapons
+        - Bow (DEX) - silent
+        - Longbow (DEX) - slow, distance
+        - Arbalest (STR) - slow, distance
+        - Crossbow (TRK) - dual
+    - abilities
+        - focus target
+- Polearm
+    - weapons
+        - Staff (DEX)
+        - Halberd (STR)
+        - Javelin (STR)
+- Nets? - throwable
+- Whip (DEX)
+- Dart (TRK) - silent
+- Blowgun (TRK) - silent
+
+Weapon {
+    classification:
+}

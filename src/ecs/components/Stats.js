@@ -1,5 +1,6 @@
 import { Component } from 'geotic';
 import { capitalize } from 'rot-js/lib/util';
+import { getStatName, STAT_ATHLETICISM, STAT_DEXTERITY, STAT_STRENGTH, STAT_TRICKERY } from '../../data/Stats';
 
 export class Stats extends Component {
     static properties = {
@@ -13,7 +14,8 @@ export class Stats extends Component {
         return modifiers.reduce((sum, cur) => sum + cur.mod, 0);
     }
 
-    _queryStatModifiers(name) {
+    getStatModifiers(stat) {
+        const name = getStatName(stat);
         const modifiers = [];
 
         this.entity.fireEvent(`query-stat-modifier-${name}`, {
@@ -23,35 +25,21 @@ export class Stats extends Component {
         return modifiers;
     }
 
-    _queryStatModifierSum(name) {
-        const mods = this._queryStatModifiers(name);
+    getStatModifierSum(stat) {
+        const mods = this.getStatModifiers(stat);
 
         return this._sumMods(mods);
     }
 
-    _queryAbilityModifiers(name) {
-        const modifiers = [];
-
-        this.entity.fireEvent(`query-ability-modifier-${name}`, {
-            modifiers,
-        });
-
-        return modifiers;
-    }
-
-    _queryAbilityModifierSum(name) {
-        const mods = this._queryAbilityModifiers(name);
-
-        return this._sumMods(mods);
-    }
-
-    data(name) {
-        const modifiers = this._queryStatModifiers(name);
+    data(stat) {
+        const name = getStatName(stat);
+        const modifiers = this.getStatModifiers(stat);
         const base = this[`base${capitalize(name)}`];
         const modSum = this._sumMods(modifiers);
         const sum = base + modSum;
 
         return {
+            stat,
             name,
             modifiers,
             base,
@@ -62,45 +50,34 @@ export class Stats extends Component {
 
     all() {
         return {
-            strength: this.data('strength'),
-            dexterity: this.data('dexterity'),
-            athleticism: this.data('athleticism'),
-            trickery: this.data('trickery'),
+            strength: this.data(STAT_STRENGTH),
+            dexterity: this.data(STAT_DEXTERITY),
+            athleticism: this.data(STAT_ATHLETICISM),
+            trickery: this.data(STAT_TRICKERY),
         };
     }
 
     strength() {
-        const mod = this._queryStatModifierSum('strength');
+        const mod = this.getStatModifierSum(STAT_STRENGTH);
 
         return this.baseStrength + mod;
     }
 
     dexterity() {
-        const mod = this._queryStatModifierSum('dexterity');
+        const mod = this.getStatModifierSum(STAT_DEXTERITY);
 
         return this.baseDexterity + mod;
     }
 
     athleticism() {
-        const mod = this._queryStatModifierSum('athleticism');
+        const mod = this.getStatModifierSum(STAT_ATHLETICISM);
 
         return this.baseAthleticism + mod;
     }
 
     trickery() {
-        const mod = this._queryStatModifierSum('trickery');
+        const mod = this.getStatModifierSum(STAT_TRICKERY);
 
         return this.baseTrickery + mod;
-    }
-
-    speed() {
-        return this._queryAbilityModifierSum('speed');
-    }
-
-    throwing() {
-        const base = this.athleticism();
-        const modifier = this._queryAbilityModifierSum('throwing');
-
-        return base + modifier;
     }
 }

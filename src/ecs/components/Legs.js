@@ -1,5 +1,6 @@
 import { Component } from 'geotic';
 import { game } from '../../core/Game';
+import { ABILITY_SPEED, getAbilityValue } from '../../data/Abilities';
 import { Blocker } from './Blocker';
 
 export class Legs extends Component {
@@ -26,7 +27,7 @@ export class Legs extends Component {
             nonHostile.position.setPos(position.x, position.y);
         }
 
-        const speed = this.entity.stats.speed();
+        const speed = getAbilityValue(ABILITY_SPEED, this.entity);
         const cost = (1 / speed) * 1000;
 
         this.entity.fireEvent('energy-consumed', cost);

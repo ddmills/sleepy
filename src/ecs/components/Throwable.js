@@ -1,6 +1,7 @@
 import { Component } from 'geotic';
 import { game } from '../../core/Game';
 import { SCREEN_ADVENTURE, SCREEN_CURSOR } from '../../core/screens/ScreenType';
+import { ABILITY_THROWING, getAbilityValue } from '../../data/Abilities';
 import {
     CURSOR_SEGMENT_INVALID,
     CURSOR_SEGMENT_INTEREST,
@@ -92,8 +93,7 @@ export class Throwable extends Component {
     }
 
     onTryThrow(evt) {
-        const throwing = evt.data.interactor.stats.throwing();
-        const range = Math.floor(throwing / 2);
+        const range = getAbilityValue(ABILITY_THROWING, evt.data.interactor);
 
         game.screens.pushScreen(SCREEN_CURSOR, {
             start: evt.data.interactor.position.getPos(),

@@ -1,4 +1,7 @@
-# Primary stats
+- Attribute (STR, DEX, ATH, TRK)
+- Ability (throwing, lock picking)
+
+# Attributes with associated abilities
 
 1. Strength // brute force
     - blocking
@@ -40,6 +43,10 @@
     - bombs
     - traps
     - alchemy?
+
+Special Abilities:
+- speed
+- armor class
 
 # Desired playstyles
 1. stealthy, quick deadly strikes

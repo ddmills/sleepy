@@ -8,6 +8,7 @@ import {
     SPWN_AMULET,
     SPWN_CLOTH_ARMOR,
     SPWN_LEATHER_BOOTS,
+    SPWN_SHORTSWORD,
 } from '../../data/Spawnables';
 import { spawn } from '../../data/Spawner';
 import { randomInt } from '../../utils/rand';
@@ -40,6 +41,7 @@ export default class CabinTheme extends TileThemePopulator {
             chest.inventory.addLoot(spawn(SPWN_AMULET));
             chest.inventory.addLoot(spawn(SPWN_CLOTH_ARMOR));
             chest.inventory.addLoot(spawn(SPWN_LEATHER_BOOTS));
+            chest.inventory.addLoot(spawn(SPWN_SHORTSWORD));
         });
 
         for (let i = 0; i < randomInt(0, 3); i++) {

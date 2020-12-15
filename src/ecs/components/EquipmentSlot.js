@@ -10,6 +10,8 @@ export class EquipmentSlot extends Component {
         key: 'body',
         slotType: EQ_SLOT_BODY,
         content: '<Entity>',
+        isPrimary: false,
+        isOffhand: false,
     };
 
     get isEmpty() {
@@ -48,5 +50,46 @@ export class EquipmentSlot extends Component {
         equipment.fireEvent('equipped', {
             interactor: this.entity,
         });
+    }
+
+    onTryMelee(evt) {
+        if (!this.isPrimary) {
+            return;
+        }
+
+        const map = window.game.map;
+        const targetPos = evt.data.target.position.getPos();
+        const selfPos = this.entity.position.getPos();
+        const isAdjacent = map.isAdjacent(
+            selfPos.x,
+            selfPos.y,
+            targetPos.x,
+            targetPos.y
+        );
+
+        if (!isAdjacent) {
+            return;
+        }
+
+        if (this.isEmpty) {
+            evt.data.target.fireEvent('damage', {
+                source: this.entity,
+                damage: {
+                    type: 'blunt',
+                    value: 5,
+                },
+            });
+
+            this.entity.fireEvent('energy-consumed', 800);
+            evt.handle();
+            return;
+        }
+
+        this.content.fireEvent('try-use-melee', {
+            interactor: this.entity,
+            target: evt.data.target,
+        });
+
+        evt.handle();
     }
 }

@@ -36,9 +36,27 @@
         {
             "type": "EquipmentSlot",
             "properties": {
+                "name": "Right hand",
+                "key": "handRight",
+                "slotType": "EQ_SLOT_HAND",
+                "isPrimary": true
+            }
+        },
+        {
+            "type": "EquipmentSlot",
+            "properties": {
                 "name": "Right arm",
                 "key": "armRight",
                 "slotType": "EQ_SLOT_ARM"
+            }
+        },
+        {
+            "type": "EquipmentSlot",
+            "properties": {
+                "name": "Left hand",
+                "key": "handLeft",
+                "slotType": "EQ_SLOT_HAND",
+                "isOffhand": true
             }
         },
         {

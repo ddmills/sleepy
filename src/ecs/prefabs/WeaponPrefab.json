@@ -1,0 +1,34 @@
+{
+    "name": "Weapon",
+    "inherit": ["GameObject"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Weapon"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "(",
+                "fg1": "silver"
+            }
+        },
+        {
+            "type": "Weapon",
+            "properties": {
+                "weaponType": "WPN_TYPE_DAGGER"
+            }
+        },
+        {
+            "type": "Loot"
+        },
+        {
+            "type": "Equipment",
+            "properties": {
+                "slotTypes": ["EQ_SLOT_HAND"]
+            }
+        }
+    ]
+}

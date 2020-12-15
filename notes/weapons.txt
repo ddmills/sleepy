@@ -41,31 +41,33 @@ Weapon Classifications (Proficiencies)
     - abilities
         - hack
         - dismember
-- Swordsmanship
+- Blades
     - weapons
         - Longsword (STR) - slow
         - Short Sword (DEX) - dual
-        - Dagger (DEX) - dual, fast, throw
+        - Dagger (DEX/TRK) - dual, fast, throw
     - abilities
         - jab (deal piercing)
         - parry (bonus to AC for round)
 - Archery
     - weapons
         - Bow (DEX) - silent
-        - Longbow (DEX) - slow, distance
-        - Arbalest (STR) - slow, distance
+        - Longbow (DEX) - slow, range, ammo, distance
+        - Arbalest (STR) - slow, range, ammo, distance
         - Crossbow (TRK) - dual
     - abilities
         - focus target
 - Polearm
     - weapons
-        - Staff (DEX)
-        - Halberd (STR)
-        - Javelin (STR)
+        - Staff (DEX), reach
+        - Halberd (STR), reach
+        - Javelin (STR), slow, throw, melee
 - Nets? - throwable
 - Whip (DEX)
 - Dart (TRK) - silent
 - Blowgun (TRK) - silent
+- Slingshot
+- Rope
 
 Weapon {
     classification:

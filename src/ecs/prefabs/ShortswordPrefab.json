@@ -1,0 +1,25 @@
+{
+    "name": "Shortsword",
+    "inherit": ["Weapon"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Shortsword"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "(",
+                "fg1": "silver"
+            }
+        },
+        {
+            "type": "Weapon",
+            "properties": {
+                "weaponType": "WPN_TYPE_SHORTSWORD"
+            }
+        }
+    ]
+}

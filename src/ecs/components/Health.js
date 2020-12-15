@@ -30,6 +30,14 @@ export class Health extends Component {
                 source: evt.data.source,
                 damage: evt.data.damage,
             });
+
+            const pos = this.entity.position.getPos();
+
+            game.particles.createParticle(pos.x, pos.y, {
+                lifetime: 140,
+                fg1s: ['#8d4c4f', '#730d14'],
+                glyphs: ['*'],
+            });
         }
 
         evt.handle();

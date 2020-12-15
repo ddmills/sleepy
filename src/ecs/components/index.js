@@ -15,7 +15,6 @@ export { Moniker } from './Moniker';
 export { Logger } from './Logger';
 export { Position } from './Position';
 export { Glyph } from './Glyph';
-export { Arms } from './Arms';
 export { Legs } from './Legs';
 export { MoveCommand } from './MoveCommand';
 export { MeleeCommand } from './MeleeCommand';

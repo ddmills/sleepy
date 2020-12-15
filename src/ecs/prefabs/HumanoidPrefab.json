@@ -74,9 +74,6 @@
             "type": "Legs"
         },
         {
-            "type": "Arms"
-        },
-        {
             "type": "Eyes",
             "properties": {
                 "range": 10

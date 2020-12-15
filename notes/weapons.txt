@@ -1,6 +1,33 @@
 Weapons
 https://www.medievalchronicles.com/medieval-weapons/
 
+
+Defensive Values
+- Dodge Value DV = Compared against Accuracy for to-hit (DEX)
+- Armor Value AV = Decreases Damage Taken (STR)
+- Health HP = Health pool (ATH)
+- Resistences
+
+Offensive Values
+- Penetration Value (PV%) = Percentage
+- Accuracy (AC)
+- Damage types
+
+When EntityA melee attacks EntityB with Weapon:
+
+    **Will EntityA hit EntityB?**
+
+    Dodge Value - Accuracy
+    AC   = (1d20 + EntityA.accuracy + Weapon.accuracyMod)
+    AV   = (1d20 + EntityB.dodgeAbility)
+    HIT  = DV < AC
+
+    **How much damage will it do?**
+
+    DMG    = weapon.primaryStatMod + weapon die + weapon.abilityMod = Weapon.rollDamage
+    Armor  = AV * (1 - PV)
+    HP     = HP - Max(DMG - Armor, 0)
+
 Equipment modifiers
 
 "Balanced Dagger of Vampirism"

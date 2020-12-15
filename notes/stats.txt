@@ -15,20 +15,20 @@
     - grappling
     - flails
 2. Dexterity // finesse
+    - dodging
     - daggers
     - finesse weapons
     - short swords
     - polearms
     - hand axes
     - dual wielding
-    - tinkering
     - bows
     - whips
 3. Athleticism
+    - health
     - Brawling/Unarmed
     - throwing
     - parrying
-    - dodging
     - acrobatics
     - climbing
     - jumping

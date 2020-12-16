@@ -24,6 +24,12 @@
             "properties": {
                 "slotTypes": ["EQ_SLOT_BODY"]
             }
+        },
+        {
+            "type": "Armor",
+            "properties": {
+                "value": 20
+            }
         }
     ]
 }

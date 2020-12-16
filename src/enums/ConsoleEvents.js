@@ -1,3 +1,4 @@
+import { getDmgTypeVerb } from '../data/DamageTypes';
 import { IsPlayer, Moniker, IsVisible } from '../ecs/components';
 import { liquids } from './LiquidTypes';
 
@@ -26,11 +27,13 @@ const getMonikerIndirectObject = (entity) => {
 const mapping = {
     [CONSOLE_EVENT_DAMAGE]: {
         message(data) {
-            return `${getMonikerSubject(data.target)} takes ${
-                data.damage.value
-            } ${data.damage.type} damage from ${getMonikerIndirectObject(
-                data.source
-            )}`;
+            const source = getMonikerSubject(data.source);
+            const dmgVerb = getDmgTypeVerb(data.damage.type);
+            const target = getMonikerIndirectObject(data.target);
+            const dmg = data.damage.value;
+            const item = data.sourceItem.toLowerCase();
+
+            return `${source} ${dmgVerb} ${target} with a ${item} for ${dmg} hp`;
         },
         shouldAppear(data) {
             return data.target.has(IsPlayer) || data.target.has(IsVisible);
@@ -38,11 +41,13 @@ const mapping = {
     },
     [CONSOLE_EVENT_DEAD]: {
         message(data) {
-            return `${getMonikerSubject(data.target)} takes ${
-                data.damage.value
-            } ${data.damage.type} damage from ${getMonikerIndirectObject(
-                data.source
-            )} and dies`;
+            const source = getMonikerSubject(data.source);
+            const dmgVerb = getDmgTypeVerb(data.damage.type);
+            const target = getMonikerIndirectObject(data.target);
+            const dmg = data.damage.value;
+            const item = data.sourceItem.toLowerCase();
+
+            return `${source} ${dmgVerb} ${target} to death`;
         },
         shouldAppear(data) {
             return data.target.has(IsPlayer) || data.target.has(IsVisible);

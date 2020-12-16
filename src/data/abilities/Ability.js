@@ -13,6 +13,7 @@ export default class Ability {
         const modifiers = [];
 
         entity.fireEvent(`query-ability-modifier-${this.name}`, {
+            name: this.name,
             modifiers,
         });
 

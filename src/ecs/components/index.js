@@ -2,6 +2,7 @@ export { Actor } from './Actor';
 export { IsDestroying } from './IsDestroying';
 export { LiquidContainer } from './LiquidContainer';
 export { Door } from './Door';
+export { Armor } from './Armor';
 export { Loot } from './Loot';
 export { Throwable } from './Throwable';
 export { FragileGlass } from './FragileGlass';

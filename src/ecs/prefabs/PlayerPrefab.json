@@ -11,8 +11,8 @@
         {
             "type": "Health",
             "properties": {
-                "value": 40,
-                "max": 40
+                "value": 24,
+                "max": 24
             }
         },
         {

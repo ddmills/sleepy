@@ -19,6 +19,7 @@ export class Health extends Component {
             game.console.event(CONSOLE_EVENT_DEAD, {
                 target: this.entity,
                 source: evt.data.source,
+                sourceItem: evt.data.sourceItem,
                 damage: evt.data.damage,
             });
 
@@ -28,6 +29,7 @@ export class Health extends Component {
             game.console.event(CONSOLE_EVENT_DAMAGE, {
                 target: this.entity,
                 source: evt.data.source,
+                sourceItem: evt.data.sourceItem,
                 damage: evt.data.damage,
             });
 

@@ -2,15 +2,26 @@ Weapons
 https://www.medievalchronicles.com/medieval-weapons/
 
 
+DEFENSE
+Dodge Value (DV) - decrase likelyhood to hit  [Dexterity]
+Armor Value (AV) - soak up damage             [Strength]
+Health      (HP) - pool of hit points         [Athleticism]
+
+OFFENSE
+Penetration (PV) - ignores armor???           [From weapon]
+Accuracy    (AC) - increase likelyhood to hit [From weapon]
+Flat Damage (DM) - damage dice roll           [From weapon]
+
+
 Defensive Values
-- Dodge Value DV = Compared against Accuracy for to-hit (DEX)
-- Armor Value AV = Decreases Damage Taken (STR)
+- Dodge Value DV = Compared against accuracy for to-hit (DEX)
+- Armor Value AV = Soaks damage taken (STR)
 - Health HP = Health pool (ATH)
 - Resistences
 
 Offensive Values
-- Penetration Value (PV%) = Percentage
-- Accuracy (AC)
+- Penetration Value (PV) - Ignores armor
+- Accuracy (AC) - Compared against DV to see if hit
 - Damage types
 
 When EntityA melee attacks EntityB with Weapon:
@@ -19,7 +30,7 @@ When EntityA melee attacks EntityB with Weapon:
 
     Dodge Value - Accuracy
     AC   = (1d20 + EntityA.accuracy + Weapon.accuracyMod)
-    AV   = (1d20 + EntityB.dodgeAbility)
+    DV   = (1d20 + EntityB.dodgeAbility)
     HIT  = DV < AC
 
     **How much damage will it do?**

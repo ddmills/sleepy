@@ -1,5 +1,7 @@
 import { Component } from 'geotic';
+import { DMG_TYPE_BLUDGEONING } from '../../data/DamageTypes';
 import { EQ_SLOT_BODY } from '../../data/EquipmentSlotType';
+import { pickRandom } from '../../utils/rand';
 import { IsEquipped } from './IsEquipped';
 
 export class EquipmentSlot extends Component {
@@ -74,9 +76,10 @@ export class EquipmentSlot extends Component {
         if (this.isEmpty) {
             evt.data.target.fireEvent('damage', {
                 source: this.entity,
+                sourceItem: pickRandom(['punch', 'kick']),
                 damage: {
-                    type: 'blunt',
-                    value: 5,
+                    type: DMG_TYPE_BLUDGEONING,
+                    value: 4,
                 },
             });
 
@@ -91,5 +94,16 @@ export class EquipmentSlot extends Component {
         });
 
         evt.handle();
+    }
+
+    onQueryAbilityModifierArmor(evt) {
+        if (this.isEmpty) {
+            return;
+        }
+
+        this.content.fireEvent(`query-equipped-ability-modifier-${evt.data.name}`, {
+            name: evt.data.name,
+            modifiers: evt.data.modifiers,
+        });
     }
 }

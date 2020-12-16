@@ -1,6 +1,5 @@
 import { Component } from 'geotic';
-import { getWeaponTypeFamily, getWeaponTypeName } from '../../data/WeaponTypes';
-import { game } from '../../core/Game';
+import { getWeaponTypeDmgType, getWeaponTypeFamily, getWeaponTypeName } from '../../data/WeaponTypes';
 
 export class Weapon extends Component {
     static properties = {
@@ -15,13 +14,16 @@ export class Weapon extends Component {
         return getWeaponTypeFamily(this.weaponType);
     }
 
-    onTryUseMelee(evt) {
-        console.log(`${evt.data.interactor.moniker.display} use ${this.name} as melee on ${evt.data.target.moniker.display}`);
+    get damageType() {
+        return getWeaponTypeDmgType(this.weaponType);
+    }
 
+    onTryUseMelee(evt) {
         evt.data.target.fireEvent('damage', {
-            source: this.entity,
+            source: evt.data.interactor,
+            sourceItem: this.name,
             damage: {
-                type: 'slashing',
+                type: this.damageType,
                 value: 5,
             },
         });

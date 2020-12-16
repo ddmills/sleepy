@@ -8,7 +8,7 @@ import {
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import SelectableList from '../../../utils/SelectableList';
 import { getStatValue } from '../../../data/Stats';
-import { ABILITY_SPEED, getAbilityValue } from '../../../data/Abilities';
+import { ABILITY_ARMOR, ABILITY_DODGE, ABILITY_SPEED, getAbilityValue } from '../../../data/Abilities';
 
 export default class CharacterScreen extends Screen {
     character;
@@ -52,16 +52,32 @@ export default class CharacterScreen extends Screen {
             'orange'
         );
 
+        const health = this.character.health.value;
+        const healthMax = this.character.health.max;
+
+        this.game.renderer.drawText(2, 5, 'health');
+        this.game.renderer.drawText(10, 5, `${health}/${healthMax}`);
+
         const speed = getAbilityValue(ABILITY_SPEED, this.character);
 
-        this.game.renderer.drawText(2, 5, 'speed');
-        this.game.renderer.drawText(10, 5, `${speed}`);
+        this.game.renderer.drawText(2, 6, 'speed');
+        this.game.renderer.drawText(10, 6, `${speed}`);
+
+        const armor = getAbilityValue(ABILITY_ARMOR, this.character);
+
+        this.game.renderer.drawText(2, 7, 'armor');
+        this.game.renderer.drawText(10, 7, `${armor}`);
+
+        const dodge = getAbilityValue(ABILITY_DODGE, this.character);
+
+        this.game.renderer.drawText(2, 8, 'dodge');
+        this.game.renderer.drawText(10, 8, `${dodge}`);
 
         let pad = 0;
 
         this.list.data.forEach(({ item, idx, isSelected }) => {
             const stat = item;
-            const ypos = idx + 7 + pad;
+            const ypos = idx + 10 + pad;
 
             if (isSelected) {
                 this.game.renderer.drawText(1, ypos, `→ ${stat.name}`, 'yellow');

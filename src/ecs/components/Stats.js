@@ -1,11 +1,11 @@
 import { Component } from 'geotic';
 import { capitalize } from 'rot-js/lib/util';
-import { getStatName, STAT_ATHLETICISM, STAT_DEXTERITY, STAT_STRENGTH, STAT_TRICKERY } from '../../data/Stats';
+import { getStatName, STAT_ATHLETICISM, STAT_FINESSE, STAT_STRENGTH, STAT_TRICKERY } from '../../data/Stats';
 
 export class Stats extends Component {
     static properties = {
         baseStrength: 10,
-        baseDexterity: 10,
+        baseFinesse: 10,
         baseAthleticism: 10,
         baseTrickery: 10,
     };
@@ -51,7 +51,7 @@ export class Stats extends Component {
     all() {
         return {
             strength: this.data(STAT_STRENGTH),
-            dexterity: this.data(STAT_DEXTERITY),
+            finesse: this.data(STAT_FINESSE),
             athleticism: this.data(STAT_ATHLETICISM),
             trickery: this.data(STAT_TRICKERY),
         };
@@ -63,10 +63,10 @@ export class Stats extends Component {
         return this.baseStrength + mod;
     }
 
-    dexterity() {
-        const mod = this.getStatModifierSum(STAT_DEXTERITY);
+    finesse() {
+        const mod = this.getStatModifierSum(STAT_FINESSE);
 
-        return this.baseDexterity + mod;
+        return this.baseFinesse + mod;
     }
 
     athleticism() {

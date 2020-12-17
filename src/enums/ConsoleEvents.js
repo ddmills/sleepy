@@ -5,6 +5,8 @@ import { liquids } from './LiquidTypes';
 export const CONSOLE_EVENT_DAMAGE = 0;
 export const CONSOLE_EVENT_DEAD = 1;
 export const CONSOLE_EVENT_SHATTER = 2;
+export const CONSOLE_EVENT_MISS = 3;
+export const CONSOLE_EVENT_BLOCK = 4;
 
 const getMonikerSubject = (entity) => {
     if (entity.has(Moniker)) {
@@ -25,12 +27,34 @@ const getMonikerIndirectObject = (entity) => {
 };
 
 const mapping = {
+    [CONSOLE_EVENT_MISS]: {
+        message(data) {
+            const attacker = getMonikerIndirectObject(data.attacker);
+            const defender = getMonikerSubject(data.defender);
+
+            return `${defender} dodges an attack from ${attacker} (${data.dodge} > ${data.accuracy})`;
+        },
+        shouldAppear(data) {
+            return data.defender.has(IsPlayer) || data.attacker.has(IsVisible);
+        },
+    },
+    [CONSOLE_EVENT_BLOCK]: {
+        message(data) {
+            const attacker = getMonikerSubject(data.attacker);
+            const defender = getMonikerIndirectObject(data.defender);
+
+            return `${attacker} fails to penetrate ${defender}'s armor (${data.armor} > ${data.penetration})`;
+        },
+        shouldAppear(data) {
+            return data.defender.has(IsPlayer) || data.attacker.has(IsVisible);
+        },
+    },
     [CONSOLE_EVENT_DAMAGE]: {
         message(data) {
             const source = getMonikerSubject(data.source);
-            const dmgVerb = getDmgTypeVerb(data.damage.type);
+            const dmgVerb = getDmgTypeVerb(data.damageType);
             const target = getMonikerIndirectObject(data.target);
-            const dmg = data.damage.value;
+            const dmg = data.damage;
             const item = data.sourceItem.toLowerCase();
 
             return `${source} ${dmgVerb} ${target} with a ${item} for ${dmg} hp`;
@@ -42,10 +66,8 @@ const mapping = {
     [CONSOLE_EVENT_DEAD]: {
         message(data) {
             const source = getMonikerSubject(data.source);
-            const dmgVerb = getDmgTypeVerb(data.damage.type);
+            const dmgVerb = getDmgTypeVerb(data.damageType);
             const target = getMonikerIndirectObject(data.target);
-            const dmg = data.damage.value;
-            const item = data.sourceItem.toLowerCase();
 
             return `${source} ${dmgVerb} ${target} to death`;
         },

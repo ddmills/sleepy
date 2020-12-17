@@ -22,8 +22,8 @@ export class Race extends Component {
         return this.data().modStrength;
     }
 
-    get dexterityMod() {
-        return this.data().modDexterity;
+    get finesseMod() {
+        return this.data().modFinesse;
     }
 
     get athleticismMod() {
@@ -45,8 +45,8 @@ export class Race extends Component {
         }
     }
 
-    onQueryStatModifierDexterity(evt) {
-        const mod = this.dexterityMod;
+    onQueryStatModifierFinesse(evt) {
+        const mod = this.finesseMod;
 
         if (mod !== 0) {
             evt.data.modifiers.push({

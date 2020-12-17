@@ -2,7 +2,7 @@ import { Component } from 'geotic';
 
 export class Armor extends Component {
     static properties = {
-        value: 20,
+        value: 4,
     };
 
     onQueryEquippedAbilityModifierArmor(evt) {

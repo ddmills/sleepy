@@ -12,7 +12,7 @@ Choose a combination of four:
 influence by race, class, pact, personality
 
 - Wisdom
-- Dexterity
+- Finesse
 - Constitution
 - Intelligence
 - Charisma

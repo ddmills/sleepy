@@ -3,7 +3,7 @@ export default class RaceData {
     speed = 1;
     key = 1;
     modStrength = 0;
-    modDexterity = 0;
+    modFinesse = 0;
     modAthleticism = 0;
     modTrickery = 0;
 
@@ -13,7 +13,7 @@ export default class RaceData {
         this.key = data.key;
 
         this.modStrength = data.modStrength || 0;
-        this.modDexterity = data.modDexterity || 0;
+        this.modFinesse = data.modFinesse || 0;
         this.modAthleticism = data.modAthleticism || 0;
         this.modTrickery = data.modTrickery || 0;
     }

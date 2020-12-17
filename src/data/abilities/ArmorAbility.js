@@ -1,5 +1,5 @@
 import { ABILITY_ARMOR } from '../Abilities';
-import { getStatValue, STAT_STRENGTH } from '../Stats';
+import { getStatModifier, STAT_STRENGTH } from '../Stats';
 import Ability from './Ability';
 
 export default class ArmorAbility extends Ability {
@@ -8,9 +8,8 @@ export default class ArmorAbility extends Ability {
     }
 
     compute(entity) {
-        const base = getStatValue(STAT_STRENGTH, entity);
-        const modifier = this.getModifierSum(entity);
+        const stat = getStatModifier(STAT_STRENGTH, entity);
 
-        return base + modifier;
+        return stat + this.getModifierSum(entity);
     }
 }

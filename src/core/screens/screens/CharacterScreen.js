@@ -8,7 +8,7 @@ import {
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import SelectableList from '../../../utils/SelectableList';
 import { getStatValue } from '../../../data/Stats';
-import { ABILITY_ARMOR, ABILITY_DODGE, ABILITY_SPEED, getAbilityValue } from '../../../data/Abilities';
+import { ABILITY_ACCURACY, ABILITY_ARMOR, ABILITY_DODGE, ABILITY_PENETRATION, ABILITY_SPEED, getAbilityValue } from '../../../data/Abilities';
 
 export default class CharacterScreen extends Screen {
     character;
@@ -73,11 +73,21 @@ export default class CharacterScreen extends Screen {
         this.game.renderer.drawText(2, 8, 'dodge');
         this.game.renderer.drawText(10, 8, `${dodge}`);
 
+        const penetration = getAbilityValue(ABILITY_PENETRATION, this.character);
+
+        this.game.renderer.drawText(2, 9, 'penetration');
+        this.game.renderer.drawText(10, 9, `${penetration}`);
+
+        const accuracy = getAbilityValue(ABILITY_ACCURACY, this.character);
+
+        this.game.renderer.drawText(2, 10, 'accuracy');
+        this.game.renderer.drawText(10, 10, `${accuracy}`);
+
         let pad = 0;
 
         this.list.data.forEach(({ item, idx, isSelected }) => {
             const stat = item;
-            const ypos = idx + 10 + pad;
+            const ypos = idx + 13 + pad;
 
             if (isSelected) {
                 this.game.renderer.drawText(1, ypos, `→ ${stat.name}`, 'yellow');

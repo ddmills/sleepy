@@ -1,6 +1,8 @@
 import { Component } from 'geotic';
+import { ABILITY_ACCURACY, getAbilityValue } from '../../data/Abilities';
 import { DMG_TYPE_BLUDGEONING } from '../../data/DamageTypes';
 import { EQ_SLOT_BODY } from '../../data/EquipmentSlotType';
+import { getStatModifier, rollStat, STAT_ATHLETICISM, STAT_STRENGTH } from '../../data/Stats';
 import { pickRandom } from '../../utils/rand';
 import { IsEquipped } from './IsEquipped';
 
@@ -74,13 +76,14 @@ export class EquipmentSlot extends Component {
         }
 
         if (this.isEmpty) {
-            evt.data.target.fireEvent('damage', {
-                source: this.entity,
-                sourceItem: pickRandom(['punch', 'kick']),
-                damage: {
-                    type: DMG_TYPE_BLUDGEONING,
-                    value: 4,
-                },
+            evt.data.target.fireEvent('attacked', {
+                attacker: this.entity,
+                weaponName: pickRandom(['punch', 'kick']),
+                type: this.damageType,
+                damage: getStatModifier(STAT_ATHLETICISM, this.entity),
+                penetration: 4 + rollStat(STAT_STRENGTH, this.entity),
+                accuracy: getAbilityValue(ABILITY_ACCURACY, this.entity),
+                damageType: DMG_TYPE_BLUDGEONING,
             });
 
             this.entity.fireEvent('energy-consumed', 800);

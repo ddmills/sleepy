@@ -1,4 +1,4 @@
-- Attribute (STR, DEX, ATH, TRK)
+- Attribute (STR, FNS, ATH, TRK)
 - Ability (throwing, lock picking)
 
 # Attributes with associated abilities
@@ -6,22 +6,22 @@
 1. Strength // brute force
     - blocking
     - lifting
+    - constitution
+    - grappling
     - hammers
     - heavy axes
     - longswords
-    - constitution
     - javelins
     - arbalest
-    - grappling
     - flails
-2. Dexterity // finesse
+2. Finesse // finesse
+    - dual wielding
     - dodging
-    - daggers
     - finesse weapons
     - short swords
     - polearms
     - hand axes
-    - dual wielding
+    - daggers
     - bows
     - whips
 3. Athleticism

@@ -47,9 +47,9 @@
         {
             "type": "Stats",
             "properties": {
-                "baseStrength": 12,
-                "baseDexterity": 12,
-                "baseAthleticism": 12,
+                "baseStrength": 15,
+                "baseFinesse": 15,
+                "baseAthleticism": 15,
                 "baseTrickery": 12
             }
         }

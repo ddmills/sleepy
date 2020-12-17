@@ -3,18 +3,27 @@ https://www.medievalchronicles.com/medieval-weapons/
 
 
 DEFENSE
-Dodge Value (DV) - decrase likelyhood to hit  [Dexterity]
-Armor Value (AV) - soak up damage             [Strength]
-Health      (HP) - pool of hit points         [Athleticism]
+Dodge Value (DV) - decrease likelyhood to hit   [Finesse]
+Armor Value (AV) - compared against penetration [Strength]
+Health      (HP) - pool of hit points           [Athleticism]
 
 OFFENSE
-Penetration (PV) - ignores armor???           [From weapon]
-Accuracy    (AC) - increase likelyhood to hit [From weapon]
-Flat Damage (DM) - damage dice roll           [From weapon]
+Penetration (PV) - compared against armor       [From weapon]
+Accuracy    (AC) - increase likelyhood to hit   [From weapon]
+Flat Damage (DM) - damage dice roll             [From weapon]
 
+Dodge  <vs> Accuracy
+Armor  <vs> Penetration
+Health <vs> Damage
+
+DV = [d12 + FIN + DodgeAbility]
+AC = [d12 + FIN + AccuracyAbility]
+
+AV = [d12 + STR + ArmorAbility]
+PV = [d12 + STR + PenetrationAbility]
 
 Defensive Values
-- Dodge Value DV = Compared against accuracy for to-hit (DEX)
+- Dodge Value DV = Compared against accuracy for to-hit (FNS)
 - Armor Value AV = Soaks damage taken (STR)
 - Health HP = Health pool (ATH)
 - Resistences
@@ -75,33 +84,33 @@ Weapon Classifications (Proficiencies)
 - Axes
     - weapons
         - Heavy Axe (STR)
-        - Battle Axe (DEX) - dual, throw
+        - Battle Axe (FNS) - dual, throw
     - abilities
         - hack
         - dismember
 - Blades
     - weapons
         - Longsword (STR) - slow
-        - Short Sword (DEX) - dual
-        - Dagger (DEX/TRK) - dual, fast, throw
+        - Short Sword (FNS) - dual
+        - Dagger (FNS/TRK) - dual, fast, throw
     - abilities
         - jab (deal piercing)
         - parry (bonus to AC for round)
 - Archery
     - weapons
-        - Bow (DEX) - silent
-        - Longbow (DEX) - slow, range, ammo, distance
+        - Bow (FNS) - silent
+        - Longbow (FNS) - slow, range, ammo, distance
         - Arbalest (STR) - slow, range, ammo, distance
         - Crossbow (TRK) - dual
     - abilities
         - focus target
 - Polearm
     - weapons
-        - Staff (DEX), reach
+        - Staff (FNS), reach
         - Halberd (STR), reach
         - Javelin (STR), slow, throw, melee
 - Nets? - throwable
-- Whip (DEX)
+- Whip (FNS)
 - Dart (TRK) - silent
 - Blowgun (TRK) - silent
 - Slingshot

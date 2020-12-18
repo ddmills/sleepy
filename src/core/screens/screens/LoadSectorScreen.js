@@ -26,6 +26,7 @@ export default class LoadSectorScreen extends Screen {
 
         this.game.world.onSectorLoaded(ctx.nextSector, ctx.entry);
         this.game.map.onSectorLoaded(ctx.nextSector, ctx.entry);
+        this.game.music.onSectorLoaded(ctx.nextSector, ctx.entry);
 
         this.game.screens.setScreen(SCREEN_ADVENTURE);
     }

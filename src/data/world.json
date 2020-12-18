@@ -4,6 +4,7 @@
     "sectors": [
         [
             {
+                "music": "FOREST",
                 "generator": {
                     "type": "FOREST"
                 },
@@ -11,6 +12,7 @@
                 "connectionsWest": []
             },
             {
+                "music": "FOREST",
                 "generator": {
                     "type": "FOREST_CABINS"
                 },
@@ -22,6 +24,7 @@
                 ]
             },
             {
+                "music": "FOREST",
                 "generator": {
                     "type": "FOREST_STRONGHOLD"
                 },
@@ -35,6 +38,7 @@
         ],
         [
             {
+                "music": "FOREST",
                 "generator": {
                     "type": "FOREST_STRONGHOLD"
                 },
@@ -42,6 +46,7 @@
                 "connectionsWest": []
             },
             {
+                "music": "FOREST_VILLAGE",
                 "generator": {
                     "type": "FOREST_TOWN"
                 },
@@ -57,6 +62,7 @@
                 ]
             },
             {
+                "music": "FOREST",
                 "generator": {
                     "type": "FOREST_CABINS"
                 },
@@ -74,6 +80,7 @@
         ],
         [
             {
+                "music": "FOREST",
                 "generator": {
                     "type": "FOREST"
                 },
@@ -85,6 +92,7 @@
                 "connectionsWest": []
             },
             {
+                "music": "FOREST",
                 "generator": {
                     "type": "FOREST_STRONGHOLD"
                 },
@@ -100,6 +108,7 @@
                 ]
             },
             {
+                "music": "FOREST",
                 "generator": {
                     "type": "FOREST"
                 },

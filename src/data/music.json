@@ -8,13 +8,13 @@
         },
         {
             "name": "Hello New York",
-            "key": "HELLO_NEW_YORK",
+            "key": "FOREST_VILLAGE",
             "intro": "village_intro.wav",
             "loop": "village_loop.wav"
         },
         {
             "name": "Intrigue Awaits",
-            "key": "INTRIGUE_AWAITS",
+            "key": "FOREST",
             "intro": "forest_intro.wav",
             "loop": "forest_loop.wav"
         }

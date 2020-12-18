@@ -7,6 +7,7 @@ export class Sector {
     connectionsNorth = [];
     connectionsWest = [];
     generator = {};
+    music = null;
 
     get x() {
         return this.#x;
@@ -103,6 +104,7 @@ export class Sector {
         sector.connectionsNorth = data.connectionsNorth;
         sector.connectionsWest = data.connectionsWest;
         sector.generator = data.generator;
+        sector.music = data.music;
 
         return sector;
     }

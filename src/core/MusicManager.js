@@ -35,7 +35,6 @@ class Track {
     }
 
     play() {
-        console.log('play', this.name);
         if (this.isPlaying) {
             return;
         }
@@ -96,5 +95,9 @@ export default class MusicManager extends Manager {
         if (this.currentTrack) {
             this.tracks[this.currentTrack].stop();
         }
+    }
+
+    onSectorLoaded(sector) {
+        this.play(sector.music);
     }
 }

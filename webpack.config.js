@@ -80,8 +80,22 @@ module.exports = {
                     {
                         loader: 'file-loader',
                         options: {
-                            publicPath: 'resources/',
-                            outputPath: 'resources/',
+                            name: '[name].[ext]',
+                            publicPath: 'resources/textures',
+                            outputPath: 'resources/textures',
+                        },
+                    },
+                ],
+            },
+            {
+                test: /\.(ogg|mp3|wav|mpe?g)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            publicPath: 'resources/music',
+                            outputPath: 'resources/music',
                         },
                     },
                 ],

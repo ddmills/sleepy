@@ -1,0 +1,22 @@
+{
+    "path": "/resources/music/",
+    "tracks": [
+        {
+            "name": "Bards Tale",
+            "key": "BARDS_TALE",
+            "loop": "menu.wav"
+        },
+        {
+            "name": "Hello New York",
+            "key": "HELLO_NEW_YORK",
+            "intro": "village_intro.wav",
+            "loop": "village_loop.wav"
+        },
+        {
+            "name": "Intrigue Awaits",
+            "key": "INTRIGUE_AWAITS",
+            "intro": "forest_intro.wav",
+            "loop": "forest_loop.wav"
+        }
+    ]
+}

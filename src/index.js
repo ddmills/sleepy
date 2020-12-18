@@ -9,11 +9,3 @@ loadImages().then(() => {
 
     game.start();
 });
-
-var sound = new Howl({
-    src: ['/resources/music/menu.wav'],
-    loop: true,
-    volume: 0.25,
-});
-
-sound.play();

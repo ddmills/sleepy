@@ -23,6 +23,7 @@ import FPSMonitoringSystem from '../systems/FPSMonitoringSystem';
 import { WorldManager } from './WorldManager';
 import ConsoleManager from './ConsoleManager';
 import DestroySystem from '../systems/DestroySystem';
+import MusicManager from './MusicManager';
 
 export default class Game {
     #lastUpdate;
@@ -33,6 +34,7 @@ export default class Game {
 
     constructor() {
         this.engine = new ECS(this);
+        this.music = new MusicManager(this);
         this.mouse = new MouseManager(this);
         this.clock = new ClockManager(this);
         this.renderer = new Renderer(this);

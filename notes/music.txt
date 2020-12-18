@@ -3,3 +3,13 @@
 - https://www.youtube.com/watch?v=zPyg4N7bcHM
 
 - https://www.reddit.com/r/roguelikedev/comments/kb80fw/composer_looking_for_cool_projects/
+
+
+- music is assigned based on section type
+
+- in the menu, play menu music
+- when a section is entered
+    - if music is different than the previous
+        - fade out previous
+        - fade in next
+    - continue playing

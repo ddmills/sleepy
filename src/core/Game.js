@@ -65,6 +65,7 @@ export default class Game {
     start() {
         this.#lastUpdate = Date.now();
         this.boundLoop = this.loop.bind(this);
+        this.music.play('BARDS_TALE');
         requestAnimationFrame(this.loop.bind(this));
     }
 

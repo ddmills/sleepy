@@ -11,6 +11,10 @@ import { SCREEN_ADVENTURE } from '../ScreenType';
 export default class MainMenuScreen extends Screen {
     onEnter() {
         this.game.commands.pushDomain(INPUT_DOMAIN_MAIN_MENU);
+
+        if (!this.game.state.isStarted) {
+            this.game.music.play('BARDS_TALE');
+        }
     }
 
     onLeave() {

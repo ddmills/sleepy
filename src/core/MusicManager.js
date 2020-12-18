@@ -43,14 +43,14 @@ class Track {
             this.howl = this.intro;
             this.intro.seek(0);
             this.intro.play();
-            this.intro.fade(0, 1, 3000);
+            this.intro.fade(0, 1, 5000);
             this.loop.stop();
             // this.intro.volume(1);
         } else {
             this.howl = this.loop;
             this.loop.seek(0);
             this.loop.play();
-            this.loop.fade(0, 1, 3000);
+            this.loop.fade(0, 1, 5000);
             // this.loop.volume(1);
         }
 
@@ -59,7 +59,7 @@ class Track {
 
     stop() {
         if (this.howl) {
-            this.howl.fade(1, 0, 3000);
+            this.howl.fade(1, 0, 500);
         }
         this.isPlaying = false;
     }
@@ -71,8 +71,10 @@ export default class MusicManager extends Manager {
 
     constructor(game) {
         super(game);
+        const path = `${window.location.protocol}//${window.location.host}${window.location.pathname}${music.path}`;
+
         music.tracks.forEach((data) => {
-            const track = new Track(music.path, data);
+            const track = new Track(path, data);
 
             this.tracks[data.key] = track;
         });

@@ -5,9 +5,11 @@ export default class CameraManager extends Manager {
     height = 24;
     zoom = 2;
     padding = 4;
+    clampX = 32;
+    clampY = 24;
 
-    #focusX = 0;
-    #focusY = 0;
+    _focusX = 0;
+    _focusY = 0;
 
     constructor(game) {
         super(game);
@@ -23,29 +25,23 @@ export default class CameraManager extends Manager {
         return this.zoom * this.game.renderer.tileHeight;
     }
 
-    get topLeftWorldX() {
-        return Math.floor(Math.min(
-            Math.max(-this.padding, this.#focusX - this.width / 2),
+    computeSize() {
+        this.width = Math.max(this.clampX, Math.floor(window.innerWidth / this.renderedTileWidth) - 2);
+        this.height = Math.max(this.clampY, Math.floor(window.innerHeight / this.renderedTileHeight) - 2);
+        this.topLeftWorldX = Math.floor(Math.min(
+            Math.max(-this.padding, this._focusX - this.width / 2),
             Math.max(
                 (this.width - this.game.map.width) / -2,
                 this.padding + this.game.map.width - this.width
             ))
         );
-    }
-
-    get topLeftWorldY() {
-        return Math.floor(Math.min(
-            Math.max(-this.padding, this.#focusY - this.height / 2),
+        this.topLeftWorldY = Math.floor(Math.min(
+            Math.max(-this.padding, this._focusY - this.height / 2),
             Math.max(
                 (this.height - this.game.map.height) / -2,
                 this.padding + this.game.map.height - this.height
             ))
         );
-    }
-
-    computeSize() {
-        this.width = Math.floor(window.innerWidth / this.renderedTileWidth) - 2;
-        this.height = Math.floor(window.innerHeight / this.renderedTileHeight) - 2;
     }
 
     onWindowResize() {
@@ -55,12 +51,19 @@ export default class CameraManager extends Manager {
 
     setZoom(zoom) {
         this.zoom = zoom;
+        this.computeSize();
         this.onWindowResize();
     }
 
     setFocus(x, y) {
-        this.#focusX = x;
-        this.#focusY = y;
+        this._focusX = x;
+        this._focusY = y;
+        this.computeSize();
+    }
+
+    setPadding(value) {
+        this.padding = value;
+        this.computeSize();
     }
 
     worldToScreen(x, y) {

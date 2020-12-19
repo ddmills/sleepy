@@ -35,13 +35,25 @@
                 position: absolute;
                 left: 16px;
                 bottom: 16px;
+                margin: 8;
             }
             .spritesheet {
                 display: none;
             }
+            .fps {
+                color: #42c928;
+                font-size: 18px;
+                font-family: Menlo, monospace;
+                text-align: left;
+                position: absolute;
+                right: 4px;
+                top: 4px;
+                margin: 0;
+            }
         </style>
     </head>
     <body>
+        <p class='fps'>144</p>
         <audio>
             <source src="<%=require("./resources/music/menu.wav").default%>" type="audio/wav">
             <source src="<%=require("./resources/music/forest_intro.wav").default%>" type="audio/wav">

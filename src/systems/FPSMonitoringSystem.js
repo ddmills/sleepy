@@ -1,25 +1,27 @@
 import System from './System';
 
+const fpsElement = document.getElementsByClassName('fps')[0];
+
 export default class FPSMonitoringSystem extends System {
-    update(dt) {
-        const sector = this.game.world.sector;
-        let sectorTxt = '';
+    frames = [];
+    frameCount = 60;
 
-        if (sector) {
-            sectorTxt = `(${sector.x}, ${sector.y})`;
+    constructor(game) {
+        super(game);
+        this.frames = [];
+
+        for (let i = 0; i < this.frameCount; i++) {
+            this.frames[i] = 0;
         }
+    }
 
-        const fps = Math.trunc(1000 / dt);
-        const display = `${sectorTxt} ${fps}`;
+    update(dt) {
+        this.frames.push(1000 / dt);
+        this.frames.shift();
 
-        const textWidth = this.game.renderer.computeTextWidth(display);
-        const x = this.game.camera.width - textWidth;
+        const sum = this.frames.reduce((s, v) => s + v, 0);
+        const fps = Math.trunc(sum / this.frameCount);
 
-        this.game.renderer.drawText(
-            x,
-            this.game.camera.height - 1,
-            display,
-            '#172e2e'
-        );
+        fpsElement.innerText = fps;
     }
 }

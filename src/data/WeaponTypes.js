@@ -1,5 +1,6 @@
 import { DMG_TYPE_BLUDGEONING, DMG_TYPE_PIERCING, DMG_TYPE_SLASHING } from './DamageTypes';
 import { WPN_FAMILY_AXE, WPN_FAMILY_BLADE, WPN_FAMILY_HAMMER, WPN_FAMILY_POLEARM } from './WeaponFamilies';
+import WpnTypeGreatsword from './weapons/WpnTypeGreatsword';
 import WpnTypeShortsword from './weapons/WpnTypeShortsword';
 import WpnTypeUnarmed from './weapons/WpnTypeUnarmed';
 
@@ -12,7 +13,7 @@ export const WPN_TYPE_MACE = 'WPN_TYPE_MACE';
 export const WPN_TYPE_HEAVY_AXE = 'WPN_TYPE_HEAVY_AXE';
 export const WPN_TYPE_HATCHET = 'WPN_TYPE_HATCHET';
 // blade family
-export const WPN_TYPE_LONGSWORD = 'WPN_TYPE_LONGSWORD';
+export const WPN_TYPE_GREATSWORD = 'WPN_TYPE_GREATSWORD';
 export const WPN_TYPE_SHORTSWORD = 'WPN_TYPE_SHORTSWORD';
 export const WPN_TYPE_DAGGER = 'WPN_TYPE_DAGGER';
 // polearm family
@@ -60,12 +61,7 @@ const lookup = {
         key: WPN_TYPE_HATCHET,
         damageType: DMG_TYPE_SLASHING,
     },
-    [WPN_TYPE_LONGSWORD]: {
-        name: 'Longsword',
-        family: WPN_FAMILY_BLADE,
-        key: WPN_TYPE_LONGSWORD,
-        damageType: DMG_TYPE_SLASHING,
-    },
+    [WPN_TYPE_GREATSWORD]: new WpnTypeGreatsword(),
     [WPN_TYPE_SHORTSWORD]: new WpnTypeShortsword(),
     [WPN_TYPE_DAGGER]: {
         name: 'Dagger',

@@ -23,7 +23,10 @@ export class Weapon extends Component {
     }
 
     roll() {
-        return randomInt(1, this.die) + this.modifier;
+        const r = randomInt(1, this.die);
+
+        console.log(`1d${this.die}+${this.modifier} = ${r}+${this.modifier} = ${r + this.modifier}`)
+        return r + this.modifier;
     }
 
     onTryUseMelee(evt) {

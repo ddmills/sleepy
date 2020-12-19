@@ -1,0 +1,28 @@
+{
+    "name": "Greatsword",
+    "inherit": ["Weapon"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Greatsword"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "(",
+                "fg1": "silver"
+            }
+        },
+        {
+            "type": "Weapon",
+            "properties": {
+                "weaponType": "WPN_TYPE_GREATSWORD",
+                "die": 12,
+                "modifier": 1,
+                "cost": 1000
+            }
+        }
+    ]
+}

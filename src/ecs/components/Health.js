@@ -13,8 +13,8 @@ import { IsDead } from './IsDead';
 
 export class Health extends Component {
     static properties = {
-        value: 10,
-        max: 10,
+        value: 32,
+        max: 32,
     };
 
     onAttacked(evt) {

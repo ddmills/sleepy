@@ -1,5 +1,7 @@
 import { DMG_TYPE_BLUDGEONING, DMG_TYPE_PIERCING, DMG_TYPE_SLASHING } from './DamageTypes';
 import { WPN_FAMILY_AXE, WPN_FAMILY_BLADE, WPN_FAMILY_HAMMER, WPN_FAMILY_POLEARM } from './WeaponFamilies';
+import WpnTypeShortsword from './weapons/WpnTypeShortsword';
+import WpnTypeUnarmed from './weapons/WpnTypeUnarmed';
 
 // hammer family
 export const WPN_TYPE_WAR_HAMMER = 'WPN_TYPE_WAR_HAMMER';
@@ -17,8 +19,11 @@ export const WPN_TYPE_DAGGER = 'WPN_TYPE_DAGGER';
 export const WPN_TYPE_STAFF = 'WPN_TYPE_STAFF';
 export const WPN_TYPE_HALBERD = 'WPN_TYPE_HALBERD';
 export const WPN_TYPE_JAVELIN = 'WPN_TYPE_JAVELIN';
+// unarmed family
+export const WPN_TYPE_UNARMED = 'WPN_TYPE_UNARMED';
 
 const lookup = {
+    [WPN_TYPE_UNARMED]: new WpnTypeUnarmed(),
     [WPN_TYPE_WAR_HAMMER]: {
         name: 'War hammer',
         family: WPN_FAMILY_HAMMER,
@@ -61,12 +66,7 @@ const lookup = {
         key: WPN_TYPE_LONGSWORD,
         damageType: DMG_TYPE_SLASHING,
     },
-    [WPN_TYPE_SHORTSWORD]: {
-        name: 'Shortsword',
-        family: WPN_FAMILY_BLADE,
-        key: WPN_TYPE_SHORTSWORD,
-        damageType: DMG_TYPE_SLASHING,
-    },
+    [WPN_TYPE_SHORTSWORD]: new WpnTypeShortsword(),
     [WPN_TYPE_DAGGER]: {
         name: 'Dagger',
         family: WPN_FAMILY_BLADE,

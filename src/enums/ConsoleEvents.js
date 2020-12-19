@@ -32,18 +32,7 @@ const mapping = {
             const attacker = getMonikerIndirectObject(data.attacker);
             const defender = getMonikerSubject(data.defender);
 
-            return `${defender} dodges an attack from ${attacker} (${data.dodge} > ${data.accuracy})`;
-        },
-        shouldAppear(data) {
-            return data.defender.has(IsPlayer) || data.attacker.has(IsVisible);
-        },
-    },
-    [CONSOLE_EVENT_BLOCK]: {
-        message(data) {
-            const attacker = getMonikerSubject(data.attacker);
-            const defender = getMonikerIndirectObject(data.defender);
-
-            return `${attacker} fails to penetrate ${defender}'s armor (${data.armor} > ${data.penetration})`;
+            return `${defender} dodged an attack from ${attacker} (${data.dodgePrcnt}%)`;
         },
         shouldAppear(data) {
             return data.defender.has(IsPlayer) || data.attacker.has(IsVisible);
@@ -52,12 +41,12 @@ const mapping = {
     [CONSOLE_EVENT_DAMAGE]: {
         message(data) {
             const source = getMonikerSubject(data.source);
-            const dmgVerb = getDmgTypeVerb(data.damageType);
             const target = getMonikerIndirectObject(data.target);
+            const dmgVerb = getDmgTypeVerb(data.damageType);
             const dmg = data.damage;
-            const item = data.sourceItem.toLowerCase();
+            const blocked = data.blocked;
 
-            return `${source} ${dmgVerb} ${target} with a ${item} for ${dmg} hp`;
+            return `${source} ${dmgVerb} ${target} for ${dmg} hp. (${blocked} damage was blocked)`;
         },
         shouldAppear(data) {
             return data.target.has(IsPlayer) || data.target.has(IsVisible);
@@ -66,8 +55,8 @@ const mapping = {
     [CONSOLE_EVENT_DEAD]: {
         message(data) {
             const source = getMonikerSubject(data.source);
-            const dmgVerb = getDmgTypeVerb(data.damageType);
             const target = getMonikerIndirectObject(data.target);
+            const dmgVerb = getDmgTypeVerb(data.damageType);
 
             return `${source} ${dmgVerb} ${target} to death`;
         },

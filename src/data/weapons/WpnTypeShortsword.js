@@ -1,0 +1,33 @@
+import Attack from '../Attack';
+import { DMG_TYPE_SLASHING } from '../DamageTypes';
+import { getStatModifier, STAT_STRENGTH } from '../Stats';
+import { WPN_FAMILY_BLADE } from '../WeaponFamilies';
+import { WPN_TYPE_SHORTSWORD } from '../WeaponTypes';
+import WeaponType from './WeaponType';
+
+export default class WpnTypeShortsword extends WeaponType {
+    constructor() {
+        super({
+            key: WPN_TYPE_SHORTSWORD,
+            name: 'Shortsword',
+            family: WPN_FAMILY_BLADE,
+            damageType: DMG_TYPE_SLASHING,
+        });
+    }
+
+    getAttacks(attacker, defender, weapon) {
+        const str = getStatModifier(STAT_STRENGTH, attacker);
+        const die = weapon.roll();
+        const damage = die + str;
+
+        return [
+            new Attack({
+                attacker,
+                defender,
+                weaponName: weapon.name,
+                damage,
+                damageType: this.damageType,
+            })
+        ];
+    }
+}

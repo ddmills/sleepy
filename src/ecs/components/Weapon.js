@@ -1,14 +1,17 @@
 import { Component } from 'geotic';
+import { random } from 'nanoid';
 import { ABILITY_ACCURACY, ABILITY_PENETRATION, getAbilityValue } from '../../data/Abilities';
+import Attack from '../../data/Attack';
 import { getStatModifier, rollStat, STAT_STRENGTH } from '../../data/Stats';
-import { getWeaponTypeDmgType, getWeaponTypeFamily, getWeaponTypeName } from '../../data/WeaponTypes';
+import { getWeaponType, getWeaponTypeDmgType, getWeaponTypeFamily, getWeaponTypeName } from '../../data/WeaponTypes';
 import { randomInt } from '../../utils/rand';
 
 export class Weapon extends Component {
     static properties = {
         weaponType: 'WPN_TYPE_DAGGER',
-        dmgRoll: '',
-        penetration: 4
+        die: 6,
+        modifier: 1,
+        cost: 600,
     };
 
     get name() {
@@ -23,17 +26,20 @@ export class Weapon extends Component {
         return getWeaponTypeDmgType(this.weaponType);
     }
 
-    onTryUseMelee(evt) {
-        evt.data.target.fireEvent('attacked', {
-            attacker: evt.data.interactor,
-            weaponName: this.name,
-            damageType: this.damageType,
-            damage: randomInt(1, 5) + 3,
-            penetration: rollStat(STAT_STRENGTH, evt.data.interactor) + this.penetration,
-            accuracy: getAbilityValue(ABILITY_ACCURACY, evt.data.interactor) + randomInt(1, 20)
-        });
+    roll() {
+        return randomInt(1, this.die) + this.modifier;
+    }
 
-        evt.data.interactor.fireEvent('energy-consumed', 800);
+    onTryUseMelee(evt) {
+        const weaponType = getWeaponType(this.weaponType);
+
+        weaponType.attack(
+            evt.data.interactor,
+            evt.data.target,
+            this,
+        );
+
+        evt.data.interactor.fireEvent('energy-consumed', this.cost);
 
         evt.handle();
     }

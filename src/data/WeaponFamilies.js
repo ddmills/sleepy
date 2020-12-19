@@ -3,6 +3,7 @@ export const WPN_FAMILY_AXE = 'WPN_FAMILY_AXE';
 export const WPN_FAMILY_BLADE = 'WPN_FAMILY_BLADE';
 export const WPN_FAMILY_ARCHERY = 'WPN_FAMILY_ARCHERY';
 export const WPN_FAMILY_POLEARM = 'WPN_FAMILY_POLEARM';
+export const WPN_FAMILY_UNARMED = 'WPN_FAMILY_UNARMED';
 
 const lookup = {
     [WPN_FAMILY_HAMMER]: {
@@ -19,6 +20,9 @@ const lookup = {
     },
     [WPN_FAMILY_POLEARM]: {
         name: 'Polearm'
+    },
+    [WPN_FAMILY_UNARMED]: {
+        name: 'Unarmed'
     },
 };
 

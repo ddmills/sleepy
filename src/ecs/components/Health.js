@@ -1,6 +1,8 @@
 import { Component } from 'geotic';
 import { game } from '../../core/Game';
 import { ABILITY_ARMOR, ABILITY_DODGE, getAbilityValue } from '../../data/Abilities';
+import { getArmorBlockPercent } from '../../data/abilities/ArmorAbility';
+import { getDodgePercent } from '../../data/abilities/DodgeAbility';
 import {
     CONSOLE_EVENT_BLOCK,
     CONSOLE_EVENT_DAMAGE,
@@ -17,51 +19,33 @@ export class Health extends Component {
     };
 
     onAttacked(evt) {
-        const attacker = evt.data.attacker;
-        const defender = this.entity;
+        const attack = evt.data.attack;
+        const attacker = attack.attacker;
+        const defender = attack.defender;
 
         console.log(`Begin Attack (${attacker.moniker.display} → ${defender.moniker.display})`);
 
-        const accuracy = evt.data.accuracy;
-        const penetration = evt.data.penetration;
-        const damage = evt.data.damage;
+        const dodge = getAbilityValue(ABILITY_DODGE, defender);
+        const dodgePrcnt = getDodgePercent(dodge);
 
-        const armor = getAbilityValue(ABILITY_ARMOR, defender) + randomInt(1, 20);
-        const dodge = getAbilityValue(ABILITY_DODGE, defender) + randomInt(1, 20);
-        const health = this.value;
-
-        console.log(`- Accuracy (${accuracy}) vs Dodge (${dodge})`);
-        console.log(`- Penetration (${penetration}) vs Armor (${armor})`);
-        console.log(`- Damage (${damage}) vs Health (${health})`);
-
-        if (dodge > accuracy) {
-            console.log(`- ${defender.moniker.display} DODGE!`)
+        if (randomInt(1, 100) <= dodgePrcnt) {
+            console.log(`- ${defender.moniker.display} dodges (${dodgePrcnt}% chance)!`)
 
             game.console.event(CONSOLE_EVENT_MISS, {
                 defender,
                 attacker,
-                dodge,
-                accuracy,
+                dodgePrcnt,
             });
 
             return;
         }
 
-        if (armor > penetration) {
-            console.log(`- ${defender.moniker.display} BLOCKS!`)
+        const armor = getAbilityValue(ABILITY_ARMOR, defender);
+        const armorPrcnt = getArmorBlockPercent(armor) / 100;
+        const blocked = Math.floor(attack.damage * armorPrcnt);
+        const damage = attack.damage - blocked;
 
-            game.console.event(CONSOLE_EVENT_BLOCK, {
-                defender,
-                attacker,
-                armor,
-                penetration,
-            });
-
-            return;
-        }
-
-        console.log(`- HIT! ${damage}`);
-
+        console.log(`- HIT! ${damage} (${blocked} was blocked)`);
         console.log(`End Attack`);
 
         this.value -= damage;
@@ -70,9 +54,8 @@ export class Health extends Component {
             game.console.event(CONSOLE_EVENT_DEAD, {
                 target: defender,
                 source: attacker,
-                sourceItem: evt.data.weaponName,
                 damage,
-                damageType: evt.data.damageType,
+                damageType: attack.damageType,
             });
 
             this.value = 0;
@@ -81,9 +64,9 @@ export class Health extends Component {
             game.console.event(CONSOLE_EVENT_DAMAGE, {
                 target: defender,
                 source: attacker,
-                sourceItem: evt.data.weaponName,
                 damage,
-                damageType: evt.data.damageType,
+                damageType: attack.damageType,
+                blocked,
             });
 
             const pos = this.entity.position.getPos();

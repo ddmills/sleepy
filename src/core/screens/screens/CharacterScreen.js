@@ -1,14 +1,14 @@
 import Screen from './Screen';
 import {
-    INPUT_CMD_CONFIRM,
     INPUT_CMD_CANCEL,
     INPUT_CMD_MOVE_N,
     INPUT_CMD_MOVE_S,
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import SelectableList from '../../../utils/SelectableList';
-import { getStatValue } from '../../../data/Stats';
-import { ABILITY_ACCURACY, ABILITY_ARMOR, ABILITY_DODGE, ABILITY_PENETRATION, ABILITY_SPEED, getAbilityValue } from '../../../data/Abilities';
+import { ABILITY_ARMOR, ABILITY_DODGE, ABILITY_SPEED, getAbilityValue } from '../../../data/Abilities';
+import { getArmorBlockPercent } from '../../../data/abilities/ArmorAbility';
+import { getDodgePercent } from '../../../data/abilities/DodgeAbility';
 
 export default class CharacterScreen extends Screen {
     character;
@@ -61,27 +61,19 @@ export default class CharacterScreen extends Screen {
         const speed = getAbilityValue(ABILITY_SPEED, this.character);
 
         this.game.renderer.drawText(2, 6, 'speed');
-        this.game.renderer.drawText(10, 6, `${speed}`);
+        this.game.renderer.drawText(10, 6, `+${speed}`);
 
         const armor = getAbilityValue(ABILITY_ARMOR, this.character);
+        const armorPrcnt = getArmorBlockPercent(armor);
 
         this.game.renderer.drawText(2, 7, 'armor');
-        this.game.renderer.drawText(10, 7, `${armor}`);
+        this.game.renderer.drawText(10, 7, `+${armor} (${armorPrcnt}% less melee damage taken)`);
 
         const dodge = getAbilityValue(ABILITY_DODGE, this.character);
+        const dodgePrcnt = getDodgePercent(dodge);
 
         this.game.renderer.drawText(2, 8, 'dodge');
-        this.game.renderer.drawText(10, 8, `${dodge}`);
-
-        const penetration = getAbilityValue(ABILITY_PENETRATION, this.character);
-
-        this.game.renderer.drawText(2, 9, 'penetration');
-        this.game.renderer.drawText(10, 9, `${penetration}`);
-
-        const accuracy = getAbilityValue(ABILITY_ACCURACY, this.character);
-
-        this.game.renderer.drawText(2, 10, 'accuracy');
-        this.game.renderer.drawText(10, 10, `${accuracy}`);
+        this.game.renderer.drawText(10, 8, `+${dodge} (${dodgePrcnt}% chance to avoid a melee attack)`);
 
         let pad = 0;
 

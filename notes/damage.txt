@@ -1,0 +1,30 @@
+STATS:
+
+ARM  armor    (%)   Decrease incoming damage by %
+DGE  dodge    (%)   Chance % to dodge attack
+STR  strength (n)   Increases damage
+HP   health   (n)   How much damage you can take before death
+
+
+Scenario: A attacks B with an Axe [1d8 + 4]. B [ARM 40%, DGE 10%].
+
+1. Does the attack hit?
+HIT = d100 > B.DGE
+HIT = 35   > 10
+
+2. Roll attack (ATK)
+ATK = (weapon die) + (weapon mod) + (A.STR)
+ATK = 1d8          + 4            + 6
+ATK = 3            + 4            + 6
+ATK = 13
+
+3. How much damage does it do?
+DMG = ATK - ATK * B.ARM
+DMG = 13  - 13 * .4
+DMG = 13  - 5.2
+DMG = 13  - 5
+DMG = 8
+
+4. Apply damage
+A.HP = A.HP - DMG
+A.HP = A.HP - 8

@@ -1,0 +1,9 @@
+**stats and skills**
+
+ - Health
+ - Stealth
+ - Perception
+ - Speed
+ - Strength (melee weapon dmg)
+ - Armor (ignore flat % of damage)
+ - Dodge (% chance to dodge incoming attack)

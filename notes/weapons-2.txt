@@ -1,0 +1,27 @@
+- War Hammer
+    - applies 'cracked armor' effect
+- Heavy Hammer
+    - knocks enemy back
+- Polearms
+    - Attack within + 1 range
+- Axe
+    - chance to double attack
+- Daggers
+    - 100% critical chance when attacked from stealth
+- Flail
+    - AOE
+- Greatsword
+    - Neighboring enemies take 50% damage
+- Mace
+    - applies 'stunned' effect
+- Shortsword
+    - Automatically counter-attack?
+- No Weapon
+    - Bonus to grappling
+- Whip
+    - Chance to disarm
+    - Range + 5
+
+Modifiers
+    - Sharp (chance to apply 'bleed' effect)
+    - Blunt (chance to apply 'stun' effect)?

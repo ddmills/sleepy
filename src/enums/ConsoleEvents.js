@@ -46,7 +46,9 @@ const mapping = {
             const dmg = data.damage;
             const blocked = data.blocked;
 
-            return `${source} ${dmgVerb} ${target} for ${dmg} hp. (${blocked} damage was blocked)`;
+            const blockText = blocked > 0 ? `. (${blocked} damage was blocked)` : ''
+
+            return `${source} ${dmgVerb} ${target} for ${dmg} hp${blockText}`;
         },
         shouldAppear(data) {
             return data.target.has(IsPlayer) || data.target.has(IsVisible);

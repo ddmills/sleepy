@@ -37,13 +37,7 @@
             }
         },
         {
-            "type": "Stats",
-            "properties": {
-                "baseStrength": 12,
-                "baseFinesse": 8,
-                "baseAthleticism": 15,
-                "baseTrickery": 16
-            }
+            "type": "Stats"
         }
     ]
 }

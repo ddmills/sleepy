@@ -1,5 +1,5 @@
 import { ABILITY_DODGE } from '../Abilities';
-import { getStatModifier, STAT_FINESSE } from '../Stats';
+import { getStat, STAT_FINESSE } from '../Stats';
 import Ability from './Ability';
 
 export const getDodgePercent = (ability = 0) => {
@@ -15,7 +15,7 @@ export default class DodgeAbility extends Ability {
     }
 
     compute(entity) {
-        const stat = getStatModifier(STAT_FINESSE, entity);
+        const stat = getStat(STAT_FINESSE, entity);
         const modifier = this.getModifierSum(entity);
 
         return stat + modifier;

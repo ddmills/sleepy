@@ -1,5 +1,5 @@
 import { ABILITY_THROWING } from '../Abilities';
-import { getStatValue, STAT_ATHLETICISM } from '../Stats';
+import { getStat, STAT_ATHLETICISM } from '../Stats';
 import Ability from './Ability';
 
 export default class ThrowingAbility extends Ability {
@@ -8,9 +8,9 @@ export default class ThrowingAbility extends Ability {
     }
 
     compute(entity) {
-        const base = getStatValue(STAT_ATHLETICISM, entity);
+        const base = getStat(STAT_ATHLETICISM, entity);
         const modifier = this.getModifierSum(entity);
 
-        return Math.floor((base + modifier) / 2);
+        return Math.max(0, base + modifier) + 6;
     }
 }

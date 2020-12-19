@@ -1,6 +1,6 @@
 import Attack from '../Attack';
 import { DMG_TYPE_SLASHING } from '../DamageTypes';
-import { getStatModifier, STAT_STRENGTH } from '../Stats';
+import { getStat, STAT_STRENGTH } from '../Stats';
 import { WPN_FAMILY_BLADE } from '../WeaponFamilies';
 import { WPN_TYPE_SHORTSWORD } from '../WeaponTypes';
 import WeaponType from './WeaponType';
@@ -16,7 +16,7 @@ export default class WpnTypeShortsword extends WeaponType {
     }
 
     getAttacks(attacker, defender, weapon) {
-        const str = getStatModifier(STAT_STRENGTH, attacker);
+        const str = getStat(STAT_STRENGTH, attacker);
         const die = weapon.roll();
         const damage = die + str;
 

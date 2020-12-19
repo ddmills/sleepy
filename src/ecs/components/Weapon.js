@@ -1,8 +1,4 @@
 import { Component } from 'geotic';
-import { random } from 'nanoid';
-import { ABILITY_ACCURACY, ABILITY_PENETRATION, getAbilityValue } from '../../data/Abilities';
-import Attack from '../../data/Attack';
-import { getStatModifier, rollStat, STAT_STRENGTH } from '../../data/Stats';
 import { getWeaponType, getWeaponTypeDmgType, getWeaponTypeFamily, getWeaponTypeName } from '../../data/WeaponTypes';
 import { randomInt } from '../../utils/rand';
 

@@ -1,9 +1,6 @@
 import { Component } from 'geotic';
-import { DMG_TYPE_BLUDGEONING } from '../../data/DamageTypes';
 import { EQ_SLOT_BODY } from '../../data/EquipmentSlotType';
-import { getStatModifier, STAT_STRENGTH } from '../../data/Stats';
 import { getWeaponType, WPN_TYPE_UNARMED } from '../../data/WeaponTypes';
-import { pickRandom, randomInt } from '../../utils/rand';
 import { IsEquipped } from './IsEquipped';
 
 export class EquipmentSlot extends Component {
@@ -81,6 +78,8 @@ export class EquipmentSlot extends Component {
             weaponType.attack(this.entity, evt.data.target);
 
             this.entity.fireEvent('energy-consumed', 600);
+            console.log(`attack ${this.name}, cost`, 600);
+
             evt.handle();
             return;
         }

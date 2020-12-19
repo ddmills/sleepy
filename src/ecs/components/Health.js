@@ -4,7 +4,6 @@ import { ABILITY_ARMOR, ABILITY_DODGE, getAbilityValue } from '../../data/Abilit
 import { getArmorBlockPercent } from '../../data/abilities/ArmorAbility';
 import { getDodgePercent } from '../../data/abilities/DodgeAbility';
 import {
-    CONSOLE_EVENT_BLOCK,
     CONSOLE_EVENT_DAMAGE,
     CONSOLE_EVENT_DEAD,
     CONSOLE_EVENT_MISS,
@@ -22,15 +21,10 @@ export class Health extends Component {
         const attack = evt.data.attack;
         const attacker = attack.attacker;
         const defender = attack.defender;
-
-        console.log(`Begin Attack (${attacker.moniker.display} → ${defender.moniker.display})`);
-
         const dodge = getAbilityValue(ABILITY_DODGE, defender);
         const dodgePrcnt = getDodgePercent(dodge);
 
         if (randomInt(1, 100) <= dodgePrcnt) {
-            console.log(`- ${defender.moniker.display} dodges (${dodgePrcnt}% chance)!`)
-
             game.console.event(CONSOLE_EVENT_MISS, {
                 defender,
                 attacker,
@@ -44,9 +38,6 @@ export class Health extends Component {
         const armorPrcnt = getArmorBlockPercent(armor) / 100;
         const blocked = Math.floor(attack.damage * armorPrcnt);
         const damage = attack.damage - blocked;
-
-        console.log(`- HIT! ${damage} (${blocked} was blocked)`);
-        console.log(`End Attack`);
 
         this.value -= damage;
 

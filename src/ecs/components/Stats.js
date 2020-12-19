@@ -4,10 +4,10 @@ import { getStatName, STAT_ATHLETICISM, STAT_FINESSE, STAT_STRENGTH, STAT_TRICKE
 
 export class Stats extends Component {
     static properties = {
-        baseStrength: 10,
-        baseFinesse: 10,
-        baseAthleticism: 10,
-        baseTrickery: 10,
+        baseStrength: 0,
+        baseFinesse: 0,
+        baseAthleticism: 0,
+        baseTrickery: 0,
     };
 
     _sumMods(modifiers) {

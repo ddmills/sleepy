@@ -1,5 +1,4 @@
 import { ABILITY_ARMOR } from '../Abilities';
-import { getStatModifier, STAT_STRENGTH } from '../Stats';
 import Ability from './Ability';
 
 export const getArmorBlockPercent = (ability = 0) => {
@@ -11,12 +10,10 @@ export const getArmorBlockPercent = (ability = 0) => {
 
 export default class ArmorAbility extends Ability {
     constructor() {
-        super(ABILITY_ARMOR, 'armor', STAT_STRENGTH);
+        super(ABILITY_ARMOR, 'armor');
     }
 
     compute(entity) {
-        const stat = getStatModifier(STAT_STRENGTH, entity);
-
-        return stat + this.getModifierSum(entity);
+        return this.getModifierSum(entity);
     }
 }

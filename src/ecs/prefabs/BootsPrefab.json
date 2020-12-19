@@ -23,6 +23,12 @@
             "properties": {
                 "slotTypes": ["EQ_SLOT_FEET"]
             }
+        },
+        {
+            "type": "Armor",
+            "properties": {
+                "value": 1
+            }
         }
     ]
 }

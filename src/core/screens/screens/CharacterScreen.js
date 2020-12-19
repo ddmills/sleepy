@@ -80,13 +80,11 @@ export default class CharacterScreen extends Screen {
         this.list.data.forEach(({ item, idx, isSelected }) => {
             const stat = item;
             const ypos = idx + 13 + pad;
+            const modDir = stat.modSum > 0 ? '+' : '-';
 
             if (isSelected) {
                 this.game.renderer.drawText(1, ypos, `→ ${stat.name}`, 'yellow');
-
-                const modDir = stat.modSum > 0 ? '+' : '-';
-
-                this.game.renderer.drawText(10, ypos, `${stat.sum} (${stat.base}${modDir}${Math.abs(stat.modSum)})`, 'yellow');
+                this.game.renderer.drawText(10, ypos, `${modDir}${stat.sum}`, 'yellow');
 
                 stat.modifiers.forEach((mod, i) => {
                     if (mod.mod > 0) {
@@ -99,7 +97,7 @@ export default class CharacterScreen extends Screen {
                 pad += stat.modifiers.length;
             } else {
                 this.game.renderer.drawText(1, ypos, `- ${stat.name}`);
-                this.game.renderer.drawText(10, ypos, `${stat.sum}`);
+                this.game.renderer.drawText(10, ypos, `${modDir}${stat.sum}`);
             }
         });
 

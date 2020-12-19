@@ -21,16 +21,8 @@ const lookup = {
 };
 
 export const getStatName = (stat) => lookup[stat].name;
-export const getStatValue = (stat, entity) => {
+export const getStat = (stat, entity) => {
     const name = lookup[stat].name;
 
     return entity.stats[name]();
 };
-export const getStatModifier = (stat, entity) => {
-    const value = getStatValue(stat, entity);
-
-    return Math.floor((value - 10) / 2);
-};
-export const rollStat = (stat, entity) => {
-    return getStatModifier(stat, entity) + randomInt(1, 20);
-}

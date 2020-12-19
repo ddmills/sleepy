@@ -1,7 +1,7 @@
 import { pickRandom, randomInt } from '../../utils/rand';
 import Attack from '../Attack';
 import { DMG_TYPE_BLUDGEONING } from '../DamageTypes';
-import { getStatModifier, STAT_STRENGTH } from '../Stats';
+import { getStat, STAT_STRENGTH } from '../Stats';
 import { WPN_FAMILY_UNARMED } from '../WeaponFamilies';
 import { WPN_TYPE_UNARMED } from '../WeaponTypes';
 import WeaponType from './WeaponType';
@@ -17,7 +17,7 @@ export default class WpnTypeUnarmed extends WeaponType {
     }
 
     getAttacks(attacker, defender, weapon) {
-        const str = getStatModifier(STAT_STRENGTH, attacker);
+        const str = getStat(STAT_STRENGTH, attacker);
         const die = randomInt(1, 4);
         const damage = die + str;
 

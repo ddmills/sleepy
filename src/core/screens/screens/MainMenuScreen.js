@@ -49,7 +49,7 @@ export default class MainMenuScreen extends Screen {
 
     onUpdate(dt) {
         this.game.renderer.clear();
-        this.game.renderer.drawText(1, 1, `Knossonia`, 'cyan');
+        this.game.renderer.drawText(1, 1, `sleepy crawler`, 'cyan');
 
         this.game.renderer.drawText(
             1,

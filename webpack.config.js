@@ -62,7 +62,7 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
         new HtmlWebpackPlugin({
-            title: 'Knossonia',
+            title: 'sleepy crawler',
             template: 'index.html',
             version: gitRevisionPlugin.commithash().slice(0, 7),
         }),

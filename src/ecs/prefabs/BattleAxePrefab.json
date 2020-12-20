@@ -1,17 +1,17 @@
 {
-    "name": "Greatsword",
+    "name": "BattleAxe",
     "inherit": ["Weapon"],
     "components": [
         {
             "type": "Moniker",
             "properties": {
-                "name": "Greatsword"
+                "name": "Battle axe"
             }
         },
         {
             "type": "Glyph",
             "properties": {
-                "ch": ")",
+                "ch": "Γ",
                 "fg1": "silver",
                 "fg2": "#923e2b"
             }
@@ -19,10 +19,7 @@
         {
             "type": "Weapon",
             "properties": {
-                "weaponType": "WPN_TYPE_GREATSWORD",
-                "die": 12,
-                "modifier": 2,
-                "cost": 800
+                "weaponType": "WPN_TYPE_BATTLE_AXE"
             }
         }
     ]

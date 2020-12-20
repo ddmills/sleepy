@@ -11,6 +11,7 @@ import {
     SPWN_SHORTSWORD,
     SPWN_GREATSWORD,
     SPWN_GOBLIN_GRUNT,
+    SPWN_BATTLE_AXE,
 } from '../../data/Spawnables';
 import { spawn } from '../../data/Spawner';
 import { randomInt } from '../../utils/rand';
@@ -45,6 +46,7 @@ export default class CabinTheme extends TileThemePopulator {
             chest.inventory.addLoot(spawn(SPWN_LEATHER_BOOTS));
             chest.inventory.addLoot(spawn(SPWN_SHORTSWORD));
             chest.inventory.addLoot(spawn(SPWN_GREATSWORD));
+            chest.inventory.addLoot(spawn(SPWN_BATTLE_AXE));
         });
 
         for (let i = 0; i < randomInt(1, 3); i++) {

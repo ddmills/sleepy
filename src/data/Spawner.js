@@ -28,6 +28,7 @@ const spawnables = {
     SPWN_LEATHER_BOOTS: simplePrefab('Boots'),
     SPWN_SHORTSWORD: simplePrefab('Shortsword'),
     SPWN_GREATSWORD: simplePrefab('Greatsword'),
+    SPWN_BATTLE_AXE: simplePrefab('BattleAxe'),
     SPWN_GOBLIN_GRUNT: GoblinGrunt.createSpawnable,
     SPWN_HUMAN_WANDERER: HumanWanderer.createSpawnable,
     SPWN_PINE_TREE: PineTree.createSpawnable,

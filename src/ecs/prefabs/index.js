@@ -26,3 +26,4 @@ export * as BootsPrefab from './BootsPrefab.json';
 export * as WeaponPrefab from './WeaponPrefab.json';
 export * as ShortswordPrefab from './ShortswordPrefab.json';
 export * as GreatswordPrefab from './GreatswordPrefab.json';
+export * as BattleAxePrefab from './BattleAxePrefab.json';

@@ -78,7 +78,6 @@ export class EquipmentSlot extends Component {
             weaponType.attack(this.entity, evt.data.target);
 
             this.entity.fireEvent('energy-consumed', 600);
-            console.log(`attack ${this.name}, cost`, 600);
 
             evt.handle();
             return;

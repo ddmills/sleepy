@@ -10,6 +10,7 @@ import {
     SPWN_LEATHER_BOOTS,
     SPWN_SHORTSWORD,
     SPWN_GREATSWORD,
+    SPWN_GOBLIN_GRUNT,
 } from '../../data/Spawnables';
 import { spawn } from '../../data/Spawner';
 import { randomInt } from '../../utils/rand';
@@ -46,7 +47,7 @@ export default class CabinTheme extends TileThemePopulator {
             chest.inventory.addLoot(spawn(SPWN_GREATSWORD));
         });
 
-        for (let i = 0; i < randomInt(0, 3); i++) {
+        for (let i = 0; i < randomInt(1, 3); i++) {
             this.trySpawn(room, (tile) => {
                 spawn(SPWN_HUMAN_WANDERER, tile.x, tile.y);
             });

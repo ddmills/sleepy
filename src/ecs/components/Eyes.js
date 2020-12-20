@@ -39,6 +39,9 @@ export class Eyes extends Component {
                 if (!e.actor) {
                     return false;
                 }
+                if (e.isDead) {
+                    return false;
+                }
                 if (!game.factions.areEntitiesHostile(this.entity, e)) {
                     return false;
                 }

@@ -44,8 +44,6 @@ export class WorldManager extends Manager {
 
         this.game.state.saveSectorEntityData(this.sector.id, serialized);
 
-        // this.game.state.saveSectorEntityData(this.sector.id, this.game.ecs.serialize());
-
         return {
             sectorId: this.sector.id,
             exploredSectorIds: [],
@@ -72,10 +70,8 @@ export class WorldManager extends Manager {
         const data = this.game.state.loadSectorEntityData(sector.id);
 
         if (data) {
-            console.log('loading sector...', data);
             this.game.ecs.deserialize(data);
         } else {
-            console.log('generating sector...');
             sector.generate(this.game);
         }
     }

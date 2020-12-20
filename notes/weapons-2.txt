@@ -1,19 +1,25 @@
 - War Hammer
     - applies 'cracked armor' effect
+    - 1h
 - Heavy Hammer
     - knocks enemy back
+    - 2h
 - Polearms
-    - Attack within + 1 range
+    - Attacks + 1 range
+    - 2h
 - Axe
-    - chance to double attack
+    - double attack
+    - 1h
 - Daggers
     - 100% critical chance when attacked from stealth
 - Flail
-    - AOE
+    - Does damage to all neighboring enemies
 - Greatsword
-    - Neighboring enemies take 50% damage
+    - Neighboring target enemies take 50% damage
+    - 2h
 - Mace
-    - applies 'stunned' effect
+    - chance to apply 'stunned' effect
+    - 1h
 - Shortsword
     - Automatically counter-attack?
 - No Weapon

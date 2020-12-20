@@ -11,8 +11,9 @@
         {
             "type": "Glyph",
             "properties": {
-                "ch": "(",
-                "fg1": "silver"
+                "ch": ")",
+                "fg1": "silver",
+                "fg2": "#923e2b"
             }
         },
         {

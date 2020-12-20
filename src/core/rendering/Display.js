@@ -56,7 +56,12 @@ export default class Display {
 
     clear() {
         this.ctx.fillStyle = this.clearColor;
-        this.ctx.fillRect(0, 0, this.tileWidth * this.width, this.tileHeight * this.height);
+        this.ctx.fillRect(
+            0,
+            0,
+            this.tileWidth * this.width,
+            this.tileHeight * this.height
+        );
         this.cells.clear();
     }
 
@@ -73,7 +78,7 @@ export default class Display {
 
         for (let i = 0; i < width; i++) {
             for (let j = 0; j < height; j++) {
-                const cellX = offsetX + (i * 2);
+                const cellX = offsetX + i * 2;
                 const cellY = y + j;
 
                 this.cells.set(cellX, cellY, undefined);

@@ -146,7 +146,7 @@ export default class AdventureScreen extends Screen {
                     interactor: this.game.player.entity,
                     interactable: item,
                 });
-            }
+            },
         });
     }
 

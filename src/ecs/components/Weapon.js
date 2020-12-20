@@ -1,5 +1,10 @@
 import { Component } from 'geotic';
-import { getWeaponType, getWeaponTypeDmgType, getWeaponTypeFamily, getWeaponTypeName } from '../../data/WeaponTypes';
+import {
+    getWeaponType,
+    getWeaponTypeDmgType,
+    getWeaponTypeFamily,
+    getWeaponTypeName,
+} from '../../data/WeaponTypes';
 import { randomInt } from '../../utils/rand';
 
 export class Weapon extends Component {
@@ -31,11 +36,7 @@ export class Weapon extends Component {
     onTryUseMelee(evt) {
         const weaponType = getWeaponType(this.weaponType);
 
-        weaponType.attack(
-            evt.data.interactor,
-            evt.data.target,
-            this,
-        );
+        weaponType.attack(evt.data.interactor, evt.data.target, this);
 
         evt.data.interactor.fireEvent('energy-consumed', this.cost);
 

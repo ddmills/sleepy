@@ -7,22 +7,22 @@ export const WPN_FAMILY_UNARMED = 'WPN_FAMILY_UNARMED';
 
 const lookup = {
     [WPN_FAMILY_HAMMER]: {
-        name: 'Hammer'
+        name: 'Hammer',
     },
     [WPN_FAMILY_AXE]: {
-        name: 'Axe'
+        name: 'Axe',
     },
     [WPN_FAMILY_BLADE]: {
-        name: 'Blade'
+        name: 'Blade',
     },
     [WPN_FAMILY_ARCHERY]: {
-        name: 'Archery'
+        name: 'Archery',
     },
     [WPN_FAMILY_POLEARM]: {
-        name: 'Polearm'
+        name: 'Polearm',
     },
     [WPN_FAMILY_UNARMED]: {
-        name: 'Unarmed'
+        name: 'Unarmed',
     },
 };
 

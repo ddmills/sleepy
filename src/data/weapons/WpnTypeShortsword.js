@@ -27,7 +27,7 @@ export default class WpnTypeShortsword extends WeaponType {
                 weaponName: weapon.name,
                 damage,
                 damageType: this.damageType,
-            })
+            }),
         ];
     }
 }

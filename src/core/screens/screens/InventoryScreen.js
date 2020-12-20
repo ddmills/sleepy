@@ -46,7 +46,7 @@ export default class InventoryScreen extends Screen {
         }
 
         if (cmd.type === INPUT_CMD_MOVE_S) {
-            this.list.down()
+            this.list.down();
         }
 
         if (cmd.type === INPUT_CMD_CONFIRM) {
@@ -84,14 +84,21 @@ export default class InventoryScreen extends Screen {
                 item.glyph.background
             );
 
-            const textLen = this.game.renderer.computeTextWidth(item.moniker.display);
+            const textLen = this.game.renderer.computeTextWidth(
+                item.moniker.display
+            );
 
             this.game.renderer.drawText(4, ypos, item.moniker.display);
 
             if (item.isEquipped) {
                 const slot = item.isEquipped.slot.name;
 
-                this.game.renderer.drawText(4 + textLen + 0.5, ypos, `[${slot}]`, '#2c3538');
+                this.game.renderer.drawText(
+                    4 + textLen + 0.5,
+                    ypos,
+                    `[${slot}]`,
+                    '#2c3538'
+                );
             }
         });
 

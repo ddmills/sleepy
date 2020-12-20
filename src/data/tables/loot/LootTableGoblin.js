@@ -1,5 +1,11 @@
 import WeightedTable from '../../../utils/WeightedTable';
-import { SPWN_AMULET, SPWN_CLOTH_ARMOR, SPWN_SHORTSWORD, SPWN_STONE, SPWN_VIAL_BLOOD } from '../../Spawnables';
+import {
+    SPWN_AMULET,
+    SPWN_CLOTH_ARMOR,
+    SPWN_SHORTSWORD,
+    SPWN_STONE,
+    SPWN_VIAL_BLOOD,
+} from '../../Spawnables';
 
 const goblins = new WeightedTable();
 

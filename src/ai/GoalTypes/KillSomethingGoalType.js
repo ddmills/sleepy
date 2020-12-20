@@ -41,7 +41,7 @@ export class KillSomethingGoalType extends GoalType {
                 }
 
                 return diagonalDistance(a, b);
-            }
+            },
         });
 
         if (result.success) {
@@ -51,7 +51,7 @@ export class KillSomethingGoalType extends GoalType {
                 y: segment.y - start.y,
             };
             const moveGoal = MoveGoalType.createAsSubGoal(goal, {
-                data: delta
+                data: delta,
             });
 
             entity.brain.pushGoal(moveGoal);

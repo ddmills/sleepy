@@ -46,7 +46,8 @@ const mapping = {
             const dmg = data.damage;
             const blocked = data.blocked;
 
-            const blockText = blocked > 0 ? `. (${blocked} damage was blocked)` : ''
+            const blockText =
+                blocked > 0 ? `. (${blocked} damage was blocked)` : '';
 
             return `${source} ${dmgVerb} ${target} for ${dmg} hp${blockText}`;
         },

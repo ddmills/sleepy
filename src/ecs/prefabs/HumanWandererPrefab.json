@@ -5,10 +5,7 @@
         {
             "type": "LootDropper",
             "properties": {
-                "tables": [
-                    "TBL_LOOT_GOBLIN",
-                    "TBL_LOOT_FOREST"
-                ]
+                "tables": ["TBL_LOOT_GOBLIN", "TBL_LOOT_FOREST"]
             }
         }
     ]

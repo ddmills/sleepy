@@ -123,12 +123,7 @@ export default class MapManager extends Manager {
     getEntitiesInRange(x, y, range) {
         const diameter = range * 2;
 
-        return this.getEntitiesInRect(
-            x - range,
-            y - range,
-            diameter,
-            diameter
-        );
+        return this.getEntitiesInRect(x - range, y - range, diameter, diameter);
     }
 
     getNeighborEntities(x, y) {

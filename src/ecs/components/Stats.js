@@ -1,6 +1,12 @@
 import { Component } from 'geotic';
 import { capitalize } from 'rot-js/lib/util';
-import { getStatName, STAT_ATHLETICISM, STAT_FINESSE, STAT_STRENGTH, STAT_TRICKERY } from '../../data/Stats';
+import {
+    getStatName,
+    STAT_ATHLETICISM,
+    STAT_FINESSE,
+    STAT_STRENGTH,
+    STAT_TRICKERY,
+} from '../../data/Stats';
 
 export class Stats extends Component {
     static properties = {
@@ -19,7 +25,7 @@ export class Stats extends Component {
         const modifiers = [];
 
         this.entity.fireEvent(`query-stat-modifier-${name}`, {
-            modifiers
+            modifiers,
         });
 
         return modifiers;

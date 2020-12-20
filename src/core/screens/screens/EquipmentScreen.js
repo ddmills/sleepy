@@ -64,13 +64,18 @@ export default class EquipmentScreen extends Screen {
             this.game.renderer.drawTextCenter(6, 'There is nothing here.');
         }
 
-        this.list.data.forEach(({item, idx, isSelected}) => {
+        this.list.data.forEach(({ item, idx, isSelected }) => {
             const slot = item;
             const ypos = idx + 5;
             const selectedColor = 'yellow';
 
             if (isSelected) {
-                this.game.renderer.drawText(1, ypos, `→ ${slot.name}`, selectedColor);
+                this.game.renderer.drawText(
+                    1,
+                    ypos,
+                    `→ ${slot.name}`,
+                    selectedColor
+                );
                 this.game.renderer.drawText(14, ypos, '→', selectedColor);
             } else {
                 this.game.renderer.drawText(1, ypos, `- ${slot.name}`);
@@ -81,13 +86,19 @@ export default class EquipmentScreen extends Screen {
                 this.game.renderer.drawText(15, ypos, '[empty]', '#2c3538');
             } else {
                 const content = slot.content;
-                this.game.renderer.draw(15, ypos,
+                this.game.renderer.draw(
+                    15,
+                    ypos,
                     content.glyph.char,
                     content.glyph.primary,
                     content.glyph.secondary,
                     content.glyph.background
                 );
-                this.game.renderer.drawText(16, ypos, ` ${content.moniker.display}`);
+                this.game.renderer.drawText(
+                    16,
+                    ypos,
+                    ` ${content.moniker.display}`
+                );
             }
         });
 

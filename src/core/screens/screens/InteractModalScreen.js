@@ -37,10 +37,13 @@ export default class InteractModalScreen extends Screen {
             interactions: [],
         });
 
-        this.list.setItems([...evt.data.interactions, {
-            name: 'Back',
-            isBack: true,
-        }]);
+        this.list.setItems([
+            ...evt.data.interactions,
+            {
+                name: 'Back',
+                isBack: true,
+            },
+        ]);
     }
 
     onLeave() {
@@ -129,11 +132,16 @@ export default class InteractModalScreen extends Screen {
 
         const xpos = this.left + 2;
 
-        this.list.data.forEach(({item, idx, isSelected}) => {
+        this.list.data.forEach(({ item, idx, isSelected }) => {
             const ypos = idx + this.top + 4;
 
             if (isSelected) {
-                this.game.renderer.drawText(xpos, ypos, `→ ${item.name}`, 'yellow');
+                this.game.renderer.drawText(
+                    xpos,
+                    ypos,
+                    `→ ${item.name}`,
+                    'yellow'
+                );
             } else {
                 this.game.renderer.drawText(xpos, ypos, `- ${item.name}`);
             }

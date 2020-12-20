@@ -1,6 +1,10 @@
 import { Component } from 'geotic';
 import { game } from '../../core/Game';
-import { ABILITY_ARMOR, ABILITY_DODGE, getAbilityValue } from '../../data/Abilities';
+import {
+    ABILITY_ARMOR,
+    ABILITY_DODGE,
+    getAbilityValue,
+} from '../../data/Abilities';
 import { getArmorBlockPercent } from '../../data/abilities/ArmorAbility';
 import { getDodgePercent } from '../../data/abilities/DodgeAbility';
 import {

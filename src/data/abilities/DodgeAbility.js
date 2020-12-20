@@ -4,7 +4,7 @@ import Ability from './Ability';
 
 export const getDodgePercent = (ability = 0) => {
     const base = 5;
-    const unscaled = 1 - (base / (ability + base));
+    const unscaled = 1 - base / (ability + base);
 
     return Math.floor(unscaled * 100);
 };

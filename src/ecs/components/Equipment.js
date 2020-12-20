@@ -6,13 +6,15 @@ import { IsEquipped } from './IsEquipped';
 
 export class Equipment extends Component {
     static properties = {
-        slotTypes: [EQ_SLOT_BODY]
+        slotTypes: [EQ_SLOT_BODY],
     };
 
     onTryEquip(evt) {
-        const slots = Object.values(evt.data.interactor.equipmentSlot).filter((slot) => {
-            return this.slotTypes.includes(slot.slotType);
-        });
+        const slots = Object.values(evt.data.interactor.equipmentSlot).filter(
+            (slot) => {
+                return this.slotTypes.includes(slot.slotType);
+            }
+        );
 
         game.screens.pushScreen(SCREEN_LIST_SELECT, {
             header: `Equip ${this.entity.moniker.display}`,
@@ -36,7 +38,7 @@ export class Equipment extends Component {
                 evt.data.interactor.fireEvent('energy-consumed', 200);
                 evt.handle();
                 game.screens.popScreen();
-            }
+            },
         });
     }
 

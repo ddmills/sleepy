@@ -28,7 +28,7 @@ export default class WpnTypeUnarmed extends WeaponType {
                 weaponName: pickRandom(['punch', 'kick']),
                 damage,
                 damageType: this.damageType,
-            })
+            }),
         ];
     }
 }

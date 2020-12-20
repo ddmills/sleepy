@@ -26,21 +26,31 @@ export default class CameraManager extends Manager {
     }
 
     computeSize() {
-        this.width = Math.max(this.clampX, Math.floor(window.innerWidth / this.renderedTileWidth) - 2);
-        this.height = Math.max(this.clampY, Math.floor(window.innerHeight / this.renderedTileHeight) - 2);
-        this.topLeftWorldX = Math.floor(Math.min(
-            Math.max(-this.padding, this._focusX - this.width / 2),
-            Math.max(
-                (this.width - this.game.map.width) / -2,
-                this.padding + this.game.map.width - this.width
-            ))
+        this.width = Math.max(
+            this.clampX,
+            Math.floor(window.innerWidth / this.renderedTileWidth) - 2
         );
-        this.topLeftWorldY = Math.floor(Math.min(
-            Math.max(-this.padding, this._focusY - this.height / 2),
-            Math.max(
-                (this.height - this.game.map.height) / -2,
-                this.padding + this.game.map.height - this.height
-            ))
+        this.height = Math.max(
+            this.clampY,
+            Math.floor(window.innerHeight / this.renderedTileHeight) - 2
+        );
+        this.topLeftWorldX = Math.floor(
+            Math.min(
+                Math.max(-this.padding, this._focusX - this.width / 2),
+                Math.max(
+                    (this.width - this.game.map.width) / -2,
+                    this.padding + this.game.map.width - this.width
+                )
+            )
+        );
+        this.topLeftWorldY = Math.floor(
+            Math.min(
+                Math.max(-this.padding, this._focusY - this.height / 2),
+                Math.max(
+                    (this.height - this.game.map.height) / -2,
+                    this.padding + this.game.map.height - this.height
+                )
+            )
         );
     }
 

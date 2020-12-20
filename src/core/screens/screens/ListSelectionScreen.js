@@ -74,7 +74,7 @@ export default class ListSelectionScreen extends Screen {
         } else {
             this.game.renderer.drawText(x, y, `- ${text}`);
         }
-    };
+    }
 
     onUpdate(dt) {
         this.game.renderer.clearArea(
@@ -107,7 +107,7 @@ export default class ListSelectionScreen extends Screen {
 
         const xpos = this.left + 2;
 
-        this.list.data.forEach(({item, idx, isSelected}) => {
+        this.list.data.forEach(({ item, idx, isSelected }) => {
             const ypos = idx + this.top + 4;
 
             this.onRenderRow(item, xpos, ypos, isSelected, idx);

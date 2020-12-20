@@ -26,10 +26,12 @@ export default class WpnTypeGreatsword extends WeaponType {
         const adjacentDeltas = getAdjacentDeltas(direction.key);
 
         return adjacentDeltas
-            .map((delta) => game.map.getEntitiesAt(
-                attackerPos.x + delta.x,
-                attackerPos.y + delta.y,
-            ))
+            .map((delta) =>
+                game.map.getEntitiesAt(
+                    attackerPos.x + delta.x,
+                    attackerPos.y + delta.y
+                )
+            )
             .flat()
             .filter((e) => game.factions.areEntitiesHostile(e, attacker))
             .map((hostile) => {
@@ -60,12 +62,22 @@ export default class WpnTypeGreatsword extends WeaponType {
         const str = getStat(STAT_STRENGTH, attacker);
         const die = weapon.roll();
         const damage = die + str;
-        const result = this._tryAttackDefender(attacker, defender, weapon, damage);
+        const result = this._tryAttackDefender(
+            attacker,
+            defender,
+            weapon,
+            damage
+        );
 
         const attacks = [result];
 
         if (!result.data.isDodged) {
-            const neighborAttacks = this._getNeighborAttacks(attacker, defender, weapon, damage);
+            const neighborAttacks = this._getNeighborAttacks(
+                attacker,
+                defender,
+                weapon,
+                damage
+            );
 
             neighborAttacks.forEach((attack) => {
                 attacks.push(attack);

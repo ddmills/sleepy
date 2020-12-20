@@ -3,7 +3,7 @@ import { getRaceData, RACE_HUMAN } from '../../data/Races';
 
 export class Race extends Component {
     static properties = {
-        key: RACE_HUMAN
+        key: RACE_HUMAN,
     };
 
     data() {
@@ -84,4 +84,4 @@ export class Race extends Component {
             mod: this.speed,
         });
     }
-};
+}

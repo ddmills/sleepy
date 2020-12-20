@@ -1,4 +1,3 @@
-
 export default class WeaponType {
     constructor(data) {
         this.name = data.name;

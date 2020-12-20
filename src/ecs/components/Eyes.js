@@ -47,7 +47,7 @@ export class Eyes extends Component {
                 }
 
                 return this.canSee(e);
-            })
+            });
 
         if (targets.length > 0) {
             targets.forEach((e) => {

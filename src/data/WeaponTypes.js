@@ -1,5 +1,14 @@
-import { DMG_TYPE_BLUDGEONING, DMG_TYPE_PIERCING, DMG_TYPE_SLASHING } from './DamageTypes';
-import { WPN_FAMILY_AXE, WPN_FAMILY_BLADE, WPN_FAMILY_HAMMER, WPN_FAMILY_POLEARM } from './WeaponFamilies';
+import {
+    DMG_TYPE_BLUDGEONING,
+    DMG_TYPE_PIERCING,
+    DMG_TYPE_SLASHING,
+} from './DamageTypes';
+import {
+    WPN_FAMILY_AXE,
+    WPN_FAMILY_BLADE,
+    WPN_FAMILY_HAMMER,
+    WPN_FAMILY_POLEARM,
+} from './WeaponFamilies';
 import WpnTypeGreatsword from './weapons/WpnTypeGreatsword';
 import WpnTypeShortsword from './weapons/WpnTypeShortsword';
 import WpnTypeUnarmed from './weapons/WpnTypeUnarmed';

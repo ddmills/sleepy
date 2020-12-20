@@ -1,0 +1,30 @@
+{
+    "name": "Hatchet",
+    "inherit": ["Weapon"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Hatchet"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "ß",
+                "fg1": "silver",
+                "fg2": "#923e2b"
+            }
+        },
+        {
+            "type": "Weapon",
+            "properties": {
+                "weaponType": "WPN_TYPE_BATTLE_AXE",
+                "die": 4
+            }
+        },
+        {
+            "type": "Throwable"
+        }
+    ]
+}

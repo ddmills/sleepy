@@ -11,7 +11,7 @@ export class Weapon extends Component {
     static properties = {
         weaponType: 'WPN_TYPE_DAGGER',
         die: 6,
-        modifier: 1,
+        modifier: 0,
         cost: 600,
     };
 

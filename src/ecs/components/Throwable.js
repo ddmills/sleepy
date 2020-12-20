@@ -15,6 +15,12 @@ import { Inventory } from './Inventory';
 import { IsVisible } from './IsVisible';
 
 export class Throwable extends Component {
+    static properties = {
+        die: 4,
+        modifier: 0,
+        cost: 500,
+    };
+
     onGetInteractions(evt) {
         if (!evt.data.interactor.has(Inventory)) {
             return;
@@ -116,7 +122,7 @@ export class Throwable extends Component {
                     entities: game.map.getEntitiesAt(pos.x, pos.y),
                 }));
 
-                evt.data.interactor.fireEvent('energy-consumed', 700);
+                evt.data.interactor.fireEvent('energy-consumed', this.cost);
 
                 this.throw(trajectory, evt.data.interactor);
             },

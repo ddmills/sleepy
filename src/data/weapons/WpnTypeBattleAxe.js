@@ -1,6 +1,4 @@
-import { game } from '../../core/Game';
-import { getAdjacentDeltas, directionFromDelta } from '../../enums/Directions';
-import { pickRandom, randomBool } from '../../utils/rand';
+import { randomBool } from '../../utils/rand';
 import Attack from '../Attack';
 import { DMG_TYPE_SLASHING } from '../DamageTypes';
 import { getStat, STAT_STRENGTH } from '../Stats';
@@ -12,7 +10,7 @@ export default class WpnTypeBattleAxe extends WeaponType {
     constructor() {
         super({
             key: WPN_TYPE_BATTLE_AXE,
-            name: 'Greatsword',
+            name: 'Battle axe',
             family: WPN_FAMILY_AXE,
             damageType: DMG_TYPE_SLASHING,
         });

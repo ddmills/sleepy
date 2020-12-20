@@ -5,5 +5,6 @@ export default class Attack {
         this.weaponName = data.weaponName;
         this.damage = data.damage;
         this.damageType = data.damageType;
+        this.ignoreDodge = data.ignoreDodge;
     }
 }

@@ -24,15 +24,21 @@ export class Health extends Component {
         const dodge = getAbilityValue(ABILITY_DODGE, defender);
         const dodgePrcnt = getDodgePercent(dodge);
 
-        if (randomInt(1, 100) <= dodgePrcnt) {
+        if (!attack.ignoreDodge && randomInt(1, 100) <= dodgePrcnt) {
             game.console.event(CONSOLE_EVENT_MISS, {
                 defender,
                 attacker,
                 dodgePrcnt,
             });
 
+            evt.data.isDodged = true;
+            evt.data.isKilled = false;
+            evt.handle();
+
             return;
         }
+
+        evt.data.isDodged = false;
 
         const armor = getAbilityValue(ABILITY_ARMOR, defender);
         const armorPrcnt = getArmorBlockPercent(armor) / 100;
@@ -51,24 +57,30 @@ export class Health extends Component {
 
             this.value = 0;
             this.entity.add(IsDead);
-        } else {
-            game.console.event(CONSOLE_EVENT_DAMAGE, {
-                target: defender,
-                source: attacker,
-                damage,
-                damageType: attack.damageType,
-                blocked,
-            });
 
-            const pos = this.entity.position.getPos();
+            evt.data.isKilled = true;
+            evt.handle();
 
-            game.particles.createParticle(pos.x, pos.y, {
-                lifetime: 140,
-                fg1s: ['#8d4c4f', '#730d14'],
-                glyphs: ['*'],
-            });
+            return;
         }
 
+        game.console.event(CONSOLE_EVENT_DAMAGE, {
+            target: defender,
+            source: attacker,
+            damage,
+            damageType: attack.damageType,
+            blocked,
+        });
+
+        const pos = this.entity.position.getPos();
+
+        game.particles.createParticle(pos.x, pos.y, {
+            lifetime: 140,
+            fg1s: ['#8d4c4f', '#730d14'],
+            glyphs: ['*'],
+        });
+
+        evt.data.isKilled = false;
         evt.handle();
     }
 

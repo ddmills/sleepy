@@ -21,6 +21,19 @@ export class Health extends Component {
         max: 32,
     };
 
+    applyDamage(damage) {
+        this.value -= damage;
+
+        if (this.value <= 0) {
+            this.value = 0;
+            this.entity.add(IsDead);
+
+            return true;
+        }
+
+        return false;
+    }
+
     onAttacked(evt) {
         const attack = evt.data.attack;
         const attacker = attack.attacker;
@@ -49,9 +62,10 @@ export class Health extends Component {
         const blocked = Math.floor(attack.damage * armorPrcnt);
         const damage = attack.damage - blocked;
 
-        this.value -= damage;
+        const isKilled = this.applyDamage(damage);
+        evt.data.isKilled = isKilled;
 
-        if (this.value <= 0) {
+        if (isKilled) {
             game.console.event(CONSOLE_EVENT_DEAD, {
                 target: defender,
                 source: attacker,
@@ -59,10 +73,6 @@ export class Health extends Component {
                 damageType: attack.damageType,
             });
 
-            this.value = 0;
-            this.entity.add(IsDead);
-
-            evt.data.isKilled = true;
             evt.handle();
 
             return;
@@ -83,40 +93,6 @@ export class Health extends Component {
             fg1s: ['#8d4c4f', '#730d14'],
             glyphs: ['*'],
         });
-
-        evt.data.isKilled = false;
-        evt.handle();
-    }
-
-    onDamage(evt) {
-        this.value -= evt.data.damage.value;
-
-        if (this.value <= 0) {
-            game.console.event(CONSOLE_EVENT_DEAD, {
-                target: this.entity,
-                source: evt.data.source,
-                sourceItem: evt.data.sourceItem,
-                damage: evt.data.damage,
-            });
-
-            this.value = 0;
-            this.entity.add(IsDead);
-        } else {
-            game.console.event(CONSOLE_EVENT_DAMAGE, {
-                target: this.entity,
-                source: evt.data.source,
-                sourceItem: evt.data.sourceItem,
-                damage: evt.data.damage,
-            });
-
-            const pos = this.entity.position.getPos();
-
-            game.particles.createParticle(pos.x, pos.y, {
-                lifetime: 140,
-                fg1s: ['#8d4c4f', '#730d14'],
-                glyphs: ['*'],
-            });
-        }
 
         evt.handle();
     }

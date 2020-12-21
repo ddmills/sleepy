@@ -33,6 +33,12 @@
             "type": "IsPlayer"
         },
         {
+            "type": "Status",
+            "properties": {
+                "key": "STATUS_BLEEDING"
+            }
+        },
+        {
             "type": "FactionMember",
             "properties": {
                 "name": "player"

@@ -39,3 +39,4 @@ export { EquipmentSlot } from './EquipmentSlot';
 export { Stats } from './Stats';
 export { Race } from './Race';
 export { Weapon } from './Weapon';
+export { Status } from './Status';

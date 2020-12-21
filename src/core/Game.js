@@ -24,6 +24,7 @@ import { WorldManager } from './WorldManager';
 import ConsoleManager from './ConsoleManager';
 import DestroySystem from '../systems/DestroySystem';
 import MusicManager from './MusicManager';
+import StatusSystem from '../systems/StatusSystem';
 
 export default class Game {
     #lastUpdate;
@@ -53,6 +54,7 @@ export default class Game {
         this.movementSystem = new MovementSystem(this);
         this.meleeSystem = new MeleeSystem(this);
         this.deathSystem = new DeathSystem(this);
+        this.statusSystem = new StatusSystem(this);
         this.FOVSystem = new FOVSystem(this);
         this.renderSystem = new RenderSystem(this);
         this.UISystem = new UISystem(this);
@@ -71,6 +73,7 @@ export default class Game {
     updateAdventureSystems(dt) {
         this.clock.update(dt);
         this.actionSystem.update(dt);
+        this.statusSystem.update(dt);
         this.movementSystem.update(dt);
         this.meleeSystem.update(dt);
         this.deathSystem.update(dt);

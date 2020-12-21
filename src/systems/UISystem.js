@@ -22,6 +22,6 @@ export default class UISystem extends System {
 
         const hp = this.game.player.entity.health;
 
-        this.game.renderer.drawText(1, 1, `${hp.value}/${hp.max}`, '#ce5454');
+        this.game.renderer.drawText(1, 1, `${Math.round(hp.value)}/${hp.max}`, '#ce5454');
     }
 }

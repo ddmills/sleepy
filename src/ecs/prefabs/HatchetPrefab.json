@@ -24,7 +24,12 @@
             }
         },
         {
-            "type": "Throwable"
+            "type": "Throwable",
+            "properties": {
+                "damageType": "DMG_TYPE_SLASHING",
+                "die": 4,
+                "modifier": 2
+            }
         }
     ]
 }

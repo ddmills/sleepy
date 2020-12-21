@@ -2,6 +2,9 @@ import { Component } from 'geotic';
 import { game } from '../../core/Game';
 import { SCREEN_ADVENTURE, SCREEN_CURSOR } from '../../core/screens/ScreenType';
 import { ABILITY_THROWING, getAbilityValue } from '../../data/Abilities';
+import Attack from '../../data/Attack';
+import { DMG_TYPE_BLUDGEONING } from '../../data/DamageTypes';
+import { getStat, STAT_STRENGTH } from '../../data/Stats';
 import {
     CURSOR_SEGMENT_INVALID,
     CURSOR_SEGMENT_INTEREST,
@@ -9,6 +12,7 @@ import {
     CURSOR_SEGMENT_NONE,
 } from '../../enums/CursorSegments';
 import { bresenhamLine } from '../../utils/BresenhamLine';
+import { randomInt } from '../../utils/rand';
 import { Blocker } from './Blocker';
 import { Body } from './Body';
 import { Inventory } from './Inventory';
@@ -19,6 +23,7 @@ export class Throwable extends Component {
         die: 4,
         modifier: 0,
         cost: 500,
+        damageType: DMG_TYPE_BLUDGEONING,
     };
 
     onGetInteractions(evt) {
@@ -84,6 +89,20 @@ export class Throwable extends Component {
                         x: position.x,
                         y: position.y,
                     });
+
+                    const str = getStat(STAT_STRENGTH, initiator);
+                    const die = randomInt(1, this.die);
+                    const damage = die + str + this.modifier;
+                    const attack = new Attack({
+                        attacker: initiator,
+                        defender: hit,
+                        weaponName: this.entity.moniker.display,
+                        damage,
+                        damageType: this.damageType,
+                        ignoreDodge: true,
+                    });
+
+                    hit.fireEvent('attacked', { attack });
                 }
 
                 break;

@@ -27,6 +27,10 @@ export class Weapon extends Component {
         return getWeaponTypeDmgType(this.weaponType);
     }
 
+    getShortDescription(user) {
+        return getWeaponType(this.weaponType).getShortDescription(user, this);
+    }
+
     roll() {
         const r = randomInt(1, this.die);
 

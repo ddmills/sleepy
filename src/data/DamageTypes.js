@@ -1,6 +1,6 @@
-export const DMG_TYPE_BLUDGEONING = 0;
-export const DMG_TYPE_PIERCING = 1;
-export const DMG_TYPE_SLASHING = 2;
+export const DMG_TYPE_BLUDGEONING = 'DMG_TYPE_BLUDGEONING';
+export const DMG_TYPE_PIERCING = 'DMG_TYPE_PIERCING';
+export const DMG_TYPE_SLASHING = 'DMG_TYPE_SLASHING';
 
 const lookup = {
     [DMG_TYPE_BLUDGEONING]: {

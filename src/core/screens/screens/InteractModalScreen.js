@@ -130,10 +130,25 @@ export default class InteractModalScreen extends Screen {
             '┘'
         );
 
+        let listPadding = 4;
         const xpos = this.left + 2;
 
+        if (this.#interactable.weapon) {
+            const weaponDmg = this.#interactable.weapon.getShortDescription(
+                this.#interactor
+            );
+
+            this.game.renderer.drawText(
+                xpos,
+                this.top + listPadding,
+                weaponDmg
+            );
+
+            listPadding += 2;
+        }
+
         this.list.data.forEach(({ item, idx, isSelected }) => {
-            const ypos = idx + this.top + 4;
+            const ypos = idx + this.top + listPadding;
 
             if (isSelected) {
                 this.game.renderer.drawText(

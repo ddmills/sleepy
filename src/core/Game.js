@@ -25,6 +25,7 @@ import ConsoleManager from './ConsoleManager';
 import DestroySystem from '../systems/DestroySystem';
 import MusicManager from './MusicManager';
 import StatusSystem from '../systems/StatusSystem';
+import LiquidSystem from '../systems/LiquidSystem';
 
 export default class Game {
     #lastUpdate;
@@ -62,6 +63,7 @@ export default class Game {
         this.particles = new ParticleSystem(this);
         this.fps = new FPSMonitoringSystem(this);
         this.destroySystem = new DestroySystem(this);
+        this.liquidSystem = new LiquidSystem(this);
     }
 
     start() {
@@ -74,6 +76,7 @@ export default class Game {
         this.clock.update(dt);
         this.actionSystem.update(dt);
         this.statusSystem.update(dt);
+        this.liquidSystem.update(dt);
         this.movementSystem.update(dt);
         this.meleeSystem.update(dt);
         this.deathSystem.update(dt);

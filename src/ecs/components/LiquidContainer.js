@@ -13,6 +13,7 @@ export class LiquidContainer extends Component {
         overrideSecondary: false,
         isPourable: false,
         destroyOnEmpty: false,
+        isFreeFlowing: false
     };
 
     get liquid() {
@@ -50,7 +51,7 @@ export class LiquidContainer extends Component {
     }
 
     _checkDestroyOnEmpty() {
-        if (this.destroyOnEmpty && this.isEmpty) {
+        if (this.destroyOnEmpty && this.isEmpty && !this.entity.isDestroying) {
             this.entity.add(IsDestroying);
         }
     }
@@ -78,6 +79,31 @@ export class LiquidContainer extends Component {
         });
 
         this._checkDestroyOnEmpty();
+
+        return true;
+    }
+
+    combineFrom(other) {
+        if (this.content !== other.content) {
+            console.warn('Cannot combine different liquid types');
+
+            return false;
+        }
+
+        const sum = this.volume + other.volume;
+
+        if (sum > this.maxVolume) {
+            console.warn('Container is not large enought to combine both liquids');
+            this.volume = this.maxVolume;
+
+            other.volume -= (sum - this.maxVolume)
+        } else {
+            this.volume += other.volume;
+
+            other.volume -= other.volume;
+        }
+
+        other._checkDestroyOnEmpty();
 
         return true;
     }

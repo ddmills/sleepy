@@ -24,7 +24,8 @@
                 "maxVolume": 100,
                 "overridePrimary": true,
                 "overrideSecondary": true,
-                "destroyOnEmpty": true
+                "destroyOnEmpty": true,
+                "isFreeFlowing": true
             }
         }
     ]

@@ -30,7 +30,6 @@ export default class LiquidSystem extends System {
             const key = `${pos.x},${pos.y},${liquid}`;
 
             if (rv[key]) {
-                console.log(key, pool.moniker.display);
                 rv[key].combineFrom(container);
             } else {
                 rv[key] = container;

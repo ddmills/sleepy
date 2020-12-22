@@ -6,7 +6,8 @@
             "type": "Glyph",
             "properties": {
                 "ch": "h",
-                "fg1": "#ccc"
+                "fg1": "#ccc",
+                "z": 8000
             }
         },
         {

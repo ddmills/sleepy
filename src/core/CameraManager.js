@@ -5,8 +5,8 @@ export default class CameraManager extends Manager {
     height = 24;
     zoom = 2;
     padding = 4;
-    clampX = 32;
-    clampY = 24;
+    clampX = 16;
+    clampY = 12;
 
     _focusX = 0;
     _focusY = 0;
@@ -87,6 +87,15 @@ export default class CameraManager extends Manager {
         return {
             x: x + this.topLeftWorldX,
             y: y + this.topLeftWorldY,
+        };
+    }
+
+    getScreenRect() {
+        return {
+            x: this.topLeftWorldX,
+            y: this.topLeftWorldY,
+            width: this.width,
+            height: this.height,
         };
     }
 

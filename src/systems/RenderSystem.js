@@ -9,65 +9,58 @@ import {
 import System from './System';
 
 export default class RenderSystem extends System {
-    #query = null;
-    #explored = null;
+    renderTile(x, y) {
+        const world = this.game.camera.screenToWorld(x, y);
 
-    constructor(game) {
-        super(game);
-        this.#query = game.ecs.createQuery({
-            all: [Glyph, Position, IsVisible],
-            none: [IsInventoried, IsDestroying],
+        if (!this.game.camera.isInView(world.x, world.y)) {
+            return;
+        }
+
+        const entities = this.game.map
+            .getEntitiesAt(world.x, world.y, true)
+            .filter((e) => e.glyph && !e.isInventoried && !e.isDestroying);
+
+        if (entities.length <= 0) {
+            return;
+        }
+
+        let renderableZ = -1;
+        let renderable = null;
+
+        entities.forEach((e) => {
+            if (e.glyph.z >= renderableZ) {
+                renderable = e;
+                renderableZ = e.glyph.z;
+            }
         });
-        this.#explored = game.ecs.createQuery({
-            all: [Glyph, Position, Explored],
-            none: [IsInventoried, IsVisible, IsDestroying],
-        });
+
+        if (renderable.isVisible) {
+            this.game.renderer.draw(
+                x,
+                y,
+                renderable.glyph.char,
+                renderable.glyph.primary,
+                renderable.glyph.secondary,
+                renderable.glyph.background,
+            );
+        } else if (renderable.explored) {
+            this.game.renderer.draw(
+                x,
+                y,
+                renderable.glyph.char,
+                '#2c3538',
+                '#2c3538',
+            );
+        }
     }
 
     render(dt) {
         this.game.renderer.clear();
 
-        const explored = Array.from(this.#explored.get());
-
-        for (let i = 0; i < explored.length; i++) {
-            const renderable = explored[i];
-            const pos = renderable.position.getPos();
-
-            if (!this.game.camera.isInView(pos.x, pos.y)) {
-                continue;
+        for (let x = 0; x < this.game.camera.width; x++) {
+            for (let y = 0; y < this.game.camera.height; y++) {
+                this.renderTile(x, y);
             }
-
-            const screen = this.game.camera.worldToScreen(pos.x, pos.y);
-
-            this.game.renderer.draw(
-                screen.x,
-                screen.y,
-                renderable.glyph.char,
-                '#2c3538',
-                '#2c3538'
-            );
-        }
-
-        const renderables = Array.from(this.#query.get());
-
-        for (let i = 0; i < renderables.length; i++) {
-            const renderable = renderables[i];
-            const pos = renderable.position.getPos();
-
-            if (!this.game.camera.isInView(pos.x, pos.y)) {
-                continue;
-            }
-
-            const screen = this.game.camera.worldToScreen(pos.x, pos.y);
-
-            this.game.renderer.draw(
-                screen.x,
-                screen.y,
-                renderable.glyph.char,
-                renderable.glyph.primary,
-                renderable.glyph.secondary,
-                renderable.glyph.background
-            );
         }
     }
 

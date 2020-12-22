@@ -13,7 +13,8 @@
             "properties": {
                 "ch": "≈",
                 "fg2": "#66a3dc",
-                "fg1": "transparent"
+                "fg1": "transparent",
+                "z": 7
             }
         },
         {

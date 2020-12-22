@@ -12,7 +12,8 @@
             "type": "Glyph",
             "properties": {
                 "ch": "░",
-                "fg1": "#a66b44"
+                "fg1": "#a66b44",
+                "z": 5
             }
         },
         {

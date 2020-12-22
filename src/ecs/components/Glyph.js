@@ -7,6 +7,7 @@ export class Glyph extends Component {
         fg2: '#666',
         bg: null,
         ch: '?',
+        z: 10,
     };
 
     get primary() {

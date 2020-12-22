@@ -93,10 +93,6 @@ export default class ScreenManager extends Manager {
         this.screen.onEnter(this.screenCtx);
     }
 
-    onInputCommand(cmd) {
-        this.screen.onInputCommand(cmd);
-    }
-
     update(dt) {
         this.screen.onUpdate(dt);
     }

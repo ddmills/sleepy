@@ -161,7 +161,13 @@ export default class AdventureScreen extends Screen {
         this.onInteract(targetPosition.x, targetPosition.y);
     }
 
-    onInputCommand(cmd) {
+    handleInput() {
+        const cmd = this.game.commands.getNextCommand();
+
+        if (!cmd) {
+            return;
+        }
+
         if (cmd.type === INPUT_CMD_SAVE) {
             this.game.state.saveGame();
         }
@@ -256,6 +262,7 @@ export default class AdventureScreen extends Screen {
     }
 
     onUpdate(dt) {
+        this.handleInput();
         this.game.updateAdventureSystems(dt);
     }
 }

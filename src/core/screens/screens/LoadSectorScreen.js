@@ -6,8 +6,6 @@ export default class LoadSectorScreen extends Screen {
     #nextSector;
 
     onEnter(ctx) {
-        this.game.commands.disable();
-
         this.#prevousSector = ctx.prevousSector;
         this.#nextSector = ctx.nextSector;
 
@@ -29,10 +27,6 @@ export default class LoadSectorScreen extends Screen {
         this.game.music.onSectorLoaded(ctx.nextSector, ctx.entry);
 
         this.game.screens.setScreen(SCREEN_ADVENTURE);
-    }
-
-    onLeave() {
-        this.game.commands.enable();
     }
 
     renderLoadingText() {

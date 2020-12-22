@@ -76,7 +76,13 @@ export default class CursorScreen extends Screen {
         this.#onCancel();
     }
 
-    onInputCommand(cmd) {
+    handleInput() {
+        const cmd = this.game.commands.getNextCommand();
+
+        if (!cmd) {
+            return;
+        }
+
         if (cmd.type === INPUT_CMD_CONFIRM) {
             this.onConfirm();
         }
@@ -110,6 +116,7 @@ export default class CursorScreen extends Screen {
     }
 
     onUpdate(dt) {
+        this.handleInput();
         this.game.updateAdventureSystems(dt);
 
         const line = bresenhamLine(

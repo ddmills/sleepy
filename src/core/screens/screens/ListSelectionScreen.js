@@ -48,7 +48,13 @@ export default class ListSelectionScreen extends Screen {
         this.game.screens.popScreen();
     }
 
-    onInputCommand(cmd) {
+    handleInput() {
+        const cmd = this.game.commands.getNextCommand();
+
+        if (!cmd) {
+            return;
+        }
+
         if (cmd.type === INPUT_CMD_CANCEL) {
             this.cancel();
         }
@@ -77,6 +83,8 @@ export default class ListSelectionScreen extends Screen {
     }
 
     onUpdate(dt) {
+        this.handleInput();
+
         this.game.renderer.clearArea(
             this.left,
             this.top,

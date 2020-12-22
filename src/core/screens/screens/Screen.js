@@ -13,7 +13,5 @@ export default class Screen {
 
     onLeave() {}
 
-    onInputCommand(cmd) {}
-
     onUpdate(dt) {}
 }

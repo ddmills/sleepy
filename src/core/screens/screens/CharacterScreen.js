@@ -31,7 +31,13 @@ export default class CharacterScreen extends Screen {
         this.game.commands.popDomain(INPUT_DOMAIN_MAIN_MENU);
     }
 
-    onInputCommand(cmd) {
+    handleInput() {
+        const cmd = this.game.commands.getNextCommand();
+
+        if (!cmd) {
+            return;
+        }
+
         if (cmd.type === INPUT_CMD_CANCEL) {
             this.game.screens.popScreen();
         }
@@ -50,6 +56,8 @@ export default class CharacterScreen extends Screen {
     }
 
     onUpdate(dt) {
+        this.handleInput();
+
         this.game.renderer.clear();
         this.game.renderer.drawTextCenter(
             3,

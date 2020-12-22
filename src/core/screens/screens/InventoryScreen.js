@@ -36,7 +36,13 @@ export default class InventoryScreen extends Screen {
         }
     }
 
-    onInputCommand(cmd) {
+    handleInput() {
+        const cmd = this.game.commands.getNextCommand();
+
+        if (!cmd) {
+            return;
+        }
+
         if (cmd.type === INPUT_CMD_CANCEL) {
             this.game.screens.popScreen();
         }
@@ -55,6 +61,7 @@ export default class InventoryScreen extends Screen {
     }
 
     onUpdate(dt) {
+        this.handleInput();
         this.game.renderer.clear();
         this.game.renderer.drawTextCenter(
             3,

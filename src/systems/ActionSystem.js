@@ -16,6 +16,7 @@ export default class ActionSystem extends System {
     update(dt) {
         const entities = this.#query.get();
         const sorted = Array.from(entities);
+
         sorted.sort((a, b) => (a.actor.energy < b.actor.energy ? 1 : -1));
 
         let entity = sorted[0];
@@ -28,7 +29,17 @@ export default class ActionSystem extends System {
             });
         }
 
-        while (entity && entity.actor.hasEnergy && !entity.isPlayer) {
+        while (entity && entity.actor.hasEnergy) {
+            if (entity.isPlayer) {
+                const action = this.game.player.getNextAction();
+
+                if (!action) {
+                    return;
+                }
+
+                action();
+            }
+
             entity.fireEvent('take-action');
             entity = sorted.shift();
         }

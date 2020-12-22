@@ -29,7 +29,13 @@ export default class MainMenuScreen extends Screen {
         }
     }
 
-    onInputCommand(cmd) {
+    inputCommand() {
+        const cmd = this.game.commands.getNextCommand();
+
+        if (!cmd) {
+            return;
+        }
+
         if (cmd.type === INPUT_CMD_CONFIRM) {
             this.onConfirm();
         }
@@ -48,6 +54,7 @@ export default class MainMenuScreen extends Screen {
     }
 
     onUpdate(dt) {
+        this.inputCommand();
         this.game.renderer.clear();
         this.game.renderer.drawText(1, 1, `sleepy crawler`, 'cyan');
 

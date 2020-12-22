@@ -1,5 +1,5 @@
 import { loadImages } from './utils/ImageLoader';
-import { Howl } from 'howler';
+import { Howler } from 'howler';
 
 loadImages().then(() => {
     const { game } = require('./core/Game');
@@ -9,3 +9,5 @@ loadImages().then(() => {
 
     game.start();
 });
+
+Howler.volume(0);

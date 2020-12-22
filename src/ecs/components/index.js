@@ -17,8 +17,6 @@ export { Logger } from './Logger';
 export { Position } from './Position';
 export { Glyph } from './Glyph';
 export { Legs } from './Legs';
-export { MoveCommand } from './MoveCommand';
-export { MeleeCommand } from './MeleeCommand';
 export { IsPlayer } from './IsPlayer';
 export { Wandering } from './Wandering';
 export { Blocker } from './Blocker';

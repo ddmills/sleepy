@@ -1,8 +1,9 @@
 import Manager from './Manager';
-import { MeleeCommand, MoveCommand } from '../ecs/components';
+import * as Directions from '../enums/Directions';
 
 export default class PlayerManager extends Manager {
     #entityId = null;
+    actionQueue = [];
 
     get entity() {
         return this.game.ecs.getEntity(this.#entityId);
@@ -66,39 +67,35 @@ export default class PlayerManager extends Manager {
         this.#entityId = null; // TODO does this need to destroy()?
     }
 
+    getNextAction() {
+        return this.actionQueue.shift();
+    }
+
     move(direction) {
-        if (!this.isTurn) {
-            return;
-        }
+        this.actionQueue.push(() => {
+            const delta = Directions.delta(direction);
 
-        if (this.entity.has(MoveCommand)) {
-            this.entity.moveCommand.destroy();
-        }
-
-        this.entity.add(MoveCommand, {
-            direction,
+            this.entity.fireEvent('try-move', delta);
         });
     }
 
     melee(target) {
-        if (!this.isTurn) {
-            return;
-        }
+        this.actionQueue.push(() => {
+            if (target.isDestroyed || target.isDead) {
+                console.warn(`Melee action on destroyed target ${target}`);
 
-        if (this.entity.has(MeleeCommand)) {
-            this.entity.meleeCommand.destroy();
-        }
+                return;
+            }
 
-        this.entity.add(MeleeCommand, {
-            target,
+            this.entity.fireEvent('try-melee', {
+                target,
+            });
         });
     }
 
     wait(turns = 1) {
-        if (!this.isTurn) {
-            return;
-        }
-
-        this.entity.fireEvent('energy-consumed', turns * 1000);
+        this.actionQueue.push(() => {
+            this.entity.fireEvent('energy-consumed', turns * 1000);
+        });
     }
 }

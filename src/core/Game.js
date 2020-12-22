@@ -2,7 +2,6 @@ import Renderer from './rendering/RenderManager';
 import InputController from './input/InputController';
 import ActionSystem from '../systems/ActionSystem';
 import RenderSystem from '../systems/RenderSystem';
-import MovementSystem from '../systems/MovementSystem';
 import UISystem from '../systems/UISystem';
 import MouseManager from './input/MouseManager';
 import CommandManager from './input/CommandManager';
@@ -14,7 +13,6 @@ import ClockManager from './ClockManager';
 import CursorSystem from '../systems/CursorSystem';
 import MapManager from './MapManager';
 import FOVSystem from '../systems/FOVSystem';
-import MeleeSystem from '../systems/MeleeSystem';
 import DeathSystem from '../systems/DeathSystem';
 import ParticleSystem from '../systems/ParticleSystem';
 import FactionManager from './FactionManager';
@@ -52,8 +50,6 @@ export default class Game {
         this.console = new ConsoleManager(this);
 
         this.actionSystem = new ActionSystem(this);
-        this.movementSystem = new MovementSystem(this);
-        this.meleeSystem = new MeleeSystem(this);
         this.deathSystem = new DeathSystem(this);
         this.statusSystem = new StatusSystem(this);
         this.FOVSystem = new FOVSystem(this);
@@ -77,8 +73,6 @@ export default class Game {
         this.actionSystem.update(dt);
         this.statusSystem.update(dt);
         this.liquidSystem.update(dt);
-        this.movementSystem.update(dt);
-        this.meleeSystem.update(dt);
         this.deathSystem.update(dt);
         this.FOVSystem.update(dt);
         this.renderSystem.update(dt);

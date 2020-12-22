@@ -71,7 +71,13 @@ export default class InteractModalScreen extends Screen {
         this.refreshList();
     }
 
-    onInputCommand(cmd) {
+    handleInput() {
+        const cmd = this.game.commands.getNextCommand();
+
+        if (!cmd) {
+            return;
+        }
+
         if (cmd.type === INPUT_CMD_CANCEL) {
             this.game.screens.popScreen();
         }
@@ -90,6 +96,8 @@ export default class InteractModalScreen extends Screen {
     }
 
     onUpdate(dt) {
+        this.handleInput();
+
         this.game.renderer.clearArea(
             this.left,
             this.top,

@@ -3,50 +3,46 @@ import commands from './commands';
 import Manager from '../Manager';
 
 export default class CommandManager extends Manager {
-    #commands = {};
-    #domainStack = [INPUT_DOMAIN_DEFAULT];
-    #isEnabled = true;
+    _commands = {};
+    _domainStack = [INPUT_DOMAIN_DEFAULT];
+    _inputStack = [];
 
     constructor(game) {
         super(game);
         commands.forEach((cmd) => this.registerCommand(cmd));
     }
 
-    disable() {
-        this.#isEnabled = false;
-    }
-
-    enable() {
-        this.#isEnabled = true;
-    }
-
     onInputEvent(evt) {
-        const cmd = this.getCommandForInputEvent(evt);
+        this._inputStack.push(evt);
+    }
 
-        if (cmd) {
-            this.game.screens.onInputCommand(cmd);
+    getNextCommand() {
+        const evt = this._inputStack.shift();
+
+        if (evt) {
+            return this.getCommandForInputEvent(evt);
         }
     }
 
     pushDomain(domain) {
-        this.#domainStack.push(domain);
+        this._domainStack.push(domain);
     }
 
     popDomain(domain) {
-        const index = this.#domainStack.lastIndexOf(domain);
+        const index = this._domainStack.lastIndexOf(domain);
 
         if (index > -1) {
-            this.#domainStack.splice(index, 1);
+            this._domainStack.splice(index, 1);
         }
     }
 
     getDomainCommands(domain) {
-        return this.#commands[domain] || [];
+        return this._commands[domain] || [];
     }
 
     getCommandForInputEvent(evt) {
-        for (let i = this.#domainStack.length - 1; i >= 0; i--) {
-            const domain = this.#domainStack[i];
+        for (let i = this._domainStack.length - 1; i >= 0; i--) {
+            const domain = this._domainStack[i];
             const cmds = this.getDomainCommands(domain);
             const cmd = cmds.find((cmd) => cmd.matches(evt));
 
@@ -57,10 +53,10 @@ export default class CommandManager extends Manager {
     }
 
     registerCommand(command) {
-        if (!this.#commands[command.domain]) {
-            this.#commands[command.domain] = [];
+        if (!this._commands[command.domain]) {
+            this._commands[command.domain] = [];
         }
 
-        this.#commands[command.domain].push(command);
+        this._commands[command.domain].push(command);
     }
 }

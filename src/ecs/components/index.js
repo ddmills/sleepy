@@ -41,3 +41,4 @@ export { Race } from './Race';
 export { Weapon } from './Weapon';
 export { Status } from './Status';
 export { Ground } from './Ground';
+export { IsIncapacitated } from './IsIncapacitated';

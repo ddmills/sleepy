@@ -1,0 +1,26 @@
+{
+    "name": "Mace",
+    "inherit": ["Weapon"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Mace"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "í",
+                "fg1": "silver",
+                "fg2": "#923e2b"
+            }
+        },
+        {
+            "type": "Weapon",
+            "properties": {
+                "weaponType": "WPN_TYPE_MACE"
+            }
+        }
+    ]
+}

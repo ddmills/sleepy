@@ -14,6 +14,7 @@ import {
     SPWN_HATCHET,
     SPWN_GROUND_STONE,
     SPWN_GROUND_GRASS,
+    SPWN_MACE,
 } from '../../data/Spawnables';
 import { spawn } from '../../data/Spawner';
 import { randomInt } from '../../utils/rand';
@@ -52,6 +53,7 @@ export default class CabinTheme extends TileThemePopulator {
             chest.inventory.addLoot(spawn(SPWN_GREATSWORD));
             chest.inventory.addLoot(spawn(SPWN_BATTLE_AXE));
             chest.inventory.addLoot(spawn(SPWN_HATCHET));
+            chest.inventory.addLoot(spawn(SPWN_MACE));
         });
 
         for (let i = 0; i < randomInt(1, 3); i++) {

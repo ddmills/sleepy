@@ -11,12 +11,14 @@ import {
 } from './WeaponFamilies';
 import WpnTypeBattleAxe from './weapons/WpnTypeBattleAxe';
 import WpnTypeGreatsword from './weapons/WpnTypeGreatsword';
+import WpnTypeMace from './weapons/WpnTypeMace';
 import WpnTypeShortsword from './weapons/WpnTypeShortsword';
 import WpnTypeUnarmed from './weapons/WpnTypeUnarmed';
 
 // hammer family
 export const WPN_TYPE_WAR_HAMMER = 'WPN_TYPE_WAR_HAMMER';
 export const WPN_TYPE_SLEDGE_HAMMER = 'WPN_TYPE_SLEDGE_HAMMER';
+// cudgel family
 export const WPN_TYPE_CLUB = 'WPN_TYPE_CLUB';
 export const WPN_TYPE_MACE = 'WPN_TYPE_MACE';
 // axe family
@@ -68,6 +70,7 @@ const lookup = {
     [WPN_TYPE_BATTLE_AXE]: new WpnTypeBattleAxe(),
     [WPN_TYPE_GREATSWORD]: new WpnTypeGreatsword(),
     [WPN_TYPE_SHORTSWORD]: new WpnTypeShortsword(),
+    [WPN_TYPE_MACE]: new WpnTypeMace(),
     [WPN_TYPE_DAGGER]: {
         name: 'Dagger',
         family: WPN_FAMILY_BLADE,

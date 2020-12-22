@@ -9,3 +9,7 @@ export const randomInt = (min, max) => {
 export const randomBool = () => {
     return pickRandom([true, false]);
 };
+
+export const randomWeightedBool = (weight = .5) => {
+    return Math.random() <= weight;
+};

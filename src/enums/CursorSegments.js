@@ -4,9 +4,9 @@ export const CURSOR_SEGMENT_NONE = 2;
 export const CURSOR_SEGMENT_INTEREST = 3;
 
 const colorMap = {
-    [CURSOR_SEGMENT_UNKNOWN]: '#444',
+    [CURSOR_SEGMENT_UNKNOWN]: '#57a5ef',
     [CURSOR_SEGMENT_INVALID]: '#ce5454',
-    [CURSOR_SEGMENT_INTEREST]: '#66a3dc',
+    [CURSOR_SEGMENT_INTEREST]: '#57a5ef',
 };
 
 const glyphMap = {

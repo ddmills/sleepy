@@ -17,7 +17,7 @@ export default class TileThemePopulator {
     }
 
     static getEntities(tile) {
-        return game.map.getEntitiesAt(tile.x, tile.y);
+        return game.map.getEntitiesAt(tile.x, tile.y).filter((e) => !e.ground);
     }
 
     static clearTile(tile) {

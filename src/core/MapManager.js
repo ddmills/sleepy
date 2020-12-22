@@ -97,11 +97,11 @@ export default class MapManager extends Manager {
         }
     }
 
-    getEntitiesAt(x, y) {
+    getEntitiesAt(x, y, includeGround = false) {
         return this.#lookup
             .get(x, y)
             .map((id) => this.game.ecs.getEntity(id))
-            .filter((e) => !e.has(IsInventoried));
+            .filter((e) => !e.isInventoried && (includeGround ? true : !e.ground));
     }
 
     isAdjacent(x1, y1, x2, y2) {
@@ -144,7 +144,7 @@ export default class MapManager extends Manager {
         do {
             x = Math.trunc(Math.random() * this.width);
             y = Math.trunc(Math.random() * this.height);
-        } while (this.getEntitiesAt(x, y).length > 0);
+        } while (this.getEntitiesAt(x, y, false).length > 0);
 
         return { x, y };
     }

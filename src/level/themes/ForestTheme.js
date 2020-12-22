@@ -5,6 +5,7 @@ import {
     SPWN_VIAL_BLOOD,
     SPWN_VIAL_HONEY,
     SPWN_VIAL_WATER,
+    SPWN_GROUND_GRASS
 } from '../../data/Spawnables';
 import { spawn } from '../../data/Spawner';
 import { randomInt } from '../../utils/rand';
@@ -13,6 +14,8 @@ import TileThemePopulator from './TileThemePopulator';
 
 export default class ForestTheme extends TileThemePopulator {
     static populateTile(tile) {
+        spawn(SPWN_GROUND_GRASS, tile.x, tile.y);
+
         if (tile.isType(TILE_TYPE_WALL)) {
             spawn(SPWN_PINE_TREE, tile.x, tile.y);
         }

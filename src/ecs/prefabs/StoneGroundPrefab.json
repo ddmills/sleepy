@@ -1,0 +1,19 @@
+{
+    "name": "StoneGround",
+    "inherit": ["GameObject"],
+    "components": [
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "·",
+                "fg1": "#57595b"
+            }
+        },
+        {
+            "type": "Explorable"
+        },
+        {
+            "type": "Ground"
+        }
+    ]
+}

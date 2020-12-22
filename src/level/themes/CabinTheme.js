@@ -10,9 +10,10 @@ import {
     SPWN_LEATHER_BOOTS,
     SPWN_SHORTSWORD,
     SPWN_GREATSWORD,
-    SPWN_GOBLIN_GRUNT,
     SPWN_BATTLE_AXE,
     SPWN_HATCHET,
+    SPWN_GROUND_STONE,
+    SPWN_GROUND_GRASS,
 } from '../../data/Spawnables';
 import { spawn } from '../../data/Spawner';
 import { randomInt } from '../../utils/rand';
@@ -21,6 +22,8 @@ import TileThemePopulator from './TileThemePopulator';
 
 export default class CabinTheme extends TileThemePopulator {
     static populateTile(tile) {
+        spawn(SPWN_GROUND_STONE, tile.x, tile.y);
+
         if (this.getEntities(tile).length === 0) {
             if (tile.isType(TILE_TYPE_WALL)) {
                 spawn(SPWN_WOOD_WALL, tile.x, tile.y);
@@ -29,13 +32,13 @@ export default class CabinTheme extends TileThemePopulator {
     }
 
     static populateRoom(room) {
+        room.tiles.forEach((tile) => this.populateTile(tile));
+
         room.exits.forEach((exit) => {
             if (this.getEntities(exit).length === 0) {
                 spawn(SPWN_WOOD_DOOR, exit.x, exit.y);
             }
         });
-
-        room.tiles.forEach((tile) => this.populateTile(tile));
 
         this.trySpawn(room, (tile) => {
             const chest = spawn(SPWN_WOOD_CHEST, tile.x, tile.y);

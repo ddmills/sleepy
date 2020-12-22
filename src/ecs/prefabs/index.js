@@ -28,3 +28,5 @@ export * as ShortswordPrefab from './ShortswordPrefab.json';
 export * as GreatswordPrefab from './GreatswordPrefab.json';
 export * as BattleAxePrefab from './BattleAxePrefab.json';
 export * as HatchetPrefab from './HatchetPrefab.json';
+export * as GrassPrefab from './GrassPrefab.json';
+export * as StoneGroundPrefab from './StoneGroundPrefab.json';

@@ -1,4 +1,5 @@
 import {
+    SPWN_GROUND_STONE,
     SPWN_STONE,
     SPWN_STONE_WALL,
     SPWN_WOOD_DOOR,
@@ -10,6 +11,8 @@ import TileThemePopulator from './TileThemePopulator';
 
 export default class CastleTheme extends TileThemePopulator {
     static populateTile(tile) {
+        spawn(SPWN_GROUND_STONE, tile.x, tile.y);
+
         if (this.getEntities(tile).length === 0) {
             if (tile.isType(TILE_TYPE_WALL)) {
                 spawn(SPWN_STONE_WALL, tile.x, tile.y);

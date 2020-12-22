@@ -1,0 +1,19 @@
+{
+    "name": "Grass",
+    "inherit": ["GameObject"],
+    "components": [
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "·",
+                "fg1": "#4e6151"
+            }
+        },
+        {
+            "type": "Explorable"
+        },
+        {
+            "type": "Ground"
+        }
+    ]
+}

@@ -1,3 +1,5 @@
+import { getStat } from '../Stats';
+
 export default class Ability {
     key = -1;
     name = 'ability';
@@ -12,8 +14,9 @@ export default class Ability {
     getModifiers(entity) {
         const modifiers = [];
 
-        entity.fireEvent(`query-ability-modifier-${this.name}`, {
+        entity.fireEvent(`query-ability-mod`, {
             name: this.name,
+            ability: this.key,
             modifiers,
         });
 
@@ -27,6 +30,9 @@ export default class Ability {
     }
 
     compute(entity) {
-        return 1;
+        const stat = this.baseStat ? getStat(this.baseStat, entity) : 0;
+        const modifier = this.getModifierSum(entity);
+
+        return stat + modifier;
     }
 }

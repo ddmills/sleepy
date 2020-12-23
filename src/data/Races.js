@@ -7,7 +7,7 @@ const lookup = {
     [RACE_HUMAN]: new RaceData({
         name: 'Human',
         key: RACE_HUMAN,
-        speed: 1.2,
+        speed: 1,
         modStrength: 1,
         modFinesse: 1,
         modAthleticism: 1,
@@ -16,7 +16,7 @@ const lookup = {
     [RACE_GOBLIN]: new RaceData({
         name: 'Goblin',
         key: RACE_GOBLIN,
-        speed: 1,
+        speed: 2,
         modStrength: -1,
         modFinesse: 2,
         modAthleticism: 1,

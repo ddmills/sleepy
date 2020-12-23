@@ -12,7 +12,8 @@ import {
     ABILITY_SPEED,
     getAbilityValue,
 } from '../../../data/Abilities';
-import { getArmorBlockPercent } from '../../../data/abilities/ArmorAbility';
+import { getSpeedPercentDisplay } from '../../../data/abilities/SpeedAbility';
+import { getArmorBlockPercentDisplay } from '../../../data/abilities/ArmorAbility';
 import { getDodgePercent } from '../../../data/abilities/DodgeAbility';
 
 export default class CharacterScreen extends Screen {
@@ -72,12 +73,13 @@ export default class CharacterScreen extends Screen {
         this.game.renderer.drawText(10, 5, `${health}/${healthMax}`);
 
         const speed = getAbilityValue(ABILITY_SPEED, this.character);
+        const speedPrcnt = getSpeedPercentDisplay(speed);
 
         this.game.renderer.drawText(2, 6, 'speed');
-        this.game.renderer.drawText(10, 6, `+${speed}`);
+        this.game.renderer.drawText(10, 6, `+${speed} (${100 - speedPrcnt}% less movement cost)`);
 
         const armor = getAbilityValue(ABILITY_ARMOR, this.character);
-        const armorPrcnt = getArmorBlockPercent(armor);
+        const armorPrcnt = getArmorBlockPercentDisplay(armor);
 
         this.game.renderer.drawText(2, 7, 'armor');
         this.game.renderer.drawText(

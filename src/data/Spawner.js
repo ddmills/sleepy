@@ -25,6 +25,8 @@ const spawnables = {
     SPWN_GLASS_SHARD: simplePrefab('GlassShard'),
     SPWN_AMULET: simplePrefab('Amulet'),
     SPWN_CLOTH_ARMOR: simplePrefab('ClothArmor'),
+    SPWN_HEAVY_PLATE_ARMOR: simplePrefab('PlateArmor'),
+    SPWN_LEATHER_ARMOR: simplePrefab('LeatherArmor'),
     SPWN_LEATHER_BOOTS: simplePrefab('Boots'),
     SPWN_SHORTSWORD: simplePrefab('Shortsword'),
     SPWN_GREATSWORD: simplePrefab('Greatsword'),

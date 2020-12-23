@@ -58,7 +58,7 @@ export class Health extends Component {
         evt.data.isDodged = false;
 
         const armor = getAbilityValue(ABILITY_ARMOR, defender);
-        const armorPrcnt = getArmorBlockPercent(armor) / 100;
+        const armorPrcnt = getArmorBlockPercent(armor);
         const blocked = Math.floor(attack.damage * armorPrcnt);
         const damage = attack.damage - blocked;
 

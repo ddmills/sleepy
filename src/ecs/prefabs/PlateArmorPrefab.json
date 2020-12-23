@@ -1,18 +1,18 @@
 {
-    "name": "Boots",
+    "name": "PlateArmor",
     "inherit": ["GameObject"],
     "components": [
         {
             "type": "Moniker",
             "properties": {
-                "name": "Boots"
+                "name": "Heavy plate armor"
             }
         },
         {
             "type": "Glyph",
             "properties": {
-                "ch": "£",
-                "fg1": "#923e2b"
+                "ch": "]",
+                "fg1": "silver"
             }
         },
         {
@@ -21,15 +21,13 @@
         {
             "type": "Equipment",
             "properties": {
-                "slotTypes": ["EQ_SLOT_FEET"]
+                "slotTypes": ["EQ_SLOT_BODY"]
             }
         },
         {
             "type": "EquippedAbilityMod",
             "properties": {
-                "ABILITY_ARMOR": 1,
-                "ABILITY_DODGE": 1,
-                "ABILITY_SPEED": 1
+                "ABILITY_ARMOR": 6
             }
         }
     ]

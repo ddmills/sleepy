@@ -26,9 +26,10 @@
             }
         },
         {
-            "type": "Armor",
+            "type": "EquippedAbilityMod",
             "properties": {
-                "value": 1
+                "ABILITY_ARMOR": 1,
+                "ABILITY_DODGE": 3
             }
         }
     ]

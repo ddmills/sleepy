@@ -91,15 +91,16 @@ export class EquipmentSlot extends Component {
         evt.handle();
     }
 
-    onQueryAbilityModifierArmor(evt) {
+    onQueryAbilityMod(evt) {
         if (this.isEmpty) {
             return;
         }
 
         this.content.fireEvent(
-            `query-equipped-ability-modifier-${evt.data.name}`,
+            `query-ability-mod-equipped`,
             {
                 name: evt.data.name,
+                ability: evt.data.ability,
                 modifiers: evt.data.modifiers,
             }
         );

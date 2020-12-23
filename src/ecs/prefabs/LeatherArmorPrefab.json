@@ -1,17 +1,17 @@
 {
-    "name": "Boots",
+    "name": "LeatherArmor",
     "inherit": ["GameObject"],
     "components": [
         {
             "type": "Moniker",
             "properties": {
-                "name": "Boots"
+                "name": "Leather armor"
             }
         },
         {
             "type": "Glyph",
             "properties": {
-                "ch": "£",
+                "ch": "\\",
                 "fg1": "#923e2b"
             }
         },
@@ -21,15 +21,14 @@
         {
             "type": "Equipment",
             "properties": {
-                "slotTypes": ["EQ_SLOT_FEET"]
+                "slotTypes": ["EQ_SLOT_BODY"]
             }
         },
         {
             "type": "EquippedAbilityMod",
             "properties": {
-                "ABILITY_ARMOR": 1,
-                "ABILITY_DODGE": 1,
-                "ABILITY_SPEED": 1
+                "ABILITY_ARMOR": 2,
+                "ABILITY_DODGE": 2
             }
         }
     ]

@@ -7,6 +7,7 @@ export const CONSOLE_EVENT_DEAD = 1;
 export const CONSOLE_EVENT_SHATTER = 2;
 export const CONSOLE_EVENT_MISS = 3;
 export const CONSOLE_EVENT_BLOCK = 4;
+export const CONSOLE_EVENT_TRAP_SHARP = 5;
 
 const getMonikerSubject = (entity) => {
     if (entity.has(Moniker)) {
@@ -83,6 +84,18 @@ const mapping = {
             return data.target.has(IsVisible);
         },
     },
+    [CONSOLE_EVENT_TRAP_SHARP]: {
+        message(data) {
+            return `${getMonikerSubject(
+                data.entity
+            )} cuts themselves on ${
+                getMonikerIndirectObject(data.trap)
+            } and begins bleeding`;
+        },
+        shouldAppear(data) {
+            return data.trap.has(IsVisible);
+        },
+    }
 };
 
 export const getMessage = (evt, data) => {

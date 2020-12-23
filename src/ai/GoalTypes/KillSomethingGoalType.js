@@ -30,21 +30,33 @@ export class KillSomethingGoalType extends GoalType {
             start,
             goal: targetPos,
             cost: (a, b) => {
-                const entities = game.map.getEntitiesAt(b.x, b.y);
-
                 if (game.map.isOutOfbounds(b.x, b.y)) {
                     return Infinity;
                 }
 
+                if (b.x === targetPos.x && b.y === targetPos.y) {
+                    return diagonalDistance(a, b);
+                }
+
+                const entities = game.map.getEntitiesAt(b.x, b.y);
+
                 if (entities.some((e) => e.blocker)) {
                     return Infinity;
+                }
+
+                if (entities.some((e) => e.id !== entity.id && e.body && !e.isIncapacitated)) {
+                    return Infinity;
+                }
+
+                if (entities.some((e) => e.sharpTrap)) {
+                    return 8;
                 }
 
                 return diagonalDistance(a, b);
             },
         });
 
-        if (result.success) {
+        if (result.success && result.cost < 55) {
             const segment = result.path[1];
             const delta = {
                 x: segment.x - start.x,

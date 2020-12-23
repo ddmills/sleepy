@@ -74,12 +74,15 @@ export default class Game {
         this.statusSystem.update(dt);
         this.liquidSystem.update(dt);
         this.deathSystem.update(dt);
+        this.destroySystem.update(dt);
+    }
+
+    updatePlayerSystems(dt) {
         this.FOVSystem.update(dt);
         this.renderSystem.update(dt);
         this.particles.update(dt);
         this.UISystem.update(dt);
         this.map.update(dt);
-        this.destroySystem.update(dt);
         this.console.render(dt);
     }
 

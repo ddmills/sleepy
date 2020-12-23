@@ -17,7 +17,7 @@ export default class DeathSystem extends System {
         this.#query.get().forEach((entity) => {
             entity.fireEvent('death');
 
-            if (entity.has(IsPlayer)) {
+            if (entity.isPlayer) {
                 this.game.screens.setScreen(SCREEN_DEATH);
             } else {
                 entity.add(IsDestroying);

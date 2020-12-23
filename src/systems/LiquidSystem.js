@@ -22,7 +22,7 @@ export default class LiquidSystem extends System {
             const container = pool.liquidContainer;
 
             if (!container.isFreeFlowing) {
-                return;
+                return rv;
             }
 
             const pos = pool.position.getPos();

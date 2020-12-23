@@ -24,6 +24,7 @@ import DestroySystem from '../systems/DestroySystem';
 import MusicManager from './MusicManager';
 import StatusSystem from '../systems/StatusSystem';
 import LiquidSystem from '../systems/LiquidSystem';
+import TrapSystem from '../systems/TrapSystem';
 
 export default class Game {
     #lastUpdate;
@@ -60,6 +61,7 @@ export default class Game {
         this.fps = new FPSMonitoringSystem(this);
         this.destroySystem = new DestroySystem(this);
         this.liquidSystem = new LiquidSystem(this);
+        this.trapSystem = new TrapSystem(this);
     }
 
     start() {
@@ -69,12 +71,24 @@ export default class Game {
     }
 
     updateAdventureSystems(dt) {
-        this.clock.update(dt);
-        this.actionSystem.update(dt);
-        this.statusSystem.update(dt);
-        this.liquidSystem.update(dt);
-        this.deathSystem.update(dt);
-        this.destroySystem.update(dt);
+        for (let i = 0; i < 20; i++) {
+            this.clock.update(dt);
+            const playerTurn = this.actionSystem.update(dt);
+
+            if (playerTurn) {
+                this.updatePlayerSystems(dt);
+            }
+
+            this.liquidSystem.update(dt);
+            this.trapSystem.update(dt);
+            this.statusSystem.update(dt);
+            this.deathSystem.update(dt);
+            this.destroySystem.update(dt);
+
+            if (playerTurn) {
+                return;
+            }
+        }
     }
 
     updatePlayerSystems(dt) {

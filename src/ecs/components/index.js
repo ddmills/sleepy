@@ -40,3 +40,4 @@ export { Weapon } from './Weapon';
 export { Status } from './Status';
 export { Ground } from './Ground';
 export { IsIncapacitated } from './IsIncapacitated';
+export { SharpTrap } from './SharpTrap';

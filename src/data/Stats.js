@@ -26,3 +26,9 @@ export const getStat = (stat, entity) => {
 
     return entity.stats[name]();
 };
+export const rollStat = (stat, entity) => {
+    return randomInt(1, 20) + getStat(stat, entity);
+};
+export const statCheck = (stat, entity, target) => {
+    return rollStat(stat, entity) >= target;
+};

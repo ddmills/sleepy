@@ -23,6 +23,9 @@
             "properties": {
                 "identifier": "STACKABLE_GLASS_SHARD"
             }
+        },
+        {
+            "type": "SharpTrap"
         }
     ]
 }

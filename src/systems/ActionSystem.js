@@ -31,27 +31,19 @@ export default class ActionSystem extends System {
 
         while (entity && entity.actor.hasEnergy) {
             if (entity.isPlayer) {
-                this.game.updatePlayerSystems(dt);
-
                 const action = this.game.player.getNextAction();
 
-                if (!action) {
-                    return;
+                if (action) {
+                    action();
                 }
 
-                action();
-
-                return;
+                return true;
             }
 
             entity.fireEvent('take-action');
             entity = sorted.shift();
         }
 
-        if (this.game.player.entity.isDead) {
-            return;
-        }
-
-        this.game.updateAdventureSystems(dt);
+        return false;
     }
 }

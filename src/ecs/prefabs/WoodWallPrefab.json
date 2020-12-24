@@ -14,6 +14,9 @@
                 "ch": "H",
                 "fg1": "#923e2b"
             }
+        },
+        {
+            "type": "Combustible"
         }
     ]
 }

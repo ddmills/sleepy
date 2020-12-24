@@ -25,6 +25,7 @@ import MusicManager from './MusicManager';
 import StatusSystem from '../systems/StatusSystem';
 import LiquidSystem from '../systems/LiquidSystem';
 import TrapSystem from '../systems/TrapSystem';
+import FireSystem from '../systems/FireSystem';
 
 export default class Game {
     #lastUpdate;
@@ -62,6 +63,7 @@ export default class Game {
         this.destroySystem = new DestroySystem(this);
         this.liquidSystem = new LiquidSystem(this);
         this.trapSystem = new TrapSystem(this);
+        this.fireSystem = new FireSystem(this);
     }
 
     start() {
@@ -84,6 +86,7 @@ export default class Game {
             this.statusSystem.update(dt);
             this.deathSystem.update(dt);
             this.destroySystem.update(dt);
+            this.fireSystem.update(dt);
 
             if (playerTurn) {
                 return;

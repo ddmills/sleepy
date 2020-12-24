@@ -36,3 +36,4 @@ export * as LeatherArmorPrefab from './LeatherArmorPrefab.json';
 export * as ClothHoodPrefab from './ClothHoodPrefab.json';
 export * as WizardCapPrefab from './WizardCapPrefab.json';
 export * as HelmPrefab from './HelmPrefab.json';
+export * as TwigPrefab from './TwigPrefab.json';

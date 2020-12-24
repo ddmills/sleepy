@@ -1,0 +1,29 @@
+{
+    "name": "Twig",
+    "inherit": ["GameObject"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Twig"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "/",
+                "fg1": "brown",
+                "fg2": "green"
+            }
+        },
+        {
+            "type": "Loot"
+        },
+        {
+            "type": "Throwable"
+        },
+        {
+            "type": "Combustible"
+        }
+    ]
+}

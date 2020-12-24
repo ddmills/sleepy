@@ -19,6 +19,7 @@ import {
     SPWN_CLOTH_HOOD,
     SPWN_WIZARD_CAP,
     SPWN_HELM,
+    SPWN_TWIG,
 } from '../../data/Spawnables';
 import { spawn } from '../../data/Spawner';
 import { randomInt } from '../../utils/rand';
@@ -48,6 +49,7 @@ export default class CabinTheme extends TileThemePopulator {
         this.trySpawn(room, (tile) => {
             const chest = spawn(SPWN_WOOD_CHEST, tile.x, tile.y);
 
+            chest.inventory.addLoot(spawn(SPWN_TWIG));
             chest.inventory.addLoot(spawn(SPWN_VIAL_HONEY));
             chest.inventory.addLoot(spawn(SPWN_STONE));
             chest.inventory.addLoot(spawn(SPWN_AMULET));

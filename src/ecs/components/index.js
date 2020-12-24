@@ -41,3 +41,5 @@ export { Ground } from './Ground';
 export { IsIncapacitated } from './IsIncapacitated';
 export { SharpTrap } from './SharpTrap';
 export { EquippedAbilityMod } from './EquippedAbilityMod';
+export { Combustible } from './Combustible';
+export { Fire } from './Fire';

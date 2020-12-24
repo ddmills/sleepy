@@ -5,7 +5,8 @@ import {
     SPWN_VIAL_BLOOD,
     SPWN_VIAL_HONEY,
     SPWN_VIAL_WATER,
-    SPWN_GROUND_GRASS
+    SPWN_GROUND_GRASS,
+    SPWN_TWIG
 } from '../../data/Spawnables';
 import { spawn } from '../../data/Spawner';
 import { randomInt } from '../../utils/rand';
@@ -25,11 +26,13 @@ export default class ForestTheme extends TileThemePopulator {
         room.tiles.forEach((tile) => {
             this.populateTile(tile);
 
-            if (Math.random() > 0.05) {
+            if (Math.random() > 0.1) {
                 return;
             }
 
-            if (tile.isType(TILE_TYPE_FLOOR)) {
+            if (tile.isType(TILE_TYPE_FLOOR) && Math.random() < .5) {
+                spawn(SPWN_TWIG, tile.x, tile.y);
+            } else {
                 spawn(SPWN_STONE, tile.x, tile.y);
             }
         });

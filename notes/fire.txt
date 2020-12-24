@@ -1,0 +1,28 @@
+Fire properties
+ - spreadability
+ - combustability
+ - heat
+ - fuel
+ - flash point
+ - on burnt out
+
+- % chance the fire will die out
+    - heat, life, fuel?
+- % chance the fire will attempt to spread
+    - heat, spreadability
+- % chance the object will catch fire if exposed
+    - heat, intensity (flash point)
+
+%DIE = chance to die
+%SPREAD = chance to cause spark
+%CATCH = chance to catch if spark
+
+- for every object on fire
+    - INTENSITY = AVG(INTENSITY, NAT_INTENSITY)
+    - SPARK = d100 < %SPREAD
+    - for each combustible neighbor
+        - neighbor.HEAT = AVG(HEAT, neighbor.HEAT)
+        - if SPARK & d100 < %CATCH
+            - set neighbor on fire
+    - if d100 < %DIE
+        - remove fire component

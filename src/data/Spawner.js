@@ -38,6 +38,7 @@ const spawnables = {
     SPWN_CLOTH_HOOD: simplePrefab('ClothHood'),
     SPWN_WIZARD_CAP: simplePrefab('WizardCap'),
     SPWN_HELM: simplePrefab('Helm'),
+    SPWN_TWIG: simplePrefab('Twig'),
     SPWN_GOBLIN_GRUNT: GoblinGrunt.createSpawnable,
     SPWN_HUMAN_WANDERER: HumanWanderer.createSpawnable,
     SPWN_PINE_TREE: PineTree.createSpawnable,

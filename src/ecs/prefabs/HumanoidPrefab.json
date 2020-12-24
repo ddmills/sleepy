@@ -13,6 +13,14 @@
         {
             "type": "EquipmentSlot",
             "properties": {
+                "name": "Head",
+                "key": "head",
+                "slotType": "EQ_SLOT_HEAD"
+            }
+        },
+        {
+            "type": "EquipmentSlot",
+            "properties": {
                 "name": "Neck",
                 "key": "neck",
                 "slotType": "EQ_SLOT_NECK"

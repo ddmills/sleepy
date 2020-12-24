@@ -16,7 +16,10 @@
             }
         },
         {
-            "type": "Combustible"
+            "type": "Combustible",
+            "properties": {
+                "spawnableRemains": "SPWN_ASH"
+            }
         }
     ]
 }

@@ -3,26 +3,24 @@ import { randomWeightedBool } from '../../utils/rand';
 import { Fire } from './Fire';
 
 export class Combustible extends Component {
-    // - spreadability, how likely is it to spread?
-    // - combustability,
-    // - heat, what is it's current temperature?
-    // - fuel
-    // - flash point
-    // - intensity
-
     static properties = {
         heat: 0,
-        fuel: 100,
+        fuel: 20,
         minHeat: 5,
-        flashPoint: 100
+        flashPoint: 25,
+        spawnableRemains: null,
     };
 
     get isOnFire() {
         return !!this.entity.fire;
     }
 
+    get isOutOfFuel() {
+        return this.fuel <= 0;
+    }
+
     getDieOutChance() {
-        return 1 - (this.fuel / 100);
+        return 0;
     }
 
     getSparkChance() {

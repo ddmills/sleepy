@@ -1,3 +1,4 @@
+import { spawn } from '../data/Spawner';
 import { Combustible, Fire, IsDestroying, IsInventoried, Position } from '../ecs/components';
 import { randomWeightedBool } from '../utils/rand';
 import System from './System';
@@ -24,8 +25,7 @@ export default class FireSystem extends System {
             combustible.fuel -= 1;
 
             const sparkChance = combustible.getSparkChance();
-            const dieChance = combustible.getDieOutChance()
-            const die = randomWeightedBool(dieChance);
+            const dieChance = combustible.getDieOutChance();
 
             this.game.map
                 .getNeighborEntities(pos.x, pos.y)
@@ -41,7 +41,13 @@ export default class FireSystem extends System {
                     }
                 });
 
-            if (die) {
+            if (combustible.isOutOfFuel) {
+                entity.add(IsDestroying);
+
+                if (combustible.spawnableRemains) {
+                    spawn(combustible.spawnableRemains, pos.x, pos.y);
+                }
+            } else if (randomWeightedBool(dieChance)) {
                 entity.fire.extinguish();
 
                 this.game.particles.createParticle(pos.x, pos.y, {

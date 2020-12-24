@@ -1,32 +1,27 @@
 {
-    "name": "Twig",
+    "name": "Ash",
     "inherit": ["GameObject"],
     "components": [
         {
             "type": "Moniker",
             "properties": {
-                "name": "Twig"
+                "name": "Ash"
             }
         },
         {
             "type": "Glyph",
             "properties": {
-                "ch": "/",
-                "fg1": "brown",
-                "fg2": "green"
+                "ch": ".",
+                "fg1": "#c8b5b7"
             }
         },
         {
             "type": "Loot"
         },
         {
-            "type": "Throwable"
-        },
-        {
-            "type": "Combustible",
+            "type": "Stackable",
             "properties": {
-                "spawnableRemains": "SPWN_ASH",
-                "fuel": 8
+                "identifier": "STACKABLE_ASH"
             }
         }
     ]

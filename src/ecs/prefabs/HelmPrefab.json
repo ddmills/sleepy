@@ -1,0 +1,34 @@
+{
+    "name": "Helm",
+    "inherit": ["GameObject"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Helm"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "â",
+                "fg1": "silver"
+            }
+        },
+        {
+            "type": "Loot"
+        },
+        {
+            "type": "Equipment",
+            "properties": {
+                "slotTypes": ["EQ_SLOT_HEAD"]
+            }
+        },
+        {
+            "type": "EquippedAbilityMod",
+            "properties": {
+                "ABILITY_ARMOR": 2
+            }
+        }
+    ]
+}

@@ -1,0 +1,35 @@
+{
+    "name": "WizardCap",
+    "inherit": ["GameObject"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Wizard cap"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "ä",
+                "fg1": "#535e7e",
+                "fg2": "#ebce6d"
+            }
+        },
+        {
+            "type": "Loot"
+        },
+        {
+            "type": "Equipment",
+            "properties": {
+                "slotTypes": ["EQ_SLOT_HEAD"]
+            }
+        },
+        {
+            "type": "EquippedAbilityMod",
+            "properties": {
+                "ABILITY_DODGE": 2
+            }
+        }
+    ]
+}

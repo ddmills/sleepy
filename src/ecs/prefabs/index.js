@@ -33,3 +33,6 @@ export * as GrassPrefab from './GrassPrefab.json';
 export * as StoneGroundPrefab from './StoneGroundPrefab.json';
 export * as PlateArmorPrefab from './PlateArmorPrefab.json';
 export * as LeatherArmorPrefab from './LeatherArmorPrefab.json';
+export * as ClothHoodPrefab from './ClothHoodPrefab.json';
+export * as WizardCapPrefab from './WizardCapPrefab.json';
+export * as HelmPrefab from './HelmPrefab.json';

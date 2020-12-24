@@ -1,0 +1,35 @@
+{
+    "name": "ClothHood",
+    "inherit": ["GameObject"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Cloth hood"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "é",
+                "fg1": "#587546",
+                "fg2": "#402f20"
+            }
+        },
+        {
+            "type": "Loot"
+        },
+        {
+            "type": "Equipment",
+            "properties": {
+                "slotTypes": ["EQ_SLOT_HEAD"]
+            }
+        },
+        {
+            "type": "EquippedAbilityMod",
+            "properties": {
+                "ABILITY_DODGE": 2
+            }
+        }
+    ]
+}

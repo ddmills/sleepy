@@ -99,7 +99,6 @@ export class EquipmentSlot extends Component {
         this.content.fireEvent(
             `query-ability-mod-equipped`,
             {
-                name: evt.data.name,
                 ability: evt.data.ability,
                 modifiers: evt.data.modifiers,
             }

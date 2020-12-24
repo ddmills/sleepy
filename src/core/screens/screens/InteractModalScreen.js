@@ -7,6 +7,7 @@ import {
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import SelectableList from '../../../utils/SelectableList';
+import { getAbilityName, getAllAbilityEquippedMods, getAllAbilityEquippedModSums } from '../../../data/Abilities';
 
 export default class InteractModalScreen extends Screen {
     #width = 16;
@@ -153,6 +154,47 @@ export default class InteractModalScreen extends Screen {
             );
 
             listPadding += 2;
+        }
+
+        const modifiers = getAllAbilityEquippedModSums(this.#interactable);
+        let hasMod = false;
+
+        Object.keys(modifiers).forEach((ability) => {
+            const modifier = modifiers[ability];
+
+            if (modifier === 0) {
+                return;
+            }
+
+            hasMod = true;
+
+            const name = getAbilityName(ability);
+            const ypos = this.top + listPadding;
+
+            this.game.renderer.drawText(xpos, ypos, name);
+            const len = this.game.renderer.computeTextWidth(name);
+
+            if (modifier > 0) {
+                this.game.renderer.drawText(
+                    xpos + len,
+                    ypos,
+                    ` +${modifier}`,
+                    'green',
+                );
+            } else {
+                this.game.renderer.drawText(
+                    xpos + len,
+                    ypos,
+                    ` -${modifier}`,
+                    'red',
+                );
+            }
+
+            listPadding++;
+        });
+
+        if (hasMod) {
+            listPadding++;
         }
 
         this.list.data.forEach(({ item, idx, isSelected }) => {

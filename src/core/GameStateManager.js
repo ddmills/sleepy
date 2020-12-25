@@ -24,6 +24,7 @@ export default class GameStateManager extends Manager {
         this.game.map.teardown();
         this.game.engine.teardown();
         this.game.world.teardown();
+        this.game.temperature.teardown();
     }
 
     initiateSetup(data) {
@@ -64,6 +65,7 @@ export default class GameStateManager extends Manager {
             map: this.game.map.getSaveGameData(),
             player: this.game.player.getSaveGameData(),
             world: this.game.world.getSaveGameData(),
+            temperature: this.game.temperature.getSaveGameData(),
         };
 
         console.log('save data', data);
@@ -90,6 +92,13 @@ export default class GameStateManager extends Manager {
         );
     }
 
+    saveSectorTemperatureData(sectorId, temperatureData) {
+        localStorage.setItem(
+            `${this.filename}-${sectorId}-temperatures`,
+            JSON.stringify(temperatureData)
+        );
+    }
+
     saveSectorEntityData(sectorId, entityData) {
         localStorage.setItem(
             `${this.filename}-${sectorId}-entities`,
@@ -108,6 +117,14 @@ export default class GameStateManager extends Manager {
     loadSectorPositionData(sectorId) {
         const json = localStorage.getItem(
             `${this.filename}-${sectorId}-positions`
+        );
+
+        return json && JSON.parse(json);
+    }
+
+    loadSectorTemperatureData(sectorId) {
+        const json = localStorage.getItem(
+            `${this.filename}-${sectorId}-temperatures`
         );
 
         return json && JSON.parse(json);

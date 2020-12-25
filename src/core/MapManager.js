@@ -1,10 +1,11 @@
 import Manager from './Manager';
 import FastMap from '../utils/FastMap';
 import { IsInventoried, Position } from '../ecs/components';
+import Grid from '../utils/Grid';
 
 export default class MapManager extends Manager {
     #playerOutOfBounds = null;
-    #lookup;
+    positions;
     #width = 32;
     #height = 32;
 
@@ -21,16 +22,17 @@ export default class MapManager extends Manager {
 
         this.query = this.game.ecs.createQuery({
             all: [Position],
+            none: [IsInventoried],
         });
 
-        this.#lookup = new FastMap(this.width, this.height);
+        this.positions = new FastMap(this.width, this.height);
 
         this.query.onEntityAdded((e) => {
-            this.#lookup.set(0, 0, e.id);
+            this.positions.set(0, 0, e.id);
         });
 
         this.query.onEntityRemoved((e) => {
-            this.#lookup.remove(e.id);
+            this.positions.remove(e.id);
         });
     }
 
@@ -40,7 +42,7 @@ export default class MapManager extends Manager {
 
     teardown() {
         this.#playerOutOfBounds = false;
-        this.#lookup.clear();
+        this.positions.clear();
     }
 
     setup(data) {
@@ -58,7 +60,7 @@ export default class MapManager extends Manager {
     }
 
     getSaveGameData() {
-        const data = this.#lookup.serialize();
+        const data = this.positions.serialize();
 
         this.game.state.saveSectorPositionData(this.game.world.sectorId, data);
 
@@ -73,16 +75,16 @@ export default class MapManager extends Manager {
         const data = this.game.state.loadSectorPositionData(sector.id);
 
         if (data) {
-            this.#lookup.deserialize(data);
+            this.positions.deserialize(data);
         }
     }
 
     getPosition(entityId) {
-        return this.#lookup.getPosition(entityId);
+        return this.positions.getPosition(entityId);
     }
 
     setPosition(x, y, entityId) {
-        if (this.#lookup.isOutOfBounds(x, y)) {
+        if (this.positions.isOutOfBounds(x, y)) {
             if (this.game.player.id === entityId) {
                 this.#playerOutOfBounds = { x, y };
             }
@@ -90,7 +92,7 @@ export default class MapManager extends Manager {
             return;
         }
 
-        this.#lookup.set(x, y, entityId);
+        this.positions.set(x, y, entityId);
 
         if (entityId === this.game.player.id) {
             this.game.camera.setFocus(x, y);
@@ -98,7 +100,7 @@ export default class MapManager extends Manager {
     }
 
     getEntitiesAt(x, y, includeGround = false) {
-        return this.#lookup
+        return this.positions
             .get(x, y)
             .map((id) => this.game.ecs.getEntity(id))
             .filter((e) => !e.isInventoried && (includeGround ? true : !e.ground));

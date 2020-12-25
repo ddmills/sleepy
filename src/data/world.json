@@ -5,6 +5,10 @@
         [
             {
                 "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
                 "generator": {
                     "type": "FOREST"
                 },
@@ -13,6 +17,10 @@
             },
             {
                 "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
                 "generator": {
                     "type": "FOREST_CABINS"
                 },
@@ -25,6 +33,10 @@
             },
             {
                 "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
                 "generator": {
                     "type": "FOREST_STRONGHOLD"
                 },
@@ -39,6 +51,10 @@
         [
             {
                 "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
                 "generator": {
                     "type": "FOREST_STRONGHOLD"
                 },
@@ -47,6 +63,10 @@
             },
             {
                 "music": "FOREST_VILLAGE",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
                 "generator": {
                     "type": "FOREST_TOWN"
                 },
@@ -63,6 +83,10 @@
             },
             {
                 "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
                 "generator": {
                     "type": "FOREST_CABINS"
                 },
@@ -81,6 +105,10 @@
         [
             {
                 "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
                 "generator": {
                     "type": "FOREST"
                 },
@@ -93,6 +121,10 @@
             },
             {
                 "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
                 "generator": {
                     "type": "FOREST_STRONGHOLD"
                 },
@@ -109,6 +141,10 @@
             },
             {
                 "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
                 "generator": {
                     "type": "FOREST"
                 },

@@ -3,7 +3,7 @@ export default class Grid {
     _height = 0;
     data = [];
     suppressOOBWarn = false;
-    #defaultValueGenerator = () => null;
+    defaultValueGenerator = () => null;
 
     get width() {
         return this._width;
@@ -20,7 +20,7 @@ export default class Grid {
     constructor(width, height, defaultValueGenerator = () => null) {
         this._width = width;
         this._height = height;
-        this.#defaultValueGenerator = defaultValueGenerator;
+        this.defaultValueGenerator = defaultValueGenerator;
 
         this.clear();
     }
@@ -38,10 +38,19 @@ export default class Grid {
 
     clear() {
         this.data = [];
+
         for (let i = 0; i < this.size; i++) {
             const { x, y } = this.coord(i);
 
-            this.data[i] = this.#defaultValueGenerator(x, y);
+            this.data[i] = this.defaultValueGenerator(x, y);
+        }
+    }
+
+    setAll(value) {
+        this.data = [];
+
+        for (let i = 0; i < this.size; i++) {
+            this.data[i] = value;
         }
     }
 
@@ -60,9 +69,25 @@ export default class Grid {
         this.data[idx] = value;
     }
 
+    serialize() {
+        const entries = [...this.data];
+
+        return {
+            width: this.width,
+            height: this.height,
+            entries,
+        };
+    }
+
+    deserialize(data) {
+        this._width = data.width;
+        this._height = data.height;
+        this.data = data.entries;
+    }
+
     get(x, y) {
         if (this.isOutOfBounds(x, y)) {
-            return this.#defaultValueGenerator();
+            return this.defaultValueGenerator();
         }
 
         return this.data[this.idx(x, y)];

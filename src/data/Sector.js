@@ -105,6 +105,7 @@ export class Sector {
         sector.connectionsWest = data.connectionsWest;
         sector.generator = data.generator;
         sector.music = data.music;
+        sector.temperature = data.temperature;
 
         return sector;
     }

@@ -21,6 +21,12 @@
         },
         {
             "type": "Shadowcaster"
+        },
+        {
+            "type": "ThermalCapacity",
+            "properties": {
+                "value": 0
+            }
         }
     ]
 }

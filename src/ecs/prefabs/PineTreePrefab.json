@@ -24,6 +24,12 @@
         },
         {
             "type": "Combustible"
+        },
+        {
+            "type": "ThermalCapacity",
+            "properties": {
+                "value": 0.04
+            }
         }
     ]
 }

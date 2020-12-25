@@ -20,6 +20,12 @@
             "properties": {
                 "spawnableRemains": "SPWN_ASH"
             }
+        },
+        {
+            "type": "ThermalCapacity",
+            "properties": {
+                "value": 0.04
+            }
         }
     ]
 }

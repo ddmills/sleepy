@@ -23,6 +23,9 @@ export default class FireSystem extends System {
             const combustible = entity.combustible;
 
             combustible.fuel -= 1;
+            combustible.heat += 5;
+
+            this.game.temperature.setTemperature(pos.x, pos.y, combustible.heat);
 
             const sparkChance = combustible.getSparkChance();
             const dieChance = combustible.getDieOutChance();

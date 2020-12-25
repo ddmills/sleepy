@@ -26,6 +26,7 @@ import StatusSystem from '../systems/StatusSystem';
 import LiquidSystem from '../systems/LiquidSystem';
 import TrapSystem from '../systems/TrapSystem';
 import FireSystem from '../systems/FireSystem';
+import TemperatureSystem from '../systems/TemperatureSystem';
 
 export default class Game {
     #lastUpdate;
@@ -64,6 +65,7 @@ export default class Game {
         this.liquidSystem = new LiquidSystem(this);
         this.trapSystem = new TrapSystem(this);
         this.fireSystem = new FireSystem(this);
+        this.temperature = new TemperatureSystem(this);
     }
 
     start() {
@@ -83,10 +85,11 @@ export default class Game {
 
             this.liquidSystem.update(dt);
             this.trapSystem.update(dt);
+            this.fireSystem.update(dt);
+            this.temperature.update(dt);
             this.statusSystem.update(dt);
             this.deathSystem.update(dt);
             this.destroySystem.update(dt);
-            this.fireSystem.update(dt);
 
             if (playerTurn) {
                 return;

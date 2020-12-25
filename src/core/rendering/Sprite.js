@@ -1,7 +1,5 @@
 import { parseColor } from '../../utils/ColorParser';
-
-const isWhite = (r, g, b) => r === 255 && g === 255 && b === 255;
-const isBlack = (r, g, b) => r === 0 && g === 0 && b === 0;
+import { isBlack } from '../../utils/ColorUtil';
 
 export default class Sprite {
     #ctx = null;

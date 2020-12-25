@@ -1,14 +1,69 @@
-import {
-    IsInventoried,
-    Explored,
-    Glyph,
-    Position,
-    IsVisible,
-    IsDestroying,
-} from '../ecs/components';
+import { game } from '../core/Game';
+import { HSLToRGB, lerpHSL } from '../utils/ColorUtil';
 import System from './System';
 
+const RENDER_MODE_DEFAULT = 0;
+const RENDER_MODE_TEMPERATURE = 1;
+
+const temperatureGradient = (v) => {
+    const blue = [219, 100, 50];
+    const red = [0, 100, 50];
+    const rgb = lerpHSL(blue, red, v);
+
+    return `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`;
+};
+
+const modeLookup = {
+    [RENDER_MODE_DEFAULT]: (x, y, e) => {
+        if (e.isVisible) {
+            game.renderer.draw(
+                x,
+                y,
+                e.glyph.char,
+                e.glyph.primary,
+                e.glyph.secondary,
+                e.glyph.background,
+            );
+        } else if (e.explored) {
+            game.renderer.draw(
+                x,
+                y,
+                e.glyph.char,
+                '#2c3538',
+                '#2c3538',
+            );
+        }
+    },
+    [RENDER_MODE_TEMPERATURE]: (x, y, e, worldX, worldY) => {
+        const temp = game.temperature.getTemperature(worldX, worldY) / 100;
+        const bg = temperatureGradient(Math.min(1, temp));
+
+        if (e.isVisible) {
+            game.renderer.draw(
+                x,
+                y,
+                e.glyph.char,
+                e.glyph.primary,
+                e.glyph.secondary,
+                bg,
+            );
+        } else {
+            game.renderer.draw(
+                x,
+                y,
+                e.glyph.char,
+                '#2c3538',
+                '#2c3538',
+                bg,
+            );
+        }
+    },
+};
+
+
 export default class RenderSystem extends System {
+    mode = RENDER_MODE_DEFAULT;
+
     renderTile(x, y) {
         const world = this.game.camera.screenToWorld(x, y);
 
@@ -34,24 +89,7 @@ export default class RenderSystem extends System {
             }
         });
 
-        if (renderable.isVisible) {
-            this.game.renderer.draw(
-                x,
-                y,
-                renderable.glyph.char,
-                renderable.glyph.primary,
-                renderable.glyph.secondary,
-                renderable.glyph.background,
-            );
-        } else if (renderable.explored) {
-            this.game.renderer.draw(
-                x,
-                y,
-                renderable.glyph.char,
-                '#2c3538',
-                '#2c3538',
-            );
-        }
+        modeLookup[this.mode](x, y, renderable, world.x, world.y);
     }
 
     render(dt) {

@@ -7,6 +7,7 @@ import { Stackable } from './Stackable';
 export class Inventory extends Component {
     static properties = {
         content: '<EntityArray>',
+        isOpenable: true,
     };
 
     onDestroyed() {
@@ -94,9 +95,11 @@ export class Inventory extends Component {
     }
 
     onGetInteractions(evt) {
-        evt.data.interactions.push({
-            name: 'Open',
-            evt: 'try-open',
-        });
+        if (this.isOpenable) {
+            evt.data.interactions.push({
+                name: 'Open',
+                evt: 'try-open',
+            });
+        }
     }
 }

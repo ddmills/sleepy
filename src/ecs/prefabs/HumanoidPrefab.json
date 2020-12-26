@@ -11,6 +11,12 @@
             }
         },
         {
+            "type": "Inventory",
+            "properties": {
+                "isOpenable": false
+            }
+        },
+        {
             "type": "EquipmentSlot",
             "properties": {
                 "name": "Head",

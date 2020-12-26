@@ -100,10 +100,15 @@ export default class MapManager extends Manager {
     }
 
     getEntitiesAt(x, y, includeGround = false) {
-        return this.positions
-            .get(x, y)
-            .map((id) => this.game.ecs.getEntity(id))
-            .filter((e) => !e.isInventoried && (includeGround ? true : !e.ground));
+        return this.positions.get(x, y).reduce((entities, id) => {
+            const e = this.game.ecs.getEntity(id);
+
+            if (!e.isInventoried && (includeGround ? true : !e.ground)) {
+                entities.push(e);
+            }
+
+            return entities;
+        }, []);
     }
 
     isAdjacent(x1, y1, x2, y2) {

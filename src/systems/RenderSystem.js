@@ -1,14 +1,14 @@
 import { game } from '../core/Game';
-import { HSLToRGB, lerpHSL } from '../utils/ColorUtil';
+import { lerpHSL } from '../utils/ColorUtil';
 import System from './System';
 
 const RENDER_MODE_DEFAULT = 0;
 const RENDER_MODE_TEMPERATURE = 1;
 
 const temperatureGradient = (v) => {
-    const blue = [219, 100, 50];
-    const red = [0, 100, 50];
-    const rgb = lerpHSL(blue, red, v);
+    const blue = [216, 40, 50];
+    const red = [0, 80, 50];
+    const rgb = lerpHSL(blue, red, Math.sqrt(v));
 
     return `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`;
 };
@@ -35,7 +35,7 @@ const modeLookup = {
         }
     },
     [RENDER_MODE_TEMPERATURE]: (x, y, e, worldX, worldY) => {
-        const temp = game.temperature.getTemperature(worldX, worldY) / 100;
+        const temp = game.temperature.getTemperature(worldX, worldY) / 200;
         const bg = temperatureGradient(Math.min(1, temp));
 
         if (e.isVisible) {

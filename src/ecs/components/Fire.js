@@ -1,6 +1,10 @@
 import { Component } from 'geotic';
 
 export class Fire extends Component {
+    static properties = {
+        intensity: 3,
+    };
+
     extinguish() {
         this.destroy();
     }

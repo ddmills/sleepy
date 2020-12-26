@@ -25,7 +25,7 @@
         {
             "type": "ThermalCapacity",
             "properties": {
-                "value": 0
+                "value": 0.01
             }
         }
     ]

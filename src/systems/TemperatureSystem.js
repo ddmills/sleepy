@@ -60,10 +60,15 @@ export default class TemperatureSystem extends System {
 
     getCapacity(x, y) {
         let hasCap = false;
+        let hasFire = false;
 
         const capacity = this.game.map
             .getEntitiesAt(x, y)
             .reduce((cap, e) => {
+                if (e.fire) {
+                    hasFire = true;
+                    return 0;
+                }
                 if (e.thermalCapacity) {
                     hasCap = true;
 
@@ -72,6 +77,10 @@ export default class TemperatureSystem extends System {
 
                 return cap;
             }, 0);
+
+        if (hasFire) {
+            return 0;
+        }
 
         if (hasCap) {
             return capacity;

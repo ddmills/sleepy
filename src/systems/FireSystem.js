@@ -21,11 +21,12 @@ export default class FireSystem extends System {
         this.query.get().forEach((entity) => {
             const pos = entity.position.getPos();
             const combustible = entity.combustible;
+            let temperature = this.game.temperature.getTemperature(pos.x, pos.y);
 
-            combustible.fuel -= 1;
-            combustible.heat += 3;
+            combustible.fuel -= combustible.burnRate;
+            temperature += combustible.burnRate;
 
-            this.game.temperature.setTemperature(pos.x, pos.y, combustible.heat);
+            this.game.temperature.setTemperature(pos.x, pos.y, temperature);
 
             const sparkChance = combustible.getSparkChance();
             const dieChance = combustible.getDieOutChance();
@@ -35,12 +36,12 @@ export default class FireSystem extends System {
                 .flat()
                 .filter((e) => e.combustible)
                 .forEach((neighbor) => {
-                    neighbor.combustible.heat += 1;
-
                     const spark = randomWeightedBool(sparkChance);
 
                     if (spark) {
-                        neighbor.fireEvent('spark');
+                        neighbor.fireEvent('spark', {
+                            intensity: entity.fire.intensity - 1
+                        });
                     }
                 });
 

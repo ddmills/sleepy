@@ -41,6 +41,8 @@ export class EquipmentSlot extends Component {
     }
 
     equip(equipment) {
+        equipment.loot.take(this.entity);
+
         equipment.add(IsEquipped, {
             slotKey: this.key,
             owner: this.entity,

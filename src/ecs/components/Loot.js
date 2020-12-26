@@ -3,6 +3,22 @@ import { Inventory } from './Inventory';
 import { IsInventoried } from './IsInventoried';
 
 export class Loot extends Component {
+    take(newOwner) {
+        if (this.entity.isInventoried) {
+            if (this.entity.isInventoried.isOwnedBy(newOwner)) {
+                return true;
+            }
+
+            const owner = this.entity.isInventoried.owner;
+
+            owner.inventory.removeLoot(this.entity);
+        }
+
+        newOwner.inventory.addLoot(this.entity);
+
+        return true;
+    }
+
     onGetInteractions(evt) {
         const interactor = evt.data.interactor;
         const isInventoried = this.entity.has(IsInventoried);
@@ -44,18 +60,16 @@ export class Loot extends Component {
     }
 
     onTryPickUp(evt) {
-        evt.data.interactor.inventory.addLoot(this.entity);
+        this.take(evt.data.interactor);
+
         evt.data.interactor.fireEvent('energy-consumed', 100);
         evt.handle();
     }
 
     onTryTake(evt) {
-        const owner = this.entity.isInventoried.owner;
+        this.take(evt.data.interactor);
 
-        owner.inventory.removeLoot(this.entity);
-        evt.data.interactor.inventory.addLoot(this.entity);
         evt.data.interactor.fireEvent('energy-consumed', 100);
-
         evt.handle();
     }
 }

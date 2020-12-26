@@ -57,12 +57,6 @@ export class Equipment extends Component {
     }
 
     onGetInteractions(evt) {
-        if (this.entity.isInventoried) {
-            if (!this.entity.isInventoried.isOwnedBy(evt.data.interactor)) {
-                return;
-            }
-        }
-
         if (this.entity.has(IsEquipped)) {
             evt.data.interactions.push({
                 name: `Unequip [${this.entity.isEquipped.slot.name}]`,

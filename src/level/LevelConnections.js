@@ -1,5 +1,4 @@
 import { computeAStar } from '../utils/AStar';
-import { diagonalDistance } from '../utils/diagonalDistance';
 import { manhattanDistance } from '../utils/ManhattanDistance';
 import { TILE_TYPE_FLOOR, TILE_TYPE_WALL } from './TileData';
 
@@ -44,13 +43,14 @@ export const digExit = (tiles, exit) => {
             x: exit.x,
             y: exit.y,
         },
+        allowDiagonals: false,
         cost: (a, b) => {
             if (tiles.isOnEdge(b.x, b.y)) {
                 return Infinity;
             }
 
             if (tiles.tileTypeMatches(b.x, b.y, TILE_TYPE_WALL)) {
-                return diagonalDistance(a, b);
+                return manhattanDistance(a, b);
             }
 
             return Infinity;

@@ -37,7 +37,7 @@ export class ForestStrongholdGenerator extends SectorGenerator {
             width: settings.width - padding,
             height: padding,
             exits: [
-                { x: 0, y: exitOffset - 1 },
+                { x: 0, y: exitOffset },
                 { x: settings.width - padding - exitOffset - 1, y: 0 },
             ],
         });
@@ -47,7 +47,7 @@ export class ForestStrongholdGenerator extends SectorGenerator {
             height: settings.height - padding,
             exits: [
                 { x: 0, y: exitOffset - 1 },
-                { x: exitOffset - 1, y: settings.height - padding - 1 },
+                { x: exitOffset, y: settings.height - padding - 1 },
             ],
         });
 

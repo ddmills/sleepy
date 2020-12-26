@@ -3,6 +3,7 @@ import { SPWN_DIRT_PATH } from '../../data/Spawnables';
 import { spawn } from '../../data/Spawner';
 import { computeAStar } from '../../utils/AStar';
 import { diagonalDistance } from '../../utils/diagonalDistance';
+import { manhattanDistance } from '../../utils/ManhattanDistance';
 import { pickRandom } from '../../utils/rand';
 import { digExits } from '../LevelConnections';
 import { ScatteredScheme } from '../schemes/ScatteredScheme';
@@ -94,6 +95,7 @@ export class ForestTownGenerator extends SectorGenerator {
 
         const generatePath = (start, end) => {
             const path = computeAStar({
+                allowDiagonals: false,
                 start: {
                     x: start.x,
                     y: start.y,
@@ -120,7 +122,7 @@ export class ForestTownGenerator extends SectorGenerator {
                         return 0.1;
                     }
 
-                    return diagonalDistance(a, b) * 2;
+                    return manhattanDistance(a, b) * 2;
                 },
             });
 

@@ -2,40 +2,49 @@ import { diagonalDistance } from './diagonalDistance';
 import { manhattanDistance } from './ManhattanDistance';
 import PriorityQueue from './PriorityQueue';
 
-const getNeighbors = (x, y) => [
-    {
-        x: x,
-        y: y - 1,
-    },
-    {
-        x: x - 1,
-        y: y,
-    },
-    {
-        x: x + 1,
-        y: y,
-    },
-    {
-        x: x,
-        y: y + 1,
-    },
-    {
-        x: x - 1,
-        y: y - 1,
-    },
-    {
-        x: x + 1,
-        y: y - 1,
-    },
-    {
-        x: x - 1,
-        y: y + 1,
-    },
-    {
-        x: x + 1,
-        y: y + 1,
-    },
-];
+const getNeighbors = (x, y, allowDiagonals = true) => {
+    const neighbors = [
+        {
+            x: x,
+            y: y - 1,
+        },
+        {
+            x: x - 1,
+            y: y,
+        },
+        {
+            x: x + 1,
+            y: y,
+        },
+        {
+            x: x,
+            y: y + 1,
+        },
+    ];
+
+    if (allowDiagonals) {
+        neighbors.push(
+            {
+                x: x - 1,
+                y: y - 1,
+            },
+            {
+                x: x + 1,
+                y: y - 1,
+            },
+            {
+                x: x - 1,
+                y: y + 1,
+            },
+            {
+                x: x + 1,
+                y: y + 1,
+            }
+        );
+    }
+
+    return neighbors;
+};
 
 const key = (pos) => `${pos.x},${pos.y}`;
 
@@ -91,7 +100,7 @@ export const computeAStar = (settings = defaultSettings) => {
             break;
         }
 
-        const neighbors = getNeighbors(current.x, current.y);
+        const neighbors = getNeighbors(current.x, current.y, settings.allowDiagonals);
 
         for (let next of neighbors) {
             const nextKey = key(next);

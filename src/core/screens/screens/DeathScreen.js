@@ -27,9 +27,10 @@ export default class DeathScreen extends Screen {
 
     onUpdate(dt) {
         this.handleInput();
+        this.game.renderSystem.update(dt);
 
         const text = 'you have succumbed to the forest';
 
-        this.game.renderer.drawTextCenter(10, text, '#ce5454');
+        this.game.renderer.drawTextCenter(10, text, '#ce5454', '#ce5454');
     }
 }

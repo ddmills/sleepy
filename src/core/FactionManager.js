@@ -19,7 +19,7 @@ export default class FactionManager extends Manager {
         super(game);
 
         this.setRelation(FACTION_PLAYER, FACTION_GOBLIN, -300);
-        this.setRelation(FACTION_PLAYER, FACTION_VILLAGER, 120);
+        this.setRelation(FACTION_PLAYER, FACTION_VILLAGER, 300);
         this.setRelation(FACTION_GOBLIN, FACTION_VILLAGER, -400);
     }
 
@@ -97,5 +97,29 @@ export default class FactionManager extends Manager {
         }
 
         return 'Neutral';
+    }
+
+    getAttitudeGlyph(value) {
+        if (value <= -200) {
+            return {
+                char: '☻',
+                fg1: '#ca4444',
+                fg2: '#4c0e0e',
+            };
+        }
+
+        if (value >= 200) {
+            return {
+                char: '☺',
+                fg1: '#7aad7a',
+                fg2: '#223422',
+            };
+        }
+
+        return {
+            char: '♥',
+            fg1: '#b9bcc2',
+            fg2: '#222832',
+        };
     }
 }

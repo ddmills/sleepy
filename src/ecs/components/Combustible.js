@@ -72,7 +72,7 @@ export class Combustible extends Component {
     }
 
     onGetInteractions(evt) {
-        if (!this.isOnFire) {
+        if (!this.isOnFire && !this.entity.isInventoried) {
             evt.data.interactions.push({
                 name: 'Ignite',
                 evt: 'try-ignite',

@@ -96,12 +96,9 @@ export class EquipmentSlot extends Component {
             return;
         }
 
-        this.content.fireEvent(
-            `query-ability-mod-equipped`,
-            {
-                ability: evt.data.ability,
-                modifiers: evt.data.modifiers,
-            }
-        );
+        this.content.fireEvent(`query-ability-mod-equipped`, {
+            ability: evt.data.ability,
+            modifiers: evt.data.modifiers,
+        });
     }
 }

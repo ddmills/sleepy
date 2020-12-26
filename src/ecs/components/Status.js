@@ -7,7 +7,7 @@ export class Status extends Component {
         key: STATUS_BLEEDING,
         duration: 4000,
         lifetime: 0,
-        potency: .5,
+        potency: 0.5,
     };
 
     remainingLifetime() {

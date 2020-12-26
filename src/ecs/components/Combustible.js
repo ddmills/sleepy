@@ -8,7 +8,7 @@ export class Combustible extends Component {
         fuel: 200,
         flashPoint: 200,
         spawnableRemains: null,
-        burnRate: 5
+        burnRate: 5,
     };
 
     get isOnFire() {
@@ -58,7 +58,7 @@ export class Combustible extends Component {
 
         if (randomWeightedBool(this.getCatchChance(intensity))) {
             this.entity.add(Fire, {
-                intensity
+                intensity,
             });
             this.setTemperature(this.flashPoint);
         }
@@ -66,7 +66,7 @@ export class Combustible extends Component {
 
     onTryIgnite(evt) {
         this.entity.add(Fire, {
-            intensity: 3
+            intensity: 3,
         });
         this.setTemperature(this.flashPoint);
     }

@@ -100,7 +100,11 @@ export const computeAStar = (settings = defaultSettings) => {
             break;
         }
 
-        const neighbors = getNeighbors(current.x, current.y, settings.allowDiagonals);
+        const neighbors = getNeighbors(
+            current.x,
+            current.y,
+            settings.allowDiagonals
+        );
 
         for (let next of neighbors) {
             const nextKey = key(next);

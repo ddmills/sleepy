@@ -88,14 +88,14 @@ const mapping = {
         message(data) {
             return `${getMonikerSubject(
                 data.entity
-            )} cuts themselves on ${
-                getMonikerIndirectObject(data.trap)
-            } and begins bleeding`;
+            )} cuts themselves on ${getMonikerIndirectObject(
+                data.trap
+            )} and begins bleeding`;
         },
         shouldAppear(data) {
             return data.trap.has(IsVisible);
         },
-    }
+    },
 };
 
 export const getMessage = (evt, data) => {

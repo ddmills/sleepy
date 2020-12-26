@@ -1,11 +1,10 @@
-
 export const HSLToRGB = (h, s, l) => {
     s /= 100;
     l /= 100;
 
     let c = (1 - Math.abs(2 * l - 1)) * s;
-    let x = c * (1 - Math.abs((h / 60) % 2 - 1));
-    let m = l - c/2;
+    let x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+    let m = l - c / 2;
     let r = 0;
     let g = 0;
     let b = 0;
@@ -41,7 +40,7 @@ export const HSLToRGB = (h, s, l) => {
         Math.round((g + m) * 255),
         Math.round((b + m) * 255),
     ];
-}
+};
 
 export const lerpHSL = (a, b, t) => {
     const deg = Math.trunc(lerp(a[0], b[0], t));

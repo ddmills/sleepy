@@ -28,7 +28,7 @@ export class Legs extends Component {
         }
 
         const speed = getAbilityValue(ABILITY_SPEED, this.entity);
-        const cost = 20 / (20 + speed) * 1000;
+        const cost = (20 / (20 + speed)) * 1000;
 
         this.entity.fireEvent('energy-consumed', cost);
         this.entity.position.setPos(targetX, targetY);

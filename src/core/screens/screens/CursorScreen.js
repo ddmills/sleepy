@@ -179,9 +179,12 @@ export default class CursorScreen extends Screen {
             );
         }
 
-        const tmpC = this.game.temperature.getTemperature(this.game.cursor.x, this.game.cursor.y);
+        const tmpC = this.game.temperature.getTemperature(
+            this.game.cursor.x,
+            this.game.cursor.y
+        );
 
-        const tmpF = (tmpC * 9/5) + 32;
+        const tmpF = (tmpC * 9) / 5 + 32;
 
         this.game.renderer.drawText(
             this.game.camera.width - 12,

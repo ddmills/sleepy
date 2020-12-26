@@ -7,7 +7,11 @@ import {
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import SelectableList from '../../../utils/SelectableList';
-import { getAbilityName, getAllAbilityEquippedMods, getAllAbilityEquippedModSums } from '../../../data/Abilities';
+import {
+    getAbilityName,
+    getAllAbilityEquippedMods,
+    getAllAbilityEquippedModSums,
+} from '../../../data/Abilities';
 
 export default class InteractModalScreen extends Screen {
     #width = 16;
@@ -179,14 +183,14 @@ export default class InteractModalScreen extends Screen {
                     xpos + len,
                     ypos,
                     ` +${modifier}`,
-                    'green',
+                    'green'
                 );
             } else {
                 this.game.renderer.drawText(
                     xpos + len,
                     ypos,
                     ` -${modifier}`,
-                    'red',
+                    'red'
                 );
             }
 

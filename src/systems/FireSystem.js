@@ -1,5 +1,11 @@
 import { spawn } from '../data/Spawner';
-import { Combustible, Fire, IsDestroying, IsInventoried, Position } from '../ecs/components';
+import {
+    Combustible,
+    Fire,
+    IsDestroying,
+    IsInventoried,
+    Position,
+} from '../ecs/components';
 import { randomWeightedBool } from '../utils/rand';
 import System from './System';
 
@@ -9,7 +15,7 @@ export default class FireSystem extends System {
 
         this.query = this.game.ecs.createQuery({
             all: [Fire, Combustible, Position],
-            none: [IsInventoried, IsDestroying]
+            none: [IsInventoried, IsDestroying],
         });
     }
 
@@ -21,7 +27,10 @@ export default class FireSystem extends System {
         this.query.get().forEach((entity) => {
             const pos = entity.position.getPos();
             const combustible = entity.combustible;
-            let temperature = this.game.temperature.getTemperature(pos.x, pos.y);
+            let temperature = this.game.temperature.getTemperature(
+                pos.x,
+                pos.y
+            );
 
             combustible.fuel -= combustible.burnRate;
             temperature += combustible.burnRate;
@@ -40,7 +49,7 @@ export default class FireSystem extends System {
 
                     if (spark) {
                         neighbor.fireEvent('spark', {
-                            intensity: entity.fire.intensity - 1
+                            intensity: entity.fire.intensity - 1,
                         });
                     }
                 });

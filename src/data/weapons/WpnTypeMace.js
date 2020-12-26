@@ -36,7 +36,11 @@ export default class WpnTypeMace extends WeaponType {
         const result = defender.fireEvent('attacked', { attack });
         const attacks = [attack];
 
-        if (!result.data.isDodged && !result.data.isKilled && randomWeightedBool(0.5)) {
+        if (
+            !result.data.isDodged &&
+            !result.data.isKilled &&
+            randomWeightedBool(0.5)
+        ) {
             addStatus(STATUS_STUNNED, defender);
         }
 

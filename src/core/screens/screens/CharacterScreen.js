@@ -76,7 +76,11 @@ export default class CharacterScreen extends Screen {
         const speedPrcnt = getSpeedPercentDisplay(speed);
 
         this.game.renderer.drawText(2, 6, 'speed');
-        this.game.renderer.drawText(10, 6, `+${speed} (${100 - speedPrcnt}% less movement cost)`);
+        this.game.renderer.drawText(
+            10,
+            6,
+            `+${speed} (${100 - speedPrcnt}% less movement cost)`
+        );
 
         const armor = getAbilityValue(ABILITY_ARMOR, this.character);
         const armorPrcnt = getArmorBlockPercentDisplay(armor);

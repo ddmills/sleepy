@@ -12,7 +12,7 @@ export default class StatusBleeding extends Status {
     }
 
     getDmgPerTurn(potency) {
-        return 3 * potency + .5;
+        return 3 * potency + 0.5;
     }
 
     update(ticks, entity, status) {

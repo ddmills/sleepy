@@ -1,4 +1,9 @@
-import { Actor, IsDead, IsDestroying, IsIncapacitated } from '../ecs/components';
+import {
+    Actor,
+    IsDead,
+    IsDestroying,
+    IsIncapacitated,
+} from '../ecs/components';
 import System from './System';
 
 export default class ActionSystem extends System {

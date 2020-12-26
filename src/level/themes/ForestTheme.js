@@ -6,7 +6,7 @@ import {
     SPWN_VIAL_HONEY,
     SPWN_VIAL_WATER,
     SPWN_GROUND_GRASS,
-    SPWN_TWIG
+    SPWN_TWIG,
 } from '../../data/Spawnables';
 import { spawn } from '../../data/Spawner';
 import { randomInt } from '../../utils/rand';
@@ -30,7 +30,7 @@ export default class ForestTheme extends TileThemePopulator {
                 return;
             }
 
-            if (tile.isType(TILE_TYPE_FLOOR) && Math.random() < .5) {
+            if (tile.isType(TILE_TYPE_FLOOR) && Math.random() < 0.5) {
                 spawn(SPWN_TWIG, tile.x, tile.y);
             } else {
                 spawn(SPWN_STONE, tile.x, tile.y);

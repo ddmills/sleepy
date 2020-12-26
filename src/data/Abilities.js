@@ -21,26 +21,30 @@ export const getAbilityValue = (key, entity) => lookup[key].compute(entity);
 export const getAbilityEquippedMod = (key, entity) => {
     const modifiers = [];
 
-    entity.fireEvent(
-        `query-ability-mod-equipped`, {
-            ability: key,
-            modifiers,
-        }
-    );
+    entity.fireEvent(`query-ability-mod-equipped`, {
+        ability: key,
+        modifiers,
+    });
 
     return modifiers;
 };
 export const getAllAbilityEquippedMods = (entity) => {
-    return Object.keys(lookup).reduce((mods, ability) => ({
-        ...mods,
-        [ability]: getAbilityEquippedMod(ability, entity),
-    }), {});
+    return Object.keys(lookup).reduce(
+        (mods, ability) => ({
+            ...mods,
+            [ability]: getAbilityEquippedMod(ability, entity),
+        }),
+        {}
+    );
 };
 export const getAllAbilityEquippedModSums = (entity) => {
     const mods = getAllAbilityEquippedMods(entity);
 
-    return Object.keys(mods).reduce((all, ability) => ({
-        ...all,
-        [ability]: mods[ability].reduce((sum, mod) => sum + mod.mod, 0),
-    }), {});
+    return Object.keys(mods).reduce(
+        (all, ability) => ({
+            ...all,
+            [ability]: mods[ability].reduce((sum, mod) => sum + mod.mod, 0),
+        }),
+        {}
+    );
 };

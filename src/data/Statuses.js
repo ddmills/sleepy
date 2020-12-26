@@ -13,6 +13,6 @@ const lookup = {
 export const getStatus = (key) => lookup[key];
 export const addStatus = (key, entity) => {
     return entity.add(Status, {
-        key
+        key,
     });
 };

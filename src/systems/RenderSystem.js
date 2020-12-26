@@ -22,16 +22,10 @@ const modeLookup = {
                 e.glyph.char,
                 e.glyph.primary,
                 e.glyph.secondary,
-                e.glyph.background,
+                e.glyph.background
             );
         } else if (e.explored) {
-            game.renderer.draw(
-                x,
-                y,
-                e.glyph.char,
-                '#2c3538',
-                '#2c3538',
-            );
+            game.renderer.draw(x, y, e.glyph.char, '#2c3538', '#2c3538');
         }
     },
     [RENDER_MODE_TEMPERATURE]: (x, y, e, worldX, worldY) => {
@@ -45,21 +39,13 @@ const modeLookup = {
                 e.glyph.char,
                 e.glyph.primary,
                 e.glyph.secondary,
-                bg,
+                bg
             );
         } else {
-            game.renderer.draw(
-                x,
-                y,
-                e.glyph.char,
-                '#2c3538',
-                '#2c3538',
-                bg,
-            );
+            game.renderer.draw(x, y, e.glyph.char, '#2c3538', '#2c3538', bg);
         }
     },
 };
-
 
 export default class RenderSystem extends System {
     mode = RENDER_MODE_DEFAULT;

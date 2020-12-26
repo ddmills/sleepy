@@ -1,5 +1,10 @@
 import { addStatus, STATUS_BLEEDING } from '../data/Statuses';
-import { IsDestroying, IsInventoried, Position, SharpTrap } from '../ecs/components';
+import {
+    IsDestroying,
+    IsInventoried,
+    Position,
+    SharpTrap,
+} from '../ecs/components';
 import { CONSOLE_EVENT_TRAP_SHARP } from '../enums/ConsoleEvents';
 import System from './System';
 
@@ -9,7 +14,7 @@ export default class TrapSystem extends System {
 
         this.sharpTrapQuery = this.game.ecs.createQuery({
             all: [SharpTrap, Position],
-            none: [IsInventoried, IsDestroying]
+            none: [IsInventoried, IsDestroying],
         });
     }
 
@@ -33,7 +38,7 @@ export default class TrapSystem extends System {
                         addStatus(STATUS_BLEEDING, entity);
                         this.game.console.event(CONSOLE_EVENT_TRAP_SHARP, {
                             trap: trapEntity,
-                            entity
+                            entity,
                         });
                     }
                 }

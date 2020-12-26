@@ -44,7 +44,12 @@ export class KillSomethingGoalType extends GoalType {
                     return Infinity;
                 }
 
-                if (entities.some((e) => e.id !== entity.id && e.body && !e.isIncapacitated)) {
+                if (
+                    entities.some(
+                        (e) =>
+                            e.id !== entity.id && e.body && !e.isIncapacitated
+                    )
+                ) {
                     return Infinity;
                 }
 

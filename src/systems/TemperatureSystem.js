@@ -35,7 +35,10 @@ export default class TemperatureSystem extends System {
     getSaveGameData() {
         const data = this.grid.serialize();
 
-        this.game.state.saveSectorTemperatureData(this.game.world.sectorId, data);
+        this.game.state.saveSectorTemperatureData(
+            this.game.world.sectorId,
+            data
+        );
     }
 
     onSectorLoaded(sector) {
@@ -45,7 +48,8 @@ export default class TemperatureSystem extends System {
             this.grid.deserialize(data);
         } else {
             this.grid.defaultValueGenerator = () => sector.temperature.ambient;
-            this.grid.previous.defaultValueGenerator = () => sector.temperature.ambient;
+            this.grid.previous.defaultValueGenerator = () =>
+                sector.temperature.ambient;
             this.grid.setAll(sector.temperature.ambient);
         }
     }
@@ -62,21 +66,19 @@ export default class TemperatureSystem extends System {
         let hasCap = false;
         let hasFire = false;
 
-        const capacity = this.game.map
-            .getEntitiesAt(x, y)
-            .reduce((cap, e) => {
-                if (e.fire) {
-                    hasFire = true;
-                    return 0;
-                }
-                if (e.thermalCapacity) {
-                    hasCap = true;
+        const capacity = this.game.map.getEntitiesAt(x, y).reduce((cap, e) => {
+            if (e.fire) {
+                hasFire = true;
+                return 0;
+            }
+            if (e.thermalCapacity) {
+                hasCap = true;
 
-                    return cap + e.thermalCapacity.value;
-                }
+                return cap + e.thermalCapacity.value;
+            }
 
-                return cap;
-            }, 0);
+            return cap;
+        }, 0);
 
         if (hasFire) {
             return 0;
@@ -108,12 +110,12 @@ export default class TemperatureSystem extends System {
 
                 const avg = avgArray(cells);
 
-                if (Math.abs(previous - avg) < .01) {
+                if (Math.abs(previous - avg) < 0.01) {
                     continue;
                 }
 
                 const capacity = this.getCapacity(x, y);
-                const t = lerp(previous, avg, capacity)
+                const t = lerp(previous, avg, capacity);
 
                 this.grid.set(x, y, t);
             }

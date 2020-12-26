@@ -1,3 +1,3 @@
 import { Component } from 'geotic';
 
-export class IsIncapacitated extends Component {};
+export class IsIncapacitated extends Component {}

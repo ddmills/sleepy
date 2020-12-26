@@ -2,6 +2,6 @@ import { Component } from 'geotic';
 
 export class ThermalCapacity extends Component {
     static properties = {
-        value: .5,
+        value: 0.5,
     };
 }

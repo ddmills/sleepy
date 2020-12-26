@@ -1,4 +1,9 @@
-import { IsDestroying, IsInventoried, LiquidContainer, Position } from '../ecs/components';
+import {
+    IsDestroying,
+    IsInventoried,
+    LiquidContainer,
+    Position,
+} from '../ecs/components';
 import System from './System';
 
 export default class LiquidSystem extends System {
@@ -7,7 +12,7 @@ export default class LiquidSystem extends System {
 
         this.query = this.game.ecs.createQuery({
             all: [LiquidContainer, Position],
-            none: [IsInventoried, IsDestroying]
+            none: [IsInventoried, IsDestroying],
         });
     }
 

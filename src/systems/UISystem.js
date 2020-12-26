@@ -1,15 +1,15 @@
-import { Moniker, Actor } from '../ecs/components';
+import { Moniker, Actor, IsPlayer, IsInventoried, IsVisible } from '../ecs/components';
 import System from './System';
 
 export default class UISystem extends System {
     showTicks = false;
-
-    #query = null;
+    beingsQuery = null;
 
     constructor(game) {
         super(game);
-        this.#query = this.game.ecs.createQuery({
-            all: [Moniker, Actor],
+        this.beingsQuery = this.game.ecs.createQuery({
+            all: [Moniker, Actor, IsVisible],
+            none: [IsPlayer, IsInventoried],
         });
     }
 
@@ -31,5 +31,76 @@ export default class UISystem extends System {
             `${Math.round(hp.value)}/${hp.max}`,
             '#ce5454'
         );
+
+
+        const beings = this.beingsQuery.get();
+
+        let offsetY = 2;
+
+        if (beings.length > 0) {
+            this.game.renderer.drawText(
+                0,
+                offsetY,
+                'Nearby creatures',
+            );
+
+            offsetY++;
+        }
+
+        beings.forEach((entity) => {
+            let moniker = entity.moniker.display;
+
+            if (entity.factionMember) {
+                const relation = this.game.factions.getEntityRelation(
+                    game.player.entity,
+                    entity
+                );
+                const faction = this.game.factions.getDisplay(relation);
+
+                moniker += ` [${faction}]`;
+            }
+
+            const width = this.game.renderer.computeTextWidth(moniker);
+
+            this.game.renderer.drawText(0, offsetY, moniker);
+
+            if (entity.health) {
+                offsetY++;
+
+                const health = entity.health;
+                const barWidth = 20;
+
+                const prcnt = health.value / health.max;
+                const healthWidth = Math.ceil(prcnt * barWidth);
+
+                let hpBarFg = '';
+
+                for (let i = 0; i < healthWidth; i++) {
+                    hpBarFg += '▀';
+                }
+
+                this.game.renderer.drawText(
+                    0,
+                    offsetY,
+                    hpBarFg,
+                    '#ce5454',
+                );
+
+                let hpBarBg = '';
+
+                for (let i = healthWidth; i < barWidth; i++) {
+                    hpBarBg += '▀';
+                }
+
+                this.game.renderer.drawText(
+                    healthWidth / 2,
+                    offsetY,
+                    hpBarBg,
+                    '#716b6b',
+                );
+            }
+
+            offsetY++;
+        });
     }
 }

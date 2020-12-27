@@ -1,16 +1,16 @@
 import { Component } from 'geotic';
 
-export class EquippedAbilityMod extends Component {
+export class EquippedSkillMod extends Component {
     static allowMultiple = true;
     static properties = {
-        ABILITY_ARMOR: 0,
-        ABILITY_SPEED: 0,
-        ABILITY_THROWING: 0,
-        ABILITY_DODGE: 0,
+        SKILL_ARMOR: 0,
+        SKILL_SPEED: 0,
+        SKILL_THROWING: 0,
+        SKILL_DODGE: 0,
     };
 
-    onQueryAbilityModEquipped(evt) {
-        const mod = this[evt.data.ability];
+    onQuerySkillModEquipped(evt) {
+        const mod = this[evt.data.skill];
 
         if (mod) {
             evt.data.modifiers.push({

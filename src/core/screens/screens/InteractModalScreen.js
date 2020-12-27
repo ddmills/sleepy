@@ -8,10 +8,10 @@ import {
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import SelectableList from '../../../utils/SelectableList';
 import {
-    getAbilityName,
-    getAllAbilityEquippedMods,
-    getAllAbilityEquippedModSums,
-} from '../../../data/Abilities';
+    getSkillName,
+    getAllSkillEquippedMods,
+    getAllSkillEquippedModSums,
+} from '../../../data/Skills';
 
 export default class InteractModalScreen extends Screen {
     #width = 16;
@@ -160,11 +160,11 @@ export default class InteractModalScreen extends Screen {
             listPadding += 2;
         }
 
-        const modifiers = getAllAbilityEquippedModSums(this.#interactable);
+        const modifiers = getAllSkillEquippedModSums(this.#interactable);
         let hasMod = false;
 
-        Object.keys(modifiers).forEach((ability) => {
-            const modifier = modifiers[ability];
+        Object.keys(modifiers).forEach((skill) => {
+            const modifier = modifiers[skill];
 
             if (modifier === 0) {
                 return;
@@ -172,7 +172,7 @@ export default class InteractModalScreen extends Screen {
 
             hasMod = true;
 
-            const name = getAbilityName(ability);
+            const name = getSkillName(skill);
             const ypos = this.top + listPadding;
 
             this.game.renderer.drawText(xpos, ypos, name);

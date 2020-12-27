@@ -16,11 +16,11 @@ Dodge  <vs> Accuracy
 Armor  <vs> Penetration
 Health <vs> Damage
 
-DV = [d12 + FIN + DodgeAbility]
-AC = [d12 + FIN + AccuracyAbility]
+DV = [d12 + FIN + DodgeSkill]
+AC = [d12 + FIN + AccuracySkill]
 
-AV = [d12 + STR + ArmorAbility]
-PV = [d12 + STR + PenetrationAbility]
+AV = [d12 + STR + ArmorSkill]
+PV = [d12 + STR + PenetrationSkill]
 
 Defensive Values
 - Dodge Value DV = Compared against accuracy for to-hit (FNS)
@@ -39,7 +39,7 @@ When EntityA melee attacks EntityB with Weapon:
 
     Dodge Value - Accuracy
     AC   = (1d20 + EntityA.accuracy + Weapon.accuracyMod)
-    DV   = (1d20 + EntityB.dodgeAbility)
+    DV   = (1d20 + EntityB.dodgeSkill)
     HIT  = DV < AC
 
     **How much damage will it do?**

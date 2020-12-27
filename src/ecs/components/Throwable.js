@@ -1,7 +1,7 @@
 import { Component } from 'geotic';
 import { game } from '../../core/Game';
 import { SCREEN_ADVENTURE, SCREEN_CURSOR } from '../../core/screens/ScreenType';
-import { ABILITY_THROWING, getAbilityValue } from '../../data/Abilities';
+import { SKILL_THROWING, getSkillValue } from '../../data/Skills';
 import Attack from '../../data/Attack';
 import { DMG_TYPE_BLUDGEONING } from '../../data/DamageTypes';
 import { getStat, STAT_STRENGTH } from '../../data/Stats';
@@ -118,7 +118,7 @@ export class Throwable extends Component {
     }
 
     onTryThrow(evt) {
-        const range = getAbilityValue(ABILITY_THROWING, evt.data.interactor);
+        const range = getSkillValue(SKILL_THROWING, evt.data.interactor);
 
         game.screens.pushScreen(SCREEN_CURSOR, {
             start: evt.data.interactor.position.getPos(),

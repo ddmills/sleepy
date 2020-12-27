@@ -1,6 +1,6 @@
 import { Component } from 'geotic';
 import { game } from '../../core/Game';
-import { ABILITY_SPEED, getAbilityValue } from '../../data/Abilities';
+import { SKILL_SPEED, getSkillValue } from '../../data/Skills';
 import { Blocker } from './Blocker';
 
 export class Legs extends Component {
@@ -27,7 +27,7 @@ export class Legs extends Component {
             nonHostile.position.setPos(position.x, position.y);
         }
 
-        const speed = getAbilityValue(ABILITY_SPEED, this.entity);
+        const speed = getSkillValue(SKILL_SPEED, this.entity);
         const cost = (20 / (20 + speed)) * 1000;
 
         this.entity.fireEvent('energy-consumed', cost);

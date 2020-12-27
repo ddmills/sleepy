@@ -25,10 +25,10 @@
             }
         },
         {
-            "type": "EquippedAbilityMod",
+            "type": "EquippedSkillMod",
             "properties": {
-                "ABILITY_ARMOR": 2,
-                "ABILITY_DODGE": 2
+                "SKILL_ARMOR": 2,
+                "SKILL_DODGE": 2
             }
         }
     ]

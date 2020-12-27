@@ -26,9 +26,9 @@
             }
         },
         {
-            "type": "EquippedAbilityMod",
+            "type": "EquippedSkillMod",
             "properties": {
-                "ABILITY_DODGE": 2
+                "SKILL_DODGE": 2
             }
         }
     ]

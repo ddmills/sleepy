@@ -7,14 +7,14 @@ import {
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import SelectableList from '../../../utils/SelectableList';
 import {
-    ABILITY_ARMOR,
-    ABILITY_DODGE,
-    ABILITY_SPEED,
-    getAbilityValue,
-} from '../../../data/Abilities';
-import { getSpeedPercentDisplay } from '../../../data/abilities/SpeedAbility';
-import { getArmorBlockPercentDisplay } from '../../../data/abilities/ArmorAbility';
-import { getDodgePercent } from '../../../data/abilities/DodgeAbility';
+    SKILL_ARMOR,
+    SKILL_DODGE,
+    SKILL_SPEED,
+    getSkillValue,
+} from '../../../data/Skills';
+import { getSpeedPercentDisplay } from '../../../data/skills/SpeedSkill';
+import { getArmorBlockPercentDisplay } from '../../../data/skills/ArmorSkill';
+import { getDodgePercent } from '../../../data/skills/DodgeSkill';
 
 export default class CharacterScreen extends Screen {
     character;
@@ -72,7 +72,7 @@ export default class CharacterScreen extends Screen {
         this.game.renderer.drawText(2, 5, 'health');
         this.game.renderer.drawText(10, 5, `${health}/${healthMax}`);
 
-        const speed = getAbilityValue(ABILITY_SPEED, this.character);
+        const speed = getSkillValue(SKILL_SPEED, this.character);
         const speedPrcnt = getSpeedPercentDisplay(speed);
 
         this.game.renderer.drawText(2, 6, 'speed');
@@ -82,7 +82,7 @@ export default class CharacterScreen extends Screen {
             `+${speed} (${100 - speedPrcnt}% less movement cost)`
         );
 
-        const armor = getAbilityValue(ABILITY_ARMOR, this.character);
+        const armor = getSkillValue(SKILL_ARMOR, this.character);
         const armorPrcnt = getArmorBlockPercentDisplay(armor);
 
         this.game.renderer.drawText(2, 7, 'armor');
@@ -92,7 +92,7 @@ export default class CharacterScreen extends Screen {
             `+${armor} (${armorPrcnt}% less melee damage taken)`
         );
 
-        const dodge = getAbilityValue(ABILITY_DODGE, this.character);
+        const dodge = getSkillValue(SKILL_DODGE, this.character);
         const dodgePrcnt = getDodgePercent(dodge);
 
         this.game.renderer.drawText(2, 8, 'dodge');

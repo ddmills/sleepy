@@ -25,9 +25,9 @@
             }
         },
         {
-            "type": "EquippedAbilityMod",
+            "type": "EquippedSkillMod",
             "properties": {
-                "ABILITY_ARMOR": 2
+                "SKILL_ARMOR": 2
             }
         }
     ]

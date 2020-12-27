@@ -1,10 +1,10 @@
-import { ABILITY_THROWING } from '../Abilities';
+import { SKILL_THROWING } from '../Skills';
 import { getStat, STAT_ATHLETICISM } from '../Stats';
-import Ability from './Ability';
+import Skill from './Skill';
 
-export default class ThrowingAbility extends Ability {
+export default class ThrowingSkill extends Skill {
     constructor() {
-        super(ABILITY_THROWING, 'throwing', STAT_ATHLETICISM);
+        super(SKILL_THROWING, 'throwing', STAT_ATHLETICISM);
     }
 
     compute(entity) {

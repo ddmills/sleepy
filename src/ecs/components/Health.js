@@ -1,12 +1,8 @@
 import { Component } from 'geotic';
 import { game } from '../../core/Game';
-import {
-    ABILITY_ARMOR,
-    ABILITY_DODGE,
-    getAbilityValue,
-} from '../../data/Abilities';
-import { getArmorBlockPercent } from '../../data/abilities/ArmorAbility';
-import { getDodgePercent } from '../../data/abilities/DodgeAbility';
+import { SKILL_ARMOR, SKILL_DODGE, getSkillValue } from '../../data/Skills';
+import { getArmorBlockPercent } from '../../data/skills/ArmorSkill';
+import { getDodgePercent } from '../../data/skills/DodgeSkill';
 import {
     CONSOLE_EVENT_DAMAGE,
     CONSOLE_EVENT_DEAD,
@@ -38,7 +34,7 @@ export class Health extends Component {
         const attack = evt.data.attack;
         const attacker = attack.attacker;
         const defender = attack.defender;
-        const dodge = getAbilityValue(ABILITY_DODGE, defender);
+        const dodge = getSkillValue(SKILL_DODGE, defender);
         const dodgePrcnt = getDodgePercent(dodge);
 
         if (!attack.ignoreDodge && randomInt(1, 100) <= dodgePrcnt) {
@@ -57,7 +53,7 @@ export class Health extends Component {
 
         evt.data.isDodged = false;
 
-        const armor = getAbilityValue(ABILITY_ARMOR, defender);
+        const armor = getSkillValue(SKILL_ARMOR, defender);
         const armorPrcnt = getArmorBlockPercent(armor);
         const blocked = Math.floor(attack.damage * armorPrcnt);
         const damage = attack.damage - blocked;

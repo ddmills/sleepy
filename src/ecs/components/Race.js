@@ -1,5 +1,5 @@
 import { Component } from 'geotic';
-import { ABILITY_SPEED } from '../../data/Abilities';
+import { SKILL_SPEED } from '../../data/Skills';
 import { getRaceData, RACE_HUMAN } from '../../data/Races';
 
 export class Race extends Component {
@@ -79,8 +79,8 @@ export class Race extends Component {
         }
     }
 
-    onQueryAbilityMod(evt) {
-        if (evt.data.ability === ABILITY_SPEED) {
+    onQuerySkillMod(evt) {
+        if (evt.data.skill === SKILL_SPEED) {
             const mod = this.speed;
 
             evt.data.modifiers.push({

@@ -1,8 +1,8 @@
 import { getStat } from '../Stats';
 
-export default class Ability {
+export default class Skill {
     key = -1;
-    name = 'ability';
+    name = 'skill';
     baseStat = null;
 
     constructor(key, name, baseStat) {
@@ -14,9 +14,9 @@ export default class Ability {
     getModifiers(entity) {
         const modifiers = [];
 
-        entity.fireEvent(`query-ability-mod`, {
+        entity.fireEvent(`query-skill-mod`, {
             name: this.name,
-            ability: this.key,
+            skill: this.key,
             modifiers,
         });
 

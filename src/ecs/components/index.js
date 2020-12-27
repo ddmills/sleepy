@@ -40,7 +40,7 @@ export { Status } from './Status';
 export { Ground } from './Ground';
 export { IsIncapacitated } from './IsIncapacitated';
 export { SharpTrap } from './SharpTrap';
-export { EquippedAbilityMod } from './EquippedAbilityMod';
+export { EquippedSkillMod } from './EquippedSkillMod';
 export { Combustible } from './Combustible';
 export { Fire } from './Fire';
 export { ThermalCapacity } from './ThermalCapacity';

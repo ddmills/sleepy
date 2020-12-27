@@ -22,7 +22,7 @@ influence by race, class, pact, personality
 These are computed based on Stats, status effects, and skills.
 
 - speed
-- dodge ability
+- dodge skill
 
 # Races
 - Human

@@ -60,9 +60,7 @@ export default class UISystem extends System {
                 entity.status.forEach((status) => {
                     const statusType = getStatus(status.key);
 
-                    if (statusType.isDot) {
-                        dotLevel = 2;
-                    }
+                    dotLevel += statusType.getPipCount(status.potency);
 
                     this.game.renderer.drawUI(
                         statusOffset,
@@ -74,6 +72,8 @@ export default class UISystem extends System {
                     statusOffset++;
                 });
             }
+
+            dotLevel = Math.min(3, dotLevel);
 
             if (entity.health) {
                 offsetY++;

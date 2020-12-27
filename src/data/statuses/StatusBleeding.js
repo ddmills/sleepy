@@ -21,6 +21,10 @@ export default class StatusBleeding extends Status {
         return 3 * potency + 0.5;
     }
 
+    getPipCount(potency) {
+        return Math.round(2 * potency);
+    }
+
     update(ticks, entity, status) {
         const tick = Math.min(ticks, status.remainingLifetime());
         const dmgPerTurn = this.getDmgPerTurn(status.potency);

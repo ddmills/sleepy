@@ -111,7 +111,7 @@ export default class FactionManager extends Manager {
         if (value >= 200) {
             return {
                 char: '☺',
-                fg1: '#7aad7a',
+                fg1: '#78b478',
                 fg2: '#1a251a',
             };
         }

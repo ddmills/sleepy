@@ -23,7 +23,7 @@ export default class UISystem extends System {
     renderNearbyCreatures() {
         const beings = this.beingsQuery.get();
 
-        let offsetY = 2;
+        let offsetY = 0;
 
         beings.forEach((entity) => {
             let moniker = entity.moniker.display;

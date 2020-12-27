@@ -1,4 +1,3 @@
-import { game } from '../../core/Game';
 import { LIQUID_BLOOD } from '../../enums/LiquidTypes';
 import { STATUS_TYPE_CONDITION } from '../../enums/StatusTypes';
 import { SPWN_POOL_LIQUID } from '../Spawnables';
@@ -8,7 +7,14 @@ import Status from './Status';
 
 export default class StatusBleeding extends Status {
     constructor() {
-        super(STATUS_BLEEDING, 'Bleeding', STATUS_TYPE_CONDITION);
+        const glyph = {
+            fg1: '#f42323',
+            fg2: '#411010',
+            bg: null,
+            ch: 's',
+        };
+        super(STATUS_BLEEDING, 'Bleeding', STATUS_TYPE_CONDITION, glyph);
+        this.isDot = true;
     }
 
     getDmgPerTurn(potency) {

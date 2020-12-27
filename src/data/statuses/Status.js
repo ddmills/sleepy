@@ -1,7 +1,10 @@
 export default class Status {
-    constructor(key, name, type) {
+    isDot = false;
+
+    constructor(key, name, type, glyph) {
         this.key = key;
         this.name = name;
         this.type = type;
+        this.glyph = glyph;
     }
 }

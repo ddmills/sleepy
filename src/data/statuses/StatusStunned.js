@@ -6,7 +6,13 @@ import Status from './Status';
 
 export default class StatusStunned extends Status {
     constructor() {
-        super(STATUS_STUNNED, 'Stunned', STATUS_TYPE_CONDITION);
+        const glyph = {
+            fg1: '#daa53a',
+            fg2: '#f2da97',
+            bg: null,
+            ch: '|',
+        };
+        super(STATUS_STUNNED, 'Stunned', STATUS_TYPE_CONDITION, glyph);
     }
 
     update(ticks, entity, status) {

@@ -43,6 +43,12 @@ export default class Renderer extends Manager {
         this.display.draw(x, y, sprite, fg1, fg2, bg);
     }
 
+    drawUI(x, y, char, fg1 = '#adb8bc', fg2 = '#333', bg) {
+        const sprite = this.#spritesheets.ui.getSprite(char);
+
+        this.display.draw(x, y, sprite, fg1, fg2, bg);
+    }
+
     computeTextWidth(text) {
         return text.length * 0.5;
     }

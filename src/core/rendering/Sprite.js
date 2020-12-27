@@ -1,5 +1,5 @@
 import { parseColor } from '../../utils/ColorParser';
-import { isBlack } from '../../utils/ColorUtil';
+import { isBlack, isWhite } from '../../utils/ColorUtil';
 
 export default class Sprite {
     #ctx = null;
@@ -84,20 +84,21 @@ export default class Sprite {
         const pixels = this.#ctx.getImageData(0, 0, this.width, this.height);
 
         for (let i = 0; i < pixels.data.length; i += 4) {
-            const r = pixels.data[i];
+            const r = pixels.data[i + 0];
             const g = pixels.data[i + 1];
             const b = pixels.data[i + 2];
+            const a = pixels.data[i + 3];
 
             if (isBlack(r, g, b)) {
                 pixels.data[i] = primary[0];
                 pixels.data[i + 1] = primary[1];
                 pixels.data[i + 2] = primary[2];
-                pixels.data[i + 4] = primary[3];
-            } else {
+                pixels.data[i + 3] = a;
+            } else if (isWhite(r, g, b)) {
                 pixels.data[i] = secondary[0];
                 pixels.data[i + 1] = secondary[1];
                 pixels.data[i + 2] = secondary[2];
-                pixels.data[i + 4] = secondary[3];
+                pixels.data[i + 3] = a;
             }
         }
 

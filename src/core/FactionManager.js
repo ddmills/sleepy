@@ -104,7 +104,7 @@ export default class FactionManager extends Manager {
             return {
                 char: '☻',
                 fg1: '#ca4444',
-                fg2: '#4c0e0e',
+                fg2: '#411010',
             };
         }
 
@@ -112,7 +112,7 @@ export default class FactionManager extends Manager {
             return {
                 char: '☺',
                 fg1: '#7aad7a',
-                fg2: '#223422',
+                fg2: '#1a251a',
             };
         }
 

@@ -7,11 +7,8 @@ import {
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import SelectableList from '../../../utils/SelectableList';
-import {
-    getSkillName,
-    getAllSkillEquippedMods,
-    getAllSkillEquippedModSums,
-} from '../../../data/Skills';
+import { getSkillName, getAllSkillEquippedModSums } from '../../../data/Skills';
+import { drawUIWindow } from '../../../utils/UIWindowUtil';
 
 export default class InteractModalScreen extends Screen {
     #width = 16;
@@ -103,47 +100,16 @@ export default class InteractModalScreen extends Screen {
     onUpdate(dt) {
         this.handleInput();
 
-        this.game.renderer.clearArea(
+        drawUIWindow(
             this.left,
             this.top,
-            this.#width + 1,
-            this.#height + 1
+            this.#width,
+            this.#height,
+            this.#interactable.moniker.display,
+            this.#interactable.glyph
         );
 
-        this.game.renderer.draw(
-            this.left + 2,
-            this.top + 2,
-            this.#interactable.glyph.char,
-            this.#interactable.glyph.primary,
-            this.#interactable.glyph.secondary,
-            this.#interactable.glyph.background
-        );
-
-        this.game.renderer.drawTextCenter(
-            this.top + 2,
-            `${this.#interactable.moniker.display}`
-        );
-
-        for (let i = this.left; i < this.left + this.#width; i++) {
-            this.game.renderer.draw(i, this.top, '─');
-            this.game.renderer.draw(i, this.top + this.#height, '─');
-        }
-
-        for (let i = this.top; i < this.top + this.#height; i++) {
-            this.game.renderer.draw(this.left, i, '│');
-            this.game.renderer.draw(this.left + this.#width, i, '│');
-        }
-
-        this.game.renderer.draw(this.left, this.top, '┌');
-        this.game.renderer.draw(this.left + this.#width, this.top, '┐');
-        this.game.renderer.draw(this.left, this.top + this.#height, '└');
-        this.game.renderer.draw(
-            this.left + this.#width,
-            this.top + this.#height,
-            '┘'
-        );
-
-        let listPadding = 4;
+        let listPadding = 2;
         const xpos = this.left + 2;
 
         if (this.#interactable.weapon) {

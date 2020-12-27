@@ -7,7 +7,7 @@ import {
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import SelectableList from '../../../utils/SelectableList';
-import Simple from 'rot-js/lib/scheduler/simple';
+import { drawUIWindow } from '../../../utils/UIWindowUtil';
 
 const NOOP = () => {};
 
@@ -16,6 +16,8 @@ export default class ListSelectionScreen extends Screen {
     height = 12;
     list = new SelectableList();
     header = '';
+    icon = null;
+    leadText = null;
 
     get left() {
         return Math.floor((this.game.camera.width - this.width) / 2);
@@ -29,6 +31,8 @@ export default class ListSelectionScreen extends Screen {
         this.game.commands.pushDomain(INPUT_DOMAIN_MAIN_MENU);
         this.list.setItems(ctx.list || []);
         this.header = ctx.header || 'Select';
+        this.icon = ctx.icon || null;
+        this.leadText = ctx.leadText || null;
         this.onSelect = ctx.onSelect || NOOP;
         this.onCancel = ctx.onCancel || NOOP;
         this.onGetRowName = ctx.onGetRowName || NOOP;
@@ -85,38 +89,27 @@ export default class ListSelectionScreen extends Screen {
     onUpdate(dt) {
         this.handleInput();
 
-        this.game.renderer.clearArea(
+        drawUIWindow(
             this.left,
             this.top,
-            this.width + 1,
-            this.height + 1
+            this.width,
+            this.height,
+            this.header,
+            this.icon
         );
 
-        this.game.renderer.drawTextCenter(this.top + 2, this.header);
-
-        for (let i = this.left; i < this.left + this.width; i++) {
-            this.game.renderer.draw(i, this.top, '─');
-            this.game.renderer.draw(i, this.top + this.height, '─');
-        }
-
-        for (let i = this.top; i < this.top + this.height; i++) {
-            this.game.renderer.draw(this.left, i, '│');
-            this.game.renderer.draw(this.left + this.width, i, '│');
-        }
-
-        this.game.renderer.draw(this.left, this.top, '┌');
-        this.game.renderer.draw(this.left + this.width, this.top, '┐');
-        this.game.renderer.draw(this.left, this.top + this.height, '└');
-        this.game.renderer.draw(
-            this.left + this.width,
-            this.top + this.height,
-            '┘'
-        );
+        let yOffset = this.top + 2;
 
         const xpos = this.left + 2;
 
+        if (this.leadText) {
+            this.game.renderer.drawText(xpos, yOffset, this.leadText);
+
+            yOffset += 2;
+        }
+
         this.list.data.forEach(({ item, idx, isSelected }) => {
-            const ypos = idx + this.top + 4;
+            const ypos = yOffset + idx;
 
             this.onRenderRow(item, xpos, ypos, isSelected, idx);
         });

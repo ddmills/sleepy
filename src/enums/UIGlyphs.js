@@ -1,0 +1,10 @@
+export const UI_GLYPH_BORDER_TL = '╨';
+export const UI_GLYPH_BORDER_T = '╤';
+export const UI_GLYPH_BORDER_TR = '╥';
+export const UI_GLYPH_BORDER_L = 'α';
+export const UI_GLYPH_BORDER_R = 'Γ';
+export const UI_GLYPH_BORDER_BL = '≡';
+export const UI_GLYPH_BORDER_B = '±';
+export const UI_GLYPH_BORDER_BR = '≥';
+export const UI_GLYPH_BORDER_TERM_R = '╙';
+export const UI_GLYPH_BORDER_TERM_L = 'π';

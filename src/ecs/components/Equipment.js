@@ -17,7 +17,9 @@ export class Equipment extends Component {
         );
 
         game.screens.pushScreen(SCREEN_LIST_SELECT, {
-            header: `Equip ${this.entity.moniker.display}`,
+            header: this.entity.moniker.display,
+            icon: this.entity.glyph,
+            leadText: 'Select a slot',
             list: slots,
             onRenderRow: (slot, x, y, isSelected) => {
                 let text = slot.name;

@@ -13,7 +13,7 @@ const NOOP = () => {};
 
 export default class ListSelectionScreen extends Screen {
     width = 16;
-    height = 12;
+    height = 10;
     list = new SelectableList();
     header = '';
     icon = null;

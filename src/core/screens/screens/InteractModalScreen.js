@@ -12,7 +12,7 @@ import { drawUIWindow } from '../../../utils/UIWindowUtil';
 
 export default class InteractModalScreen extends Screen {
     #width = 16;
-    #height = 12;
+    #height = 10;
     #interactable;
     #interactor;
     list = new SelectableList();

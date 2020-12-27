@@ -138,7 +138,8 @@ export default class AdventureScreen extends Screen {
         }
 
         game.screens.pushScreen(SCREEN_LIST_SELECT, {
-            header: `Choose`,
+            header: `Ground`,
+            leadText: 'Select an item to interact',
             list: items,
             onGetRowName: (item) => item.moniker.display,
             onSelect: (item) => {

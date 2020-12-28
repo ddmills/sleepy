@@ -21,14 +21,13 @@ export class Stats extends Component {
     }
 
     getStatModifiers(stat) {
-        const name = getStatName(stat);
-        const modifiers = [];
-
-        this.entity.fireEvent(`query-stat-modifier-${name}`, {
-            modifiers,
+        const evt = this.entity.fireEvent(`query-stat-mod`, {
+            name: getStatName(stat),
+            stat,
+            modifiers: [],
         });
 
-        return modifiers;
+        return evt.data.modifiers;
     }
 
     getStatModifierSum(stat) {

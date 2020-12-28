@@ -19,57 +19,12 @@ export class Race extends Component {
         return this.data().speed;
     }
 
-    get strengthMod() {
-        return this.data().modStrength;
+    getModifier(stat) {
+        return this.data()[stat];
     }
 
-    get finesseMod() {
-        return this.data().modFinesse;
-    }
-
-    get athleticismMod() {
-        return this.data().modAthleticism;
-    }
-
-    get trickeryMod() {
-        return this.data().modTrickery;
-    }
-
-    onQueryStatModifierStrength(evt) {
-        const mod = this.strengthMod;
-
-        if (mod !== 0) {
-            evt.data.modifiers.push({
-                source: this.name,
-                mod,
-            });
-        }
-    }
-
-    onQueryStatModifierFinesse(evt) {
-        const mod = this.finesseMod;
-
-        if (mod !== 0) {
-            evt.data.modifiers.push({
-                source: this.name,
-                mod,
-            });
-        }
-    }
-
-    onQueryStatModifierAthleticism(evt) {
-        const mod = this.athleticismMod;
-
-        if (mod !== 0) {
-            evt.data.modifiers.push({
-                source: this.name,
-                mod,
-            });
-        }
-    }
-
-    onQueryStatModifierTrickery(evt) {
-        const mod = this.trickeryMod;
+    onQueryStatMod(evt) {
+        const mod = this.getModifier(evt.data.stat);
 
         if (mod !== 0) {
             evt.data.modifiers.push({

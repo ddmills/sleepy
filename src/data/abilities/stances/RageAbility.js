@@ -28,11 +28,9 @@ export default class RageAbility extends SimpleToggledAbility {
         return `Gain +${str} strength.`;
     }
 
-    getStatMod(stat, status) {
-        if (stat === STAT_STRENGTH) {
-            return this.computeStrengthMod(status.entity);
-        }
-
-        return 0;
+    getStatMods(entity) {
+        return {
+            STAT_STRENGTH: this.computeStrengthMod(entity)
+        };
     }
 }

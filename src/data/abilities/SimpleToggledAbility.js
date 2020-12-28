@@ -32,6 +32,8 @@ export default class SimpleToggledAbility extends Ability {
             isCoolingDown: false,
             maxToggleDuration: this.getToggleDuration(entity),
             cooldownDuration: this.getCooldownDuration(entity),
+            statMods: this.getStatMods(entity),
+            skillMods: this.getSkillMods(entity),
         });
 
         return true;

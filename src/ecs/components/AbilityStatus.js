@@ -12,7 +12,8 @@ export class AbilityStatus extends Component {
         currentCooldownDuration: 0,
         toggleDuration: 10000,
         currentToggleDuration: 0,
-        abilityMods: [],
+        statMods: {},
+        skillMods: {},
     };
 
     get ability() {
@@ -53,7 +54,7 @@ export class AbilityStatus extends Component {
             return;
         }
 
-        const mod = this.ability.getSkillMod(evt.data.skill, this);
+        const mod = this.skillMods[evt.data.skill];
 
         if (mod) {
             evt.data.modifiers.push({
@@ -68,7 +69,7 @@ export class AbilityStatus extends Component {
             return;
         }
 
-        const mod = this.ability.getStatMod(evt.data.stat, this);
+        const mod = this.statMods[evt.data.stat];
 
         if (mod) {
             evt.data.modifiers.push({

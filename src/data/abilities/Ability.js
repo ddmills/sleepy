@@ -23,16 +23,12 @@ export default class Ability {
     execute(entity, data) {
     }
 
-    updateAbilityStatus(dt, status) {
-    }
-
-    getSkillMod(skill, status) {
-        return 0;
-    }
-
-    getStatMod(stat, status) {
-        return 0;
-    }
+    getStatMods(entity) {
+        return {};
+    };
+    getSkillMods(entity) {
+        return {};
+    };
 
     updateAbilityStatus(dt, status) {
         if (status.isCoolingDown) {

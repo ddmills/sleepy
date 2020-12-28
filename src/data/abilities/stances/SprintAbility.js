@@ -29,11 +29,9 @@ export default class SprintAbility extends SimpleToggledAbility {
         return `Gain +${speed} move speed. [ATH]`;
     }
 
-    getSkillMod(skill, status) {
-        if (skill === SKILL_SPEED) {
-            return this.computeSpeedMod(status.entity);
-        }
-
-        return 0;
+    getSkillMods(entity) {
+        return {
+            SKILL_SPEED: this.computeSpeedMod(entity)
+        };
     }
 }

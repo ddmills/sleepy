@@ -1,9 +1,9 @@
 import { randomInt } from '../utils/rand';
 
-export const STAT_STRENGTH = 0;
-export const STAT_FINESSE = 1;
-export const STAT_ATHLETICISM = 2;
-export const STAT_TRICKERY = 3;
+export const STAT_STRENGTH = 'STAT_STRENGTH';
+export const STAT_FINESSE = 'STAT_FINESSE';
+export const STAT_ATHLETICISM = 'STAT_ATHLETICISM';
+export const STAT_TRICKERY = 'STAT_TRICKERY';
 
 const lookup = {
     [STAT_STRENGTH]: {

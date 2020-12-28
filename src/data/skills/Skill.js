@@ -12,15 +12,13 @@ export default class Skill {
     }
 
     getModifiers(entity) {
-        const modifiers = [];
-
-        entity.fireEvent(`query-skill-mod`, {
+        const evt = entity.fireEvent(`query-skill-mod`, {
             name: this.name,
             skill: this.key,
-            modifiers,
+            modifiers: [],
         });
 
-        return modifiers;
+        return evt.data.modifiers;
     }
 
     getModifierSum(entity) {

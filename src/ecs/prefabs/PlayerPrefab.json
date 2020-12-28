@@ -55,7 +55,8 @@
             "type": "Abilities",
             "properties": {
                 "known": [
-                    "ABILITY_SPRINT"
+                    "ABILITY_SPRINT",
+                    "ABILITY_RAGE"
                 ]
             }
         }

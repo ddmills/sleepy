@@ -1,4 +1,3 @@
-import { getAbility } from '../data/Abilities';
 import { IsDestroying } from '../ecs/components';
 import { AbilityStatus } from '../ecs/components/AbilityStatus';
 import System from './System';
@@ -22,9 +21,7 @@ export default class AbilitySystem extends System {
 
         this.query.get().forEach((entity) => {
             Object.values(entity.abilityStatus).forEach((status) => {
-                const ability = getAbility(status.key);
-
-                ability.updateAbilityStatus(delta, entity, status);
+                status.ability.updateAbilityStatus(delta, status);
             });
         });
     }

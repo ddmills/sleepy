@@ -31,7 +31,7 @@ export default class StatusStunned extends Status {
         }
 
         if (status.isCompleted()) {
-            entity.remove(IsIncapacitated);
+            entity.isIncapacitated.destroy();
         }
     }
 }

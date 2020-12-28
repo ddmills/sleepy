@@ -1,10 +1,10 @@
-import { AbilityStatus } from '../../../ecs/components/AbilityStatus';
 import { ABILITY_TYPE_STANCE } from '../../../enums/AbilityTypes';
 import { ABILITY_SPRINT } from '../../Abilities';
+import { SKILL_SPEED } from '../../Skills';
 import { getStat, STAT_ATHLETICISM } from '../../Stats';
-import Ability from '../Ability';
+import SimpleToggledAbility from '../SimpleToggledAbility';
 
-export default class SprintAbility extends Ability {
+export default class SprintAbility extends SimpleToggledAbility {
     key = ABILITY_SPRINT;
     type = ABILITY_TYPE_STANCE;
     name = 'Sprint';
@@ -12,27 +12,28 @@ export default class SprintAbility extends Ability {
     isToggleable = true;
 
     computeSpeedMod(entity) {
-        return getStat(STAT_ATHLETICISM, entity);
+        return 5 + 2 * getStat(STAT_ATHLETICISM, entity);
     }
 
-    initiate(entity) {
-        console.log(`${entity.moniker.display} wants to sprint`);
+    getToggleDuration(entity) {
+        return 20000;
+    }
+
+    getCooldownDuration(entity) {
+        return 50000;
     }
 
     getDescription(entity) {
-        const speed = 1 + this.computeSpeedMod(entity);
+        const speed = this.computeSpeedMod(entity);
 
         return `Gain +${speed} move speed. [ATH]`;
     }
 
-    execute(entity, data) {
-        entity.add(AbilityStatus, {
-            key: this.key,
-            isToggled: true,
-        });
-    }
+    getSkillMod(skill, status) {
+        if (skill === SKILL_SPEED) {
+            return this.computeSpeedMod(status.entity);
+        }
 
-    updateAbilityStatus(dt, entity, status) {
-        console.log('sprinting');
+        return 0;
     }
 }

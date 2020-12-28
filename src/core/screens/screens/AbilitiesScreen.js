@@ -8,7 +8,7 @@ import {
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import SelectableList from '../../../utils/SelectableList';
 import { drawUIWindow } from '../../../utils/UIWindowUtil';
-import { getAbility } from '../../../data/Abilities';
+import { getAbility, getAbilityStatus } from '../../../data/Abilities';
 import { getAbilityTypeName } from '../../../enums/AbilityTypes';
 
 export default class AbilitiesScreen extends Screen {
@@ -110,15 +110,44 @@ export default class AbilitiesScreen extends Screen {
         let xOffset = this.left + 2;
 
         this.list.data.forEach(({ item: ability, idx, isSelected }) => {
+            if (ability.isBack) {
+                if (isSelected) {
+                    this.game.renderer.drawText(
+                        xOffset,
+                        yOffset + idx,
+                        '→ Back',
+                        'yellow'
+                    );
+                } else {
+                    this.game.renderer.drawText(xOffset, yOffset + idx, '- Back');
+                }
+                return;
+            }
+
+            const display = ability.getDisplayText(this.character);
+
             if (isSelected) {
-                this.game.renderer.drawText(
-                    xOffset,
-                    yOffset + idx,
-                    `→ ${ability.name}`,
-                    'yellow'
-                );
+                if (display.isEnabled) {
+                    this.game.renderer.drawText(
+                        xOffset,
+                        yOffset + idx,
+                        `→ ${display.text}`,
+                        'yellow'
+                    );
+                } else {
+                    this.game.renderer.drawText(
+                        xOffset,
+                        yOffset + idx,
+                        `→ ${display.text}`,
+                        'gray'
+                    );
+                }
             } else {
-                this.game.renderer.drawText(xOffset, yOffset + idx, `- ${ability.name}`);
+                if (display.isEnabled) {
+                    this.game.renderer.drawText(xOffset, yOffset + idx, `- ${display.text}`);
+                } else {
+                    this.game.renderer.drawText(xOffset, yOffset + idx, `- ${display.text}`, 'gray');
+                }
             }
         });
 

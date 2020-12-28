@@ -3,7 +3,7 @@ import { STAT_ATHLETICISM } from '../Stats';
 import Skill from './Skill';
 
 export const getSpeedPercent = (skill = 0) => {
-    const base = 50;
+    const base = 5;
     const cost = base / (base + skill);
 
     return cost;

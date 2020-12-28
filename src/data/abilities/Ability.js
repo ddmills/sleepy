@@ -1,3 +1,5 @@
+import { getAbilityStatus } from '../Abilities';
+
 export default class Ability {
     key = '';
     type = 0;
@@ -21,6 +23,62 @@ export default class Ability {
     execute(entity, data) {
     }
 
-    updateAbilityStatus(dt, entity, status) {
+    updateAbilityStatus(dt, status) {
+    }
+
+    getSkillMod(skill, status) {
+        return 0;
+    }
+
+    getStatMod(stat, status) {
+        return 0;
+    }
+
+    updateAbilityStatus(dt, status) {
+        if (status.isCoolingDown) {
+            status.currentCooldownDuration += dt;
+        } else if (status.isToggleDurationComplete){
+            status.startCooldown();
+        }
+
+        if (status.isToggledOn){
+            status.currentToggleDuration += dt;
+        }
+
+        if (status.isCooldownComplete) {
+            status.destroy();
+        }
+    }
+
+    getDisplayText(entity) {
+        const status = getAbilityStatus(this.key, entity);
+
+        if (status && status.isCoolingDown) {
+            const cd = (status.remainingCooldownDuration / 1000).toFixed(1);
+
+            return {
+                text: `${this.name} [${cd}]`,
+                isEnabled: false,
+            };
+        }
+
+        if (this.isToggleable) {
+            if (status && status.isToggledOn) {
+                return {
+                    text: `${this.name} [toggle OFF]`,
+                    isEnabled: true,
+                };
+            } else {
+                return {
+                    text: `${this.name} [toggle ON]`,
+                    isEnabled: true,
+                };
+            }
+        }
+
+        return {
+            text: this.name,
+            isEnabled: true,
+        };
     }
 }

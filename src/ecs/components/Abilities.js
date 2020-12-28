@@ -3,7 +3,7 @@ import { Component } from 'geotic';
 export class Abilities extends Component {
     static properties = {
         known: [],
-        state: [],
+        state: {},
     };
 
     onQueryAbilities(evt) {

@@ -3,6 +3,11 @@ export default class Ability {
     type = 0;
     name = '';
     description = '';
+    isToggleable = false;
+
+    getDescription(entity) {
+        return '';
+    }
 
     constructor(key, type, name) {
         this.key = key;
@@ -10,6 +15,12 @@ export default class Ability {
         this.name = name;
     }
 
-    execute(data) {
+    initiate(entity) {
+    }
+
+    execute(entity, data) {
+    }
+
+    updateAbilityStatus(dt, entity, status) {
     }
 }

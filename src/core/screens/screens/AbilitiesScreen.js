@@ -9,6 +9,7 @@ import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import SelectableList from '../../../utils/SelectableList';
 import { drawUIWindow } from '../../../utils/UIWindowUtil';
 import { getAbility } from '../../../data/Abilities';
+import { getAbilityTypeName } from '../../../enums/AbilityTypes';
 
 export default class AbilitiesScreen extends Screen {
     width = 14;
@@ -55,24 +56,18 @@ export default class AbilitiesScreen extends Screen {
     }
 
     selectItem() {
-        // const interaction = this.list.selected;
+        const ability = this.list.selected;
 
-        // if (interaction.isBack) {
-        //     this.game.screens.popScreen();
-        //     return;
-        // }
+        if (ability.isBack) {
+            this.game.screens.popScreen();
+            return;
+        }
 
-        // this.#interactable.fireEvent(interaction.evt, {
-        //     interactor: this.#interactor,
-        // });
+        const data = ability.initiate(this.character);
 
-        // if (this.#interactable.isDestroyed) {
-        //     this.game.screens.popScreen();
+        ability.execute(this.character, data);
 
-        //     return;
-        // }
-
-        // this.refreshList();
+        this.game.screens.popScreen();
     }
 
     handleInput() {
@@ -133,11 +128,13 @@ export default class AbilitiesScreen extends Screen {
             return;
         }
 
+        const description = `${getAbilityTypeName(ability.type)}. ${ability.getDescription(this.character)}`;
+
         this.game.renderer.drawTextWrapping(
             xOffset,
             yOffset + this.list.length + 1,
             this.width - 1,
-            ability.description
+            description
         );
     }
 }

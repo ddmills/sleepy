@@ -33,6 +33,7 @@ import {
     INPUT_CMD_SELECT_S,
     INPUT_CMD_SELECT_SE,
     INPUT_CMD_NEW_GAME,
+    INPUT_CMD_ABILITIES,
 } from './InputCommandType';
 import {
     KEY_S,
@@ -58,6 +59,7 @@ import {
     KEY_N,
     KEY_P,
     KEY_Y,
+    KEY_T,
 } from './KeyCodes';
 
 const cmd = (domain, type, name, isKeyboard, key, shift, ctrl, alt, meta) =>
@@ -117,4 +119,5 @@ export default [
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_INVENTORY,            'inventory',              true, KEY_I,        false, false, false, false),
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_EQUIPMENT,            'equipment',              true, KEY_P,        false, false, false, false),
     cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_CHARACTER,            'character',              true, KEY_Y,        false, false, false, false),
+    cmd(INPUT_DOMAIN_ADVENTURE, INPUT_CMD_ABILITIES,            'abilities',              true, KEY_T,        false, false, false, false),
 ];

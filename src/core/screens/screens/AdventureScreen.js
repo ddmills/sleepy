@@ -26,6 +26,7 @@ import {
     INPUT_CMD_SELECT_SE,
     INPUT_CMD_EQUIPMENT,
     INPUT_CMD_CHARACTER,
+    INPUT_CMD_ABILITIES,
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_ADVENTURE } from '../../input/InputDomainType';
 import {
@@ -47,6 +48,7 @@ import {
     SCREEN_CHARACTER,
     SCREEN_LIST_SELECT,
     SCREEN_MAIN_MENU,
+    SCREEN_ABILITIES,
 } from '../ScreenType';
 import { Door, Loot } from '../../../ecs/components';
 
@@ -213,6 +215,11 @@ export default class AdventureScreen extends Screen {
             this.game.screens.pushScreen(SCREEN_INVENTORY, {
                 accessible: this.game.player.entity,
                 accessor: this.game.player.entity,
+            });
+        }
+        if (cmd.type === INPUT_CMD_ABILITIES) {
+            this.game.screens.pushScreen(SCREEN_ABILITIES, {
+                character: this.game.player.entity,
             });
         }
         if (cmd.type === INPUT_CMD_EQUIPMENT) {

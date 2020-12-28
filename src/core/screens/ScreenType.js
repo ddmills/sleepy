@@ -8,3 +8,4 @@ export const SCREEN_LOAD_SECTOR = 6;
 export const SCREEN_EQUIPMENT = 7;
 export const SCREEN_LIST_SELECT = 8;
 export const SCREEN_CHARACTER = 9;
+export const SCREEN_ABILITIES = 10;

@@ -8,13 +8,13 @@ import {
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import SelectableList from '../../../utils/SelectableList';
 import { drawUIWindow } from '../../../utils/UIWindowUtil';
-import { getAbility, getAbilityStatus } from '../../../data/Abilities';
+import { getAbility } from '../../../data/Abilities';
 import { getAbilityTypeName } from '../../../enums/AbilityTypes';
 
 export default class AbilitiesScreen extends Screen {
-    width = 14;
-    PADDING_RIGHT = 2;
-    PADDING_HEIGHT = 6;
+    width = 20;
+    PADDING_RIGHT = 1;
+    PADDING_HEIGHT = 4;
     character;
     list = new SelectableList();
 

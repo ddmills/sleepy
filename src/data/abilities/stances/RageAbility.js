@@ -1,6 +1,6 @@
 import { ABILITY_TYPE_STANCE } from '../../../enums/AbilityTypes';
 import { ABILITY_RAGE } from '../../Abilities';
-import { STAT_STRENGTH } from '../../Stats';
+import { getStat, STAT_STRENGTH } from '../../Stats';
 import SimpleToggledAbility from '../SimpleToggledAbility';
 
 export default class RageAbility extends SimpleToggledAbility {
@@ -11,7 +11,7 @@ export default class RageAbility extends SimpleToggledAbility {
     isToggleable = true;
 
     computeStrengthMod(entity) {
-        return 6;
+        return getStat(STAT_STRENGTH, entity) * 3;
     }
 
     getToggleDuration(entity) {
@@ -25,7 +25,13 @@ export default class RageAbility extends SimpleToggledAbility {
     getDescription(entity) {
         const str = this.computeStrengthMod(entity);
 
-        return `Gain +${str} strength.`;
+        return `Enter a fit of rage. Gain +${str} STR and decrease dodge by ${-2}. [STR]`;
+    }
+
+    getSkillMods(entity) {
+        return {
+            SKILL_DODGE: -2
+        };
     }
 
     getStatMods(entity) {

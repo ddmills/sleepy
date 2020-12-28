@@ -4,7 +4,7 @@ export default class CameraManager extends Manager {
     width = 32;
     height = 24;
     zoom = 2;
-    padding = 4;
+    padding = 5;
     clampX = 16;
     clampY = 12;
 
@@ -28,11 +28,11 @@ export default class CameraManager extends Manager {
     computeSize() {
         this.width = Math.max(
             this.clampX,
-            Math.floor(window.innerWidth / this.renderedTileWidth) - 2
+            Math.floor(window.innerWidth / this.renderedTileWidth)
         );
         this.height = Math.max(
             this.clampY,
-            Math.floor(window.innerHeight / this.renderedTileHeight) - 2
+            Math.floor(window.innerHeight / this.renderedTileHeight)
         );
         this.topLeftWorldX = Math.floor(
             Math.min(

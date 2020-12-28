@@ -2,7 +2,6 @@ import { getStatus } from '../data/Statuses';
 import {
     Moniker,
     Actor,
-    IsPlayer,
     IsInventoried,
     IsVisible,
 } from '../ecs/components';
@@ -23,11 +22,12 @@ export default class UISystem extends System {
     renderNearbyCreatures() {
         const beings = this.beingsQuery.get();
 
-        let offsetY = 0;
+        const offsetX = 1;
+        let offsetY = 1;
 
         beings.forEach((entity) => {
             let moniker = entity.moniker.display;
-            let glyphOffset = 0;
+            let glyphOffset = offsetX;
 
             if (entity.factionMember) {
                 const relation = this.game.factions.getEntityRelation(
@@ -37,14 +37,14 @@ export default class UISystem extends System {
                 const glyph = this.game.factions.getAttitudeGlyph(relation);
 
                 this.game.renderer.drawUI(
-                    0,
+                    offsetX,
                     offsetY,
                     glyph.char,
                     glyph.fg1,
                     glyph.fg2
                 );
 
-                glyphOffset = 1.5;
+                glyphOffset += 1.5;
             }
 
             this.game.renderer.drawText(glyphOffset, offsetY, moniker);
@@ -94,7 +94,7 @@ export default class UISystem extends System {
                         if (diff === 0.5) {
                             if (dotLevel === 1) {
                                 this.game.renderer.drawUI(
-                                    i,
+                                    i + offsetX,
                                     offsetY,
                                     '#',
                                     primaryHP,
@@ -102,7 +102,7 @@ export default class UISystem extends System {
                                 );
                             } else if (dotLevel === 2) {
                                 this.game.renderer.drawUI(
-                                    i,
+                                    i + offsetX,
                                     offsetY,
                                     '"',
                                     primaryHP,
@@ -110,7 +110,7 @@ export default class UISystem extends System {
                                 );
                             } else if (dotLevel === 3) {
                                 this.game.renderer.drawUI(
-                                    i,
+                                    i + offsetX,
                                     offsetY,
                                     '!',
                                     primaryHP,
@@ -120,7 +120,7 @@ export default class UISystem extends System {
                         } else if (diff > 0) {
                             if (dotLevel === 1) {
                                 this.game.renderer.drawUI(
-                                    i,
+                                    i + offsetX,
                                     offsetY,
                                     '‼',
                                     primaryHP,
@@ -128,7 +128,7 @@ export default class UISystem extends System {
                                 );
                             } else if (dotLevel === 2) {
                                 this.game.renderer.drawUI(
-                                    i,
+                                    i + offsetX,
                                     offsetY,
                                     '↕',
                                     primaryHP,
@@ -136,7 +136,7 @@ export default class UISystem extends System {
                                 );
                             } else if (dotLevel === 3) {
                                 this.game.renderer.drawUI(
-                                    i,
+                                    i + offsetX,
                                     offsetY,
                                     '◄',
                                     primaryHP,
@@ -146,7 +146,7 @@ export default class UISystem extends System {
                         } else {
                             if (dotLevel === 1) {
                                 this.game.renderer.drawUI(
-                                    i,
+                                    i + offsetX,
                                     offsetY,
                                     '‼',
                                     secondaryHp,
@@ -154,7 +154,7 @@ export default class UISystem extends System {
                                 );
                             } else if (dotLevel === 2) {
                                 this.game.renderer.drawUI(
-                                    i,
+                                    i + offsetX,
                                     offsetY,
                                     '↕',
                                     secondaryHp,
@@ -162,7 +162,7 @@ export default class UISystem extends System {
                                 );
                             } else if (dotLevel === 3) {
                                 this.game.renderer.drawUI(
-                                    i,
+                                    i + offsetX,
                                     offsetY,
                                     '◄',
                                     secondaryHp,
@@ -172,7 +172,7 @@ export default class UISystem extends System {
                         }
                     } else if (diff === 0.5) {
                         this.game.renderer.drawUI(
-                            i,
+                            i + offsetX,
                             offsetY,
                             ' ',
                             primaryHP,
@@ -180,14 +180,14 @@ export default class UISystem extends System {
                         );
                     } else if (diff > 0) {
                         this.game.renderer.drawUI(
-                            i,
+                            i + offsetX,
                             offsetY,
                             '►',
                             primaryHP,
                             secondaryHp
                         );
                     } else {
-                        this.game.renderer.drawUI(i, offsetY, '►', secondaryHp);
+                        this.game.renderer.drawUI(i + offsetX, offsetY, '►', secondaryHp);
                     }
                 }
             }

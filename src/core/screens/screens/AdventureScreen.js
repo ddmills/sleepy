@@ -141,7 +141,26 @@ export default class AdventureScreen extends Screen {
             header: `Ground`,
             leadText: 'Select an item to interact',
             list: items,
-            onGetRowName: (item) => item.moniker.display,
+            onRenderRow: (item, x, y, isSelected) => {
+                const text = ` ${item.moniker.display}`;
+
+                this.game.renderer.draw(
+                    x + 1,
+                    y,
+                    item.glyph.char,
+                    item.glyph.primary,
+                    item.glyph.secondary,
+                    item.glyph.background,
+                );
+
+                if (isSelected) {
+                    this.game.renderer.drawText(x, y, '→', 'yellow');
+                    this.game.renderer.drawText(x + 2, y, text, 'yellow');
+                } else {
+                    this.game.renderer.drawText(x, y, '-');
+                    this.game.renderer.drawText(x + 2, y, text);
+                }
+            },
             onSelect: (item) => {
                 this.game.screens.replaceScreen(SCREEN_INTERACT_MODAL, {
                     interactor: this.game.player.entity,

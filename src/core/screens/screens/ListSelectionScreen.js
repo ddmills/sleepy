@@ -12,7 +12,7 @@ import { drawUIWindow } from '../../../utils/UIWindowUtil';
 const NOOP = () => {};
 
 export default class ListSelectionScreen extends Screen {
-    width = 16;
+    width = 18;
     height = 10;
     list = new SelectableList();
     header = '';

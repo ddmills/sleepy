@@ -11,7 +11,7 @@ import { getSkillName, getAllSkillEquippedModSums } from '../../../data/Skills';
 import { drawUIWindow } from '../../../utils/UIWindowUtil';
 
 export default class InteractModalScreen extends Screen {
-    #width = 16;
+    #width = 18;
     #height = 10;
     #interactable;
     #interactor;

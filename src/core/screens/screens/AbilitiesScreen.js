@@ -8,6 +8,7 @@ import {
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import SelectableList from '../../../utils/SelectableList';
 import { drawUIWindow } from '../../../utils/UIWindowUtil';
+import { getAbility } from '../../../data/Abilities';
 
 export default class AbilitiesScreen extends Screen {
     width = 14;
@@ -32,22 +33,21 @@ export default class AbilitiesScreen extends Screen {
         this.game.commands.pushDomain(INPUT_DOMAIN_MAIN_MENU);
         this.character = ctx.character;
 
-        // this.refreshList();
+        this.refreshList();
     }
 
     refreshList() {
-        // const evt = this.#interactable.fireEvent('get-interactions', {
-        //     interactor: this.#interactor,
-        //     interactions: [],
-        // });
+        const evt = this.character.fireEvent('query-abilities', {
+            abilities: [],
+        });
 
-        // this.list.setItems([
-        //     ...evt.data.interactions,
-        //     {
-        //         name: 'Back',
-        //         isBack: true,
-        //     },
-        // ]);
+        this.list.setItems([
+            ...evt.data.abilities.map((type) => getAbility(type)),
+            {
+                name: 'Back',
+                isBack: true,
+            },
+        ]);
     }
 
     onLeave() {
@@ -109,6 +109,35 @@ export default class AbilitiesScreen extends Screen {
             this.height,
             'Abilities',
             this.character.glyph
+        );
+
+        let yOffset = this.top + 2;
+        let xOffset = this.left + 2;
+
+        this.list.data.forEach(({ item: ability, idx, isSelected }) => {
+            if (isSelected) {
+                this.game.renderer.drawText(
+                    xOffset,
+                    yOffset + idx,
+                    `→ ${ability.name}`,
+                    'yellow'
+                );
+            } else {
+                this.game.renderer.drawText(xOffset, yOffset + idx, `- ${ability.name}`);
+            }
+        });
+
+        const ability = this.list.selected;
+
+        if (ability.isBack) {
+            return;
+        }
+
+        this.game.renderer.drawTextWrapping(
+            xOffset,
+            yOffset + this.list.length + 1,
+            this.width - 1,
+            ability.description
         );
     }
 }

@@ -53,6 +53,39 @@ export default class Renderer extends Manager {
         return text.length * 0.5;
     }
 
+    computeTextWidthTile(text) {
+        return Math.ceil(this.computeTextWidth(text));
+    }
+
+    drawTextWrapping(x, y, width, text, fg1, fg2, bg) {
+        if (this.computeTextWidthTile(text) < width) {
+            return this.drawText(x, y, text, fg1, fg2, bg);
+        }
+
+        let left;
+        let right;
+        let lastSpace = -1;
+
+        for (let i = 0; i < text.length; i++) {
+            const nextLeft = text.substr(0, i);
+
+            if (this.computeTextWidthTile(nextLeft) >= width) {
+                break;
+            }
+
+            if (text.charAt(i) === ' ') {
+                left = nextLeft;
+                right = text.substr(i, text.length - left.length).trimLeft();
+                lastSpace = i;
+            }
+        }
+
+        if (lastSpace >= 0) {
+            this.drawText(x, y, left, fg1, fg2, bg);
+            this.drawTextWrapping(x, y + 1, width, right, fg1, fg2, bg);
+        }
+    }
+
     drawText(x, y, text, fg1 = '#adb8bc', fg2 = '#333', bg) {
         for (let i = 0; i < text.length; i++) {
             const sprite = this.#spritesheets.font.getSprite(text.charAt(i));

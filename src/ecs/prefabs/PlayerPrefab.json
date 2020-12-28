@@ -50,6 +50,14 @@
             "properties": {
                 "baseStrength": 2
             }
+        },
+        {
+            "type": "Abilities",
+            "properties": {
+                "known": [
+                    "ABILITY_SPRINT"
+                ]
+            }
         }
     ]
 }

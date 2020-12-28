@@ -22,6 +22,9 @@
         },
         {
             "type": "Stats"
+        },
+        {
+            "type": "Abilities"
         }
     ]
 }

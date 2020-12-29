@@ -1,3 +1,4 @@
+import { AbilityStatus } from '../../ecs/components';
 import { getAbilityStatus } from '../Abilities';
 
 export default class Ability {
@@ -10,16 +11,26 @@ export default class Ability {
         return '';
     }
 
+    getCooldownDuration(entity) {
+        return 5000;
+    }
+
     constructor(key, type, name) {
         this.key = key;
         this.type = type;
         this.name = name;
     }
 
-    initiate(entity) {
+    initiate(entity, options) {
+        options.onConfirm();
     }
 
     execute(entity, data) {
+        entity.add(AbilityStatus, {
+            key: this.key,
+            isCoolingDown: true,
+            cooldownDuration: this.getCooldownDuration(entity),
+        });
     }
 
     getStatMods(entity) {

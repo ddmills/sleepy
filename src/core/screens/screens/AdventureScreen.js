@@ -51,6 +51,7 @@ import {
     SCREEN_ABILITIES,
 } from '../ScreenType';
 import { Door, Loot } from '../../../ecs/components';
+import { CURSOR_MODE_DEFAULT } from '../../../enums/CursorModes';
 
 export default class AdventureScreen extends Screen {
     onEnter() {
@@ -198,7 +199,7 @@ export default class AdventureScreen extends Screen {
         }
         if (cmd.type === INPUT_CMD_LOOK) {
             game.screens.pushScreen(SCREEN_CURSOR, {
-                drawTags: true,
+                mode: CURSOR_MODE_DEFAULT,
                 onResult: () => game.screens.popScreen(),
                 onCancel: () => game.screens.popScreen(),
             });

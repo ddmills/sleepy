@@ -3,7 +3,6 @@ import {
     INPUT_CMD_MOVE_N,
     INPUT_CMD_MOVE_NE,
     INPUT_CMD_MOVE_W,
-    INPUT_CMD_WAIT,
     INPUT_CMD_MOVE_E,
     INPUT_CMD_MOVE_SW,
     INPUT_CMD_MOVE_S,
@@ -15,7 +14,6 @@ import {
 import {
     DIR_N,
     DIR_W,
-    DIR_Z,
     DIR_E,
     DIR_S,
     DIR_NW,
@@ -26,32 +24,40 @@ import {
 import { bresenhamLine } from '../../../utils/BresenhamLine';
 import {
     CURSOR_SEGMENT_INTEREST,
+    CURSOR_SEGMENT_INVALID,
     CURSOR_SEGMENT_NONE,
+    CURSOR_SEGMENT_UNKNOWN,
     getCursorSegmentTypeColor,
     getCursorSegmentTypeGlyph,
 } from '../../../enums/CursorSegments';
 import { FactionMember } from '../../../ecs/components';
+import { CURSOR_MODE_DEFAULT, CURSOR_MODE_LINE, CURSOR_MODE_TILE } from '../../../enums/CursorModes';
 
 const NOOP = () => {};
+const getDefaultSegmentTypes = () => CURSOR_SEGMENT_UNKNOWN;
+const defaultIsValid = () => true;
 
 export default class CursorScreen extends Screen {
-    #start = {};
-    #onResult = NOOP;
-    #onCancel = NOOP;
-    #getSegmentTypes = NOOP;
-    #drawLine = false;
-    #drawTags = false;
+    start = {};
+    onResult = NOOP;
+    onCancel = NOOP;
+    getSegmentTypes = NOOP;
+    mode = CURSOR_MODE_DEFAULT;
+
+    get drawTags() {
+        return this.mode === CURSOR_MODE_DEFAULT;
+    }
 
     onEnter(ctx) {
         this.game.renderer.clear();
         this.game.FOVSystem.computeFOV();
         this.game.cursor.enable();
-        this.#start = ctx.start || this.game.player.position;
-        this.#onResult = ctx.onResult || NOOP;
-        this.#onCancel = ctx.onCancel || NOOP;
-        this.#getSegmentTypes = ctx.getSegmentTypes || NOOP;
-        this.#drawLine = Boolean(ctx.drawLine);
-        this.#drawTags = Boolean(ctx.drawTags);
+        this.start = ctx.start || this.game.player.position;
+        this.onResult = ctx.onResult || NOOP;
+        this.onCancel = ctx.onCancel || NOOP;
+        this.isValid = ctx.isValid || defaultIsValid;
+        this.getSegmentTypes = ctx.getSegmentTypes || getDefaultSegmentTypes;
+        this.mode = ctx.mode || CURSOR_MODE_DEFAULT;
     }
 
     onLeave() {
@@ -63,8 +69,8 @@ export default class CursorScreen extends Screen {
     }
 
     onConfirm() {
-        this.#onResult({
-            start: this.#start,
+        this.onResult({
+            start: this.start,
             position: {
                 x: this.game.cursor.x,
                 y: this.game.cursor.y,
@@ -73,7 +79,7 @@ export default class CursorScreen extends Screen {
     }
 
     onCancel() {
-        this.#onCancel();
+        this.onCancel();
     }
 
     handleInput() {
@@ -119,17 +125,17 @@ export default class CursorScreen extends Screen {
         this.handleInput();
         this.game.updateAdventureSystems(dt);
 
-        const line = bresenhamLine(
-            this.#start.x,
-            this.#start.y,
-            this.game.cursor.x,
-            this.game.cursor.y
-        );
-
         let cursorColor = getCursorSegmentTypeColor(CURSOR_SEGMENT_INTEREST);
 
-        if (this.#drawLine) {
-            const types = this.#getSegmentTypes(line);
+        if (this.mode === CURSOR_MODE_LINE) {
+            const line = bresenhamLine(
+                this.start.x,
+                this.start.y,
+                this.game.cursor.x,
+                this.game.cursor.y
+            );
+
+            const types = this.getSegmentTypes(line);
 
             line.forEach((segment, idx) => {
                 const type = types[idx];
@@ -153,7 +159,7 @@ export default class CursorScreen extends Screen {
             });
         }
 
-        if (this.#drawTags) {
+        if (this.drawTags) {
             this.game.cursor.drawTags();
         }
 
@@ -191,6 +197,12 @@ export default class CursorScreen extends Screen {
             this.game.camera.height - 1,
             `${Math.round(tmpF)}°F (${Math.round(tmpC)}°C)`
         );
+
+        if (this.isValid(this.game.cursor.x, this.game.cursor.y)) {
+            cursorColor = getCursorSegmentTypeColor(CURSOR_SEGMENT_INTEREST);
+        } else {
+            cursorColor = getCursorSegmentTypeColor(CURSOR_SEGMENT_INVALID);
+        }
 
         this.game.cursor.drawCursor(cursorColor);
     }

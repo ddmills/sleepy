@@ -17,6 +17,7 @@ import { Blocker } from './Blocker';
 import { Body } from './Body';
 import { Inventory } from './Inventory';
 import { IsVisible } from './IsVisible';
+import { CURSOR_MODE_LINE } from '../../enums/CursorModes';
 
 export class Throwable extends Component {
     static properties = {
@@ -121,9 +122,8 @@ export class Throwable extends Component {
         const range = getSkillValue(SKILL_THROWING, evt.data.interactor);
 
         game.screens.pushScreen(SCREEN_CURSOR, {
+            mode: CURSOR_MODE_LINE,
             start: evt.data.interactor.position.getPos(),
-            drawLine: true,
-            drawTags: false,
             onResult: (cursor) => {
                 game.screens.setScreen(SCREEN_ADVENTURE);
 

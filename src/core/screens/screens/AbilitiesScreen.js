@@ -63,11 +63,13 @@ export default class AbilitiesScreen extends Screen {
             return;
         }
 
-        const data = ability.initiate(this.character);
-
-        ability.execute(this.character, data);
-
-        this.game.screens.popScreen();
+        ability.initiate(this.character, {
+            onConfirm: (data) => {
+                ability.execute(this.character, data);
+                this.game.screens.popScreen();
+            },
+            onCancel: () => {}
+        });
     }
 
     handleInput() {

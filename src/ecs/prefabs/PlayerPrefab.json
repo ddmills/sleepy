@@ -57,7 +57,8 @@
                 "known": [
                     "ABILITY_SPRINT",
                     "ABILITY_RAGE",
-                    "ABILITY_CRIMSON_WELL"
+                    "ABILITY_CRIMSON_WELL",
+                    "ABILITY_BLINK"
                 ]
             }
         }

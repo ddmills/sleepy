@@ -10,8 +10,8 @@ export class AbilityStatus extends Component {
         isToggledOn: true,
         cooldownDuration: 50000,
         currentCooldownDuration: 0,
-        toggleDuration: 10000,
-        currentToggleDuration: 0,
+        duration: 10000,
+        currentDuration: 0,
         statMods: {},
         skillMods: {},
     };
@@ -28,16 +28,16 @@ export class AbilityStatus extends Component {
         return this.cooldownDuration - this.currentCooldownDuration;
     }
 
-    get remainingToggleDuration() {
-        if (!this.isToggledOn || this.isCoolingDown) {
+    get remainingDuration() {
+        if (this.isCoolingDown) {
             return 0;
         }
 
-        return this.toggleDuration - this.currentToggleDuration;
+        return this.duration - this.currentDuration;
     }
 
-    get isToggleDurationComplete() {
-        return this.currentToggleDuration >= this.toggleDuration;
+    get isComplete() {
+        return this.currentDuration >= this.duration;
     }
 
     get isCooldownComplete() {

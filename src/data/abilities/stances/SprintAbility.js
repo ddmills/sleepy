@@ -1,6 +1,5 @@
 import { ABILITY_TYPE_STANCE } from '../../../enums/AbilityTypes';
 import { ABILITY_SPRINT } from '../../Abilities';
-import { SKILL_SPEED } from '../../Skills';
 import { getStat, STAT_ATHLETICISM } from '../../Stats';
 import SimpleToggledAbility from '../SimpleToggledAbility';
 
@@ -8,14 +7,12 @@ export default class SprintAbility extends SimpleToggledAbility {
     key = ABILITY_SPRINT;
     type = ABILITY_TYPE_STANCE;
     name = 'Sprint';
-    description = 'Gain bonus move speed';
-    isToggleable = true;
 
     computeSpeedMod(entity) {
         return 5 + 2 * getStat(STAT_ATHLETICISM, entity);
     }
 
-    getToggleDuration(entity) {
+    getDuration(entity) {
         return 20000;
     }
 

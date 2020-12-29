@@ -2,11 +2,9 @@ import { AbilityStatus } from '../../ecs/components/AbilityStatus';
 import { getAbilityStatus } from '../Abilities';
 import Ability from './Ability';
 
-export default class SimpleToggledAbility extends Ability {
-    isToggleable = true;
-
+export default class SimpleDurationAbility extends Ability {
     getDuration(entity) {
-        return 10000;
+        return 20000;
     }
 
     getCooldownDuration(entity) {
@@ -17,19 +15,13 @@ export default class SimpleToggledAbility extends Ability {
         const status = getAbilityStatus(this.key, entity);
 
         if (status) {
-            if (status.isToggledOn) {
-                status.startCooldown();
-
-                return true;
-            }
-
             return false;
         }
 
         entity.add(AbilityStatus, {
             key: this.key,
             isToggledOn: true,
-            isCoolingDown: false,
+            isCoolingDown: true,
             duration: this.getDuration(entity),
             cooldownDuration: this.getCooldownDuration(entity),
             statMods: this.getStatMods(entity),

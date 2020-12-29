@@ -35,7 +35,7 @@ export default class ParticleSystem extends System {
             particleData: {
                 direction: {
                     x: 0,
-                    y: 1,
+                    y: 0,
                 },
                 glyphs: ['░', '▒', '▓', '█'],
                 fg1s: ['cyan', 'blue'],

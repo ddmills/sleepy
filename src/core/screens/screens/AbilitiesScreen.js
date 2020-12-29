@@ -162,7 +162,7 @@ export default class AbilitiesScreen extends Screen {
         this.game.renderer.drawTextWrapping(
             xOffset,
             yOffset + this.list.length + 1,
-            this.width - 1,
+            this.width - 2,
             description
         );
     }

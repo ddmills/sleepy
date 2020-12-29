@@ -21,7 +21,7 @@ export default class AbilitySystem extends System {
 
         this.query.get().forEach((entity) => {
             Object.values(entity.abilityStatus).forEach((status) => {
-                status.ability.updateAbilityStatus(delta, status);
+                status.ability.update(delta, status);
             });
         });
     }

@@ -7,14 +7,12 @@ export default class RageAbility extends SimpleToggledAbility {
     key = ABILITY_RAGE;
     type = ABILITY_TYPE_STANCE;
     name = 'Rage';
-    description = 'Gain bonus STR';
-    isToggleable = true;
 
     computeStrengthMod(entity) {
         return getStat(STAT_STRENGTH, entity) * 3;
     }
 
-    getToggleDuration(entity) {
+    getDuration(entity) {
         return 20000;
     }
 
@@ -25,7 +23,7 @@ export default class RageAbility extends SimpleToggledAbility {
     getDescription(entity) {
         const str = this.computeStrengthMod(entity);
 
-        return `Enter a fit of rage. Gain +${str} STR and decrease dodge by ${-2}. [STR]`;
+        return `Enter a fit of rage. Gain +${str} STR and ${-2} dodge. [STR]`;
     }
 
     getSkillMods(entity) {

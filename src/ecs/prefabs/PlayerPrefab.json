@@ -56,7 +56,8 @@
             "properties": {
                 "known": [
                     "ABILITY_SPRINT",
-                    "ABILITY_RAGE"
+                    "ABILITY_RAGE",
+                    "ABILITY_CRIMSON_WELL"
                 ]
             }
         }

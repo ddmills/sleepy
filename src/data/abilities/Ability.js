@@ -4,7 +4,6 @@ export default class Ability {
     key = '';
     type = 0;
     name = '';
-    description = '';
     isToggleable = false;
 
     getDescription(entity) {
@@ -30,15 +29,15 @@ export default class Ability {
         return {};
     };
 
-    updateAbilityStatus(dt, status) {
+    update(dt, status) {
         if (status.isCoolingDown) {
             status.currentCooldownDuration += dt;
-        } else if (status.isToggleDurationComplete){
+        } else if (status.isComplete){
             status.startCooldown();
         }
 
         if (status.isToggledOn){
-            status.currentToggleDuration += dt;
+            status.currentDuration += dt;
         }
 
         if (status.isCooldownComplete) {

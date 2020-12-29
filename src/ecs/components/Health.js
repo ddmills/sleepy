@@ -44,6 +44,7 @@ export class Health extends Component {
                 dodgePrcnt,
             });
 
+            evt.data.damage = 0;
             evt.data.isDodged = true;
             evt.data.isKilled = false;
             evt.handle();
@@ -57,6 +58,7 @@ export class Health extends Component {
         const armorPrcnt = getArmorBlockPercent(armor);
         const blocked = Math.floor(attack.damage * armorPrcnt);
         const damage = attack.damage - blocked;
+        evt.data.damage = damage;
 
         const isKilled = this.applyDamage(damage);
         evt.data.isKilled = isKilled;

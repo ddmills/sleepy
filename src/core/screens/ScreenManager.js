@@ -10,6 +10,7 @@ import {
     SCREEN_LIST_SELECT,
     SCREEN_CHARACTER,
     SCREEN_ABILITIES,
+    SCREEN_CONFIRM,
 } from './ScreenType';
 import AdventureScreen from './screens/AdventureScreen';
 import MainMenuScreen from './screens/MainMenuScreen';
@@ -23,6 +24,7 @@ import EquipmentScreen from './screens/EquipmentScreen';
 import ListSelectionScreen from './screens/ListSelectionScreen';
 import CharacterScreen from './screens/CharacterScreen';
 import AbilitiesScreen from './screens/AbilitiesScreen';
+import ConfirmationScreen from './screens/ConfirmationScreen';
 
 export default class ScreenManager extends Manager {
     #screens = {};
@@ -42,6 +44,7 @@ export default class ScreenManager extends Manager {
             [SCREEN_LIST_SELECT]: new ListSelectionScreen(game),
             [SCREEN_CHARACTER]: new CharacterScreen(game),
             [SCREEN_ABILITIES]: new AbilitiesScreen(game),
+            [SCREEN_CONFIRM]: new ConfirmationScreen(game),
         };
         this.setScreen(SCREEN_MAIN_MENU);
     }

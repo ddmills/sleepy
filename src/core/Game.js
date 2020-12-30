@@ -10,7 +10,6 @@ import PlayerManager from './PlayerManager';
 import ECS from '../ecs';
 import GameStateManager from './GameStateManager';
 import ClockManager from './ClockManager';
-import CursorSystem from '../systems/CursorSystem';
 import MapManager from './MapManager';
 import FOVSystem from '../systems/FOVSystem';
 import DeathSystem from '../systems/DeathSystem';
@@ -59,7 +58,6 @@ export default class Game {
         this.FOVSystem = new FOVSystem(this);
         this.renderSystem = new RenderSystem(this);
         this.UISystem = new UISystem(this);
-        this.cursor = new CursorSystem(this);
         this.particles = new ParticleSystem(this);
         this.fps = new FPSMonitoringSystem(this);
         this.destroySystem = new DestroySystem(this);

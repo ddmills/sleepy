@@ -1,0 +1,42 @@
+modes:
+
+capabilities:
+- render cursor
+- cursor location validity
+- cursor segment validity
+- cursor type
+- cursor segment type
+
+opts: {
+    line,
+    start: {
+        x,
+        y,
+    },
+    x,
+    y
+}
+
+renderCursor(x, y)
+renderLine(opts)
+
+simpleCursorRenderer({
+    maxDistance,
+    isValid(x, y),
+})
+
+simpleLineRenderer({
+    maxLength,
+    isValid(x, y),
+})
+
+projectileLineRenderer({
+    maxLength,
+    isValid(x, y),
+})
+
+1. default
+2. tile
+3. line
+
+- options

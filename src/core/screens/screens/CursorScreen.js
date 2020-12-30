@@ -23,44 +23,33 @@ import {
     delta as directionDelta
 } from '../../../enums/Directions';
 import { bresenhamLine } from '../../../utils/BresenhamLine';
-import {
-    CURSOR_SEGMENT_INTEREST,
-    CURSOR_SEGMENT_INVALID,
-    CURSOR_SEGMENT_NONE,
-    CURSOR_SEGMENT_UNKNOWN,
-    getCursorSegmentTypeColor,
-    getCursorSegmentTypeGlyph,
-} from '../../../enums/CursorSegments';
 import { FactionMember } from '../../../ecs/components';
-import { CURSOR_MODE_DEFAULT, CURSOR_MODE_LINE, CURSOR_MODE_TILE } from '../../../enums/CursorModes';
 import { drawTags } from '../../../utils/UITags';
+import { simpleCursorRenderer } from '../../../utils/cursor/SimpleCursorRenderer';
 
 const NOOP = () => {};
-const getDefaultSegmentTypes = () => CURSOR_SEGMENT_UNKNOWN;
-const defaultIsValid = () => true;
 
 export default class CursorScreen extends Screen {
     x = 0;
     y = 0;
     start = {};
+    drawTags = false;
+    drawFaction = false;
+    drawTemperature = false;
     onResult = NOOP;
     onCancel = NOOP;
-    getSegmentTypes = NOOP;
-    mode = CURSOR_MODE_DEFAULT;
-
-    get drawTags() {
-        return this.mode === CURSOR_MODE_DEFAULT;
-    }
 
     onEnter(ctx) {
         this.game.renderer.clear();
         this.game.FOVSystem.computeFOV();
+
         this.start = ctx.start || this.game.player.position;
+        this.drawTags = ctx.drawTags || false;
+        this.drawFaction = ctx.drawFaction || false;
+        this.drawTemperature = ctx.drawTemperature || false;
         this.onResult = ctx.onResult || NOOP;
         this.onCancel = ctx.onCancel || NOOP;
-        this.isValid = ctx.isValid || defaultIsValid;
-        this.getSegmentTypes = ctx.getSegmentTypes || getDefaultSegmentTypes;
-        this.mode = ctx.mode || CURSOR_MODE_DEFAULT;
+        this.renderer = ctx.renderer || simpleCursorRenderer();
 
         this.x = this.start.x;
         this.y = this.start.y;
@@ -74,13 +63,11 @@ export default class CursorScreen extends Screen {
     }
 
     onConfirm() {
-        this.onResult({
-            start: this.start,
-            position: {
-                x: this.x,
-                y: this.y,
-            },
-        });
+        const opts = this.getOpts();
+
+        if (this.renderer.isValid(opts)) {
+            this.onResult(opts);
+        }
     }
 
     onCancel() {
@@ -126,82 +113,71 @@ export default class CursorScreen extends Screen {
         }
     }
 
-    onUpdate(dt) {
-        this.handleInput();
-        this.game.updateAdventureSystems(dt);
-
-        let cursorSegmentType = this.isValid(this.x, this.y) ? CURSOR_SEGMENT_INTEREST : CURSOR_SEGMENT_INVALID;
-
-        if (this.mode === CURSOR_MODE_LINE) {
-            const line = bresenhamLine(
+    getOpts() {
+        return {
+            start: {
+                x: this.start.x,
+                y: this.start.y,
+            },
+            position: {
+                x: this.x,
+                y: this.y,
+            },
+            x: this.x,
+            y: this.y,
+            screen: this.game.camera.worldToScreen(this.x, this.y),
+            line: bresenhamLine(
                 this.start.x,
                 this.start.y,
                 this.x,
                 this.y
-            );
+            )
+        };
+    }
 
-            const types = this.getSegmentTypes(line);
+    onUpdate(dt) {
+        this.handleInput();
+        this.game.updateAdventureSystems(dt);
 
-            line.forEach((segment, idx) => {
-                const type = types[idx];
-
-                if (type === CURSOR_SEGMENT_NONE || isNaN(type)) {
-                    return;
-                }
-
-                const color = getCursorSegmentTypeColor(type);
-                const glyph = getCursorSegmentTypeGlyph(type);
-
-                const screen = this.game.camera.worldToScreen(
-                    segment.x,
-                    segment.y
-                );
-                this.game.renderer.draw(screen.x, screen.y, glyph, color);
-
-                if (idx === line.length - 1) {
-                    cursorSegmentType = type;
-                }
-            });
-        }
+        this.renderer.render(this.getOpts());
 
         if (this.drawTags) {
             drawTags(this.x, this.y);
         }
 
-        const target = this.game.map
-            .getEntitiesAt(this.x, this.y)
-            .filter((e) => e.isVisible && e.factionMember)
-            .pop();
+        if (this.drawFaction) {
+            const target = this.game.map
+                .getEntitiesAt(this.x, this.y)
+                .filter((e) => e.isVisible && e.factionMember)
+                .pop();
 
-        const player = this.game.player.entity;
+            const player = this.game.player.entity;
 
-        if (target) {
-            const faction = target.factionMember.faction;
-            const relation = this.game.factions.getEntityRelation(
-                player,
-                target
-            );
+            if (target) {
+                const faction = target.factionMember.faction;
+                const relation = this.game.factions.getEntityRelation(
+                    player,
+                    target
+                );
 
-            let disp = this.game.factions.getDisplay(relation);
+                let disp = this.game.factions.getDisplay(relation);
 
-            this.game.renderer.drawTextCenter(
-                1,
-                `${faction.display} Faction [${disp}]`
-            );
+                this.game.renderer.drawTextCenter(
+                    1,
+                    `${faction.display} Faction [${disp}]`
+                );
+            }
         }
 
-        const tmpC = this.game.temperature.getTemperature(this.x, this.y);
-        const tmpF = (tmpC * 9) / 5 + 32;
+        if (this.drawTemperature) {
+            const tmpC = this.game.temperature.getTemperature(this.x, this.y);
+            const tmpF = (tmpC * 9) / 5 + 32;
 
-        this.game.renderer.drawText(
-            this.game.camera.width - 12,
-            this.game.camera.height - 1,
-            `${Math.round(tmpF)}°F (${Math.round(tmpC)}°C)`
-        );
-
-        const color = getCursorSegmentTypeColor(cursorSegmentType);
-        const screen = this.game.camera.worldToScreen(this.x, this.y);
-
-        this.game.renderer.draw(screen.x, screen.y, 'X', color);
+            this.game.renderer.drawText(
+                this.game.camera.width - 12,
+                this.game.camera.height - 1,
+                `${Math.round(tmpF)}°F (${Math.round(tmpC)}°C)`
+            );
+        }
     }
 }

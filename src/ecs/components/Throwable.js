@@ -5,19 +5,10 @@ import { SKILL_THROWING, getSkillValue } from '../../data/Skills';
 import Attack from '../../data/Attack';
 import { DMG_TYPE_BLUDGEONING } from '../../data/DamageTypes';
 import { getStat, STAT_STRENGTH } from '../../data/Stats';
-import {
-    CURSOR_SEGMENT_INVALID,
-    CURSOR_SEGMENT_INTEREST,
-    CURSOR_SEGMENT_UNKNOWN,
-    CURSOR_SEGMENT_NONE,
-} from '../../enums/CursorSegments';
 import { bresenhamLine } from '../../utils/BresenhamLine';
 import { randomInt } from '../../utils/rand';
-import { Blocker } from './Blocker';
-import { Body } from './Body';
 import { Inventory } from './Inventory';
-import { IsVisible } from './IsVisible';
-import { CURSOR_MODE_LINE } from '../../enums/CursorModes';
+import { simpleLineRenderer } from '../../utils/cursor/SimpleLineRenderer';
 
 export class Throwable extends Component {
     static properties = {
@@ -122,7 +113,7 @@ export class Throwable extends Component {
         const range = getSkillValue(SKILL_THROWING, evt.data.interactor);
 
         game.screens.pushScreen(SCREEN_CURSOR, {
-            mode: CURSOR_MODE_LINE,
+            renderer: simpleLineRenderer(),
             start: evt.data.interactor.position.getPos(),
             onResult: (cursor) => {
                 game.screens.setScreen(SCREEN_ADVENTURE);
@@ -147,48 +138,6 @@ export class Throwable extends Component {
             },
             onCancel: () => {
                 game.screens.popScreen();
-            },
-            getSegmentTypes: (line) => {
-                let lineValid = true;
-
-                const result = line.map(({ x, y }, idx) => {
-                    if (idx === 0) {
-                        return CURSOR_SEGMENT_NONE;
-                    }
-
-                    // todo: fire "query" event on each item in path
-                    const entities = game.map.getEntitiesAt(x, y);
-                    const blocker = entities.find(
-                        (entity) => entity.has(IsVisible) && entity.has(Blocker)
-                    );
-                    const body = entities.find(
-                        (entity) => entity.has(IsVisible) && entity.has(Body)
-                    );
-
-                    if (blocker) {
-                        lineValid = false;
-                    }
-
-                    const atMaxRange = idx === range;
-
-                    if (lineValid && (body || atMaxRange)) {
-                        lineValid = false;
-                        return CURSOR_SEGMENT_INTEREST;
-                    }
-
-                    return !lineValid
-                        ? CURSOR_SEGMENT_INVALID
-                        : CURSOR_SEGMENT_UNKNOWN;
-                });
-
-                const interestIdx = result.indexOf(CURSOR_SEGMENT_INTEREST);
-                const blockerIdx = result.indexOf(CURSOR_SEGMENT_INVALID);
-
-                if (interestIdx < blockerIdx && blockerIdx >= 1) {
-                    result[blockerIdx - 1] = CURSOR_SEGMENT_INTEREST;
-                }
-
-                return result;
             },
         });
     }

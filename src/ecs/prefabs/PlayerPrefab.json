@@ -55,6 +55,7 @@
             "type": "Abilities",
             "properties": {
                 "known": [
+                    "ABILITY_JUMP",
                     "ABILITY_SPRINT",
                     "ABILITY_RAGE",
                     "ABILITY_CRIMSON_WELL",

@@ -1,26 +1,34 @@
 import { game } from '../../../core/Game';
 import { SCREEN_CURSOR } from '../../../core/screens/ScreenType';
-import { ABILITY_TYPE_SPELL } from '../../../enums/AbilityTypes';
-import { simpleCursorRenderer } from '../../../utils/cursor/SimpleCursorRenderer';
-import { ABILITY_BLINK } from '../../Abilities';
+import { ABILITY_TYPE_STUNT } from '../../../enums/AbilityTypes';
+import { simpleLineRenderer } from '../../../utils/cursor/SimpleLineRenderer';
+import { ABILITY_JUMP } from '../../Abilities';
+import { getStat, STAT_ATHLETICISM } from '../../Stats';
 import Ability from '../Ability';
 
-export default class BlinkAbility extends Ability {
-    key = ABILITY_BLINK;
-    type = ABILITY_TYPE_SPELL;
-    name = 'Blink';
+export default class JumpAbility extends Ability {
+    key = ABILITY_JUMP;
+    type = ABILITY_TYPE_STUNT;
+    name = 'Jump';
 
     getCooldownDuration(entity) {
         return 20000;
     }
 
+    getJumpDistance(entity) {
+        return Math.floor(Math.max(3, getStat(STAT_ATHLETICISM, entity)) / 3);
+    }
+
     getDescription(entity) {
-        return `Teleport to a visible location.`;
+        const distance = this.getJumpDistance(entity);
+        const word = distance > 1 ? 'tiles' : 'tile';
+
+        return `Jump up to ${distance} ${word} away. You cannot jump over other creatures. [ATH]`;
     }
 
     initiate(entity, options) {
         game.screens.pushScreen(SCREEN_CURSOR, {
-            renderer: simpleCursorRenderer({
+            renderer: simpleLineRenderer({
                 isValid: ({ x, y }) => {
                     // must be visible
                     const visible = game.map.getEntitiesAt(x, y, true).filter((e) => e.isVisible);
@@ -48,23 +56,6 @@ export default class BlinkAbility extends Ability {
     execute(entity, data) {
         super.execute(entity, data);
 
-        const prevPos = entity.position.getPos();
-        const nextPos = data.position;
-
-        game.particles.createEmitter(prevPos.x, prevPos.y, {
-            glyphs: ['O', 'o', '·'],
-            fg1s: ['purple'],
-            speed: 1,
-            lifetime: 300,
-        });
-
         entity.position.setPos(data.position.x, data.position.y);
-
-        game.particles.createEmitter(nextPos.x, nextPos.y, {
-            glyphs: ['·', 'o', 'O'],
-            fg1s: ['purple'],
-            speed: 1,
-            lifetime: 300,
-        });
     }
 }

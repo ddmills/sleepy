@@ -28,13 +28,13 @@ export default class RageAbility extends SimpleToggledAbility {
 
     getSkillMods(entity) {
         return {
-            SKILL_DODGE: -2
+            SKILL_DODGE: -2,
         };
     }
 
     getStatMods(entity) {
         return {
-            STAT_STRENGTH: this.computeStrengthMod(entity)
+            STAT_STRENGTH: this.computeStrengthMod(entity),
         };
     }
 }

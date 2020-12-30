@@ -35,19 +35,19 @@ export default class Ability {
 
     getStatMods(entity) {
         return {};
-    };
+    }
     getSkillMods(entity) {
         return {};
-    };
+    }
 
     update(dt, status) {
         if (status.isCoolingDown) {
             status.currentCooldownDuration += dt;
-        } else if (status.isComplete){
+        } else if (status.isComplete) {
             status.startCooldown();
         }
 
-        if (status.isToggledOn){
+        if (status.isToggledOn) {
             status.currentDuration += dt;
         }
 

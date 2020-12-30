@@ -5,16 +5,16 @@ export const ABILITY_TYPE_SPELL = 3;
 
 const lookup = {
     [ABILITY_TYPE_STANCE]: {
-        name: 'Stance'
+        name: 'Stance',
     },
     [ABILITY_TYPE_SHOUT]: {
-        name: 'Shout'
+        name: 'Shout',
     },
     [ABILITY_TYPE_STUNT]: {
-        name: 'Stunt'
+        name: 'Stunt',
     },
     [ABILITY_TYPE_SPELL]: {
-        name: 'Spell'
+        name: 'Spell',
     },
 };
 

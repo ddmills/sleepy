@@ -84,12 +84,14 @@ export default class ConfirmationScreen extends Screen {
             return;
         }
 
-        if ([
-            INPUT_CMD_MOVE_N,
-            INPUT_CMD_MOVE_E,
-            INPUT_CMD_MOVE_S,
-            INPUT_CMD_MOVE_W,
-        ].includes(cmd.type)) {
+        if (
+            [
+                INPUT_CMD_MOVE_N,
+                INPUT_CMD_MOVE_E,
+                INPUT_CMD_MOVE_S,
+                INPUT_CMD_MOVE_W,
+            ].includes(cmd.type)
+        ) {
             this.toggleSelection();
         }
 
@@ -105,13 +107,7 @@ export default class ConfirmationScreen extends Screen {
     onUpdate(dt) {
         this.handleInput();
 
-        drawUIWindow(
-            this.left,
-            this.top,
-            this.width,
-            this.height,
-            this.header,
-        );
+        drawUIWindow(this.left, this.top, this.width, this.height, this.header);
 
         if (this.leadText) {
             this.game.renderer.drawTextWrapping(
@@ -122,8 +118,12 @@ export default class ConfirmationScreen extends Screen {
             );
         }
 
-        const cancel = this.option ? `- ${this.cancelText}` : `→ ${this.cancelText}`;
-        const confirm = this.option ? `→ ${this.confirmText}` : `- ${this.confirmText}`;
+        const cancel = this.option
+            ? `- ${this.cancelText}`
+            : `→ ${this.cancelText}`;
+        const confirm = this.option
+            ? `→ ${this.confirmText}`
+            : `- ${this.confirmText}`;
 
         this.game.renderer.drawText(
             this.left + 3,

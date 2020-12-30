@@ -27,7 +27,7 @@ export default class CrimsonWellAbility extends SimpleDurationAbility {
         super.execute(entity, data);
         addStatus(STATUS_BLEEDING, entity, {
             duration: this.getDuration(entity),
-            potency: .5,
+            potency: 0.5,
         });
 
         const status = getAbilityStatus(this.key, entity);
@@ -38,7 +38,8 @@ export default class CrimsonWellAbility extends SimpleDurationAbility {
     performLifeteal(status) {
         const entity = status.entity;
         const pos = status.entity.position.getPos();
-        game.map.getNeighborEntities(pos.x, pos.y)
+        game.map
+            .getNeighborEntities(pos.x, pos.y)
             .flat()
             .filter((e) => game.factions.areEntitiesHostile(e, entity))
             .map((hostile) => {

@@ -23,7 +23,7 @@ export const getAbilityStatus = (key, entity) => {
     if (entity.abilityStatus) {
         return entity.abilityStatus[key];
     }
-}
+};
 export const getStance = (entity) => {
     if (!entity.abilityStatus) {
         return;
@@ -32,4 +32,4 @@ export const getStance = (entity) => {
     return Object.values(entity.abilityStatus).find((status) => {
         return !status.isComplete && status.ability.isStance;
     });
-}
+};

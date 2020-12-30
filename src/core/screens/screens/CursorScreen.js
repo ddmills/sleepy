@@ -20,7 +20,7 @@ import {
     DIR_SW,
     DIR_SE,
     DIR_NE,
-    delta as directionDelta
+    delta as directionDelta,
 } from '../../../enums/Directions';
 import { bresenhamLine } from '../../../utils/BresenhamLine';
 import { FactionMember } from '../../../ecs/components';
@@ -126,12 +126,7 @@ export default class CursorScreen extends Screen {
             x: this.x,
             y: this.y,
             screen: this.game.camera.worldToScreen(this.x, this.y),
-            line: bresenhamLine(
-                this.start.x,
-                this.start.y,
-                this.x,
-                this.y
-            )
+            line: bresenhamLine(this.start.x, this.start.y, this.x, this.y),
         };
     }
 

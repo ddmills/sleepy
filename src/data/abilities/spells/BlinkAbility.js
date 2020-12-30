@@ -23,7 +23,9 @@ export default class BlinkAbility extends Ability {
             renderer: simpleCursorRenderer({
                 isValid: ({ x, y }) => {
                     // must be visible
-                    const visible = game.map.getEntitiesAt(x, y, true).filter((e) => e.isVisible);
+                    const visible = game.map
+                        .getEntitiesAt(x, y, true)
+                        .filter((e) => e.isVisible);
 
                     // must be at least one entity visible
                     if (visible.length <= 0) {

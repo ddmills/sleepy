@@ -19,7 +19,9 @@ export default class AbilitiesScreen extends Screen {
     list = new SelectableList();
 
     get left() {
-        return Math.floor((this.game.camera.width - this.width) - this.PADDING_RIGHT);
+        return Math.floor(
+            this.game.camera.width - this.width - this.PADDING_RIGHT
+        );
     }
 
     get top() {
@@ -27,7 +29,7 @@ export default class AbilitiesScreen extends Screen {
     }
 
     get height() {
-        return Math.floor((this.game.camera.height - this.PADDING_HEIGHT * 2));
+        return Math.floor(this.game.camera.height - this.PADDING_HEIGHT * 2);
     }
 
     onEnter(ctx) {
@@ -68,7 +70,7 @@ export default class AbilitiesScreen extends Screen {
                 ability.execute(this.character, data);
                 this.game.screens.popScreen();
             },
-            onCancel: () => {}
+            onCancel: () => {},
         });
     }
 
@@ -121,7 +123,11 @@ export default class AbilitiesScreen extends Screen {
                         'yellow'
                     );
                 } else {
-                    this.game.renderer.drawText(xOffset, yOffset + idx, '- Back');
+                    this.game.renderer.drawText(
+                        xOffset,
+                        yOffset + idx,
+                        '- Back'
+                    );
                 }
                 return;
             }
@@ -146,9 +152,18 @@ export default class AbilitiesScreen extends Screen {
                 }
             } else {
                 if (display.isEnabled) {
-                    this.game.renderer.drawText(xOffset, yOffset + idx, `- ${display.text}`);
+                    this.game.renderer.drawText(
+                        xOffset,
+                        yOffset + idx,
+                        `- ${display.text}`
+                    );
                 } else {
-                    this.game.renderer.drawText(xOffset, yOffset + idx, `- ${display.text}`, 'gray');
+                    this.game.renderer.drawText(
+                        xOffset,
+                        yOffset + idx,
+                        `- ${display.text}`,
+                        'gray'
+                    );
                 }
             }
         });
@@ -159,7 +174,9 @@ export default class AbilitiesScreen extends Screen {
             return;
         }
 
-        const description = `${getAbilityTypeName(ability.type)}. ${ability.getDescription(this.character)}`;
+        const description = `${getAbilityTypeName(
+            ability.type
+        )}. ${ability.getDescription(this.character)}`;
 
         this.game.renderer.drawTextWrapping(
             xOffset,

@@ -16,12 +16,7 @@ export const simpleLineRenderer = (options = {}) => {
                 const color = isValid(opts) ? 'blue' : 'red';
                 const screen = game.camera.worldToScreen(x, y);
 
-                game.renderer.draw(
-                    screen.x,
-                    screen.y,
-                    '•',
-                    color
-                );
+                game.renderer.draw(screen.x, screen.y, '•', color);
             });
         },
     };

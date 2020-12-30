@@ -41,7 +41,10 @@ export class AbilityStatus extends Component {
     }
 
     get isCooldownComplete() {
-        return this.isCoolingDown && this.currentCooldownDuration >= this.cooldownDuration;
+        return (
+            this.isCoolingDown &&
+            this.currentCooldownDuration >= this.cooldownDuration
+        );
     }
 
     startCooldown() {
@@ -78,4 +81,4 @@ export class AbilityStatus extends Component {
             });
         }
     }
-};
+}

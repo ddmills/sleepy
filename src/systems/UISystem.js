@@ -1,10 +1,5 @@
 import { getStatus } from '../data/Statuses';
-import {
-    Moniker,
-    Actor,
-    IsInventoried,
-    IsVisible,
-} from '../ecs/components';
+import { Moniker, Actor, IsInventoried, IsVisible } from '../ecs/components';
 import System from './System';
 
 export default class UISystem extends System {
@@ -187,7 +182,12 @@ export default class UISystem extends System {
                             secondaryHp
                         );
                     } else {
-                        this.game.renderer.drawUI(i + offsetX, offsetY, '►', secondaryHp);
+                        this.game.renderer.drawUI(
+                            i + offsetX,
+                            offsetY,
+                            '►',
+                            secondaryHp
+                        );
                     }
                 }
             }

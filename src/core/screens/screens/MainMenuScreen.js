@@ -7,7 +7,11 @@ import {
 } from '../../input/InputCommandType';
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import { SCREEN_ADVENTURE } from '../ScreenType';
-import { UI_GLYPH_BORDER_T, UI_GLYPH_BORDER_TERM_L, UI_GLYPH_BORDER_TERM_R } from '../../../enums/UIGlyphs';
+import {
+    UI_GLYPH_BORDER_T,
+    UI_GLYPH_BORDER_TERM_L,
+    UI_GLYPH_BORDER_TERM_R,
+} from '../../../enums/UIGlyphs';
 import { UI_BORDER_FG1, UI_BORDER_FG2 } from '../../../utils/UIWindowUtil';
 
 export default class MainMenuScreen extends Screen {
@@ -63,11 +67,29 @@ export default class MainMenuScreen extends Screen {
 
         for (let i = 1; i < this.game.camera.width - 1; i++) {
             if (i === 1) {
-                this.game.renderer.drawUI(i, 2, UI_GLYPH_BORDER_TERM_L, UI_BORDER_FG1, UI_BORDER_FG2);
+                this.game.renderer.drawUI(
+                    i,
+                    2,
+                    UI_GLYPH_BORDER_TERM_L,
+                    UI_BORDER_FG1,
+                    UI_BORDER_FG2
+                );
             } else if (i === this.game.camera.width - 2) {
-                this.game.renderer.drawUI(i, 2, UI_GLYPH_BORDER_TERM_R, UI_BORDER_FG1, UI_BORDER_FG2);
+                this.game.renderer.drawUI(
+                    i,
+                    2,
+                    UI_GLYPH_BORDER_TERM_R,
+                    UI_BORDER_FG1,
+                    UI_BORDER_FG2
+                );
             } else {
-                this.game.renderer.drawUI(i, 2, UI_GLYPH_BORDER_T, UI_BORDER_FG1, UI_BORDER_FG2);
+                this.game.renderer.drawUI(
+                    i,
+                    2,
+                    UI_GLYPH_BORDER_T,
+                    UI_BORDER_FG1,
+                    UI_BORDER_FG2
+                );
             }
         }
 
@@ -75,7 +97,11 @@ export default class MainMenuScreen extends Screen {
         this.game.renderer.drawText(3, 6, `▬Q  ↑W  ↨E`);
         this.game.renderer.drawText(3, 7, `←A      →D`);
         this.game.renderer.drawText(3, 8, `∟Z  ↓X  ↔C`);
-        this.game.renderer.drawText(3, 10, `hold [SHIFT] and a direction to interact`);
+        this.game.renderer.drawText(
+            3,
+            10,
+            `hold [SHIFT] and a direction to interact`
+        );
 
         this.game.renderer.drawText(2, 12, `∙ Look [L]`);
         this.game.renderer.drawText(2, 13, `∙ Inventory [I]`);

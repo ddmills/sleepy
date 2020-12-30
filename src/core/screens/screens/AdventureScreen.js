@@ -153,7 +153,7 @@ export default class AdventureScreen extends Screen {
                     item.glyph.char,
                     item.glyph.primary,
                     item.glyph.secondary,
-                    item.glyph.background,
+                    item.glyph.background
                 );
 
                 if (isSelected) {

@@ -14,6 +14,6 @@ export const getStatus = (key) => lookup[key];
 export const addStatus = (key, entity, properties = {}) => {
     return entity.add(Status, {
         ...properties,
-        key
+        key,
     });
 };

@@ -1,5 +1,5 @@
 import Manager from './Manager';
-import * as Directions from '../enums/Directions';
+import { directionDelta } from '../enums/Directions';
 
 export default class PlayerManager extends Manager {
     #entityId = null;
@@ -73,7 +73,7 @@ export default class PlayerManager extends Manager {
 
     move(direction) {
         this.actionQueue.push(() => {
-            const delta = Directions.delta(direction);
+            const delta = directionDelta(direction);
 
             this.entity.fireEvent('try-move', delta);
         });

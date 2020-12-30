@@ -38,7 +38,7 @@ import {
     DIR_SW,
     DIR_SE,
     DIR_NE,
-    delta as directionDelta,
+    directionDelta,
 } from '../../../enums/Directions';
 import {
     SCREEN_CURSOR,

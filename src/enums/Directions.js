@@ -106,7 +106,7 @@ export const shortName = (direction) => directions[direction].shortName;
 
 export const fullName = (direction) => directions[direction].fullName;
 
-export const delta = (direction) => directions[direction].delta;
+export const directionDelta = (direction) => directions[direction].delta;
 
 export const adjacent = (direction) => directions[direction].adjacent;
 

@@ -1,6 +1,6 @@
 import { Component } from 'geotic';
 import { MoveGoalType } from '../../ai/GoalTypes';
-import * as Directions from '../../enums/Directions';
+import { directionDelta } from '../../enums/Directions';
 
 export class Wandering extends Component {
     onBoredom(evt) {
@@ -9,7 +9,7 @@ export class Wandering extends Component {
         }
 
         const direction = Math.floor(Math.random() * 9);
-        const delta = Directions.delta(direction);
+        const delta = directionDelta(direction);
 
         evt.data.goal = MoveGoalType.create({
             data: delta,

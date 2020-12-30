@@ -20,7 +20,7 @@ import {
     DIR_SW,
     DIR_SE,
     DIR_NE,
-    delta as directionDelta,
+    directionDelta,
 } from '../../../enums/Directions';
 import { bresenhamLine } from '../../../utils/BresenhamLine';
 import { FactionMember } from '../../../ecs/components';

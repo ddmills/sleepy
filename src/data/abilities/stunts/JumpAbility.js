@@ -27,9 +27,17 @@ export default class JumpAbility extends Ability {
     }
 
     initiate(entity, options) {
+        const distance = this.getJumpDistance(entity);
+
         game.screens.pushScreen(SCREEN_CURSOR, {
+            maxDistance: distance + 1,
             renderer: simpleLineRenderer({
-                isValid: ({ x, y }) => {
+                isValid: ({ x, y }, idx) => {
+                    // must be within range
+                    if (idx - 1 > distance) {
+                        return false;
+                    }
+
                     // must be visible
                     const visible = game.map
                         .getEntitiesAt(x, y, true)

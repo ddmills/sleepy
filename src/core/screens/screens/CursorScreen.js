@@ -32,6 +32,7 @@ const NOOP = () => {};
 export default class CursorScreen extends Screen {
     x = 0;
     y = 0;
+    maxDistance = Infinity;
     start = {};
     drawTags = false;
     drawFaction = false;
@@ -50,6 +51,7 @@ export default class CursorScreen extends Screen {
         this.onResult = ctx.onResult || NOOP;
         this.onCancel = ctx.onCancel || NOOP;
         this.renderer = ctx.renderer || simpleCursorRenderer();
+        this.maxDistance = ctx.maxDistance || Infinity;
 
         this.x = this.start.x;
         this.y = this.start.y;
@@ -58,8 +60,12 @@ export default class CursorScreen extends Screen {
     onDirectionInput(direction) {
         const delta = directionDelta(direction);
 
-        this.x += delta.x;
-        this.y += delta.y;
+        if (Math.abs(this.start.x - (this.x + delta.x)) <= this.maxDistance) {
+            this.x += delta.x;
+        }
+        if (Math.abs(this.start.y - (this.y + delta.y)) <= this.maxDistance) {
+            this.y += delta.y;
+        }
     }
 
     onConfirm() {

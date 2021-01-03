@@ -8,8 +8,9 @@ import {
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import SelectableList from '../../../utils/SelectableList';
 import { drawUIWindow } from '../../../utils/UIWindowUtil';
-import { getAbility } from '../../../data/Abilities';
+import { getAbility, getAbilityStatus, getStance } from '../../../data/Abilities';
 import { getAbilityTypeName } from '../../../enums/AbilityTypes';
+import { SCREEN_CONFIRM } from '../ScreenType';
 
 export default class AbilitiesScreen extends Screen {
     width = 20;
@@ -65,6 +66,44 @@ export default class AbilitiesScreen extends Screen {
             return;
         }
 
+        const status = getAbilityStatus(ability.key, this.character);
+
+        // is the ability on cooldown? IGNORE IT
+        if (status && status.isCoolingDown) {
+            return;
+        }
+
+        // is the ability toggled on?
+        if (status && status.isToggledOn) {
+            ability.toggleOff(this.character, status);
+            this.game.screens.popScreen();
+            return;
+        }
+
+        // is the ability a stance?
+        if (ability.isStance) {
+            const stance = getStance(this.character);
+
+            if (stance) {
+                this.game.screens.pushScreen(SCREEN_CONFIRM, {
+                    header: 'Switch stance?',
+                    leadText: `Only one stance can be active at a time. Do you want to switch from ${stance.ability.name} to ${ability.name}?`,
+                    onConfirm: () => {
+                        stance.ability.toggleOff(this.character, stance);
+                        ability.toggleOn(this.character);
+                        this.game.screens.popScreen();
+                    },
+                });
+                return;
+            }
+        }
+
+        if (!status && ability.isToggleable) {
+            ability.toggleOn(this.character);
+            this.game.screens.popScreen();
+            return;
+        }
+
         ability.initiate(this.character, {
             onConfirm: (data) => {
                 ability.execute(this.character, data);
@@ -99,6 +138,7 @@ export default class AbilitiesScreen extends Screen {
     }
 
     onUpdate(dt) {
+        this.game.updateAdventureSystems(dt);
         this.handleInput();
 
         drawUIWindow(

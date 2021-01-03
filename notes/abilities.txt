@@ -1,3 +1,14 @@
+Activation Type
+- Instant: The effect happens immediately
+- Toggled: The effect happens while the toggle is enabled
+    - Effect happens immediately
+    - Has a max duration for which it can be enabled
+- Channeled/Prepared
+    - Channel for n turns
+    - Effect happens after the channel duration
+    - Can be interrupted
+
+
 General
 - hide
 - shout for help

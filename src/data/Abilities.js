@@ -30,6 +30,6 @@ export const getStance = (entity) => {
     }
 
     return Object.values(entity.abilityStatus).find((status) => {
-        return !status.isComplete && status.ability.isStance;
+        return status.ability.isStance && !status.isCoolingDown && !status.isComplete;
     });
 };

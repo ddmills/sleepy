@@ -1,4 +1,5 @@
 import { AbilityStatus } from '../../ecs/components';
+import { ABILITY_TYPE_STANCE } from '../../enums/AbilityTypes';
 import { getAbilityStatus } from '../Abilities';
 
 export default class Ability {
@@ -6,6 +7,10 @@ export default class Ability {
     type = 0;
     name = '';
     isToggleable = false;
+
+    get isStance() {
+        return this.type === ABILITY_TYPE_STANCE;
+    }
 
     getDescription(entity) {
         return '';
@@ -36,8 +41,27 @@ export default class Ability {
     getStatMods(entity) {
         return {};
     }
+
     getSkillMods(entity) {
         return {};
+    }
+
+    toggleOn(entity) {
+        entity.add(AbilityStatus, {
+            key: this.key,
+            isToggledOn: true,
+            isCoolingDown: false,
+            duration: this.getDuration(entity),
+            cooldownDuration: this.getCooldownDuration(entity),
+            statMods: this.getStatMods(entity),
+            skillMods: this.getSkillMods(entity),
+        });
+
+        return true;
+    }
+
+    toggleOff(entity, status) {
+        status.startCooldown();
     }
 
     update(dt, status) {

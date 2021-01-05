@@ -107,7 +107,7 @@ export default class CharacterScreen extends Screen {
         this.list.data.forEach(({ item, idx, isSelected }) => {
             const stat = item;
             const ypos = idx + 13 + pad;
-            const modDir = stat.modSum > 0 ? '+' : '-';
+            const modDir = stat.modSum >= 0 ? '+' : '-';
 
             if (isSelected) {
                 this.game.renderer.drawText(

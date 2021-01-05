@@ -12,6 +12,8 @@ export class AbilityStatus extends Component {
         currentCooldownDuration: 0,
         duration: 10000,
         currentDuration: 0,
+        channelDuration: 0,
+        currentChannelDuration: 0,
         statMods: {},
         skillMods: {},
     };
@@ -34,6 +36,10 @@ export class AbilityStatus extends Component {
         }
 
         return this.duration - this.currentDuration;
+    }
+
+    get isChanneling() {
+        return this.currentChannelDuration < this.channelDuration;
     }
 
     get isComplete() {

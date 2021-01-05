@@ -23,7 +23,7 @@ import LoadSectorScreen from './screens/LoadSectorScreen';
 import EquipmentScreen from './screens/EquipmentScreen';
 import ListSelectionScreen from './screens/ListSelectionScreen';
 import CharacterScreen from './screens/CharacterScreen';
-import AbilitiesScreen from './screens/AbilitiesScreen';
+import AbilityScreen from './screens/AbilityScreen';
 import ConfirmationScreen from './screens/ConfirmationScreen';
 
 export default class ScreenManager extends Manager {
@@ -43,7 +43,7 @@ export default class ScreenManager extends Manager {
             [SCREEN_EQUIPMENT]: new EquipmentScreen(game),
             [SCREEN_LIST_SELECT]: new ListSelectionScreen(game),
             [SCREEN_CHARACTER]: new CharacterScreen(game),
-            [SCREEN_ABILITIES]: new AbilitiesScreen(game),
+            [SCREEN_ABILITIES]: new AbilityScreen(game),
             [SCREEN_CONFIRM]: new ConfirmationScreen(game),
         };
         this.setScreen(SCREEN_MAIN_MENU);

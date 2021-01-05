@@ -4,6 +4,7 @@ export const STAT_STRENGTH = 'STAT_STRENGTH';
 export const STAT_FINESSE = 'STAT_FINESSE';
 export const STAT_ATHLETICISM = 'STAT_ATHLETICISM';
 export const STAT_TRICKERY = 'STAT_TRICKERY';
+export const STAT_FAITH = 'STAT_FAITH';
 
 const lookup = {
     [STAT_STRENGTH]: {
@@ -17,6 +18,9 @@ const lookup = {
     },
     [STAT_TRICKERY]: {
         name: 'trickery',
+    },
+    [STAT_FAITH]: {
+        name: 'faith',
     },
 };
 

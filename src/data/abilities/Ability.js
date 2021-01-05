@@ -7,6 +7,7 @@ export default class Ability {
     type = 0;
     name = '';
     isToggleable = false;
+    isChanneled = false;
 
     get isStance() {
         return this.type === ABILITY_TYPE_STANCE;
@@ -18,6 +19,10 @@ export default class Ability {
 
     getCooldownDuration(entity) {
         return 5000;
+    }
+
+    getChannelDuration(entity) {
+        return 0;
     }
 
     constructor(key, type, name) {
@@ -69,6 +74,16 @@ export default class Ability {
             status.currentCooldownDuration += dt;
         } else if (status.isComplete) {
             status.startCooldown();
+        }
+
+        if (status.isChanneling) {
+            status.currentChannelDuration += dt;
+
+            const entity = status.entity;
+
+            entity.fireEvent('energy-consumed', Math.floor(dt));
+
+            return;
         }
 
         if (status.isToggledOn) {

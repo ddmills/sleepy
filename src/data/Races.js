@@ -12,6 +12,7 @@ const lookup = {
         STAT_FINESSE: 1,
         STAT_ATHLETICISM: 1,
         STAT_TRICKERY: 1,
+        STAT_FAITH: 0,
     }),
     [RACE_GOBLIN]: new RaceData({
         name: 'Goblin',
@@ -21,6 +22,7 @@ const lookup = {
         STAT_FINESSE: 2,
         STAT_ATHLETICISM: 1,
         STAT_TRICKERY: 2,
+        STAT_FAITH: 0,
     }),
 };
 

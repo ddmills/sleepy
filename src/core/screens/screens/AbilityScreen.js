@@ -12,8 +12,8 @@ import { getAbility, getAbilityStatus, getStance } from '../../../data/Abilities
 import { getAbilityTypeName } from '../../../enums/AbilityTypes';
 import { SCREEN_CONFIRM } from '../ScreenType';
 
-export default class AbilitiesScreen extends Screen {
-    width = 20;
+export default class AbilityScreen extends Screen {
+    width = 18;
     PADDING_RIGHT = 1;
     PADDING_HEIGHT = 4;
     character;

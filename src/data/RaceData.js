@@ -6,6 +6,7 @@ export default class RaceData {
     STAT_FINESSE = 0;
     STAT_ATHLETICISM = 0;
     STAT_TRICKERY = 0;
+    STAT_FAITH = 0;
 
     constructor(data) {
         this.name = data.name || '';
@@ -16,5 +17,6 @@ export default class RaceData {
         this.STAT_FINESSE = data.STAT_FINESSE || 0;
         this.STAT_ATHLETICISM = data.STAT_ATHLETICISM || 0;
         this.STAT_TRICKERY = data.STAT_TRICKERY || 0;
+        this.STAT_FAITH = data.STAT_FAITH || 0;
     }
 }

@@ -7,6 +7,7 @@ import * as GoblinGrunt from './spawnables/SpawnableGoblinGrunt';
 import * as PineTree from './spawnables/SpawnablePineTree';
 import * as HumanWanderer from './spawnables/SpawnableHumanWanderer';
 import * as PoolLiquid from './spawnables/SpawnablePoolLiquid';
+import * as Grass from './spawnables/SpawnableGrass';
 
 const simplePrefab = (prefabName) => (data) =>
     game.ecs.createPrefab(prefabName, data);
@@ -33,7 +34,7 @@ const spawnables = {
     SPWN_BATTLE_AXE: simplePrefab('BattleAxe'),
     SPWN_HATCHET: simplePrefab('Hatchet'),
     SPWN_MACE: simplePrefab('Mace'),
-    SPWN_GROUND_GRASS: simplePrefab('Grass'),
+    SPWN_GROUND_GRASS: Grass.createSpawnable,
     SPWN_GROUND_STONE: simplePrefab('StoneGround'),
     SPWN_CLOTH_HOOD: simplePrefab('ClothHood'),
     SPWN_WIZARD_CAP: simplePrefab('WizardCap'),

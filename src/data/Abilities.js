@@ -1,3 +1,4 @@
+import PrayerOfProtectionAbility from './abilities/prayers/PrayerOfProtectionAbility';
 import BlinkAbility from './abilities/spells/BlinkAbility';
 import CrimsonWellAbility from './abilities/spells/CrimsonWellAbility';
 import RageAbility from './abilities/stances/RageAbility';
@@ -9,6 +10,7 @@ export const ABILITY_RAGE = 'ABILITY_RAGE';
 export const ABILITY_CRIMSON_WELL = 'ABILITY_CRIMSON_WELL';
 export const ABILITY_BLINK = 'ABILITY_BLINK';
 export const ABILITY_JUMP = 'ABILITY_JUMP';
+export const ABILITY_PRAYER_PROTECTION = 'ABILITY_PRAYER_PROTECTION';
 
 const lookup = {
     ABILITY_SPRINT: new SprintAbility(),
@@ -16,6 +18,7 @@ const lookup = {
     ABILITY_CRIMSON_WELL: new CrimsonWellAbility(),
     ABILITY_BLINK: new BlinkAbility(),
     ABILITY_JUMP: new JumpAbility(),
+    ABILITY_PRAYER_PROTECTION: new PrayerOfProtectionAbility(),
 };
 
 export const getAbility = (key) => lookup[key];

@@ -6,6 +6,7 @@ import {
     STAT_FINESSE,
     STAT_STRENGTH,
     STAT_TRICKERY,
+    STAT_FAITH,
 } from '../../data/Stats';
 
 export class Stats extends Component {
@@ -14,6 +15,7 @@ export class Stats extends Component {
         baseFinesse: 0,
         baseAthleticism: 0,
         baseTrickery: 0,
+        baseFaith: 0,
     };
 
     _sumMods(modifiers) {
@@ -59,6 +61,7 @@ export class Stats extends Component {
             finesse: this.data(STAT_FINESSE),
             athleticism: this.data(STAT_ATHLETICISM),
             trickery: this.data(STAT_TRICKERY),
+            faith: this.data(STAT_FAITH),
         };
     }
 
@@ -84,5 +87,11 @@ export class Stats extends Component {
         const mod = this.getStatModifierSum(STAT_TRICKERY);
 
         return this.baseTrickery + mod;
+    }
+
+    faith() {
+        const mod = this.getStatModifierSum(STAT_FAITH);
+
+        return this.baseFaith + mod;
     }
 }

@@ -110,7 +110,7 @@ export const directionDelta = (direction) => directions[direction].delta;
 
 export const adjacent = (direction) => directions[direction].adjacent;
 
-export const getAdjacentDeltas = (direction) => adjacent(direction).map(delta);
+export const getAdjacentDeltas = (direction) => adjacent(direction).map(directionDelta);
 
 export const directionFromDelta = (x, y) => {
     return Object.values(directions).find((dir) => {

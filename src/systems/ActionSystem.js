@@ -1,3 +1,4 @@
+import { SCREEN_CONFIRM, SCREEN_WAIT } from '../core/screens/ScreenType';
 import {
     Actor,
     IsDead,
@@ -14,7 +15,7 @@ export default class ActionSystem extends System {
 
         this.#query = game.ecs.createQuery({
             all: [Actor],
-            none: [IsDestroying, IsDead, IsIncapacitated],
+            none: [IsDestroying, IsDead],
         });
     }
 
@@ -29,12 +30,23 @@ export default class ActionSystem extends System {
         if (entity && !entity.actor.hasEnergy) {
             this.game.clock.incrementTick(-1 * entity.actor.energy);
 
-            entities.forEach((entity) => {
-                entity.actor.addEnergy(this.game.clock.tickDelta);
+            entities.forEach((e) => {
+                e.actor.addEnergy(this.game.clock.tickDelta);
             });
         }
 
         while (entity && entity.actor.hasEnergy) {
+            if (entity.isIncapacitated) {
+                entity.fireEvent('energy-consumed', 100);
+                if (entity.isPlayer) {
+                    this.game.screens.pushScreen(SCREEN_WAIT, {
+                        time: 250
+                    });
+                    return true;
+                }
+                continue;
+            }
+
             if (entity.isPlayer) {
                 const action = this.game.player.getNextAction();
 

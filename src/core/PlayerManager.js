@@ -50,9 +50,10 @@ export default class PlayerManager extends Manager {
         const evt = this.entity.fireEvent('query-ownership', {
             result: new Set([this.entity]),
         });
-        const serialized = this.game.ecs.serialize(Array.from(evt.data.result));
+        const owned = Array.from(evt.data.result);
+        const serialized = this.game.ecs.serialize(owned);
 
-        console.log(serialized);
+        owned.forEach((e) => e.destroy());
 
         return {
             entityId,

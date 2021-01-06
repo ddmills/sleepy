@@ -5,6 +5,7 @@ export const SPWN_STONE = 'SPWN_STONE';
 export const SPWN_TWIG = 'SPWN_TWIG';
 export const SPWN_ASH = 'SPWN_ASH';
 export const SPWN_GOBLIN_GRUNT = 'SPWN_GOBLIN_GRUNT';
+export const SPWN_GOBLIN_BRUISER = 'SPWN_GOBLIN_BRUISER';
 export const SPWN_HUMAN_WANDERER = 'SPWN_HUMAN_WANDERER';
 export const SPWN_PINE_TREE = 'SPWN_PINE_TREE';
 export const SPWN_WOOD_WALL = 'SPWN_WOOD_WALL';

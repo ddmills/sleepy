@@ -1,0 +1,27 @@
+{
+    "name": "GoblinBruiser",
+    "inherit": ["Goblin"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Goblin Bruiser"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "G",
+                "fg1": "#5d8250",
+                "z": 8000
+            }
+        },
+        {
+            "type": "Stats",
+            "properties": {
+                "baseStrength": 4,
+                "baseFinesse": -4
+            }
+        }
+    ]
+}

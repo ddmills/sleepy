@@ -7,6 +7,7 @@ import {
     SPWN_VIAL_WATER,
     SPWN_GROUND_GRASS,
     SPWN_TWIG,
+    SPWN_GOBLIN_BRUISER,
 } from '../../data/Spawnables';
 import { spawn } from '../../data/Spawner';
 import { randomInt } from '../../utils/rand';
@@ -40,6 +41,12 @@ export default class ForestTheme extends TileThemePopulator {
         for (let i = 0; i < randomInt(0, 1); i++) {
             this.trySpawn(room, (tile) => {
                 spawn(SPWN_GOBLIN_GRUNT, tile.x, tile.y);
+            });
+        }
+
+        for (let i = 0; i < randomInt(0, 1); i++) {
+            this.trySpawn(room, (tile) => {
+                spawn(SPWN_GOBLIN_BRUISER, tile.x, tile.y);
             });
         }
 

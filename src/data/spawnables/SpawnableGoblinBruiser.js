@@ -1,16 +1,16 @@
 import { BoredGoalType } from '../../ai/GoalTypes';
 import { game } from '../../core/Game';
-import { SPWN_MACE } from '../Spawnables';
+import { SPWN_WOOD_CLUB } from '../Spawnables';
 import { spawn } from '../Spawner';
 
 export const createSpawnable = () => {
-    const goblin = game.ecs.createPrefab('GoblinBruiser');
+    const bruiser = game.ecs.createPrefab('GoblinBruiser');
 
-    goblin.brain.pushGoal(BoredGoalType.create());
+    bruiser.brain.pushGoal(BoredGoalType.create());
 
-    const mace = spawn(SPWN_MACE);
+    const club = spawn(SPWN_WOOD_CLUB);
 
-    goblin.equipmentSlot.handRight.equip(mace);
+    bruiser.equipmentSlot.handRight.equip(club);
 
-    return goblin;
+    return bruiser;
 };

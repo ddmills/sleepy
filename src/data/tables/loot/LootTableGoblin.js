@@ -4,15 +4,15 @@ import {
     SPWN_CLOTH_ARMOR,
     SPWN_SHORTSWORD,
     SPWN_STONE,
-    SPWN_VIAL_BLOOD,
+    SPWN_VIAL_HONEY,
 } from '../../Spawnables';
 
 const goblins = new WeightedTable();
 
 goblins.add(3, SPWN_STONE);
-goblins.add(2, SPWN_VIAL_BLOOD);
+goblins.add(2, SPWN_VIAL_HONEY);
 goblins.add(5, SPWN_AMULET);
 goblins.add(4, SPWN_CLOTH_ARMOR);
-goblins.add(15, SPWN_SHORTSWORD);
+goblins.add(6, SPWN_SHORTSWORD);
 
 export default goblins;

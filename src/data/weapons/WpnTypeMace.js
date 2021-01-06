@@ -39,9 +39,11 @@ export default class WpnTypeMace extends WeaponType {
         if (
             !result.data.isDodged &&
             !result.data.isKilled &&
-            randomWeightedBool(0.5)
+            randomWeightedBool(0.2)
         ) {
-            addStatus(STATUS_STUNNED, defender);
+            addStatus(STATUS_STUNNED, defender, {
+                duration: 1000
+            });
         }
 
         return attacks;

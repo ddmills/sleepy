@@ -39,3 +39,4 @@ export * as HelmPrefab from './HelmPrefab.json';
 export * as TwigPrefab from './TwigPrefab.json';
 export * as AshPrefab from './AshPrefab.json';
 export * as GoblinBruiser from './GoblinBruiserPrefab.json';
+export * as WoodClub from './WoodClubPrefab.json';

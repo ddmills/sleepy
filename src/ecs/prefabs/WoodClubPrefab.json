@@ -1,0 +1,27 @@
+{
+    "name": "WoodClub",
+    "inherit": ["Mace"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Wood Club"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "ó",
+                "fg1": "#923e2b"
+            }
+        },
+        {
+            "type": "Weapon",
+            "properties": {
+                "weaponType": "WPN_TYPE_MACE",
+                "die": 4,
+                "modifier": 1
+            }
+        }
+    ]
+}

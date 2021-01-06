@@ -22,6 +22,12 @@
                 "baseStrength": 4,
                 "baseFinesse": -4
             }
+        },
+        {
+            "type": "LootDropper",
+            "properties": {
+                "tables": ["TBL_LOOT_FOREST", "TBL_LOOT_BRUISER"]
+            }
         }
     ]
 }

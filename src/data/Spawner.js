@@ -35,6 +35,7 @@ const spawnables = {
     SPWN_BATTLE_AXE: simplePrefab('BattleAxe'),
     SPWN_HATCHET: simplePrefab('Hatchet'),
     SPWN_MACE: simplePrefab('Mace'),
+    SPWN_WOOD_CLUB: simplePrefab('WoodClub'),
     SPWN_GROUND_GRASS: Grass.createSpawnable,
     SPWN_GROUND_STONE: simplePrefab('StoneGround'),
     SPWN_CLOTH_HOOD: simplePrefab('ClothHood'),

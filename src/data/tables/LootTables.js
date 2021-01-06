@@ -1,2 +1,3 @@
 export const TBL_LOOT_GOBLIN = 'TBL_LOOT_GOBLIN';
+export const TBL_LOOT_BRUISER = 'TBL_LOOT_BRUISER';
 export const TBL_LOOT_FOREST = 'TBL_LOOT_FOREST';

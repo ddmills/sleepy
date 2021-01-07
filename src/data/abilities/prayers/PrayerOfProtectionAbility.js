@@ -13,7 +13,7 @@ export default class PrayerOfProtectionAbility extends SimpleChannelAbility {
     }
 
     getChannelDuration(entity) {
-        return 20000;
+        return 5000;
     }
 
     getArmorModifier(entity) {

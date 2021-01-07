@@ -1,3 +1,5 @@
+import { game } from '../../core/Game';
+import { SCREEN_WAIT } from '../../core/screens/ScreenType';
 import { AbilityStatus } from '../../ecs/components';
 import { ABILITY_TYPE_STANCE } from '../../enums/AbilityTypes';
 import { getAbilityStatus } from '../Abilities';
@@ -72,16 +74,28 @@ export default class Ability {
     update(dt, status) {
         if (status.isCoolingDown) {
             status.currentCooldownDuration += dt;
+
+            if (status.currentCooldownDuration > status.cooldownDuration) {
+                status.currentCooldownDuration = status.cooldownDuration;
+            }
         } else if (status.isComplete) {
             status.startCooldown();
         }
 
         if (status.isChanneling) {
+            let energy = dt;
+
             status.currentChannelDuration += dt;
+
+            if (status.currentChannelDuration > status.channelDuration) {
+                energy = status.channelDuration - (status.currentChannelDuration - dt)
+                status.currentChannelDuration = status.channelDuration;
+                status.startCooldown();
+            }
 
             const entity = status.entity;
 
-            entity.fireEvent('energy-consumed', Math.floor(dt));
+            entity.fireEvent('energy-consumed', energy);
 
             return;
         }

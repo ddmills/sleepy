@@ -1,9 +1,10 @@
 import { getStatus } from '../data/Statuses';
 import { Moniker, Actor, IsInventoried, IsVisible } from '../ecs/components';
+import { getChanneling } from '../data/Abilities';
 import System from './System';
 
 export default class UISystem extends System {
-    showTicks = false;
+    showTicks = true;
     beingsQuery = null;
 
     constructor(game) {
@@ -196,6 +197,28 @@ export default class UISystem extends System {
         });
     }
 
+    renderChanneling() {
+        const channel = getChanneling(this.game.player.entity);
+
+        if (!channel) {
+            return;
+        }
+
+        const percent = channel.currentChannelDuration / channel.channelDuration;
+        const maxLength = 20;
+        const length = Math.floor(percent * maxLength);
+        const center = Math.floor(this.game.camera.width / 2) - (maxLength / 2)
+
+        this.game.renderer.drawTextCenter(7, `Channeling ${channel.ability.name}`);
+        for (let i = 0; i < maxLength; i++) {
+            if (i <= length) {
+                this.game.renderer.drawUI(center + i, 8, '►', 'cyan');
+            } else {
+                this.game.renderer.drawUI(center + i, 8, '►', 'gray');
+            }
+        }
+    }
+
     update(dt) {
         if (this.showTicks) {
             const turn = this.game.clock.turn;
@@ -214,5 +237,6 @@ export default class UISystem extends System {
         }
 
         this.renderNearbyCreatures();
+        this.renderChanneling();
     }
 }

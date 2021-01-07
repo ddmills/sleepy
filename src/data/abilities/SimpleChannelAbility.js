@@ -6,7 +6,7 @@ export default class SimpleChannelAbility extends Ability {
     isChanneled = true;
 
     getDuration(entity) {
-        return 10000;
+        return 5000;
     }
 
     getCooldownDuration(entity) {
@@ -27,6 +27,6 @@ export default class SimpleChannelAbility extends Ability {
             statMods: this.getStatMods(entity),
             skillMods: this.getSkillMods(entity),
         });
-        entity.fireEvent('energy-consumed', 100);
+        entity.fireEvent('energy-consumed', 200);
     }
 }

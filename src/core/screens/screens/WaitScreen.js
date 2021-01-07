@@ -32,6 +32,5 @@ export default class WaitScreen extends Screen {
         }
 
         this.handleInput();
-        this.game.updatePlayerSystems(dt);
     }
 }

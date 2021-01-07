@@ -95,6 +95,10 @@ export default class Ability {
 
             const entity = status.entity;
 
+            game.screens.pushScreen(SCREEN_WAIT, {
+                time: energy,
+            });
+
             entity.fireEvent('energy-consumed', energy);
 
             return;

@@ -43,7 +43,7 @@ export class AbilityStatus extends Component {
     }
 
     get isComplete() {
-        return this.currentDuration >= this.duration;
+        return this.currentDuration >= this.duration || (this.ability.isToggleable && !this.isToggledOn);
     }
 
     get isCooldownComplete() {
@@ -59,7 +59,7 @@ export class AbilityStatus extends Component {
     }
 
     onQuerySkillMod(evt) {
-        if (this.isCoolingDown) {
+        if (this.isComplete) {
             return;
         }
 

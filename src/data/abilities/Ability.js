@@ -104,7 +104,7 @@ export default class Ability {
             return;
         }
 
-        if (status.isToggledOn) {
+        if (!status.isComplete) {
             status.currentDuration += dt;
         }
 

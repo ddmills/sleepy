@@ -36,6 +36,8 @@ export const liquids = {
             const pos = entity.position.getPos();
 
             game.particles.createEmitter(pos.x, pos.y - 1, {
+                rate: 2
+            }, {
                 direction: {
                     x: 0,
                     y: -1,

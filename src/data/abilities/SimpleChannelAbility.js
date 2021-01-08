@@ -1,3 +1,4 @@
+import { game } from '../../core/Game';
 import { AbilityStatus } from '../../ecs/components';
 import Ability from './Ability';
 

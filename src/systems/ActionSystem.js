@@ -1,10 +1,8 @@
-import { SCREEN_CONFIRM, SCREEN_WAIT } from '../core/screens/ScreenType';
-import { getChanneling } from '../data/Abilities';
+import { SCREEN_WAIT } from '../core/screens/ScreenType';
 import {
     Actor,
     IsDead,
     IsDestroying,
-    IsIncapacitated,
 } from '../ecs/components';
 import System from './System';
 

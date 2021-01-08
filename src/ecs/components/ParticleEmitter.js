@@ -5,7 +5,7 @@ export class ParticleEmitter extends Component {
     static properties = {
         particleData: {},
         duration: 800,
-        rate: 3,
+        rate: 2,
         age: 0,
         x: 0,
         y: 0,

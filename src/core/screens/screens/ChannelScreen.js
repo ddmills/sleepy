@@ -63,18 +63,6 @@ export default class ChannelScreen extends Screen {
         this.renderChanneling();
 
         if (!this.channel.isChanneling) {
-            const pos = this.entity.position.getPos();
-
-            allDirections().forEach((dir) => {
-                this.game.particles.createEmitter(pos.x, pos.y, {
-                    glyphs: ['·', 'o', 'O'],
-                    fg1s: ['yellow'],
-                    speed: .05,
-                    direction: directionDelta(dir),
-                    lifetime: 2000,
-                });
-            });
-
             this.game.screens.popScreen();
         }
     }

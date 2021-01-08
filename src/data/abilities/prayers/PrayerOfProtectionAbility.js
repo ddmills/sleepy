@@ -1,4 +1,5 @@
 import { ABILITY_TYPE_PRAYER } from '../../../enums/AbilityTypes';
+import { allDirections, directionDelta } from '../../../enums/Directions';
 import { ABILITY_PRAYER_PROTECTION } from '../../Abilities';
 import { getStat, STAT_FAITH } from '../../Stats';
 import SimpleChannelAbility from '../SimpleChannelAbility';
@@ -30,5 +31,21 @@ export default class PrayerOfProtectionAbility extends SimpleChannelAbility {
         return {
             SKILL_ARMOR: this.getArmorModifier(entity),
         };
+    }
+
+    onChannelComplete(status) {
+        const pos = status.entity.position.getPos();
+
+        allDirections().forEach((dir) => {
+            game.particles.createEmitter(pos.x, pos.y, {
+                rate: 3,
+            }, {
+                glyphs: ['·', 'o', 'O'],
+                fg1s: ['yellow'],
+                speed: .05,
+                direction: directionDelta(dir),
+                lifetime: 3000,
+            });
+        });
     }
 }

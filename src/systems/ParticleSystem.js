@@ -26,12 +26,13 @@ export default class ParticleSystem extends System {
         });
     }
 
-    createEmitter(x, y, particleData = {}) {
+    createEmitter(x, y, emitterData = {}, particleData = {}) {
         const e = this.game.ecs.createEntity();
 
         e.add(ParticleEmitter, {
             x,
             y,
+            ...emitterData,
             particleData: {
                 direction: {
                     x: 0,

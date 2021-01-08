@@ -33,6 +33,9 @@ export default class Ability {
         this.name = name;
     }
 
+    onChannelComplete(status) {
+    }
+
     initiate(entity, options) {
         options.onConfirm();
     }
@@ -78,6 +81,7 @@ export default class Ability {
             energy = status.channelDuration - (status.currentChannelDuration - energy)
             status.currentChannelDuration = status.channelDuration;
             status.startCooldown();
+            this.onChannelComplete(status);
         }
 
         const entity = status.entity;

@@ -1,4 +1,5 @@
 import { SCREEN_CONFIRM, SCREEN_WAIT } from '../core/screens/ScreenType';
+import { getChanneling } from '../data/Abilities';
 import {
     Actor,
     IsDead,
@@ -44,6 +45,22 @@ export default class ActionSystem extends System {
                     });
                     return true;
                 }
+                continue;
+            }
+
+            const abilityStatus = getChanneling(entity);
+
+            if (abilityStatus) {
+                const energy = abilityStatus.ability.channel(100, abilityStatus);
+
+                if (entity.isPlayer) {
+                    game.screens.pushScreen(SCREEN_WAIT, {
+                        time: energy / 2,
+                    });
+
+                    return true;
+                }
+
                 continue;
             }
 

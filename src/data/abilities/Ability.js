@@ -71,6 +71,22 @@ export default class Ability {
         status.startCooldown();
     }
 
+    channel(energy, status) {
+        status.currentChannelDuration += energy;
+
+        if (status.currentChannelDuration >= status.channelDuration) {
+            energy = status.channelDuration - (status.currentChannelDuration - energy)
+            status.currentChannelDuration = status.channelDuration;
+            status.startCooldown();
+        }
+
+        const entity = status.entity;
+
+        entity.fireEvent('energy-consumed', energy);
+
+        return energy;
+    }
+
     update(dt, status) {
         if (status.isCoolingDown) {
             status.currentCooldownDuration += dt;
@@ -83,24 +99,6 @@ export default class Ability {
         }
 
         if (status.isChanneling) {
-            let energy = dt;
-
-            status.currentChannelDuration += dt;
-
-            if (status.currentChannelDuration > status.channelDuration) {
-                energy = status.channelDuration - (status.currentChannelDuration - dt)
-                status.currentChannelDuration = status.channelDuration;
-                status.startCooldown();
-            }
-
-            const entity = status.entity;
-
-            game.screens.pushScreen(SCREEN_WAIT, {
-                time: energy,
-            });
-
-            entity.fireEvent('energy-consumed', energy);
-
             return;
         }
 

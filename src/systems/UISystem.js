@@ -205,17 +205,23 @@ export default class UISystem extends System {
         }
 
         const percent = channel.currentChannelDuration / channel.channelDuration;
-        const maxLength = 20;
-        const length = Math.floor(percent * maxLength);
+        const maxLength = 16;
+        const length = Math.ceil(percent * maxLength * 2) / 2;
         const center = Math.floor(this.game.camera.width / 2) - (maxLength / 2);
-        const bottom = this.game.camera.height - 7;
+        const bottom = this.game.camera.height - 6;
 
-        this.game.renderer.drawTextCenter(bottom, `Channeling ${channel.ability.name}`);
+        const fract = `(${(Math.floor(channel.currentChannelDuration / 100) / 10).toFixed(1)}/${Math.ceil(channel.channelDuration/ 100) / 10})`;
+        this.game.renderer.drawTextCenter(bottom, `Channeling ${channel.ability.name} ${fract}`);
+
         for (let i = 0; i < maxLength; i++) {
-            if (i <= length) {
-                this.game.renderer.drawUI(center + i, bottom - 1, '►', 'cyan');
+            const diff = length - i;
+
+            if (diff == .5) {
+                this.game.renderer.drawUI(center + i, bottom - 1, ' ', '#3c5b76', '#2f3438');
+            } else if (diff > 0) {
+                this.game.renderer.drawUI(center + i, bottom - 1, '►', '#3c5b76');
             } else {
-                this.game.renderer.drawUI(center + i, bottom - 1, '►', 'gray');
+                this.game.renderer.drawUI(center + i, bottom - 1, '►', '#2f3438');
             }
         }
     }

@@ -87,6 +87,11 @@ export default class Ability {
         return energy;
     }
 
+    cancelChannel(status) {
+        status.currentDuration = status.duration;
+        status.startCooldown();
+    }
+
     update(dt, status) {
         if (status.isCoolingDown) {
             status.currentCooldownDuration += dt;

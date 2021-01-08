@@ -12,6 +12,7 @@ import {
     SCREEN_ABILITIES,
     SCREEN_CONFIRM,
     SCREEN_WAIT,
+    SCREEN_CHANNEL,
 } from './ScreenType';
 import AdventureScreen from './screens/AdventureScreen';
 import MainMenuScreen from './screens/MainMenuScreen';
@@ -27,6 +28,7 @@ import CharacterScreen from './screens/CharacterScreen';
 import AbilityScreen from './screens/AbilityScreen';
 import ConfirmationScreen from './screens/ConfirmationScreen';
 import WaitScreen from './screens/WaitScreen';
+import ChannelScreen from './screens/ChannelScreen';
 
 export default class ScreenManager extends Manager {
     #screens = {};
@@ -48,6 +50,7 @@ export default class ScreenManager extends Manager {
             [SCREEN_ABILITIES]: new AbilityScreen(game),
             [SCREEN_CONFIRM]: new ConfirmationScreen(game),
             [SCREEN_WAIT]: new WaitScreen(game),
+            [SCREEN_CHANNEL]: new ChannelScreen(game),
         };
         this.setScreen(SCREEN_MAIN_MENU);
     }

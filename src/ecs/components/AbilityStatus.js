@@ -39,7 +39,7 @@ export class AbilityStatus extends Component {
     }
 
     get isChanneling() {
-        return this.currentChannelDuration < this.channelDuration;
+        return !this.isCoolingDown && this.currentChannelDuration < this.channelDuration;
     }
 
     get isComplete() {

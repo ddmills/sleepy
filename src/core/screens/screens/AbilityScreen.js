@@ -10,7 +10,7 @@ import SelectableList from '../../../utils/SelectableList';
 import { drawUIWindow } from '../../../utils/UIWindowUtil';
 import { getAbility, getAbilityStatus, getStance } from '../../../data/Abilities';
 import { getAbilityTypeName } from '../../../enums/AbilityTypes';
-import { SCREEN_CONFIRM } from '../ScreenType';
+import { SCREEN_CHANNEL, SCREEN_CONFIRM } from '../ScreenType';
 
 export default class AbilityScreen extends Screen {
     width = 18;
@@ -107,7 +107,14 @@ export default class AbilityScreen extends Screen {
         ability.initiate(this.character, {
             onConfirm: (data) => {
                 ability.execute(this.character, data);
+
                 this.game.screens.popScreen();
+
+                if (ability.isChanneled && this.character.isPlayer) {
+                    this.game.screens.pushScreen(SCREEN_CHANNEL, {
+                        entity: this.character
+                    });
+                }
             },
             onCancel: () => {},
         });

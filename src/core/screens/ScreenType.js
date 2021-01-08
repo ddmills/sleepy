@@ -11,3 +11,4 @@ export const SCREEN_CHARACTER = 9;
 export const SCREEN_ABILITIES = 10;
 export const SCREEN_CONFIRM = 11;
 export const SCREEN_WAIT = 12;
+export const SCREEN_CHANNEL = 13;

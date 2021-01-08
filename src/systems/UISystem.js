@@ -197,35 +197,6 @@ export default class UISystem extends System {
         });
     }
 
-    renderChanneling() {
-        const channel = getChanneling(this.game.player.entity);
-
-        if (!channel) {
-            return;
-        }
-
-        const percent = channel.currentChannelDuration / channel.channelDuration;
-        const maxLength = 16;
-        const length = Math.ceil(percent * maxLength * 2) / 2;
-        const center = Math.floor(this.game.camera.width / 2) - (maxLength / 2);
-        const bottom = this.game.camera.height - 6;
-
-        const fract = `(${(Math.floor(channel.currentChannelDuration / 100) / 10).toFixed(1)}/${Math.ceil(channel.channelDuration/ 100) / 10})`;
-        this.game.renderer.drawTextCenter(bottom, `Channeling ${channel.ability.name} ${fract}`);
-
-        for (let i = 0; i < maxLength; i++) {
-            const diff = length - i;
-
-            if (diff == .5) {
-                this.game.renderer.drawUI(center + i, bottom - 1, ' ', '#3c5b76', '#2f3438');
-            } else if (diff > 0) {
-                this.game.renderer.drawUI(center + i, bottom - 1, '►', '#3c5b76');
-            } else {
-                this.game.renderer.drawUI(center + i, bottom - 1, '►', '#2f3438');
-            }
-        }
-    }
-
     update(dt) {
         if (this.showTicks) {
             const turn = this.game.clock.turn;
@@ -244,6 +215,5 @@ export default class UISystem extends System {
         }
 
         this.renderNearbyCreatures();
-        this.renderChanneling();
     }
 }

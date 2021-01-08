@@ -27,6 +27,5 @@ export default class SimpleChannelAbility extends Ability {
             statMods: this.getStatMods(entity),
             skillMods: this.getSkillMods(entity),
         });
-        entity.fireEvent('energy-consumed', 200);
     }
 }

@@ -2,6 +2,7 @@ import Screen from './Screen';
 import { INPUT_DOMAIN_ADVENTURE } from '../../input/InputDomainType';
 import { INPUT_CMD_CANCEL, INPUT_CMD_WAIT } from '../../input/InputCommandType';
 import { getChanneling } from '../../../data/Abilities';
+import { allDirections, directionDelta } from '../../../enums/Directions';
 
 export default class ChannelScreen extends Screen {
     onEnter(ctx) {
@@ -62,6 +63,18 @@ export default class ChannelScreen extends Screen {
         this.renderChanneling();
 
         if (!this.channel.isChanneling) {
+            const pos = this.entity.position.getPos();
+
+            allDirections().forEach((dir) => {
+                this.game.particles.createEmitter(pos.x, pos.y, {
+                    glyphs: ['·', 'o', 'O'],
+                    fg1s: ['yellow'],
+                    speed: .05,
+                    direction: directionDelta(dir),
+                    lifetime: 2000,
+                });
+            });
+
             this.game.screens.popScreen();
         }
     }

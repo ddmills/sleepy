@@ -102,6 +102,17 @@ directions[DIR_SW].adjacent = [DIR_W, DIR_S];
 directions[DIR_S].adjacent = [DIR_SW, DIR_SE];
 directions[DIR_SE].adjacent = [DIR_S, DIR_E];
 
+export const allDirections = () => [
+    DIR_NW,
+    DIR_N,
+    DIR_NE,
+    DIR_W,
+    DIR_E,
+    DIR_SW,
+    DIR_S,
+    DIR_SE,
+];
+
 export const shortName = (direction) => directions[direction].shortName;
 
 export const fullName = (direction) => directions[direction].fullName;

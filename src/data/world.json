@@ -1,80 +1,30 @@
 {
-    "width": 3,
-    "height": 3,
+    "width": 4,
+    "height": 1,
     "sectors": [
         [
-            {
-                "music": "FOREST",
-                "temperature": {
-                    "ambient": 18,
-                    "capacity": 0.16
-                },
-                "generator": {
-                    "type": "FOREST"
-                },
-                "connectionsNorth": [],
-                "connectionsWest": []
-            },
-            {
-                "music": "FOREST",
-                "temperature": {
-                    "ambient": 18,
-                    "capacity": 0.16
-                },
-                "generator": {
-                    "type": "FOREST_CABINS"
-                },
-                "connectionsNorth": [],
-                "connectionsWest": [
-                    {
-                        "type": "path"
-                    }
-                ]
-            },
-            {
-                "music": "FOREST",
-                "temperature": {
-                    "ambient": 18,
-                    "capacity": 0.16
-                },
-                "generator": {
-                    "type": "FOREST_STRONGHOLD"
-                },
-                "connectionsNorth": [],
-                "connectionsWest": [
-                    {
-                        "type": "path"
-                    }
-                ]
-            }
-        ],
-        [
-            {
-                "music": "FOREST",
-                "temperature": {
-                    "ambient": 18,
-                    "capacity": 0.16
-                },
-                "generator": {
-                    "type": "FOREST_STRONGHOLD"
-                },
-                "connectionsNorth": [],
-                "connectionsWest": []
-            },
             {
                 "music": "FOREST_VILLAGE",
                 "temperature": {
                     "ambient": 18,
                     "capacity": 0.16
                 },
+                "connectionsNorth": [],
+                "connectionsWest": [],
                 "generator": {
                     "type": "FOREST_TOWN"
+                }
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
                 },
-                "connectionsNorth": [
-                    {
-                        "type": "path"
-                    }
-                ],
+                "generator": {
+                    "type": "FOREST"
+                },
+                "connectionsNorth": [],
                 "connectionsWest": [
                     {
                         "type": "path"
@@ -90,34 +40,12 @@
                 "generator": {
                     "type": "FOREST_CABINS"
                 },
-                "connectionsNorth": [
-                    {
-                        "type": "path"
-                    }
-                ],
+                "connectionsNorth": [],
                 "connectionsWest": [
                     {
                         "type": "path"
                     }
                 ]
-            }
-        ],
-        [
-            {
-                "music": "FOREST",
-                "temperature": {
-                    "ambient": 18,
-                    "capacity": 0.16
-                },
-                "generator": {
-                    "type": "FOREST"
-                },
-                "connectionsNorth": [
-                    {
-                        "type": "path"
-                    }
-                ],
-                "connectionsWest": []
             },
             {
                 "music": "FOREST",
@@ -128,32 +56,12 @@
                 "generator": {
                     "type": "FOREST_STRONGHOLD"
                 },
-                "connectionsNorth": [
-                    {
-                        "type": "path"
-                    }
-                ],
+                "connectionsNorth": [],
                 "connectionsWest": [
                     {
                         "type": "path"
                     }
                 ]
-            },
-            {
-                "music": "FOREST",
-                "temperature": {
-                    "ambient": 18,
-                    "capacity": 0.16
-                },
-                "generator": {
-                    "type": "FOREST"
-                },
-                "connectionsNorth": [
-                    {
-                        "type": "path"
-                    }
-                ],
-                "connectionsWest": []
             }
         ]
     ]

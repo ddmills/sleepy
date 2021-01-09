@@ -1,10 +1,9 @@
 import { getStatus } from '../data/Statuses';
 import { Moniker, Actor, IsInventoried, IsVisible } from '../ecs/components';
-import { getChanneling } from '../data/Abilities';
 import System from './System';
 
 export default class UISystem extends System {
-    showTicks = true;
+    showTicks = false;
     beingsQuery = null;
 
     constructor(game) {

@@ -9,6 +9,12 @@ export default class BitmaskManager extends Manager {
             all: [BitmaskGlyph, Position, Explored],
             none: [IsInventoried, IsDestroying],
         });
+
+        this.query.onEntityRemoved((entity) => {
+            if (entity.isDestroying || entity.IsInventoried) {
+                this.refreshMaskAndNeighbors(entity);
+            }
+        });
     }
 
 
@@ -16,7 +22,7 @@ export default class BitmaskManager extends Manager {
         const neighbors = this.game.map.getNeighborEntities(x, y);
 
         return neighbors.map((list) => {
-            return list.filter((e) => e.explored && e.bitmaskGlyph && e.bitmaskGlyph.key === key);
+            return list.filter((e) => e.explored && e.bitmaskGlyph && e.bitmaskGlyph.key === key && !e.isDestroying);
         });
     }
 

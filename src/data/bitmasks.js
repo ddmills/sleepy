@@ -4,12 +4,33 @@ export const BITMASK_WALL = 'BITMASK_WALL';
 const map = {
     BITMASK_WALL: (value) => {
         switch (value) {
+            case 0:
             case 2:
+            case 3:
+            case 6:
+            case 7:
+            case 17:
+            case 48:
+                return '╜';
+            case 8:
+            case 9:
+            case 12:
+            case 40:
+            case 41:
+            case 136:
+                return '╛';
+            case 16:
+            case 20:
+            case 144:
+            case 148:
+                return '╒';
+            case 1:
             case 64:
             case 66:
             case 67:
             case 70:
             case 71:
+            case 96:
             case 98:
             case 102:
             case 194:

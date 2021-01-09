@@ -71,6 +71,10 @@ export class Health extends Component {
                 damageType: attack.damageType,
             });
 
+            attacker.fireEvent('enemy-killed', {
+                enemy: defender,
+            });
+
             evt.handle();
 
             return;

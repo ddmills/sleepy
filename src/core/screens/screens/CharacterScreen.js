@@ -66,41 +66,66 @@ export default class CharacterScreen extends Screen {
             'orange'
         );
 
+        const level = this.character.level.level;
+        const xp = this.character.level.xp;
+        const nextLevelReqXp = this.character.level.nextLevelReq;
+
+        let offsetY = 5;
+
+        this.game.renderer.drawText(2, offsetY, 'level');
+        this.game.renderer.drawText(10, offsetY, `${level}`);
+
+        offsetY++;
+
+        this.game.renderer.drawText(2, offsetY, 'xp');
+        this.game.renderer.drawText(10, offsetY, `${xp}/${nextLevelReqXp}`);
+
+        offsetY++;
+        offsetY++;
+
         const health = this.character.health.value;
         const healthMax = this.character.health.max;
 
-        this.game.renderer.drawText(2, 5, 'health');
-        this.game.renderer.drawText(10, 5, `${health}/${healthMax}`);
+        this.game.renderer.drawText(2, offsetY, 'health');
+        this.game.renderer.drawText(10, offsetY, `${health}/${healthMax}`);
+
+        offsetY++;
 
         const speed = getSkillValue(SKILL_SPEED, this.character);
         const speedPrcnt = getSpeedPercentDisplay(speed);
 
-        this.game.renderer.drawText(2, 6, 'speed');
+        this.game.renderer.drawText(2, offsetY, 'speed');
         this.game.renderer.drawText(
             10,
-            6,
+            offsetY,
             `+${speed} (${100 - speedPrcnt}% less movement cost)`
         );
+
+        offsetY++;
 
         const armor = getSkillValue(SKILL_ARMOR, this.character);
         const armorPrcnt = getArmorBlockPercentDisplay(armor);
 
-        this.game.renderer.drawText(2, 7, 'armor');
+        this.game.renderer.drawText(2, offsetY, 'armor');
         this.game.renderer.drawText(
             10,
-            7,
+            offsetY,
             `+${armor} (${armorPrcnt}% less melee damage taken)`
         );
+
+        offsetY++;
 
         const dodge = getSkillValue(SKILL_DODGE, this.character);
         const dodgePrcnt = getDodgePercent(dodge);
 
-        this.game.renderer.drawText(2, 8, 'dodge');
+        this.game.renderer.drawText(2, offsetY, 'dodge');
         this.game.renderer.drawText(
             10,
-            8,
+            offsetY,
             `+${dodge} (${dodgePrcnt}% chance to avoid a melee attack)`
         );
+
+        offsetY++;
 
         let pad = 0;
 

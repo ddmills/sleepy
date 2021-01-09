@@ -2,32 +2,37 @@ import { getMessage, shouldAppear } from '../enums/ConsoleEvents';
 import Manager from './Manager';
 
 export default class ConsoleManager extends Manager {
-    #messages = [];
-    #events = [];
-    #viewCount = 4;
+    messages = [];
+    events = [];
+    consoleHeight = 4;
+
+    teardown() {
+        this.messages = [];
+        this.events = [];
+    }
 
     event(type, data) {
-        this.#events.push({ type, data });
+        this.events.push({ type, data });
     }
 
     log(text) {
-        this.#messages.push({ text });
+        this.messages.push({ text });
     }
 
     render(dt) {
-        this.#events.forEach(({ type, data }) => {
+        this.events.forEach(({ type, data }) => {
             if (shouldAppear(type, data)) {
-                this.#messages.push({
+                this.messages.push({
                     text: getMessage(type, data),
                 });
             }
         });
-        this.#events = [];
+        this.events = [];
 
-        const msgs = this.#messages.slice(
-            Math.max(this.#messages.length - this.#viewCount, 0)
+        const msgs = this.messages.slice(
+            Math.max(this.messages.length - this.consoleHeight, 0)
         );
-        const height = Math.min(msgs.length, this.#viewCount);
+        const height = Math.min(msgs.length, this.consoleHeight);
 
         msgs.forEach((message, i) => {
             this.game.renderer.drawText(

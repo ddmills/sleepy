@@ -17,7 +17,6 @@ export default class GameStateManager extends Manager {
     }
 
     initiateTeardown() {
-        console.log('STATE - teardown');
         this.#isStarted = false;
 
         this.game.player.teardown();
@@ -25,10 +24,10 @@ export default class GameStateManager extends Manager {
         this.game.engine.teardown();
         this.game.world.teardown();
         this.game.temperature.teardown();
+        this.game.console.teardown();
     }
 
     initiateSetup(data) {
-        console.log('STATE - setup');
         this.#isStarted = true;
 
         this.game.clock.setup(data.clock);
@@ -39,6 +38,11 @@ export default class GameStateManager extends Manager {
 
     newGame() {
         this.#filename = prompt('Enter save name', 'test');
+
+        if (!this.filename) {
+            return;
+        }
+
         this.deleteFile(this.filename);
         this.initiateTeardown();
 

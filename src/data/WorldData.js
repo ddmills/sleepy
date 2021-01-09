@@ -40,7 +40,7 @@ export default class WorldData {
     }
 
     getStartingSector() {
-        return this.getSector(7);
+        return this.getSector(4);
     }
 
     getSectorByCoord(x, y) {

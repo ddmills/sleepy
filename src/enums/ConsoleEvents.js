@@ -8,6 +8,7 @@ export const CONSOLE_EVENT_SHATTER = 2;
 export const CONSOLE_EVENT_MISS = 3;
 export const CONSOLE_EVENT_BLOCK = 4;
 export const CONSOLE_EVENT_TRAP_SHARP = 5;
+export const CONSOLE_EVENT_LEVEL = 6;
 
 const getMonikerSubject = (entity) => {
     if (entity.has(Moniker)) {
@@ -18,7 +19,7 @@ const getMonikerSubject = (entity) => {
 };
 
 const getMonikerIndirectObject = (entity) => {
-    if (entity.has(IsPlayer)) {
+    if (entity.isPlayer) {
         return 'you';
     }
 
@@ -28,6 +29,16 @@ const getMonikerIndirectObject = (entity) => {
 };
 
 const mapping = {
+    [CONSOLE_EVENT_LEVEL]: {
+        message(data) {
+            const entity = getMonikerSubject(data.entity);
+
+            return `${entity} gained a level (${data.level})!`;
+        },
+        shouldAppear(data) {
+            return data.entity.isPlayer || data.entity.isVisible;
+        },
+    },
     [CONSOLE_EVENT_MISS]: {
         message(data) {
             const attacker = getMonikerIndirectObject(data.attacker);
@@ -36,7 +47,7 @@ const mapping = {
             return `${defender} dodged an attack from ${attacker} (${data.dodgePrcnt}%)`;
         },
         shouldAppear(data) {
-            return data.defender.has(IsPlayer) || data.attacker.has(IsVisible);
+            return data.defender.isPlayer || data.attacker.isVisible;
         },
     },
     [CONSOLE_EVENT_DAMAGE]: {
@@ -53,7 +64,7 @@ const mapping = {
             return `${source} ${dmgVerb} ${target} for ${dmg} hp${blockText}`;
         },
         shouldAppear(data) {
-            return data.target.has(IsPlayer) || data.target.has(IsVisible);
+            return data.target.isPlayer || data.target.isVisible;
         },
     },
     [CONSOLE_EVENT_DEAD]: {
@@ -65,7 +76,7 @@ const mapping = {
             return `${source} ${dmgVerb} ${target} to death`;
         },
         shouldAppear(data) {
-            return data.target.has(IsPlayer) || data.target.has(IsVisible);
+            return data.target.isPlayer || data.target.isVisible;
         },
     },
     [CONSOLE_EVENT_SHATTER]: {
@@ -81,7 +92,7 @@ const mapping = {
             }
         },
         shouldAppear(data) {
-            return data.target.has(IsVisible);
+            return data.target.isVisible;
         },
     },
     [CONSOLE_EVENT_TRAP_SHARP]: {
@@ -93,7 +104,7 @@ const mapping = {
             )} and begins bleeding`;
         },
         shouldAppear(data) {
-            return data.trap.has(IsVisible);
+            return data.trap.isVisible;
         },
     },
 };

@@ -2,7 +2,6 @@ import Screen from './Screen';
 import { INPUT_DOMAIN_ADVENTURE } from '../../input/InputDomainType';
 import { INPUT_CMD_CANCEL, INPUT_CMD_WAIT } from '../../input/InputCommandType';
 import { getChanneling } from '../../../data/Abilities';
-import { allDirections, directionDelta } from '../../../enums/Directions';
 
 export default class ChannelScreen extends Screen {
     onEnter(ctx) {
@@ -42,14 +41,13 @@ export default class ChannelScreen extends Screen {
         this.game.renderer.drawTextCenter(bottom, `Channeling ${this.channel.ability.name} ${fract}`);
         this.game.renderer.drawTextCenter(bottom + 2, 'press [S] to channel or [ESC] to cancel', '#53575b');
 
-
         for (let i = 0; i < maxLength; i++) {
             const diff = length - i;
 
             if (diff == .5) {
-                this.game.renderer.drawUI(center + i, bottom - 1, ' ', '#3c5b76', '#2f3438');
+                this.game.renderer.drawUI(center + i, bottom - 1, ' ', '#4685bc', '#2f3438');
             } else if (diff > 0) {
-                this.game.renderer.drawUI(center + i, bottom - 1, '►', '#3c5b76');
+                this.game.renderer.drawUI(center + i, bottom - 1, '►', '#4685bc');
             } else {
                 this.game.renderer.drawUI(center + i, bottom - 1, '►', '#2f3438');
             }

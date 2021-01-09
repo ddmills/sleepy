@@ -46,3 +46,4 @@ export { Fire } from './Fire';
 export { ThermalCapacity } from './ThermalCapacity';
 export { Abilities } from './Abilities';
 export { AbilityStatus } from './AbilityStatus';
+export { BitmaskGlyph } from './BitmaskGlyph';

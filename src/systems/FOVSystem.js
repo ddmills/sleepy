@@ -34,6 +34,9 @@ export default class FOVSystem extends System {
             });
             if (e.explorable && !e.explored) {
                 e.add(Explored);
+                if (e.bitmaskGlyph) {
+                    this.game.bitmasks.refreshMaskAndNeighbors(e);
+                }
             }
         });
     }

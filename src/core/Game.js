@@ -27,6 +27,7 @@ import TrapSystem from '../systems/TrapSystem';
 import FireSystem from '../systems/FireSystem';
 import TemperatureSystem from '../systems/TemperatureSystem';
 import AbilitySystem from '../systems/AbilitySystem';
+import BitmaskManager from './BitmaskManager';
 
 export default class Game {
     #lastUpdate;
@@ -51,6 +52,7 @@ export default class Game {
         this.screens = new ScreenManager(this);
         this.input = new InputController(this);
         this.console = new ConsoleManager(this);
+        this.bitmasks = new BitmaskManager(this);
 
         this.actionSystem = new ActionSystem(this);
         this.deathSystem = new DeathSystem(this);

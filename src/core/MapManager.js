@@ -1,7 +1,6 @@
 import Manager from './Manager';
 import FastMap from '../utils/FastMap';
 import { IsInventoried, Position } from '../ecs/components';
-import Grid from '../utils/Grid';
 
 export default class MapManager extends Manager {
     #playerOutOfBounds = null;

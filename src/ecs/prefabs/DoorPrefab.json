@@ -33,6 +33,13 @@
         },
         {
             "type": "Combustible"
+        },
+        {
+            "type": "BitmaskGlyph",
+            "properties": {
+                "key": "BITMASK_WALL",
+                "updateGlyph": false
+            }
         }
     ]
 }

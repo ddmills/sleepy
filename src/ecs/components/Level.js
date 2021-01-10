@@ -22,6 +22,48 @@ export class Level extends Component {
                 entity: this.entity,
                 level: this.level,
             });
+
+            const pos = this.entity.position.getPos();
+
+            game.particles.createEmitter(pos.x, pos.y, {
+                rate: 5,
+                duration: 1200,
+            }, {
+                glyphs: ['↑'],
+                fg1s: ['yellow'],
+                speed: .015,
+                direction: {
+                    x: -1,
+                    y: -5
+                },
+                lifetime: 3000,
+            });
+            game.particles.createEmitter(pos.x, pos.y, {
+                rate: 5,
+                duration: 1200,
+            }, {
+                glyphs: ['↑'],
+                fg1s: ['yellow'],
+                speed: .015,
+                direction: {
+                    x: 0,
+                    y: -5
+                },
+                lifetime: 3000,
+            });
+            game.particles.createEmitter(pos.x, pos.y, {
+                rate: 5,
+                duration: 1200,
+            }, {
+                glyphs: ['↑'],
+                fg1s: ['yellow'],
+                speed: .015,
+                direction: {
+                    x: 1,
+                    y: -5
+                },
+                lifetime: 3000,
+            });
         }
     }
 

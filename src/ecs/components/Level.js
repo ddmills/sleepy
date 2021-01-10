@@ -2,6 +2,10 @@ import { Component } from 'geotic';
 import { game } from '../../core/Game';
 import { CONSOLE_EVENT_LEVEL } from '../../enums/ConsoleEvents';
 
+const LEVEL_XP_CAP = 5000;
+const LEVEL_INTENSITY = 16;
+const LEVEL_DIFFERENCE_FACTOR = 20;
+
 export class Level extends Component {
     static properties = {
         xp: 0,
@@ -9,7 +13,7 @@ export class Level extends Component {
     };
 
     get nextLevelReq() {
-        return 1000 + (this.level - 1) * 250;
+        return Math.floor((this.level * LEVEL_XP_CAP) / (this.level + LEVEL_INTENSITY))
     }
 
     addXP(xp) {
@@ -78,6 +82,6 @@ export class Level extends Component {
             return;
         }
 
-        this.addXP(levelFactor * 100);
+        this.addXP(levelFactor * LEVEL_DIFFERENCE_FACTOR);
     }
 }

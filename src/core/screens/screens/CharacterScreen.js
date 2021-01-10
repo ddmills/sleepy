@@ -83,7 +83,7 @@ export default class CharacterScreen extends Screen {
         offsetY++;
         offsetY++;
 
-        const health = this.character.health.value;
+        const health = Math.ceil(this.character.health.value);
         const healthMax = this.character.health.max;
 
         this.game.renderer.drawText(2, offsetY, 'health');

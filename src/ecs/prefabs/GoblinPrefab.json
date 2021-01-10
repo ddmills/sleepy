@@ -15,6 +15,12 @@
             }
         },
         {
+            "type": "Level",
+            "properties": {
+                "level": 2
+            }
+        },
+        {
             "type": "Glyph",
             "properties": {
                 "ch": "g",

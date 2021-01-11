@@ -1,0 +1,41 @@
+{
+    "name": "GoblinStargazer",
+    "inherit": ["Goblin"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Goblin Stargazer"
+            }
+        },
+        {
+            "type": "Level",
+            "properties": {
+                "level": 3
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "k",
+                "fg1": "#5d8250",
+                "fg2": "#923e2b",
+                "z": 8000
+            }
+        },
+        {
+            "type": "Stats",
+            "properties": {
+                "baseStrength": -4,
+                "baseFinesse": 1,
+                "baseFaith": 3
+            }
+        },
+        {
+            "type": "LootDropper",
+            "properties": {
+                "tables": ["TBL_LOOT_FOREST"]
+            }
+        }
+    ]
+}

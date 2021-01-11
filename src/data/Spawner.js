@@ -5,6 +5,7 @@ import * as VialBlood from './spawnables/SpawnableVialBlood';
 import * as VialWater from './spawnables/SpawnableVialWater';
 import * as GoblinGrunt from './spawnables/SpawnableGoblinGrunt';
 import * as GoblinBruiser from './spawnables/SpawnableGoblinBruiser';
+import * as GoblinStargazer from './spawnables/SpawnableGoblinStargazer';
 import * as PineTree from './spawnables/SpawnablePineTree';
 import * as HumanWanderer from './spawnables/SpawnableHumanWanderer';
 import * as PoolLiquid from './spawnables/SpawnablePoolLiquid';
@@ -45,6 +46,7 @@ const spawnables = {
     SPWN_ASH: simplePrefab('Ash'),
     SPWN_GOBLIN_GRUNT: GoblinGrunt.createSpawnable,
     SPWN_GOBLIN_BRUISER: GoblinBruiser.createSpawnable,
+    SPWN_GOBLIN_STARGAZER: GoblinStargazer.createSpawnable,
     SPWN_HUMAN_WANDERER: HumanWanderer.createSpawnable,
     SPWN_PINE_TREE: PineTree.createSpawnable,
     SPWN_POOL_LIQUID: PoolLiquid.createSpawnable,

@@ -30,7 +30,7 @@ export class ForestTownGenerator extends SectorGenerator {
             width: settings.width,
             height: settings.height,
             exits: settings.exits,
-            minCount: 3,
+            minCount: 4,
         });
 
         tiles.setTheme(TILE_THEME_CABIN);

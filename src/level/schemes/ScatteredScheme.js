@@ -14,10 +14,10 @@ export class ScatteredScheme extends TileScheme {
         const roomPadding = settings.roomPadding || 3;
         const minCount = settings.minCount || 5;
         const maxCount = settings.maxCount || 8;
-        const minWidth = settings.minWidth || 6;
-        const maxWidth = settings.maxWidth || 10;
-        const minHeight = settings.minHeight || 6;
-        const maxHeight = settings.maxHeight || 10;
+        const minWidth = settings.minWidth || 5;
+        const maxWidth = settings.maxWidth || 9;
+        const minHeight = settings.minHeight || 5;
+        const maxHeight = settings.maxHeight || 9;
         const exits = settings.exits || [];
         const tiles = new TileContainer(width, height);
 

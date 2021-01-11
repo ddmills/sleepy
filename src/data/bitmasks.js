@@ -32,9 +32,12 @@ const map = {
             case 71:
             case 96:
             case 98:
+            case 99:
             case 102:
+            case 192:
             case 194:
             case 195:
+            case 198:
             case 226:
                 return '║';
             case 10:

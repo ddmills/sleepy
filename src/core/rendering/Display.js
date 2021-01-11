@@ -9,7 +9,7 @@ export default class Display {
     tileWidth;
     tileHeight;
     cells;
-    clearColor = '#141a23';
+    clearColor = '#1f1313';
 
     constructor({ width, height, tileWidth, tileHeight }) {
         this.tileWidth = tileWidth;

@@ -139,6 +139,8 @@ export default class AdventureScreen extends Screen {
             return;
         }
 
+        items.sort((a, b) => (a.glyph.z < b.glyph.z ? 1 : -1));
+
         game.screens.pushScreen(SCREEN_LIST_SELECT, {
             header: `Ground`,
             leadText: 'Select an item to interact',

@@ -11,7 +11,7 @@ export class Level extends Component {
     static properties = {
         xp: 0,
         level: 1,
-        skillPoints: 0,
+        skillPoints: 2,
     };
 
     get nextLevelReq() {

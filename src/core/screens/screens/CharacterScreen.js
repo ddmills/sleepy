@@ -40,7 +40,14 @@ export default class CharacterScreen extends Screen {
         if (this.mode === MODE_STAT) {
             this.mode = MODE_SKILL;
         } else {
-            console.log(`SELECT skill ${this.skills.selected.key}`);
+            const skillPoints = this.character.level.skillPoints;
+
+            if (skillPoints > 0) {
+                const skill = this.skills.selected;
+
+                this.character.skills[skill.key]++;
+                this.character.level.skillPoints--;
+            }
         }
     }
 
@@ -156,6 +163,14 @@ export default class CharacterScreen extends Screen {
 
         this.game.renderer.drawText(1, offsetY, 'armor');
         this.game.renderer.drawText(8, offsetY, `${armor} (${armorPrcnt}%)`);
+
+        offsetY++;
+
+        const skillPoints = this.character.level.skillPoints;
+        const skillPointColor = skillPoints > 0 ? 'green' : undefined;
+
+        this.game.renderer.drawText(1, offsetY, 'skill points');
+        this.game.renderer.drawText(8, offsetY, `${skillPoints}`, skillPointColor);
 
         offsetY++;
         offsetY++;

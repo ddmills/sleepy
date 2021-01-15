@@ -9,22 +9,28 @@ export const STAT_FAITH = 'STAT_FAITH';
 const lookup = {
     [STAT_STRENGTH]: {
         name: 'strength',
+        abbreviation: 'STR',
     },
     [STAT_FINESSE]: {
         name: 'finesse',
+        abbreviation: 'FIN',
     },
     [STAT_ATHLETICISM]: {
         name: 'athleticism',
+        abbreviation: 'ATH',
     },
     [STAT_TRICKERY]: {
         name: 'trickery',
+        abbreviation: 'TRK',
     },
     [STAT_FAITH]: {
         name: 'faith',
+        abbreviation: 'FTH',
     },
 };
 
 export const getStatName = (stat) => lookup[stat].name;
+export const getStatAbbreviation = (stat) => lookup[stat].abbreviation;
 export const getStat = (stat, entity) => {
     const name = lookup[stat].name;
 

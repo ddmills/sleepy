@@ -1,6 +1,7 @@
 import Screen from './Screen';
 import {
     INPUT_CMD_CANCEL,
+    INPUT_CMD_CONFIRM,
     INPUT_CMD_MOVE_N,
     INPUT_CMD_MOVE_S,
 } from '../../input/InputCommandType';
@@ -8,16 +9,18 @@ import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import SelectableList from '../../../utils/SelectableList';
 import {
     SKILL_ARMOR,
-    SKILL_DODGE,
-    SKILL_SPEED,
     getSkillValue,
+    getSkillsByStat,
 } from '../../../data/Skills';
-import { getSpeedPercentDisplay } from '../../../data/skills/SpeedSkill';
 import { getArmorBlockPercentDisplay } from '../../../data/skills/ArmorSkill';
-import { getDodgePercent } from '../../../data/skills/DodgeSkill';
+import { capitalize } from '../../../utils/StringUtil';
+
+const MODE_STAT = 0;
+const MODE_SKILL = 1;
 
 export default class CharacterScreen extends Screen {
     character;
+    mode = MODE_STAT;
 
     onEnter(ctx) {
         this.game.commands.pushDomain(INPUT_DOMAIN_MAIN_MENU);
@@ -25,11 +28,45 @@ export default class CharacterScreen extends Screen {
 
         const stats = this.character.stats.all();
 
-        this.list = new SelectableList(Object.values(stats));
+        this.stats = new SelectableList(Object.values(stats));
+        this.skills = new SelectableList();
     }
 
     onLeave() {
         this.game.commands.popDomain(INPUT_DOMAIN_MAIN_MENU);
+    }
+
+    selectItem() {
+        if (this.mode === MODE_STAT) {
+            this.mode = MODE_SKILL;
+        } else {
+            console.log(`SELECT skill ${this.skills.selected.key}`);
+        }
+    }
+
+    up() {
+        if (this.mode === MODE_STAT) {
+            this.stats.up();
+        } else {
+            this.skills.up();
+        }
+    }
+
+    back() {
+        if (this.mode === MODE_STAT) {
+            this.game.screens.popScreen();
+        } else {
+            this.mode = MODE_STAT;
+        }
+
+    }
+
+    down() {
+        if (this.mode === MODE_STAT) {
+            this.stats.down();
+        } else {
+            this.skills.down();
+        }
     }
 
     handleInput() {
@@ -40,20 +77,49 @@ export default class CharacterScreen extends Screen {
         }
 
         if (cmd.type === INPUT_CMD_CANCEL) {
-            this.game.screens.popScreen();
+            this.back();
         }
 
         if (cmd.type === INPUT_CMD_MOVE_N) {
-            this.list.up();
+            this.up();
         }
 
         if (cmd.type === INPUT_CMD_MOVE_S) {
-            this.list.down();
+            this.down();
         }
 
-        // if (cmd.type === INPUT_CMD_CONFIRM) {
-        //     this.selectItem();
-        // }
+        if (cmd.type === INPUT_CMD_CONFIRM) {
+            this.selectItem();
+        }
+    }
+
+    renderSkills(stat, offsetY) {
+        this.skills.setItems(getSkillsByStat(stat.stat));
+
+        this.game.renderer.drawText(14, offsetY, `${capitalize(stat.name)} skills`, 'orange');
+
+        this.skills.data.forEach(({ item, idx, isSelected }) => {
+            const skill = item;
+            const posY = 2 + idx + offsetY;
+            const value = getSkillValue(skill.key, this.character);
+
+            if (isSelected) {
+                const color = this.mode === MODE_SKILL ? 'yellow' : '#c1c172';
+
+                this.game.renderer.drawText(14, posY, `→ ${skill.name}`, color);
+                this.game.renderer.drawText(
+                    22,
+                    posY,
+                    `+${value}`,
+                    color
+                );
+            } else {
+                const selector = this.mode === MODE_SKILL ? '-' : ' ';
+
+                this.game.renderer.drawText(14, posY, `${selector} ${skill.name}`);
+                this.game.renderer.drawText(22, posY, `+${value}`);
+            }
+        });
     }
 
     onUpdate(dt) {
@@ -72,106 +138,59 @@ export default class CharacterScreen extends Screen {
 
         let offsetY = 5;
 
-        this.game.renderer.drawText(2, offsetY, 'level');
-        this.game.renderer.drawText(10, offsetY, `${level}`);
+        this.game.renderer.drawText(1, offsetY, 'level');
+        this.game.renderer.drawText(8, offsetY, `${level} (${xp}/${nextLevelReqXp} xp)`);
 
-        offsetY++;
-
-        this.game.renderer.drawText(2, offsetY, 'xp');
-        this.game.renderer.drawText(10, offsetY, `${xp}/${nextLevelReqXp}`);
-
-        offsetY++;
         offsetY++;
 
         const health = Math.ceil(this.character.health.value);
         const healthMax = this.character.health.max;
 
-        this.game.renderer.drawText(2, offsetY, 'health');
-        this.game.renderer.drawText(10, offsetY, `${health}/${healthMax}`);
-
-        offsetY++;
-
-        const speed = getSkillValue(SKILL_SPEED, this.character);
-        const speedPrcnt = getSpeedPercentDisplay(speed);
-
-        this.game.renderer.drawText(2, offsetY, 'speed');
-        this.game.renderer.drawText(
-            10,
-            offsetY,
-            `+${speed} (${100 - speedPrcnt}% less movement cost)`
-        );
+        this.game.renderer.drawText(1, offsetY, 'health');
+        this.game.renderer.drawText(8, offsetY, `${health}/${healthMax}`);
 
         offsetY++;
 
         const armor = getSkillValue(SKILL_ARMOR, this.character);
         const armorPrcnt = getArmorBlockPercentDisplay(armor);
 
-        this.game.renderer.drawText(2, offsetY, 'armor');
-        this.game.renderer.drawText(
-            10,
-            offsetY,
-            `+${armor} (${armorPrcnt}% less melee damage taken)`
-        );
+        this.game.renderer.drawText(1, offsetY, 'armor');
+        this.game.renderer.drawText(8, offsetY, `${armor} (${armorPrcnt}%)`);
 
         offsetY++;
-
-        const dodge = getSkillValue(SKILL_DODGE, this.character);
-        const dodgePrcnt = getDodgePercent(dodge);
-
-        this.game.renderer.drawText(2, offsetY, 'dodge');
-        this.game.renderer.drawText(
-            10,
-            offsetY,
-            `+${dodge} (${dodgePrcnt}% chance to avoid a melee attack)`
-        );
-
         offsetY++;
 
-        let pad = 0;
+        this.game.renderer.drawText(1, offsetY, 'Stats', 'orange');
 
-        this.list.data.forEach(({ item, idx, isSelected }) => {
+        this.stats.data.forEach(({ item, idx, isSelected }) => {
             const stat = item;
-            const ypos = idx + 13 + pad;
+            const ypos = offsetY + idx + 2;
             const modDir = stat.modSum >= 0 ? '+' : '-';
 
             if (isSelected) {
+                const color = this.mode === MODE_STAT ? 'yellow' : '#c1c172';
+
                 this.game.renderer.drawText(
                     1,
                     ypos,
-                    `→ ${stat.name}`,
-                    'yellow'
+                    `→ ${stat.abbreviation} ${stat.name}`,
+                    color
                 );
                 this.game.renderer.drawText(
-                    10,
+                    11,
                     ypos,
                     `${modDir}${stat.sum}`,
-                    'yellow'
+                    color
                 );
-
-                stat.modifiers.forEach((mod, i) => {
-                    if (mod.mod > 0) {
-                        this.game.renderer.drawText(
-                            3,
-                            ypos + i + 1,
-                            `+${mod.mod} (${mod.source})`,
-                            'green'
-                        );
-                    } else {
-                        this.game.renderer.drawText(
-                            3,
-                            ypos + i + 1,
-                            `-${Math.abs(mod.mod)} (${mod.source})`,
-                            'red'
-                        );
-                    }
-                });
-
-                pad += stat.modifiers.length;
             } else {
-                this.game.renderer.drawText(1, ypos, `- ${stat.name}`);
-                this.game.renderer.drawText(10, ypos, `${modDir}${stat.sum}`);
+                const selector = this.mode === MODE_STAT ? '-' : ' ';
+
+                this.game.renderer.drawText(1, ypos, `${selector} ${stat.abbreviation} ${stat.name}`);
+                this.game.renderer.drawText(11, ypos, `${modDir}${stat.sum}`);
             }
         });
+
+        this.renderSkills(this.stats.selected, offsetY);
 
         this.game.renderer.drawText(1, 1, '← back [esc]');
     }

@@ -18,6 +18,7 @@ const lookup = {
 export const getSkill = (key) => lookup[key];
 export const getSkillName = (key) => lookup[key].name;
 export const getSkillValue = (key, entity) => lookup[key].compute(entity);
+export const getSkillsByStat = (stat) => Object.values(lookup).filter(s => s.baseStat === stat);
 export const getSkillEquippedMod = (key, entity) => {
     const modifiers = [];
 

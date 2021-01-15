@@ -7,6 +7,7 @@ import {
     STAT_STRENGTH,
     STAT_TRICKERY,
     STAT_FAITH,
+    getStatAbbreviation,
 } from '../../data/Stats';
 
 export class Stats extends Component {
@@ -40,6 +41,7 @@ export class Stats extends Component {
 
     data(stat) {
         const name = getStatName(stat);
+        const abbreviation = getStatAbbreviation(stat);
         const modifiers = this.getStatModifiers(stat);
         const base = this[`base${capitalize(name)}`];
         const modSum = this._sumMods(modifiers);
@@ -47,6 +49,7 @@ export class Stats extends Component {
 
         return {
             stat,
+            abbreviation,
             name,
             modifiers,
             base,

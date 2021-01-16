@@ -1,0 +1,25 @@
+{
+    "name": "Cliff",
+    "inherit": ["Tile"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Cliff"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "Σ",
+                "fg1": "#923e2b"
+            }
+        },
+        {
+            "type": "Blocker"
+        },
+        {
+            "type": "Shadowcaster"
+        }
+    ]
+}

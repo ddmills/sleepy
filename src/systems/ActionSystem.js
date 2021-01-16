@@ -1,9 +1,5 @@
 import { SCREEN_WAIT } from '../core/screens/ScreenType';
-import {
-    Actor,
-    IsDead,
-    IsDestroying,
-} from '../ecs/components';
+import { Actor, IsDead, IsDestroying } from '../ecs/components';
 import System from './System';
 
 export default class ActionSystem extends System {
@@ -39,7 +35,7 @@ export default class ActionSystem extends System {
                 entity.fireEvent('energy-consumed', 100);
                 if (entity.isPlayer) {
                     this.game.screens.pushScreen(SCREEN_WAIT, {
-                        time: 250
+                        time: 250,
                     });
                     return true;
                 }

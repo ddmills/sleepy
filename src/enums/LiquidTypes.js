@@ -35,18 +35,23 @@ export const liquids = {
         onDrink: (entity, volume) => {
             const pos = entity.position.getPos();
 
-            game.particles.createEmitter(pos.x, pos.y - 1, {
-                rate: 2
-            }, {
-                direction: {
-                    x: 0,
-                    y: -1,
+            game.particles.createEmitter(
+                pos.x,
+                pos.y - 1,
+                {
+                    rate: 2,
                 },
-                glyphs: ['.', '○'],
-                fg1s: ['#d6aa3a'],
-                speed: 0.02,
-                lifetime: 500,
-            });
+                {
+                    direction: {
+                        x: 0,
+                        y: -1,
+                    },
+                    glyphs: ['.', '○'],
+                    fg1s: ['#d6aa3a'],
+                    speed: 0.02,
+                    lifetime: 500,
+                }
+            );
 
             entity.fireEvent('heal', {
                 value: volume * 2,

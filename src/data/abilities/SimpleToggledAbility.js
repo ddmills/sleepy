@@ -14,7 +14,6 @@ export default class SimpleToggledAbility extends Ability {
 
     execute(entity, data) {
         // const status = getAbilityStatus(this.key, entity);
-
         // if (status) {
         //     this.toggleOff(entity, status);
         // } else {

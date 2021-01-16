@@ -15,7 +15,9 @@ export class Level extends Component {
     };
 
     get nextLevelReq() {
-        return Math.floor((this.level * LEVEL_XP_CAP) / (this.level + LEVEL_INTENSITY))
+        return Math.floor(
+            (this.level * LEVEL_XP_CAP) / (this.level + LEVEL_INTENSITY)
+        );
     }
 
     levelUp() {
@@ -29,45 +31,60 @@ export class Level extends Component {
 
         const pos = this.entity.position.getPos();
 
-        game.particles.createEmitter(pos.x, pos.y, {
-            rate: 5,
-            duration: 1200,
-        }, {
-            glyphs: ['↑'],
-            fg1s: ['yellow'],
-            speed: .015,
-            direction: {
-                x: -1,
-                y: -5
+        game.particles.createEmitter(
+            pos.x,
+            pos.y,
+            {
+                rate: 5,
+                duration: 1200,
             },
-            lifetime: 3000,
-        });
-        game.particles.createEmitter(pos.x, pos.y, {
-            rate: 5,
-            duration: 1200,
-        }, {
-            glyphs: ['↑'],
-            fg1s: ['yellow'],
-            speed: .015,
-            direction: {
-                x: 0,
-                y: -5
+            {
+                glyphs: ['↑'],
+                fg1s: ['yellow'],
+                speed: 0.015,
+                direction: {
+                    x: -1,
+                    y: -5,
+                },
+                lifetime: 3000,
+            }
+        );
+        game.particles.createEmitter(
+            pos.x,
+            pos.y,
+            {
+                rate: 5,
+                duration: 1200,
             },
-            lifetime: 3000,
-        });
-        game.particles.createEmitter(pos.x, pos.y, {
-            rate: 5,
-            duration: 1200,
-        }, {
-            glyphs: ['↑'],
-            fg1s: ['yellow'],
-            speed: .015,
-            direction: {
-                x: 1,
-                y: -5
+            {
+                glyphs: ['↑'],
+                fg1s: ['yellow'],
+                speed: 0.015,
+                direction: {
+                    x: 0,
+                    y: -5,
+                },
+                lifetime: 3000,
+            }
+        );
+        game.particles.createEmitter(
+            pos.x,
+            pos.y,
+            {
+                rate: 5,
+                duration: 1200,
             },
-            lifetime: 3000,
-        });
+            {
+                glyphs: ['↑'],
+                fg1s: ['yellow'],
+                speed: 0.015,
+                direction: {
+                    x: 1,
+                    y: -5,
+                },
+                lifetime: 3000,
+            }
+        );
     }
 
     addXP(xp) {

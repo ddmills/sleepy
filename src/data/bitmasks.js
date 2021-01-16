@@ -1,6 +1,5 @@
 export const BITMASK_WALL = 'BITMASK_WALL';
 
-
 const map = {
     BITMASK_WALL: (value) => {
         switch (value) {
@@ -28,6 +27,7 @@ const map = {
             case 64:
             case 66:
             case 67:
+            case 68:
             case 70:
             case 71:
             case 96:
@@ -67,9 +67,8 @@ const map = {
                 return '╬';
             default:
                 return '═';
-        };
-    }
+        }
+    },
 };
-
 
 export const getMaskGlyph = (key, mask) => map[key](mask);

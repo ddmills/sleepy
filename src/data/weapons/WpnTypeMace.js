@@ -42,7 +42,7 @@ export default class WpnTypeMace extends WeaponType {
             randomWeightedBool(0.2)
         ) {
             addStatus(STATUS_STUNNED, defender, {
-                duration: 1000
+                duration: 1000,
             });
         }
 

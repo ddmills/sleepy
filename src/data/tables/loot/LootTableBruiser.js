@@ -1,8 +1,5 @@
 import WeightedTable from '../../../utils/WeightedTable';
-import {
-    SPWN_VIAL_HONEY,
-    SPWN_WOOD_CLUB,
-} from '../../Spawnables';
+import { SPWN_VIAL_HONEY, SPWN_WOOD_CLUB } from '../../Spawnables';
 
 const bruiser = new WeightedTable();
 

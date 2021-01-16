@@ -60,25 +60,35 @@ export default class CrimsonWellAbility extends SimpleDurationAbility {
                     });
 
                     const enemyPos = hostile.position.getPos();
-                    game.particles.createEmitter(enemyPos.x, enemyPos.y, {
-                        rate: 2
-                    }, {
-                        glyphs: ['·', 'x'],
-                        fg1s: ['red'],
-                        speed: 0.01,
-                        lifetime: 120,
-                    });
+                    game.particles.createEmitter(
+                        enemyPos.x,
+                        enemyPos.y,
+                        {
+                            rate: 2,
+                        },
+                        {
+                            glyphs: ['·', 'x'],
+                            fg1s: ['red'],
+                            speed: 0.01,
+                            lifetime: 120,
+                        }
+                    );
                 }
             });
 
-        game.particles.createEmitter(pos.x, pos.y, {
-            rate: 2
-        }, {
-            glyphs: ['x', '·'],
-            fg1s: ['red'],
-            speed: 0.01,
-            lifetime: 120,
-        });
+        game.particles.createEmitter(
+            pos.x,
+            pos.y,
+            {
+                rate: 2,
+            },
+            {
+                glyphs: ['x', '·'],
+                fg1s: ['red'],
+                speed: 0.01,
+                lifetime: 120,
+            }
+        );
     }
 
     update(dt, status) {

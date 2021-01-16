@@ -33,7 +33,11 @@ export const getStance = (entity) => {
     }
 
     return Object.values(entity.abilityStatus).find((status) => {
-        return status.ability.isStance && !status.isCoolingDown && !status.isComplete;
+        return (
+            status.ability.isStance &&
+            !status.isCoolingDown &&
+            !status.isComplete
+        );
     });
 };
 export const getChanneling = (entity) => {

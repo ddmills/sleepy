@@ -53,24 +53,34 @@ export default class BlinkAbility extends Ability {
         const prevPos = entity.position.getPos();
         const nextPos = data.position;
 
-        game.particles.createEmitter(prevPos.x, prevPos.y, {
-            rate: 2,
-        }, {
-            glyphs: ['O', 'o', '·'],
-            fg1s: ['purple'],
-            speed: 1,
-            lifetime: 300,
-        });
+        game.particles.createEmitter(
+            prevPos.x,
+            prevPos.y,
+            {
+                rate: 2,
+            },
+            {
+                glyphs: ['O', 'o', '·'],
+                fg1s: ['purple'],
+                speed: 1,
+                lifetime: 300,
+            }
+        );
 
         entity.position.setPos(data.position.x, data.position.y);
 
-        game.particles.createEmitter(nextPos.x, nextPos.y, {
-            rate: 2,
-        }, {
-            glyphs: ['·', 'o', 'O'],
-            fg1s: ['purple'],
-            speed: 1,
-            lifetime: 300,
-        });
+        game.particles.createEmitter(
+            nextPos.x,
+            nextPos.y,
+            {
+                rate: 2,
+            },
+            {
+                glyphs: ['·', 'o', 'O'],
+                fg1s: ['purple'],
+                speed: 1,
+                lifetime: 300,
+            }
+        );
     }
 }

@@ -65,7 +65,6 @@ export default class CharacterScreen extends Screen {
         } else {
             this.mode = MODE_STAT;
         }
-
     }
 
     down() {
@@ -103,7 +102,12 @@ export default class CharacterScreen extends Screen {
     renderSkills(stat, offsetY) {
         this.skills.setItems(getSkillsByStat(stat.stat));
 
-        this.game.renderer.drawText(14, offsetY, `${capitalize(stat.name)} skills`, 'orange');
+        this.game.renderer.drawText(
+            14,
+            offsetY,
+            `${capitalize(stat.name)} skills`,
+            'orange'
+        );
 
         this.skills.data.forEach(({ item, idx, isSelected }) => {
             const skill = item;
@@ -114,16 +118,15 @@ export default class CharacterScreen extends Screen {
                 const color = this.mode === MODE_SKILL ? 'yellow' : '#c1c172';
 
                 this.game.renderer.drawText(14, posY, `→ ${skill.name}`, color);
-                this.game.renderer.drawText(
-                    22,
-                    posY,
-                    `+${value}`,
-                    color
-                );
+                this.game.renderer.drawText(22, posY, `+${value}`, color);
             } else {
                 const selector = this.mode === MODE_SKILL ? '-' : ' ';
 
-                this.game.renderer.drawText(14, posY, `${selector} ${skill.name}`);
+                this.game.renderer.drawText(
+                    14,
+                    posY,
+                    `${selector} ${skill.name}`
+                );
                 this.game.renderer.drawText(22, posY, `+${value}`);
             }
         });
@@ -146,7 +149,11 @@ export default class CharacterScreen extends Screen {
         let offsetY = 5;
 
         this.game.renderer.drawText(1, offsetY, 'level');
-        this.game.renderer.drawText(8, offsetY, `${level} (${xp}/${nextLevelReqXp} xp)`);
+        this.game.renderer.drawText(
+            8,
+            offsetY,
+            `${level} (${xp}/${nextLevelReqXp} xp)`
+        );
 
         offsetY++;
 
@@ -170,7 +177,12 @@ export default class CharacterScreen extends Screen {
         const skillPointColor = skillPoints > 0 ? 'green' : undefined;
 
         this.game.renderer.drawText(1, offsetY, 'skill points');
-        this.game.renderer.drawText(8, offsetY, `${skillPoints}`, skillPointColor);
+        this.game.renderer.drawText(
+            8,
+            offsetY,
+            `${skillPoints}`,
+            skillPointColor
+        );
 
         offsetY++;
         offsetY++;
@@ -200,7 +212,11 @@ export default class CharacterScreen extends Screen {
             } else {
                 const selector = this.mode === MODE_STAT ? '-' : ' ';
 
-                this.game.renderer.drawText(1, ypos, `${selector} ${stat.abbreviation} ${stat.name}`);
+                this.game.renderer.drawText(
+                    1,
+                    ypos,
+                    `${selector} ${stat.abbreviation} ${stat.name}`
+                );
                 this.game.renderer.drawText(11, ypos, `${modDir}${stat.sum}`);
             }
         });

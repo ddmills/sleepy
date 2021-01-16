@@ -13,11 +13,16 @@ export const simpleLineRenderer = (options = {}) => {
                     return;
                 }
 
-                const color = isValid({
-                    ...opts,
-                    x,
-                    y
-                }, idx) ? 'blue' : 'red';
+                const color = isValid(
+                    {
+                        ...opts,
+                        x,
+                        y,
+                    },
+                    idx
+                )
+                    ? 'blue'
+                    : 'red';
                 const screen = game.camera.worldToScreen(x, y);
 
                 game.renderer.draw(screen.x, screen.y, '•', color);

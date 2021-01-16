@@ -8,7 +8,11 @@ import {
 import { INPUT_DOMAIN_MAIN_MENU } from '../../input/InputDomainType';
 import SelectableList from '../../../utils/SelectableList';
 import { drawUIWindow } from '../../../utils/UIWindowUtil';
-import { getAbility, getAbilityStatus, getStance } from '../../../data/Abilities';
+import {
+    getAbility,
+    getAbilityStatus,
+    getStance,
+} from '../../../data/Abilities';
 import { getAbilityTypeName } from '../../../enums/AbilityTypes';
 import { SCREEN_CHANNEL, SCREEN_CONFIRM } from '../ScreenType';
 
@@ -112,7 +116,7 @@ export default class AbilityScreen extends Screen {
 
                 if (ability.isChanneled && this.character.isPlayer) {
                     this.game.screens.pushScreen(SCREEN_CHANNEL, {
-                        entity: this.character
+                        entity: this.character,
                     });
                 }
             },

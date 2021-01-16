@@ -31,25 +31,51 @@ export default class ChannelScreen extends Screen {
     }
 
     renderChanneling() {
-        const percent = this.channel.currentChannelDuration / this.channel.channelDuration;
+        const percent =
+            this.channel.currentChannelDuration / this.channel.channelDuration;
         const maxLength = 16;
         const length = Math.ceil(percent * maxLength * 2) / 2;
-        const center = Math.floor(this.game.camera.width / 2) - (maxLength / 2);
+        const center = Math.floor(this.game.camera.width / 2) - maxLength / 2;
         const bottom = this.game.camera.height - 6;
 
-        const fract = `(${(Math.floor(this.channel.currentChannelDuration / 100) / 10).toFixed(1)}/${Math.ceil(this.channel.channelDuration/ 100) / 10})`;
-        this.game.renderer.drawTextCenter(bottom, `Channeling ${this.channel.ability.name} ${fract}`);
-        this.game.renderer.drawTextCenter(bottom + 2, 'press [S] to channel or [ESC] to cancel', '#53575b');
+        const fract = `(${(
+            Math.floor(this.channel.currentChannelDuration / 100) / 10
+        ).toFixed(1)}/${Math.ceil(this.channel.channelDuration / 100) / 10})`;
+        this.game.renderer.drawTextCenter(
+            bottom,
+            `Channeling ${this.channel.ability.name} ${fract}`
+        );
+        this.game.renderer.drawTextCenter(
+            bottom + 2,
+            'press [S] to channel or [ESC] to cancel',
+            '#53575b'
+        );
 
         for (let i = 0; i < maxLength; i++) {
             const diff = length - i;
 
-            if (diff == .5) {
-                this.game.renderer.drawUI(center + i, bottom - 1, ' ', '#4685bc', '#2f3438');
+            if (diff == 0.5) {
+                this.game.renderer.drawUI(
+                    center + i,
+                    bottom - 1,
+                    ' ',
+                    '#4685bc',
+                    '#2f3438'
+                );
             } else if (diff > 0) {
-                this.game.renderer.drawUI(center + i, bottom - 1, '►', '#4685bc');
+                this.game.renderer.drawUI(
+                    center + i,
+                    bottom - 1,
+                    '►',
+                    '#4685bc'
+                );
             } else {
-                this.game.renderer.drawUI(center + i, bottom - 1, '►', '#2f3438');
+                this.game.renderer.drawUI(
+                    center + i,
+                    bottom - 1,
+                    '►',
+                    '#2f3438'
+                );
             }
         }
     }

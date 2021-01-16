@@ -1,5 +1,11 @@
 import { getMaskGlyph } from '../data/bitmasks';
-import { BitmaskGlyph, Explored, IsDestroying, IsInventoried, Position } from '../ecs/components';
+import {
+    BitmaskGlyph,
+    Explored,
+    IsDestroying,
+    IsInventoried,
+    Position,
+} from '../ecs/components';
 import Manager from './Manager';
 
 export default class BitmaskManager extends Manager {
@@ -17,12 +23,17 @@ export default class BitmaskManager extends Manager {
         });
     }
 
-
     getMaskNeighbors(x, y, key) {
         const neighbors = this.game.map.getNeighborEntities(x, y);
 
         return neighbors.map((list) => {
-            return list.filter((e) => e.explored && e.bitmaskGlyph && e.bitmaskGlyph.key === key && !e.isDestroying);
+            return list.filter(
+                (e) =>
+                    e.explored &&
+                    e.bitmaskGlyph &&
+                    e.bitmaskGlyph.key === key &&
+                    !e.isDestroying
+            );
         });
     }
 
@@ -52,7 +63,7 @@ export default class BitmaskManager extends Manager {
 
     sumMask(neighbors) {
         return neighbors.reduce((sum, cell, idx) => {
-            return cell.length ? sum + (2 ** idx) : sum;
+            return cell.length ? sum + 2 ** idx : sum;
         }, 0);
     }
 

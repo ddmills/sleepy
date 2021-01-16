@@ -33,8 +33,7 @@ export default class Ability {
         this.name = name;
     }
 
-    onChannelComplete(status) {
-    }
+    onChannelComplete(status) {}
 
     initiate(entity, options) {
         options.onConfirm();
@@ -78,7 +77,9 @@ export default class Ability {
         status.currentChannelDuration += energy;
 
         if (status.currentChannelDuration >= status.channelDuration) {
-            energy = status.channelDuration - (status.currentChannelDuration - energy)
+            energy =
+                status.channelDuration -
+                (status.currentChannelDuration - energy);
             status.currentChannelDuration = status.channelDuration;
             status.startCooldown();
             this.onChannelComplete(status);

@@ -37,15 +37,20 @@ export default class PrayerOfProtectionAbility extends SimpleChannelAbility {
         const pos = status.entity.position.getPos();
 
         allDirections().forEach((dir) => {
-            game.particles.createEmitter(pos.x, pos.y, {
-                rate: 3,
-            }, {
-                glyphs: ['·', 'o', 'O'],
-                fg1s: ['yellow'],
-                speed: .05,
-                direction: directionDelta(dir),
-                lifetime: 3000,
-            });
+            game.particles.createEmitter(
+                pos.x,
+                pos.y,
+                {
+                    rate: 3,
+                },
+                {
+                    glyphs: ['·', 'o', 'O'],
+                    fg1s: ['yellow'],
+                    speed: 0.05,
+                    direction: directionDelta(dir),
+                    lifetime: 3000,
+                }
+            );
         });
     }
 }

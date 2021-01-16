@@ -7,7 +7,7 @@ import LootTableBruiser from './loot/LootTableBruiser';
 const tables = {
     TBL_LOOT_GOBLIN: LootTableGoblin,
     TBL_LOOT_FOREST: LootTableForest,
-    TBL_LOOT_BRUISER: LootTableBruiser
+    TBL_LOOT_BRUISER: LootTableBruiser,
 };
 
 export const getTable = (tableKey) => tables[tableKey];

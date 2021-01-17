@@ -1,4 +1,7 @@
 export const BITMASK_WALL = 'BITMASK_WALL';
+// 1  2  4
+// 8     16
+// 32 64 128
 
 const map = {
     BITMASK_WALL: (value) => {
@@ -47,6 +50,7 @@ const map = {
             case 72:
                 return '╗';
             case 80:
+            case 84:
                 return '╔';
             case 26:
             case 58:

@@ -20,7 +20,7 @@ export class Health extends Component {
         const level = this.entity.level.level;
         const skill = getSkillValue(SKILL_HEALTH, this.entity);
 
-        return 20 + level * 16 + skill * 8;
+        return 32 + level * 8 + skill * 4;
     }
 
     onSpawned() {

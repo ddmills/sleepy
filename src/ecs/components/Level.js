@@ -1,5 +1,6 @@
 import { Component } from 'geotic';
 import { game } from '../../core/Game';
+import { addStatus, STATUS_REGENERATION } from '../../data/Statuses';
 import { CONSOLE_EVENT_LEVEL } from '../../enums/ConsoleEvents';
 
 const LEVEL_XP_CAP = 5000;
@@ -27,6 +28,10 @@ export class Level extends Component {
         game.console.event(CONSOLE_EVENT_LEVEL, {
             entity: this.entity,
             level: this.level,
+        });
+
+        addStatus(STATUS_REGENERATION, this.entity, {
+            duration: 20000,
         });
 
         const pos = this.entity.position.getPos();

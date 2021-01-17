@@ -1,7 +1,7 @@
-import { randomBool, randomWeightedBool } from '../../utils/rand';
+import { randomWeightedBool } from '../../utils/rand';
 import Attack from '../Attack';
 import { DMG_TYPE_BLUDGEONING } from '../DamageTypes';
-import { getStat, STAT_STRENGTH } from '../Stats';
+import { getSkillValue, SKILL_CUDGEL } from '../Skills';
 import { addStatus, STATUS_STUNNED } from '../Statuses';
 import { WPN_FAMILY_CUDGEL } from '../WeaponFamilies';
 import { WPN_TYPE_MACE } from '../WeaponTypes';
@@ -14,11 +14,12 @@ export default class WpnTypeMace extends WeaponType {
             name: 'Mace',
             family: WPN_FAMILY_CUDGEL,
             damageType: DMG_TYPE_BLUDGEONING,
+            skill: SKILL_CUDGEL
         });
     }
 
     _createAttack(attacker, defender, weapon) {
-        const str = getStat(STAT_STRENGTH, attacker);
+        const str = getSkillValue(this.skill, attacker);
         const die = weapon.roll();
         const damage = die + str;
 

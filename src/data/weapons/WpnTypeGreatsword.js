@@ -2,7 +2,7 @@ import { game } from '../../core/Game';
 import { getAdjacentDeltas, directionFromDelta } from '../../enums/Directions';
 import Attack from '../Attack';
 import { DMG_TYPE_SLASHING } from '../DamageTypes';
-import { getStat, STAT_STRENGTH } from '../Stats';
+import { getSkillValue, SKILL_BLADE } from '../Skills';
 import { WPN_FAMILY_BLADE } from '../WeaponFamilies';
 import { WPN_TYPE_GREATSWORD } from '../WeaponTypes';
 import WeaponType from './WeaponType';
@@ -14,6 +14,7 @@ export default class WpnTypeGreatsword extends WeaponType {
             name: 'Greatsword',
             family: WPN_FAMILY_BLADE,
             damageType: DMG_TYPE_SLASHING,
+            skill: SKILL_BLADE,
         });
     }
 
@@ -59,7 +60,7 @@ export default class WpnTypeGreatsword extends WeaponType {
     }
 
     attack(attacker, defender, weapon) {
-        const str = getStat(STAT_STRENGTH, attacker);
+        const str = getSkillValue(this.skill, attacker);
         const die = weapon.roll();
         const damage = die + str;
         const result = this._tryAttackDefender(

@@ -6,6 +6,10 @@ export class Skills extends Component {
         SKILL_SPEED: 0,
         SKILL_THROWING: 0,
         SKILL_DODGE: 0,
+        SKILL_BRAWLING: 0,
+        SKILL_AXE: 0,
+        SKILL_BLADE: 0,
+        SKILL_CUDGEL: 0,
     };
 
     onQuerySkillMod(evt) {

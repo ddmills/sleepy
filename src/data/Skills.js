@@ -2,17 +2,29 @@ import ArmorSkill from './skills/ArmorSkill';
 import SpeedSkill from './skills/SpeedSkill';
 import ThrowingSkill from './skills/ThrowingSkill';
 import DodgeSkill from './skills/DodgeSkill';
+import BrawlingSkill from './skills/BrawlingSkill';
+import AxeSkill from './skills/AxeSkill';
+import BladeSkill from './skills/BladeSkill';
+import CudgelSkill from './skills/CudgelSkill';
 
 export const SKILL_SPEED = 'SKILL_SPEED';
 export const SKILL_THROWING = 'SKILL_THROWING';
 export const SKILL_ARMOR = 'SKILL_ARMOR';
 export const SKILL_DODGE = 'SKILL_DODGE';
+export const SKILL_BRAWLING = 'SKILL_BRAWLING';
+export const SKILL_AXE = 'SKILL_AXE';
+export const SKILL_BLADE = 'SKILL_BLADE';
+export const SKILL_CUDGEL = 'SKILL_CUDGEL';
 
 const lookup = {
-    [SKILL_ARMOR]: new ArmorSkill(),
-    [SKILL_SPEED]: new SpeedSkill(),
-    [SKILL_THROWING]: new ThrowingSkill(),
-    [SKILL_DODGE]: new DodgeSkill(),
+    SKILL_ARMOR: new ArmorSkill(),
+    SKILL_SPEED: new SpeedSkill(),
+    SKILL_THROWING: new ThrowingSkill(),
+    SKILL_DODGE: new DodgeSkill(),
+    SKILL_BRAWLING: new BrawlingSkill(),
+    SKILL_AXE: new AxeSkill(),
+    SKILL_BLADE: new BladeSkill(),
+    SKILL_CUDGEL: new CudgelSkill(),
 };
 
 export const getSkill = (key) => lookup[key];

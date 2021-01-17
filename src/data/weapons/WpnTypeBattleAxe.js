@@ -1,7 +1,7 @@
 import { randomBool } from '../../utils/rand';
 import Attack from '../Attack';
 import { DMG_TYPE_SLASHING } from '../DamageTypes';
-import { getStat, STAT_STRENGTH } from '../Stats';
+import { getSkillValue, SKILL_AXE } from '../Skills';
 import { WPN_FAMILY_AXE } from '../WeaponFamilies';
 import { WPN_TYPE_BATTLE_AXE } from '../WeaponTypes';
 import WeaponType from './WeaponType';
@@ -13,11 +13,12 @@ export default class WpnTypeBattleAxe extends WeaponType {
             name: 'Battle axe',
             family: WPN_FAMILY_AXE,
             damageType: DMG_TYPE_SLASHING,
+            skill: SKILL_AXE,
         });
     }
 
     _createAttack(attacker, defender, weapon) {
-        const str = getStat(STAT_STRENGTH, attacker);
+        const str = getSkillValue(this.skill, attacker);
         const die = weapon.roll();
         const damage = die + str;
 

@@ -1,7 +1,7 @@
 import { pickRandom, randomInt } from '../../utils/rand';
 import Attack from '../Attack';
 import { DMG_TYPE_BLUDGEONING } from '../DamageTypes';
-import { getStat, STAT_STRENGTH } from '../Stats';
+import { getSkillValue, SKILL_BRAWLING } from '../Skills';
 import { WPN_FAMILY_UNARMED } from '../WeaponFamilies';
 import { WPN_TYPE_UNARMED } from '../WeaponTypes';
 import WeaponType from './WeaponType';
@@ -13,13 +13,14 @@ export default class WpnTypeUnarmed extends WeaponType {
             name: 'Unarmed',
             family: WPN_FAMILY_UNARMED,
             damageType: DMG_TYPE_BLUDGEONING,
+            skill: SKILL_BRAWLING,
         });
     }
 
     getAttacks(attacker, defender, weapon) {
-        const str = getStat(STAT_STRENGTH, attacker);
+        const brawling = getSkillValue(this.skill, attacker);
         const die = randomInt(1, 4);
-        const damage = die + str;
+        const damage = die + brawling;
 
         return [
             new Attack({

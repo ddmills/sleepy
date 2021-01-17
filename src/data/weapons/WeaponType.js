@@ -1,5 +1,5 @@
 import { getDmgTypeName } from '../DamageTypes';
-import { getStat, STAT_STRENGTH } from '../Stats';
+import { getSkillValue } from '../Skills';
 import { getWeaponFamilyName } from '../WeaponFamilies';
 
 export default class WeaponType {
@@ -8,12 +8,13 @@ export default class WeaponType {
         this.family = data.family;
         this.key = data.key;
         this.damageType = data.damageType;
+        this.skill = data.skill;
     }
 
     weaponDamageText(user, weapon) {
         let text = `1d${weapon.die}`;
-        const str = getStat(STAT_STRENGTH, user);
-        const mod = weapon.modifier + str;
+        const skill = getSkillValue(this.skill, user);
+        const mod = weapon.modifier + skill;
 
         if (mod) {
             if (mod > 0) {

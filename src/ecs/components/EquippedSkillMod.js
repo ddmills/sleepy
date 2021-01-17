@@ -4,6 +4,7 @@ export class EquippedSkillMod extends Component {
     static allowMultiple = true;
     static properties = {
         SKILL_ARMOR: 0,
+        SKILL_HEALTH: 0,
         SKILL_SPEED: 0,
         SKILL_THROWING: 0,
         SKILL_DODGE: 0,

@@ -63,5 +63,7 @@ export const spawn = (key, x, y, data = {}) => {
         entity.position.setPos(x, y);
     }
 
+    entity.fireEvent('spawned');
+
     return entity;
 };

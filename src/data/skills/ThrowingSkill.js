@@ -11,6 +11,6 @@ export default class ThrowingSkill extends Skill {
         const base = getStat(STAT_ATHLETICISM, entity);
         const modifier = this.getModifierSum(entity);
 
-        return Math.max(0, base + modifier) + 6;
+        return Math.max(0, base + modifier);
     }
 }

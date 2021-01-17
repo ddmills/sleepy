@@ -1,6 +1,6 @@
 import { Component } from 'geotic';
 import { game } from '../../core/Game';
-import { SKILL_ARMOR, SKILL_DODGE, getSkillValue } from '../../data/Skills';
+import { SKILL_ARMOR, SKILL_DODGE, getSkillValue, SKILL_HEALTH } from '../../data/Skills';
 import { getArmorBlockPercent } from '../../data/skills/ArmorSkill';
 import { getDodgePercent } from '../../data/skills/DodgeSkill';
 import {
@@ -13,9 +13,19 @@ import { IsDead } from './IsDead';
 
 export class Health extends Component {
     static properties = {
-        value: 32,
-        max: 32,
+        value: 20,
     };
+
+    get max() {
+        const level = this.entity.level.level;
+        const skill = getSkillValue(SKILL_HEALTH, this.entity);
+
+        return 20 + level * 16 + skill * 8;
+    }
+
+    onSpawned() {
+        this.value = this.max;
+    }
 
     applyDamage(damage) {
         this.value -= damage;

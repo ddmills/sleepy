@@ -110,7 +110,7 @@ export class Throwable extends Component {
     }
 
     onTryThrow(evt) {
-        const range = getSkillValue(SKILL_THROWING, evt.data.interactor);
+        const range = getSkillValue(SKILL_THROWING, evt.data.interactor) + 3;
 
         game.screens.pushScreen(SCREEN_CURSOR, {
             renderer: simpleLineRenderer(),

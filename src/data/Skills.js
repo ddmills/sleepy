@@ -6,8 +6,10 @@ import BrawlingSkill from './skills/BrawlingSkill';
 import AxeSkill from './skills/AxeSkill';
 import BladeSkill from './skills/BladeSkill';
 import CudgelSkill from './skills/CudgelSkill';
+import HealthSkill from './skills/HealthSkill';
 
 export const SKILL_SPEED = 'SKILL_SPEED';
+export const SKILL_HEALTH = 'SKILL_HEALTH';
 export const SKILL_THROWING = 'SKILL_THROWING';
 export const SKILL_ARMOR = 'SKILL_ARMOR';
 export const SKILL_DODGE = 'SKILL_DODGE';
@@ -18,6 +20,7 @@ export const SKILL_CUDGEL = 'SKILL_CUDGEL';
 
 const lookup = {
     SKILL_ARMOR: new ArmorSkill(),
+    SKILL_HEALTH: new HealthSkill(),
     SKILL_SPEED: new SpeedSkill(),
     SKILL_THROWING: new ThrowingSkill(),
     SKILL_DODGE: new DodgeSkill(),

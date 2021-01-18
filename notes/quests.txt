@@ -1,0 +1,7 @@
+1. fetch quests
+2. bounty quests
+3. exploration quests
+4. delivery quests
+5. clear area quests
+6. escort quests
+7. defend area quests

@@ -27,6 +27,7 @@ const map = {
             case 148:
                 return '╒';
             case 1:
+            case 34:
             case 64:
             case 66:
             case 67:
@@ -37,6 +38,7 @@ const map = {
             case 98:
             case 99:
             case 102:
+            case 130:
             case 192:
             case 194:
             case 195:
@@ -44,10 +46,14 @@ const map = {
             case 226:
                 return '║';
             case 10:
+            case 14:
                 return '╝';
             case 18:
+            case 19:
+            case 147:
                 return '╚';
             case 72:
+            case 200:
                 return '╗';
             case 80:
             case 84:

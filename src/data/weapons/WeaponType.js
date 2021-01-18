@@ -1,4 +1,3 @@
-import { getDmgTypeName } from '../DamageTypes';
 import { getSkillValue } from '../Skills';
 import { getWeaponFamilyName } from '../WeaponFamilies';
 

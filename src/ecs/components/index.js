@@ -49,3 +49,4 @@ export { AbilityStatus } from './AbilityStatus';
 export { BitmaskGlyph } from './BitmaskGlyph';
 export { Level } from './Level';
 export { Skills } from './Skills';
+export { Fangs } from './Fangs';

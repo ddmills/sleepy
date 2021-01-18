@@ -61,7 +61,7 @@ export class KillSomethingGoalType extends GoalType {
             },
         });
 
-        if (result.success && result.cost < 55) {
+        if (result.success && result.cost < 55 && result.path.length > 0) {
             const segment = result.path[1];
             const delta = {
                 x: segment.x - start.x,

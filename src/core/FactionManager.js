@@ -3,6 +3,7 @@ import {
     factions,
     FACTION_GOBLIN,
     FACTION_PLAYER,
+    FACTION_SERPENT,
     FACTION_VILLAGER,
     getFactionByName,
 } from '../enums/Factions';
@@ -18,9 +19,12 @@ export default class FactionManager extends Manager {
     constructor(game) {
         super(game);
 
-        this.setRelation(FACTION_PLAYER, FACTION_GOBLIN, -300);
+        this.setRelation(FACTION_PLAYER, FACTION_GOBLIN, -400);
         this.setRelation(FACTION_PLAYER, FACTION_VILLAGER, 300);
+        this.setRelation(FACTION_PLAYER, FACTION_SERPENT, -250);
         this.setRelation(FACTION_GOBLIN, FACTION_VILLAGER, -400);
+        this.setRelation(FACTION_SERPENT, FACTION_VILLAGER, -300);
+        this.setRelation(FACTION_SERPENT, FACTION_GOBLIN, 300);
     }
 
     getFactionById(id) {

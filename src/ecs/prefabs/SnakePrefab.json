@@ -24,14 +24,15 @@
             "type": "Glyph",
             "properties": {
                 "ch": "s",
-                "fg1": "#ff7500",
+                "fg1": "#ff7400",
+                "fg2": "#ce5e00",
                 "z": 8000
             }
         },
         {
             "type": "FactionMember",
             "properties": {
-                "name": "nature"
+                "name": "serpent"
             }
         },
         {
@@ -51,6 +52,17 @@
         },
         {
             "type": "Brain"
+        },
+        {
+            "type": "Fangs"
+        },
+        {
+            "type": "EquipmentSlot",
+            "properties": {
+                "name": "face",
+                "key": "face",
+                "slotType": "EQ_SLOT_FACE"
+            }
         },
         {
             "type": "Eyes",

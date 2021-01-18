@@ -14,7 +14,7 @@ export default class WpnTypeMace extends WeaponType {
             name: 'Mace',
             family: WPN_FAMILY_CUDGEL,
             damageType: DMG_TYPE_BLUDGEONING,
-            skill: SKILL_CUDGEL
+            skill: SKILL_CUDGEL,
         });
     }
 

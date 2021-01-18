@@ -1,6 +1,11 @@
 import { Component } from 'geotic';
 import { game } from '../../core/Game';
-import { SKILL_ARMOR, SKILL_DODGE, getSkillValue, SKILL_HEALTH } from '../../data/Skills';
+import {
+    SKILL_ARMOR,
+    SKILL_DODGE,
+    getSkillValue,
+    SKILL_HEALTH,
+} from '../../data/Skills';
 import { getArmorBlockPercent } from '../../data/skills/ArmorSkill';
 import { getDodgePercent } from '../../data/skills/DodgeSkill';
 import {

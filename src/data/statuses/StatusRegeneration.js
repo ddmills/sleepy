@@ -20,7 +20,7 @@ export default class StatusRegeneration extends Status {
         const value = Math.floor(hpPerTurn * (tick / 1000));
 
         entity.fireEvent('heal', {
-            value
+            value,
         });
 
         status.lifetime += tick;

@@ -1,0 +1,62 @@
+{
+    "name": "Snake",
+    "inherit": ["Being", "Wanderer"],
+    "components": [
+        {
+            "type": "Race",
+            "properties": {
+                "key": "RACE_SNAKE"
+            }
+        },
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Snake"
+            }
+        },
+        {
+            "type": "Level",
+            "properties": {
+                "level": 2
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "s",
+                "fg1": "#ff7500",
+                "z": 8000
+            }
+        },
+        {
+            "type": "FactionMember",
+            "properties": {
+                "name": "nature"
+            }
+        },
+        {
+            "type": "LootDropper",
+            "properties": {
+                "tables": ["TBL_LOOT_FOREST"]
+            }
+        },
+        {
+            "type": "Stats"
+        },
+        {
+            "type": "Body"
+        },
+        {
+            "type": "Legs"
+        },
+        {
+            "type": "Brain"
+        },
+        {
+            "type": "Eyes",
+            "properties": {
+                "range": 10
+            }
+        }
+    ]
+}

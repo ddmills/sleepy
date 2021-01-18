@@ -6,6 +6,7 @@ import {
     SPWN_GOBLIN_STARGAZER,
     SPWN_CLIFF,
     SPWN_GROUND_GRASS_DEAD,
+    SPWN_SNAKE,
 } from '../../data/Spawnables';
 import { spawn } from '../../data/Spawner';
 import { randomInt } from '../../utils/rand';
@@ -33,6 +34,12 @@ export default class CanyonTheme extends TileThemePopulator {
                 spawn(SPWN_STONE, tile.x, tile.y);
             }
         });
+
+        for (let i = 0; i < randomInt(0, 2); i++) {
+            this.trySpawn(room, (tile) => {
+                spawn(SPWN_SNAKE, tile.x, tile.y);
+            });
+        }
 
         for (let i = 0; i < randomInt(0, 1); i++) {
             this.trySpawn(room, (tile) => {

@@ -35,3 +35,4 @@ export const SPWN_LEATHER_ARMOR = 'SPWN_LEATHER_ARMOR';
 export const SPWN_CLOTH_HOOD = 'SPWN_CLOTH_HOOD';
 export const SPWN_WIZARD_CAP = 'SPWN_WIZARD_CAP';
 export const SPWN_HELM = 'SPWN_HELM';
+export const SPWN_SNAKE = 'SPWN_SNAKE';

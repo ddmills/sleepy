@@ -3,7 +3,7 @@ import { game } from '../../core/Game';
 import { SKILL_SPEED, getSkillValue } from '../../data/Skills';
 import { Blocker } from './Blocker';
 
-export class Legs extends Component {
+export class Motor extends Component {
     onTryMove(evt) {
         const position = this.entity.position.getPos();
         const targetX = position.x + evt.data.x;

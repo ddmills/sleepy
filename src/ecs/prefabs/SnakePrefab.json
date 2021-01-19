@@ -48,7 +48,7 @@
             "type": "Body"
         },
         {
-            "type": "Legs"
+            "type": "Motor"
         },
         {
             "type": "Brain"
@@ -61,6 +61,14 @@
                 "isPrimary": true,
                 "slotType": "EQ_SLOT_FACE",
                 "defaultWpnType": "WPN_TYPE_FANGS"
+            }
+        },
+        {
+            "type": "EquipmentSlot",
+            "properties": {
+                "name": "tail",
+                "key": "tail",
+                "slotType": "EQ_SLOT_TAIL"
             }
         },
         {

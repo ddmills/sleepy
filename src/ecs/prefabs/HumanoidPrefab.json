@@ -87,7 +87,7 @@
             "type": "Body"
         },
         {
-            "type": "Legs"
+            "type": "Motor"
         },
         {
             "type": "Eyes",

@@ -15,7 +15,7 @@ export { Moniker } from './Moniker';
 export { Logger } from './Logger';
 export { Position } from './Position';
 export { Glyph } from './Glyph';
-export { Legs } from './Legs';
+export { Motor } from './Motor';
 export { IsPlayer } from './IsPlayer';
 export { Wandering } from './Wandering';
 export { Blocker } from './Blocker';

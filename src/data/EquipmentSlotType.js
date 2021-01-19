@@ -5,3 +5,4 @@ export const EQ_SLOT_BODY = 'EQ_SLOT_BODY';
 export const EQ_SLOT_FEET = 'EQ_SLOT_FEET';
 export const EQ_SLOT_ARM = 'EQ_SLOT_ARM';
 export const EQ_SLOT_HAND = 'EQ_SLOT_HAND';
+export const EQ_SLOT_TAIL = 'EQ_SLOT_TAIL';

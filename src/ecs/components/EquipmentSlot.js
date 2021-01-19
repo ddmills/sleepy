@@ -12,7 +12,7 @@ export class EquipmentSlot extends Component {
         slotType: EQ_SLOT_BODY,
         content: '<Entity>',
         isPrimary: false,
-        isOffhand: false,
+        defaultWpnType: null,
     };
 
     get isEmpty() {
@@ -75,22 +75,24 @@ export class EquipmentSlot extends Component {
         }
 
         if (this.isEmpty) {
-            const weaponType = getWeaponType(WPN_TYPE_UNARMED);
+            if (this.defaultWpnType) {
+                const weaponType = getWeaponType(this.defaultWpnType);
 
-            weaponType.attack(this.entity, evt.data.target);
+                weaponType.attack(this.entity, evt.data.target);
 
-            this.entity.fireEvent('energy-consumed', 600);
+                this.entity.fireEvent('energy-consumed', 600);
+                evt.handle();
+            }
+        } else {
+            const itemMelee = this.content.fireEvent('try-use-melee', {
+                interactor: this.entity,
+                target: evt.data.target,
+            });
 
-            evt.handle();
-            return;
+            if (itemMelee.handled) {
+                evt.handle();
+            }
         }
-
-        this.content.fireEvent('try-use-melee', {
-            interactor: this.entity,
-            target: evt.data.target,
-        });
-
-        evt.handle();
     }
 
     onQuerySkillMod(evt) {

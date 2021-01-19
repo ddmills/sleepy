@@ -54,14 +54,13 @@
             "type": "Brain"
         },
         {
-            "type": "Fangs"
-        },
-        {
             "type": "EquipmentSlot",
             "properties": {
                 "name": "face",
                 "key": "face",
-                "slotType": "EQ_SLOT_FACE"
+                "isPrimary": true,
+                "slotType": "EQ_SLOT_FACE",
+                "defaultWpnType": "WPN_TYPE_FANGS"
             }
         },
         {

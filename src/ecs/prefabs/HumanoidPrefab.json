@@ -54,7 +54,8 @@
                 "name": "Right hand",
                 "key": "handRight",
                 "slotType": "EQ_SLOT_HAND",
-                "isPrimary": true
+                "isPrimary": true,
+                "defaultWpnType": "WPN_TYPE_UNARMED"
             }
         },
         {
@@ -71,7 +72,7 @@
                 "name": "Left hand",
                 "key": "handLeft",
                 "slotType": "EQ_SLOT_HAND",
-                "isOffhand": true
+                "defaultWpnType": "WPN_TYPE_UNARMED"
             }
         },
         {

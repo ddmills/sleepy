@@ -44,6 +44,15 @@ export class Weapon extends Component {
 
         evt.data.interactor.fireEvent('energy-consumed', this.cost);
 
-        evt.handle();
+        evt.data.success = true;
+    }
+
+    onTryUseMeleeOffhand(evt) {
+        console.log('TRY USE MELEE OFFHAND!');
+        const weaponType = getWeaponType(this.weaponType);
+
+        weaponType.offhandAttack(evt.data.interactor, evt.data.target, this);
+
+        evt.data.success = true;
     }
 }

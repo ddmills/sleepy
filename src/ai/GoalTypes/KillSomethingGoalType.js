@@ -18,7 +18,7 @@ export class KillSomethingGoalType extends GoalType {
             target: goal.target,
         });
 
-        if (evt.handled) {
+        if (evt.data.success) {
             return SUCCESS;
         }
 

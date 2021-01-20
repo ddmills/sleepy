@@ -1,3 +1,4 @@
+import { randomWeightedBool } from '../../utils/rand';
 import { getSkillValue } from '../Skills';
 import { getWeaponFamilyName } from '../WeaponFamilies';
 
@@ -42,5 +43,11 @@ export default class WeaponType {
         return attacks.map((attack) => {
             attack.defender.fireEvent('attacked', { attack });
         });
+    }
+
+    offhandAttack(attacker, defender, weapon) {
+        if (randomWeightedBool(.2)) {
+            this.attack(attacker, defender, weapon);
+        }
     }
 }

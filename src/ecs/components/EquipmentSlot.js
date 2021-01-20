@@ -1,6 +1,7 @@
 import { Component } from 'geotic';
+import { game } from '../../core/Game';
 import { EQ_SLOT_BODY } from '../../data/EquipmentSlotType';
-import { getWeaponType, WPN_TYPE_UNARMED } from '../../data/WeaponTypes';
+import { getWeaponType } from '../../data/WeaponTypes';
 import { IsEquipped } from './IsEquipped';
 
 export class EquipmentSlot extends Component {
@@ -55,15 +56,54 @@ export class EquipmentSlot extends Component {
         });
     }
 
-    onTryMelee(evt) {
-        if (!this.isPrimary) {
-            return;
+    doMeleeAttack(target) {
+        if (this.isEmpty) {
+            if (this.defaultWpnType) {
+                const weaponType = getWeaponType(this.defaultWpnType);
+
+                weaponType.attack(this.entity, target);
+
+                this.entity.fireEvent('energy-consumed', 600);
+
+                return true;
+            }
+        } else {
+            const itemMelee = this.content.fireEvent('try-use-melee', {
+                interactor: this.entity,
+                target,
+            });
+
+            return itemMelee.data.success;
         }
 
-        const map = window.game.map;
+        return false;
+    }
+
+    doOffhandAttack(target) {
+        if (this.isEmpty) {
+            if (this.defaultWpnType) {
+                const weaponType = getWeaponType(this.defaultWpnType);
+
+                weaponType.offhandAttack(this.entity, target);
+
+                return true;
+            }
+        } else {
+            const itemMelee = this.content.fireEvent('try-use-melee-offhand', {
+                interactor: this.entity,
+                target,
+            });
+
+            return itemMelee.data.success;
+        }
+
+        return false;
+    }
+
+    onTryMelee(evt) {
         const targetPos = evt.data.target.position.getPos();
         const selfPos = this.entity.position.getPos();
-        const isAdjacent = map.isAdjacent(
+        const isAdjacent = game.map.isAdjacent(
             selfPos.x,
             selfPos.y,
             targetPos.x,
@@ -74,24 +114,12 @@ export class EquipmentSlot extends Component {
             return;
         }
 
-        if (this.isEmpty) {
-            if (this.defaultWpnType) {
-                const weaponType = getWeaponType(this.defaultWpnType);
-
-                weaponType.attack(this.entity, evt.data.target);
-
-                this.entity.fireEvent('energy-consumed', 600);
-                evt.handle();
+        if (this.isPrimary) {
+            if (this.doMeleeAttack(evt.data.target)) {
+                evt.data.success = true;
             }
         } else {
-            const itemMelee = this.content.fireEvent('try-use-melee', {
-                interactor: this.entity,
-                target: evt.data.target,
-            });
-
-            if (itemMelee.handled) {
-                evt.handle();
-            }
+            this.doOffhandAttack(evt.data.target);
         }
     }
 

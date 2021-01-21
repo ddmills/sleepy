@@ -11,6 +11,7 @@ import {
 } from './WeaponFamilies';
 import WpnTypeBattleAxe from './weapons/WpnTypeBattleAxe';
 import WpnTypeFangs from './weapons/WpnTypeFangs';
+import WpnTypeClaw from './weapons/WpnTypeClaw';
 import WpnTypeGreatsword from './weapons/WpnTypeGreatsword';
 import WpnTypeMace from './weapons/WpnTypeMace';
 import WpnTypeShortsword from './weapons/WpnTypeShortsword';
@@ -36,10 +37,12 @@ export const WPN_TYPE_JAVELIN = 'WPN_TYPE_JAVELIN';
 // unarmed family
 export const WPN_TYPE_UNARMED = 'WPN_TYPE_UNARMED';
 export const WPN_TYPE_FANGS = 'WPN_TYPE_FANGS';
+export const WPN_TYPE_CLAW = 'WPN_TYPE_CLAW';
 
 const lookup = {
     [WPN_TYPE_UNARMED]: new WpnTypeUnarmed(),
     [WPN_TYPE_FANGS]: new WpnTypeFangs(),
+    [WPN_TYPE_CLAW]: new WpnTypeClaw(),
     [WPN_TYPE_WAR_HAMMER]: {
         name: 'War hammer',
         family: WPN_FAMILY_HAMMER,

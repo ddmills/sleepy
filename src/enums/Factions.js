@@ -3,7 +3,7 @@ import Faction from '../data/Faction';
 export const FACTION_PLAYER = 0;
 export const FACTION_VILLAGER = 1;
 export const FACTION_GOBLIN = 2;
-export const FACTION_NATURE = 3;
+export const FACTION_BEAR = 3;
 export const FACTION_SERPENT = 4;
 
 export const factions = {
@@ -27,10 +27,10 @@ export const factions = {
         name: 'serpent',
         display: 'Serpent',
     }),
-    nature: new Faction({
-        id: FACTION_NATURE,
-        name: 'nature',
-        display: 'Nature',
+    bear: new Faction({
+        id: FACTION_BEAR,
+        name: 'bear',
+        display: 'Bear',
     }),
 };
 

@@ -1,6 +1,7 @@
 import { FactionMember } from '../ecs/components';
 import {
     factions,
+    FACTION_BEAR,
     FACTION_GOBLIN,
     FACTION_PLAYER,
     FACTION_SERPENT,
@@ -22,9 +23,12 @@ export default class FactionManager extends Manager {
         this.setRelation(FACTION_PLAYER, FACTION_GOBLIN, -400);
         this.setRelation(FACTION_PLAYER, FACTION_VILLAGER, 300);
         this.setRelation(FACTION_PLAYER, FACTION_SERPENT, -250);
-        this.setRelation(FACTION_GOBLIN, FACTION_VILLAGER, -400);
+        this.setRelation(FACTION_PLAYER, FACTION_BEAR, -250);
         this.setRelation(FACTION_SERPENT, FACTION_VILLAGER, -300);
         this.setRelation(FACTION_SERPENT, FACTION_GOBLIN, 300);
+        this.setRelation(FACTION_SERPENT, FACTION_BEAR, 300);
+        this.setRelation(FACTION_GOBLIN, FACTION_VILLAGER, -400);
+        this.setRelation(FACTION_BEAR, FACTION_VILLAGER, -400);
     }
 
     getFactionById(id) {

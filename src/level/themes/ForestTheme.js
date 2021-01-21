@@ -58,6 +58,12 @@ export default class ForestTheme extends TileThemePopulator {
         }
 
         for (let i = 0; i < randomInt(0, 1); i++) {
+            this.trySpawn(room, (tile) => {
+                spawn(SPWN_BEAR, tile.x, tile.y);
+            });
+        }
+
+        for (let i = 0; i < randomInt(0, 1); i++) {
             if (Math.random() > 0.05) {
                 return;
             }

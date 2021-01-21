@@ -3,6 +3,7 @@ import RaceData from './RaceData';
 export const RACE_HUMAN = 'RACE_HUMAN';
 export const RACE_GOBLIN = 'RACE_GOBLIN';
 export const RACE_SNAKE = 'RACE_SNAKE';
+export const RACE_BEAR = 'RACE_BEAR';
 
 const lookup = {
     [RACE_HUMAN]: new RaceData({
@@ -34,6 +35,16 @@ const lookup = {
         STAT_ATHLETICISM: -1,
         STAT_TRICKERY: 3,
         STAT_FAITH: 0,
+    }),
+    [RACE_BEAR]: new RaceData({
+        name: 'Bear',
+        key: RACE_BEAR,
+        speed: 2,
+        STAT_STRENGTH: 5,
+        STAT_FINESSE: -1,
+        STAT_ATHLETICISM: 5,
+        STAT_TRICKERY: -2,
+        STAT_FAITH: -2,
     }),
 };
 

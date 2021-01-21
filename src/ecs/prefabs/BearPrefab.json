@@ -1,0 +1,90 @@
+{
+    "name": "Bear",
+    "inherit": ["Being", "Wanderer"],
+    "components": [
+        {
+            "type": "Race",
+            "properties": {
+                "key": "RACE_BEAR"
+            }
+        },
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Bear"
+            }
+        },
+        {
+            "type": "Level",
+            "properties": {
+                "level": 4
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "b",
+                "fg1": "#8a4d32",
+                "z": 8000
+            }
+        },
+        {
+            "type": "FactionMember",
+            "properties": {
+                "name": "bear"
+            }
+        },
+        {
+            "type": "LootDropper",
+            "properties": {
+                "tables": ["TBL_LOOT_FOREST"]
+            }
+        },
+        {
+            "type": "Stats"
+        },
+        {
+            "type": "Body"
+        },
+        {
+            "type": "Motor"
+        },
+        {
+            "type": "Brain"
+        },
+        {
+            "type": "EquipmentSlot",
+            "properties": {
+                "name": "Right hand",
+                "key": "handRight",
+                "slotType": "EQ_SLOT_HAND",
+                "isPrimary": true,
+                "defaultWpnType": "WPN_TYPE_CLAW"
+            }
+        },
+        {
+            "type": "EquipmentSlot",
+            "properties": {
+                "name": "Left hand",
+                "key": "handLeft",
+                "slotType": "EQ_SLOT_HAND",
+                "defaultWpnType": "WPN_TYPE_CLAW"
+            }
+        },
+        {
+            "type": "EquipmentSlot",
+            "properties": {
+                "name": "face",
+                "key": "face",
+                "slotType": "EQ_SLOT_FACE",
+                "defaultWpnType": "WPN_TYPE_FANGS"
+            }
+        },
+        {
+            "type": "Eyes",
+            "properties": {
+                "range": 10
+            }
+        }
+    ]
+}

@@ -13,6 +13,7 @@ import * as Grass from './spawnables/SpawnableGrass';
 import * as DeadGrass from './spawnables/SpawnableDeadGrass';
 import * as Cliff from './spawnables/SpawnableCliff';
 import * as Snake from './spawnables/SpawnableSnake';
+import * as Bear from './spawnables/SpawnableBear';
 
 const simplePrefab = (prefabName) => (data) =>
     game.ecs.createPrefab(prefabName, data);
@@ -53,6 +54,7 @@ const spawnables = {
     SPWN_GOBLIN_STARGAZER: GoblinStargazer.createSpawnable,
     SPWN_HUMAN_WANDERER: HumanWanderer.createSpawnable,
     SPWN_SNAKE: Snake.createSpawnable,
+    SPWN_BEAR: Bear.createSpawnable,
     SPWN_PINE_TREE: PineTree.createSpawnable,
     SPWN_POOL_LIQUID: PoolLiquid.createSpawnable,
     SPWN_CLIFF: Cliff.createSpawnable,

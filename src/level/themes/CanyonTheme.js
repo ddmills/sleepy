@@ -2,11 +2,9 @@ import {
     SPWN_GOBLIN_GRUNT,
     SPWN_STONE,
     SPWN_VIAL_BLOOD,
-    SPWN_GOBLIN_BRUISER,
-    SPWN_GOBLIN_STARGAZER,
     SPWN_CLIFF,
     SPWN_GROUND_GRASS_DEAD,
-    SPWN_SNAKE,
+    SPWN_SNAKE
 } from '../../data/Spawnables';
 import { spawn } from '../../data/Spawner';
 import { randomInt } from '../../utils/rand';

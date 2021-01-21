@@ -11,6 +11,7 @@ import * as HumanWanderer from './spawnables/SpawnableHumanWanderer';
 import * as PoolLiquid from './spawnables/SpawnablePoolLiquid';
 import * as Grass from './spawnables/SpawnableGrass';
 import * as DeadGrass from './spawnables/SpawnableDeadGrass';
+import * as Sand from './spawnables/SpawnableSand';
 import * as Cliff from './spawnables/SpawnableCliff';
 import * as Snake from './spawnables/SpawnableSnake';
 import * as Bear from './spawnables/SpawnableBear';
@@ -43,6 +44,7 @@ const spawnables = {
     SPWN_WOOD_CLUB: simplePrefab('WoodClub'),
     SPWN_GROUND_GRASS: Grass.createSpawnable,
     SPWN_GROUND_GRASS_DEAD: DeadGrass.createSpawnable,
+    SPWN_GROUND_SAND: Sand.createSpawnable,
     SPWN_GROUND_STONE: simplePrefab('StoneGround'),
     SPWN_CLOTH_HOOD: simplePrefab('ClothHood'),
     SPWN_WIZARD_CAP: simplePrefab('WizardCap'),

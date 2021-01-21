@@ -1,0 +1,20 @@
+{
+    "name": "Sand",
+    "inherit": ["GameObject"],
+    "components": [
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "·",
+                "fg1": "#c8a05d",
+                "z": 80
+            }
+        },
+        {
+            "type": "Explorable"
+        },
+        {
+            "type": "Ground"
+        }
+    ]
+}

@@ -44,3 +44,4 @@ export * as WoodClub from './WoodClubPrefab.json';
 export * as Cliff from './CliffPrefab.json';
 export * as Snake from './SnakePrefab.json';
 export * as Bear from './BearPrefab.json';
+export * as Sand from './SandPrefab.json';

@@ -1,5 +1,5 @@
 {
-    "width": 6,
+    "width": 7,
     "height": 1,
     "sectors": [
         [
@@ -14,6 +14,22 @@
                 "generator": {
                     "type": "FOREST_TOWN"
                 }
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
             },
             {
                 "music": "FOREST",

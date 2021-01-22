@@ -3,6 +3,7 @@ import { ForestGenerator } from './ForestGenerator';
 import { ForestStrongholdGenerator } from './ForestStrongholdGenerator';
 import { ForestTownGenerator } from './ForestTownGenerator';
 import { CanyonGenerator } from './CanyonGenerator';
+import { DesertGenerator } from './DesertGenerator';
 
 const mapping = {
     FOREST: ForestGenerator,
@@ -10,6 +11,7 @@ const mapping = {
     FOREST_CABINS: ForestCabinsGenerator,
     FOREST_TOWN: ForestTownGenerator,
     CANYON: CanyonGenerator,
+    DESERT: DesertGenerator,
 };
 
 export const getGenerator = (name) => {

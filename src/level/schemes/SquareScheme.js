@@ -17,8 +17,6 @@ export class SquareScheme extends TileScheme {
 
         room.includeWalls = true;
 
-        exits.forEach((exit) => room.addExit(exit));
-
         digExits(tiles, exits);
 
         return tiles;

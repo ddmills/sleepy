@@ -38,7 +38,7 @@ export default class DesertTheme extends TileThemePopulator {
                     spawn(SPWN_DESERT_REED, tile.x, tile.y);
                 }
 
-                if (randomWeightedBool(.02)) {
+                if (randomWeightedBool(.01)) {
                     spawn(SPWN_SNAKE, tile.x, tile.y);
                 }
             }

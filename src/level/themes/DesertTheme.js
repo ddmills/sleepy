@@ -13,9 +13,10 @@ import {
     SPWN_GROUND_SAND,
     SPWN_CLIFF,
     SPWN_SNAKE,
+    SPWN_DESERT_REED,
 } from '../../data/Spawnables';
 import { spawn } from '../../data/Spawner';
-import { randomInt } from '../../utils/rand';
+import { randomInt, randomWeightedBool } from '../../utils/rand';
 import { TILE_TYPE_FLOOR, TILE_TYPE_WALL } from '../TileData';
 import TileThemePopulator from './TileThemePopulator';
 
@@ -31,13 +32,17 @@ export default class DesertTheme extends TileThemePopulator {
     static populateRoom(room) {
         room.tiles.forEach((tile) => {
             this.populateTile(tile);
-        });
 
-        for (let i = 0; i < randomInt(1, 2); i++) {
-            this.trySpawn(room, (tile) => {
-                spawn(SPWN_SNAKE, tile.x, tile.y);
-            });
-        }
+            if (tile.isType(TILE_TYPE_FLOOR)) {
+                if (randomWeightedBool(.5)) {
+                    spawn(SPWN_DESERT_REED, tile.x, tile.y);
+                }
+
+                if (randomWeightedBool(.02)) {
+                    spawn(SPWN_SNAKE, tile.x, tile.y);
+                }
+            }
+        });
 
         for (let i = 0; i < randomInt(0, 1); i++) {
             if (Math.random() > 0.05) {

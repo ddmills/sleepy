@@ -1,0 +1,38 @@
+{
+    "name": "DesertReed",
+    "inherit": ["GameObject"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Desert Reed"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "δ",
+                "fg1": "#73864b",
+                "z": 1000
+            }
+        },
+        {
+            "type": "Explorable"
+        },
+        {
+            "type": "Shadowcaster",
+            "properties": {
+                "removeOnCompression": true
+            }
+        },
+        {
+            "type": "Combustible"
+        },
+        {
+            "type": "Compressable",
+            "properties": {
+                "compressedCh": "∞"
+            }
+        }
+    ]
+}

@@ -3,6 +3,12 @@
     "inherit": ["Being", "Wanderer"],
     "components": [
         {
+            "type": "Mass",
+            "properties": {
+                "value": 14
+            }
+        },
+        {
             "type": "Race",
             "properties": {
                 "key": "RACE_SNAKE"

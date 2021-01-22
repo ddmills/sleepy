@@ -11,6 +11,12 @@
             }
         },
         {
+            "type": "Mass",
+            "properties": {
+                "value": 70
+            }
+        },
+        {
             "type": "Inventory",
             "properties": {
                 "isOpenable": false

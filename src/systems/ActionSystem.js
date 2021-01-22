@@ -35,7 +35,7 @@ export default class ActionSystem extends System {
                 entity.fireEvent('energy-consumed', 100);
                 if (entity.isPlayer) {
                     this.game.screens.pushScreen(SCREEN_WAIT, {
-                        time: 250,
+                        time: 50,
                     });
                     return true;
                 }

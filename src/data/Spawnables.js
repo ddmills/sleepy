@@ -38,3 +38,4 @@ export const SPWN_WIZARD_CAP = 'SPWN_WIZARD_CAP';
 export const SPWN_HELM = 'SPWN_HELM';
 export const SPWN_SNAKE = 'SPWN_SNAKE';
 export const SPWN_BEAR = 'SPWN_BEAR';
+export const SPWN_DESERT_REED = 'SPWN_DESERT_REED';

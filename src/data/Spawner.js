@@ -60,6 +60,7 @@ const spawnables = {
     SPWN_PINE_TREE: PineTree.createSpawnable,
     SPWN_POOL_LIQUID: PoolLiquid.createSpawnable,
     SPWN_CLIFF: Cliff.createSpawnable,
+    SPWN_DESERT_REED: simplePrefab('DesertReed'),
 };
 
 export const spawn = (key, x, y, data = {}) => {

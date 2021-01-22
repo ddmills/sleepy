@@ -34,7 +34,7 @@ export default class DesertTheme extends TileThemePopulator {
             this.populateTile(tile);
 
             if (tile.isType(TILE_TYPE_FLOOR)) {
-                if (randomWeightedBool(.5)) {
+                if (randomWeightedBool(.05)) {
                     spawn(SPWN_DESERT_REED, tile.x, tile.y);
                 }
 

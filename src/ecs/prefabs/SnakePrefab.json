@@ -80,7 +80,7 @@
         {
             "type": "Eyes",
             "properties": {
-                "range": 10
+                "range": 4
             }
         }
     ]

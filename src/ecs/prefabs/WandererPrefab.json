@@ -1,5 +1,6 @@
 {
     "name": "Wanderer",
+    "inherit": ["Npc"],
     "components": [
         {
             "type": "Moniker",
@@ -9,9 +10,6 @@
         },
         {
             "type": "Wandering"
-        },
-        {
-            "type": "Brain"
         },
         {
             "type": "Logger"

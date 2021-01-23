@@ -1,0 +1,24 @@
+{
+    "name": "HealthShard",
+    "inherit": ["GameObject"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "health shard"
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "♦",
+                "fg1": "#da4545",
+                "fg2": "red",
+                "z": 3000
+            }
+        },
+        {
+            "type": "HealthShard"
+        }
+    ]
+}

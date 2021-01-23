@@ -15,6 +15,9 @@
             "type": "Level"
         },
         {
+            "type": "HealthShardDropper"
+        },
+        {
             "type": "Health"
         },
         {

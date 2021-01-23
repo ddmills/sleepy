@@ -1,0 +1,11 @@
+{
+    "name": "Npc",
+    "components": [
+        {
+            "type": "Brain"
+        },
+        {
+            "type": "Logger"
+        }
+    ]
+}

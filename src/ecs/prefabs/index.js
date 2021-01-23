@@ -1,6 +1,7 @@
 export * as GameObjectPrefab from './GameObjectPrefab.json';
 export * as CorpsePrefab from './CorpsePrefab.json';
 export * as VialPrefab from './VialPrefab.json';
+export * as Npc from './NpcPrefab.json';
 export * as BeingPrefab from './BeingPrefab.json';
 export * as HumanoidPrefab from './HumanoidPrefab.json';
 export * as HumanPrefab from './HumanPrefab.json';
@@ -46,3 +47,4 @@ export * as Snake from './SnakePrefab.json';
 export * as Bear from './BearPrefab.json';
 export * as Sand from './SandPrefab.json';
 export * as DesertReed from './DesertReedPrefab.json';
+export * as HealthShard from './HealthShardPrefab.json';

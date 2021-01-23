@@ -31,6 +31,7 @@ const spawnables = {
     SPWN_DIRT_PATH: simplePrefab('DirtPathway'),
     SPWN_CORPSE: simplePrefab('Corpse'),
     SPWN_GLASS_SHARD: simplePrefab('GlassShard'),
+    SPWN_HEALTH_SHARD: simplePrefab('HealthShard'),
     SPWN_AMULET: simplePrefab('Amulet'),
     SPWN_CLOTH_ARMOR: simplePrefab('ClothArmor'),
     SPWN_HEAVY_PLATE_ARMOR: simplePrefab('PlateArmor'),

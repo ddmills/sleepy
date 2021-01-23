@@ -53,3 +53,4 @@ export { Compressable } from './Compressable';
 export { Mass } from './Mass';
 export { HealthShard } from './HealthShard';
 export { HealthShardDropper } from './HealthShardDropper';
+export { HealthShardConsumer } from './HealthShardConsumer';

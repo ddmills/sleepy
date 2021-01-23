@@ -6,6 +6,10 @@ export class HealthShard extends Component {
         value: 1,
     };
 
+    get healValue() {
+        return this.value;
+    }
+
     onSpawned() {
         const name = this.entity.moniker.name;
 

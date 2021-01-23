@@ -106,7 +106,7 @@ export default class MainMenuScreen extends Screen {
         this.game.renderer.drawText(2, 12, `∙ Look [L]`);
         this.game.renderer.drawText(2, 13, `∙ Inventory [I]`);
         this.game.renderer.drawText(2, 14, `∙ Player Character [P]`);
-        this.game.renderer.drawText(2, 15, `∙ Equipment [Y]`);
+        this.game.renderer.drawText(2, 15, `∙ Equipment [O]`);
         this.game.renderer.drawText(2, 16, `∙ Abilities [T]`);
         this.game.renderer.drawText(2, 17, `∙ Confirm [ENTER]`);
         this.game.renderer.drawText(2, 18, `∙ Cancel [ESC]`);

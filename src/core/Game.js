@@ -27,6 +27,7 @@ import TrapSystem from '../systems/TrapSystem';
 import FireSystem from '../systems/FireSystem';
 import TemperatureSystem from '../systems/TemperatureSystem';
 import AbilitySystem from '../systems/AbilitySystem';
+import HealthShardSystem from '../systems/HealthShardSystem';
 import CompressionSystem from '../systems/CompressionSystem';
 import BitmaskManager from './BitmaskManager';
 
@@ -70,6 +71,7 @@ export default class Game {
         this.temperature = new TemperatureSystem(this);
         this.abilities = new AbilitySystem(this);
         this.compression = new CompressionSystem(this);
+        this.healthShardSystem = new HealthShardSystem(this);
     }
 
     start() {
@@ -85,6 +87,7 @@ export default class Game {
             const playerTurn = this.actionSystem.update(dt);
 
             this.compression.update(dt);
+            this.healthShardSystem.update(dt);
             this.liquidSystem.update(dt);
             this.trapSystem.update(dt);
             this.fireSystem.update(dt);

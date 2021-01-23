@@ -15,6 +15,9 @@
             }
         },
         {
+            "type": "HealthShardConsumer"
+        },
+        {
             "type": "Moniker",
             "properties": {
                 "name": "Player"

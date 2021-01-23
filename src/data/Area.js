@@ -1,7 +1,7 @@
 import { game } from '../core/Game';
 import { getGenerator } from '../level/generators/generators';
 
-export class Sector {
+export class Area {
     #x = 0;
     #y = 0;
     connectionsNorth = [];
@@ -21,20 +21,20 @@ export class Sector {
         return this.world.idx(this.x, this.y);
     }
 
-    get northSector() {
-        return this.world.getSectorByCoord(this.#x, this.#y - 1);
+    get northArea() {
+        return this.world.getAreaByCoord(this.#x, this.#y - 1);
     }
 
-    get southSector() {
-        return this.world.getSectorByCoord(this.#x, this.#y + 1);
+    get southArea() {
+        return this.world.getAreaByCoord(this.#x, this.#y + 1);
     }
 
-    get eastSector() {
-        return this.world.getSectorByCoord(this.#x + 1, this.#y);
+    get eastArea() {
+        return this.world.getAreaByCoord(this.#x + 1, this.#y);
     }
 
-    get westSector() {
-        return this.world.getSectorByCoord(this.#x - 1, this.#y);
+    get westArea() {
+        return this.world.getAreaByCoord(this.#x - 1, this.#y);
     }
 
     constructor(world, x, y) {
@@ -64,7 +64,7 @@ export class Sector {
 
         // east
         exits.push(
-            ...this.eastSector.connectionsWest.map((c) => ({
+            ...this.eastArea.connectionsWest.map((c) => ({
                 x: game.map.width - 1,
                 y: 12,
             }))
@@ -72,7 +72,7 @@ export class Sector {
 
         // south
         exits.push(
-            ...this.southSector.connectionsNorth.map((c) => ({
+            ...this.southArea.connectionsNorth.map((c) => ({
                 x: 12,
                 y: game.map.height - 1,
             }))
@@ -99,14 +99,14 @@ export class Sector {
     }
 
     static parseData(world, data, x, y) {
-        const sector = new Sector(world, x, y);
+        const area = new Area(world, x, y);
 
-        sector.connectionsNorth = data.connectionsNorth;
-        sector.connectionsWest = data.connectionsWest;
-        sector.generator = data.generator;
-        sector.music = data.music;
-        sector.temperature = data.temperature;
+        area.connectionsNorth = data.connectionsNorth;
+        area.connectionsWest = data.connectionsWest;
+        area.generator = data.generator;
+        area.music = data.music;
+        area.temperature = data.temperature;
 
-        return sector;
+        return area;
     }
 }

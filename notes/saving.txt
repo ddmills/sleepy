@@ -1,17 +1,17 @@
-Moving to another sector (AKA saving current sector)
+Moving to another area (AKA saving current area)
 
 - take `Player` entity out, serialize them
 - ? throw persuing enemies into Limbo (?) state
-    - limbo actors enter new sector when necessary (?)
-    - or always keep neighbor sectors loaded in memory (?)
+    - limbo actors enter new area when necessary (?)
+    - or always keep neighbor areas loaded in memory (?)
 - ? serialize all remaining entity data
     - ? perhaps add a 'DoNotSave' component for entities we don't care about?
 - serialize map positional data
 - serialize last-visited tick (?) - useful to repopulate if revisiting
 - pull save game from storage
-- update/add all given sector data to save file under key (idx based)
-- load(or generate) next sector
-- populate player entity into sector
+- update/add all given area data to save file under key (idx based)
+- load(or generate) next area
+- populate player entity into area
 - start game on adventure screen
 
 - teardown
@@ -20,7 +20,7 @@ Moving to another sector (AKA saving current sector)
     - MAP:
         - clear all positions
     - WORLD:
-        - delete all sector data
+        - delete all area data
     - ENGINE:
         - delete all entities
 
@@ -33,8 +33,8 @@ savefile = {
         position (?)
     },
     world: {
-        sectorId,
-        exploredSectors
+        areaId,
+        exploredAreas
     }
 }
 savefile-x-entities: []
@@ -47,7 +47,7 @@ savefile-x-positions: []
     - PLAYER:
         - deserialize player
     - WORLD:
-        - enter "load sector" screen
+        - enter "load area" screen
     - MAP:
         -
     - ENGINE:
@@ -64,9 +64,9 @@ savefile-x-positions: []
     - MAP:
         - save position data
     - WORLD
-        - save sector ID
-        - save 'explored' sectors
-        - extract all 'SectorConstrained' related data
+        - save area ID
+        - save 'explored' areas
+        - extract all 'AreaConstrained' related data
             - geotic (ability to serialize only given array of entities)
             - save into filename
 
@@ -74,15 +74,15 @@ savefile-x-positions: []
     - get filename
         - cleanup if exists
     - teardown
-    - create 'player' object and set sector = 0
+    - create 'player' object and set area = 0
     - setup(
         player,
         filename
     )
 
-- NEW SECTOR
+- NEW AREA
     - data = save()
-    - set next sectorId
+    - set next areaId
     - set entry point
     - setup(data)
 
@@ -93,12 +93,12 @@ savefile-x-positions: []
             - entityId
             - nested data
             - position
-            - sector ID
+            - area ID
         - destroy player entity (?)
     - MAP:
         - save position data
     - WORLD:
-        - save sector data
+        - save area data
 
 - LOAD
     - get filename

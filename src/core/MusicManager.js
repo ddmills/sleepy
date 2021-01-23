@@ -99,7 +99,7 @@ export default class MusicManager extends Manager {
         }
     }
 
-    onSectorLoaded(sector) {
-        this.play(sector.music);
+    onAreaLoaded(area) {
+        this.play(area.music);
     }
 }

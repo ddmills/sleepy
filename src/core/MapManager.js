@@ -5,8 +5,8 @@ import { IsInventoried, Position } from '../ecs/components';
 export default class MapManager extends Manager {
     #playerOutOfBounds = null;
     positions;
-    #width = 24;
-    #height = 24;
+    #width = 32;
+    #height = 32;
 
     get width() {
         return this.#width;
@@ -61,17 +61,17 @@ export default class MapManager extends Manager {
     getSaveGameData() {
         const data = this.positions.serialize();
 
-        this.game.state.saveSectorPositionData(this.game.world.sectorId, data);
+        this.game.state.saveAreaPositionData(this.game.world.areaId, data);
 
         return {
             playerPosition: this.game.player.position,
         };
     }
 
-    onSectorLoaded(sector) {
+    onAreaLoaded(area) {
         this.#playerOutOfBounds = false;
 
-        const data = this.game.state.loadSectorPositionData(sector.id);
+        const data = this.game.state.loadAreaPositionData(area.id);
 
         if (data) {
             this.positions.deserialize(data);
@@ -161,25 +161,25 @@ export default class MapManager extends Manager {
 
     onPlayerOutOfBounds(x, y) {
         if (y < 0) {
-            this.game.world.enterSector(this.game.world.sector.northSector, {
+            this.game.world.enterArea(this.game.world.area.northArea, {
                 x,
                 y: this.height - 1,
             });
         }
         if (y >= this.height) {
-            this.game.world.enterSector(this.game.world.sector.southSector, {
+            this.game.world.enterArea(this.game.world.area.southArea, {
                 x,
                 y: 0,
             });
         }
         if (x >= this.width) {
-            this.game.world.enterSector(this.game.world.sector.eastSector, {
+            this.game.world.enterArea(this.game.world.area.eastArea, {
                 x: 0,
                 y,
             });
         }
         if (x < 0) {
-            this.game.world.enterSector(this.game.world.sector.westSector, {
+            this.game.world.enterArea(this.game.world.area.westArea, {
                 x: this.width - 1,
                 y,
             });

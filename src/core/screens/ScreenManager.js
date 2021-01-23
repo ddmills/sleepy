@@ -5,7 +5,7 @@ import {
     SCREEN_INVENTORY,
     SCREEN_INTERACT_MODAL,
     SCREEN_CURSOR,
-    SCREEN_LOAD_SECTOR,
+    SCREEN_LOAD_AREA,
     SCREEN_EQUIPMENT,
     SCREEN_LIST_SELECT,
     SCREEN_CHARACTER,
@@ -21,7 +21,7 @@ import Manager from '../Manager';
 import InventoryScreen from './screens/InventoryScreen';
 import InteractModalScreen from './screens/InteractModalScreen';
 import CursorScreen from './screens/CursorScreen';
-import LoadSectorScreen from './screens/LoadSectorScreen';
+import LoadAreaScreen from './screens/LoadAreaScreen';
 import EquipmentScreen from './screens/EquipmentScreen';
 import ListSelectionScreen from './screens/ListSelectionScreen';
 import CharacterScreen from './screens/CharacterScreen';
@@ -43,7 +43,7 @@ export default class ScreenManager extends Manager {
             [SCREEN_INVENTORY]: new InventoryScreen(game),
             [SCREEN_INTERACT_MODAL]: new InteractModalScreen(game),
             [SCREEN_CURSOR]: new CursorScreen(game),
-            [SCREEN_LOAD_SECTOR]: new LoadSectorScreen(game),
+            [SCREEN_LOAD_AREA]: new LoadAreaScreen(game),
             [SCREEN_EQUIPMENT]: new EquipmentScreen(game),
             [SCREEN_LIST_SELECT]: new ListSelectionScreen(game),
             [SCREEN_CHARACTER]: new CharacterScreen(game),

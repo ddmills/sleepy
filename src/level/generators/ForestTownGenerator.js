@@ -14,7 +14,7 @@ import {
 } from '../themes/TileTheme';
 import { TILE_TYPE_WALL } from '../TileData';
 import { addBorder } from './GeneratorUtils';
-import SectorGenerator from './SectorGenerator';
+import AreaGenerator from './AreaGenerator';
 
 const isTopLeftCorner = (t, room) => t.x === room.left && t.y === room.top;
 const isBottomLeftCorner = (t, room) =>
@@ -24,7 +24,7 @@ const isBottomRightCorner = (t, room) =>
 const isTopRightCorner = (t, room) =>
     t.x === room.right - 1 && t.y === room.top;
 
-export class ForestTownGenerator extends SectorGenerator {
+export class ForestTownGenerator extends AreaGenerator {
     static generate(settings) {
         const tiles = ScatteredScheme.generate({
             width: settings.width,

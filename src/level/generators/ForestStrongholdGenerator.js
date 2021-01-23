@@ -3,9 +3,9 @@ import { DenseCastleScheme } from '../schemes/DenseCastleScheme';
 import { UniformScheme } from '../schemes/UniformScheme';
 import { TILE_THEME_CASTLE, TILE_THEME_FOREST } from '../themes/TileTheme';
 import TileContainer from '../TileContainer';
-import SectorGenerator from './SectorGenerator';
+import AreaGenerator from './AreaGenerator';
 
-export class ForestStrongholdGenerator extends SectorGenerator {
+export class ForestStrongholdGenerator extends AreaGenerator {
     static generate(settings) {
         const tiles = new TileContainer(settings.width, settings.height);
         const padding = 5;

@@ -1,8 +1,8 @@
-import { Sector } from './Sector';
+import { Area } from './Area';
 import data from './world.json';
 
 export default class WorldData {
-    #sectors = [];
+    #areas = [];
 
     get width() {
         return data.width;
@@ -24,13 +24,13 @@ export default class WorldData {
     }
 
     constructor() {
-        this.#sectors = [];
+        this.#areas = [];
 
         for (let x = 0; x < data.width; x++) {
             for (let y = 0; y < data.height; y++) {
-                const sector = Sector.parseData(this, data.sectors[y][x], x, y);
+                const area = Area.parseData(this, data.areas[y][x], x, y);
 
-                this.#sectors[sector.id] = sector;
+                this.#areas[area.id] = area;
             }
         }
     }
@@ -39,21 +39,21 @@ export default class WorldData {
         return x < 0 || y < 0 || x >= this.width || y >= this.height;
     }
 
-    getStartingSector() {
-        return this.getSector(0);
+    getStartingArea() {
+        return this.getArea(0);
     }
 
-    getSectorByCoord(x, y) {
-        return this.getSector(this.idx(x, y));
+    getAreaByCoord(x, y) {
+        return this.getArea(this.idx(x, y));
     }
 
-    getSector(idx) {
+    getArea(idx) {
         const { x, y } = this.coord(idx);
 
         if (this.isOutOfBounds(x, y)) {
-            return new Sector(this, x, y);
+            return new Area(this, x, y);
         }
 
-        return this.#sectors[idx];
+        return this.#areas[idx];
     }
 }

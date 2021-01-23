@@ -48,7 +48,6 @@ export class Weapon extends Component {
     }
 
     onTryUseMeleeOffhand(evt) {
-        console.log('TRY USE MELEE OFFHAND!');
         const weaponType = getWeaponType(this.weaponType);
 
         weaponType.offhandAttack(evt.data.interactor, evt.data.target, this);

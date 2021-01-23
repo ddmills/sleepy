@@ -1,19 +1,19 @@
 import WorldData from '../data/WorldData';
 import { IsPlayer } from '../ecs/components';
 import Manager from './Manager';
-import { SCREEN_LOAD_SECTOR } from './screens/ScreenType';
+import { SCREEN_LOAD_AREA } from './screens/ScreenType';
 
 export class WorldManager extends Manager {
     #data;
-    #sectorId;
+    #areaId;
     #entry;
 
-    get sectorId() {
-        return this.#sectorId;
+    get areaId() {
+        return this.#areaId;
     }
 
-    get sector() {
-        return this.#data.getSector(this.#sectorId);
+    get area() {
+        return this.#data.getArea(this.#areaId);
     }
 
     get entry() {
@@ -28,13 +28,13 @@ export class WorldManager extends Manager {
 
     getSetupData() {
         return {
-            sectorId: this.#data.getStartingSector().id,
-            exploredSectorIds: [],
+            areaId: this.#data.getStartingArea().id,
+            exploredAreaIds: [],
         };
     }
 
     getSaveGameData() {
-        // TODO only save sector data??
+        // TODO only save area data??
         const data = Array.from(this.game.ecs.entities.all).filter(
             (e) => !e.has(IsPlayer)
         );
@@ -42,44 +42,44 @@ export class WorldManager extends Manager {
 
         console.log('serialized map data', serialized);
 
-        this.game.state.saveSectorEntityData(this.sector.id, serialized);
+        this.game.state.saveAreaEntityData(this.area.id, serialized);
 
         return {
-            sectorId: this.sector.id,
-            exploredSectorIds: [],
+            areaId: this.area.id,
+            exploredAreaIds: [],
         };
     }
 
     setup(data) {
-        const sector = this.#data.getSector(data.sectorId);
+        const area = this.#data.getArea(data.areaId);
 
-        this.game.screens.setScreen(SCREEN_LOAD_SECTOR, {
-            nextSector: sector,
+        this.game.screens.setScreen(SCREEN_LOAD_AREA, {
+            nextArea: area,
             entry: data.position,
         });
     }
 
     teardown() {
-        // TODO: destroy all sector entities?
-        this.#sectorId = null;
+        // TODO: destroy all area entities?
+        this.#areaId = null;
     }
 
-    onSectorLoaded(sector, entry) {
-        this.#sectorId = sector.id;
+    onAreaLoaded(area, entry) {
+        this.#areaId = area.id;
 
-        const data = this.game.state.loadSectorEntityData(sector.id);
+        const data = this.game.state.loadAreaEntityData(area.id);
 
         if (data) {
             this.game.ecs.deserialize(data);
         } else {
-            sector.generate(this.game);
+            area.generate(this.game);
         }
     }
 
-    enterSector(sector, entry) {
-        this.game.screens.setScreen(SCREEN_LOAD_SECTOR, {
-            prevousSector: this.sector,
-            nextSector: sector,
+    enterArea(area, entry) {
+        this.game.screens.setScreen(SCREEN_LOAD_AREA, {
+            prevousArea: this.area,
+            nextArea: area,
             entry,
         });
     }

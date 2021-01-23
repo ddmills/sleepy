@@ -1,9 +1,9 @@
 import { digExits } from '../LevelConnections';
 import { SquareScheme } from '../schemes/SquareScheme';
 import { TILE_THEME_DESERT } from '../themes/TileTheme';
-import SectorGenerator from './SectorGenerator';
+import AreaGenerator from './AreaGenerator';
 
-export class DesertGenerator extends SectorGenerator {
+export class DesertGenerator extends AreaGenerator {
     static generate(settings) {
         const tiles = SquareScheme.generate({
             width: settings.width,

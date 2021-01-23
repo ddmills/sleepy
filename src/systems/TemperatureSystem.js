@@ -25,32 +25,32 @@ export default class TemperatureSystem extends System {
     }
 
     getAmbientTemperature() {
-        return this.game.world.sector.temperature.ambient;
+        return this.game.world.area.temperature.ambient;
     }
 
     getAmbientCapacity() {
-        return this.game.world.sector.temperature.capacity;
+        return this.game.world.area.temperature.capacity;
     }
 
     getSaveGameData() {
         const data = this.grid.serialize();
 
-        this.game.state.saveSectorTemperatureData(
-            this.game.world.sectorId,
+        this.game.state.saveAreaTemperatureData(
+            this.game.world.areaId,
             data
         );
     }
 
-    onSectorLoaded(sector) {
-        const data = this.game.state.loadSectorTemperatureData(sector.id);
+    onAreaLoaded(area) {
+        const data = this.game.state.loadAreaTemperatureData(area.id);
 
         if (data) {
             this.grid.deserialize(data);
         } else {
-            this.grid.defaultValueGenerator = () => sector.temperature.ambient;
+            this.grid.defaultValueGenerator = () => area.temperature.ambient;
             this.grid.previous.defaultValueGenerator = () =>
-                sector.temperature.ambient;
-            this.grid.setAll(sector.temperature.ambient);
+                area.temperature.ambient;
+            this.grid.setAll(area.temperature.ambient);
         }
     }
 

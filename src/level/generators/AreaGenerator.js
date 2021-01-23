@@ -1,7 +1,7 @@
 import { getThemePopulator } from '../themes/TileTheme';
 import TileContainer from '../TileContainer';
 
-export default class SectorGenerator {
+export default class AreaGenerator {
     static generate(settings) {
         return new TileContainer(settings.width, settings.height);
     }

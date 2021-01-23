@@ -12,7 +12,7 @@ built with geotic - https://github.com/ddmills/geotic
 - space
     - world
         - region (non-contingous)
-    - sector (each 'sector' belongs to a 'region')
+    - area (each 'area' belongs to a 'region')
         - theme (?)
         - "entrances" - defined by world NSEW (?)
             - defined by world map
@@ -73,16 +73,16 @@ built with geotic - https://github.com/ddmills/geotic
         - "Drink" should appear before "Drop"
     - "default" interaction (?)
     - map and camera
-    - sectors
-        - "world" must make note of data that is cross-sector
+    - areas
+        - "world" must make note of data that is cross-area
             - treasure map?
             - region puzzles
             - quests
         - serializing (saving) into chunk into 'game state' object
             - must be able to differentiate between chunk data and entity data (??)
-        - Sector Generator
+        - Area Generator
             - getRooms()
-            - flavor based on sector type
+            - flavor based on area type
 
 - interesting
     - chiro = hand

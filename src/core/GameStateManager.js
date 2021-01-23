@@ -89,46 +89,46 @@ export default class GameStateManager extends Manager {
         });
     }
 
-    saveSectorPositionData(sectorId, positionData) {
+    saveAreaPositionData(areaId, positionData) {
         localStorage.setItem(
-            `${this.filename}-${sectorId}-positions`,
+            `${this.filename}-${areaId}-positions`,
             JSON.stringify(positionData)
         );
     }
 
-    saveSectorTemperatureData(sectorId, temperatureData) {
+    saveAreaTemperatureData(areaId, temperatureData) {
         localStorage.setItem(
-            `${this.filename}-${sectorId}-temperatures`,
+            `${this.filename}-${areaId}-temperatures`,
             JSON.stringify(temperatureData)
         );
     }
 
-    saveSectorEntityData(sectorId, entityData) {
+    saveAreaEntityData(areaId, entityData) {
         localStorage.setItem(
-            `${this.filename}-${sectorId}-entities`,
+            `${this.filename}-${areaId}-entities`,
             JSON.stringify(entityData)
         );
     }
 
-    loadSectorEntityData(sectorId) {
+    loadAreaEntityData(areaId) {
         const json = localStorage.getItem(
-            `${this.filename}-${sectorId}-entities`
+            `${this.filename}-${areaId}-entities`
         );
 
         return json && JSON.parse(json);
     }
 
-    loadSectorPositionData(sectorId) {
+    loadAreaPositionData(areaId) {
         const json = localStorage.getItem(
-            `${this.filename}-${sectorId}-positions`
+            `${this.filename}-${areaId}-positions`
         );
 
         return json && JSON.parse(json);
     }
 
-    loadSectorTemperatureData(sectorId) {
+    loadAreaTemperatureData(areaId) {
         const json = localStorage.getItem(
-            `${this.filename}-${sectorId}-temperatures`
+            `${this.filename}-${areaId}-temperatures`
         );
 
         return json && JSON.parse(json);

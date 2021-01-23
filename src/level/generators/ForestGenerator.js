@@ -1,9 +1,9 @@
 import { digExits } from '../LevelConnections';
 import { UniformScheme } from '../schemes/UniformScheme';
 import { TILE_THEME_FOREST } from '../themes/TileTheme';
-import SectorGenerator from './SectorGenerator';
+import AreaGenerator from './AreaGenerator';
 
-export class ForestGenerator extends SectorGenerator {
+export class ForestGenerator extends AreaGenerator {
     static generate(settings) {
         const tiles = UniformScheme.generate({
             width: settings.width,

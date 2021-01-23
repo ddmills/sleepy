@@ -2,9 +2,9 @@ import { pickRandom } from '../../utils/rand';
 import { digExits } from '../LevelConnections';
 import { UniformScheme } from '../schemes/UniformScheme';
 import { TILE_THEME_CABIN, TILE_THEME_FOREST } from '../themes/TileTheme';
-import SectorGenerator from './SectorGenerator';
+import AreaGenerator from './AreaGenerator';
 
-export class ForestCabinsGenerator extends SectorGenerator {
+export class ForestCabinsGenerator extends AreaGenerator {
     static generate(settings) {
         const tiles = UniformScheme.generate({
             width: settings.width,

@@ -17,16 +17,6 @@
                 background-color: #1f1e1d;
                 color: #adb8bc;
                 overflow: hidden;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            canvas {
-                position: absolute;
-                background-color: #1f1e1d;
-                image-rendering: pixelated;
-                image-rendering: crisp-edges;
-                transform: scale(2);
             }
             .build {
                 color: #adb8bc33;
@@ -38,16 +28,33 @@
                 left: 16px;
                 bottom: 16px;
                 margin: 8;
+                z-index: 1;
             }
             .spritesheet {
                 display: none;
             }
+            .display-grid {
+                margin: 32px;
+                display: inline-flex;
+                flex-direction: column;
+                background-color: #283643;
+            }
+            .display-row {
+                display: flex;
+                flex-direction: row;
+            }
+            .display-cell {
+                width: 24px;
+                height: 24px;
+                margin: 1px;
+                background-color: #3f6489;
+            }
         </style>
     </head>
     <body>
-        <p class="fps">editor</p>
+        <div class="display-grid"></div>
         <a class="build" href="https://github.com/ddmills/sleepy">
             73fc785
         </a>
-    <script src="../editor.5846d6fa9121b5d13ff8.js"></script></body>
+    <script src="../editor.370142e1e0ee0506732c.js"></script></body>
 </html>

@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://sleepy/./editor/index.js"],"names":["console","log"],"mappings":"AAAAA,QAAQC,IAAI","file":"editor.5846d6fa9121b5d13ff8.js","sourcesContent":["console.log('hello from editor');\n"],"sourceRoot":""}

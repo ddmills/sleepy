@@ -57,13 +57,25 @@ module.exports = {
         ],
     },
 
-    entry: './src/index.js',
+    entry: {
+        app: './src/index.js',
+        editor: './editor/index.js',
+    },
 
     plugins: [
         new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
         new HtmlWebpackPlugin({
+            filename: 'index.html',
             title: 'sleepy crawler',
             template: 'index.html',
+            chunks: ['app'],
+            version: gitRevisionPlugin.commithash().slice(0, 7),
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'editor/index.html',
+            title: 'editor · sleepy crawler',
+            template: 'editor/index.html',
+            chunks: ['editor'],
             version: gitRevisionPlugin.commithash().slice(0, 7),
         }),
     ],

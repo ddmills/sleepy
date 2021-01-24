@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title><%= htmlWebpackPlugin.options.title %></title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <link rel="icon" href="<%=require("../resources/favicon.png").default%>">
+        <style>
+            html,
+            body {
+                height: 100%;
+            }
+            body {
+                margin: 0px;
+                background-color: #1f1e1d;
+                color: #adb8bc;
+                overflow: hidden;
+            }
+            .build {
+                color: #adb8bc33;
+                font-size: 12px;
+                font-family: Menlo, monospace;
+                text-decoration: none;
+                text-align: left;
+                position: absolute;
+                left: 16px;
+                bottom: 16px;
+                margin: 8;
+                z-index: 1;
+            }
+            .spritesheet {
+                display: none;
+            }
+            .display-grid {
+                margin: 32px;
+                display: inline-flex;
+                flex-direction: column;
+            }
+            .display-row {
+                display: flex;
+                flex-direction: row;
+            }
+            .display-cell {
+                width: 32px;
+                height: 32px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="display-grid"></div>
+        <a class="build" href="https://github.com/ddmills/sleepy">
+            <%= htmlWebpackPlugin.options.version %>
+        </a>
+    </body>
+</html>

@@ -1,4 +1,5 @@
 import Manager from './Manager';
+import { SCREEN_ADVENTURE } from './screens/ScreenType';
 
 export default class GameStateManager extends Manager {
     #isStarted = false;
@@ -37,24 +38,37 @@ export default class GameStateManager extends Manager {
     }
 
     newGame() {
-        this.#filename = prompt('Enter save name', 'test');
+        this.#filename = prompt('Enter save name', 'hello');
 
         if (!this.filename) {
             return;
         }
 
         this.deleteFile(this.filename);
-        this.initiateTeardown();
 
-        const data = {
-            filename: this.filename,
-            clock: this.game.clock.getSetupData(),
-            player: this.game.player.getSetupData(),
-            world: this.game.world.getSetupData(),
-            map: this.game.map.getSetupData(),
-        };
 
-        this.initiateSetup(data);
+        // spawn player
+        const player = this.game.player.spawn();
+        console.log(player.position);
+        player.position.setPos(2, 2);
+
+        this.game.screens.setScreen(SCREEN_ADVENTURE);
+
+        // set screen to adventure
+
+
+        // const playerData = this.game.player.getSetupData();
+        // this.initiateTeardown();
+
+        // const data = {
+        //     filename: this.filename,
+        //     clock: this.game.clock.getSetupData(),
+        //     player: this.game.player.getSetupData(),
+        //     world: this.game.world.getSetupData(),
+        //     map: this.game.map.getSetupData(),
+        // };
+
+        // this.initiateSetup(data);
     }
 
     saveGame() {
@@ -87,6 +101,21 @@ export default class GameStateManager extends Manager {
                 localStorage.removeItem(file);
             }
         });
+    }
+
+    saveChunkPositionData(chunkId, data) {
+        localStorage.setItem(
+            `${this.filename}-${chunkId}-chunk-positions`,
+            JSON.stringify(data)
+        );
+    };
+
+    loadChunkPositionData(chunkId) {
+        const json = localStorage.getItem(
+            `${this.filename}-${chunkId}-chunk-positions`
+        );
+
+        return json && JSON.parse(json);
     }
 
     saveAreaPositionData(areaId, positionData) {

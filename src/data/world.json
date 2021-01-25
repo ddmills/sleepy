@@ -1,19 +1,23 @@
 {
-    "width": 7,
-    "height": 1,
+    "width": 6,
+    "height": 6,
     "areas": [
         [
             {
-                "music": "FOREST_VILLAGE",
+                "music": "FOREST",
                 "temperature": {
                     "ambient": 18,
                     "capacity": 0.16
                 },
-                "connectionsNorth": [],
-                "connectionsWest": [],
                 "generator": {
-                    "type": "FOREST_TOWN"
-                }
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
             },
             {
                 "music": "FOREST",
@@ -38,7 +42,7 @@
                     "capacity": 0.16
                 },
                 "generator": {
-                    "type": "CANYON"
+                    "type": "DESERT"
                 },
                 "connectionsNorth": [],
                 "connectionsWest": [
@@ -54,7 +58,7 @@
                     "capacity": 0.16
                 },
                 "generator": {
-                    "type": "CANYON"
+                    "type": "DESERT"
                 },
                 "connectionsNorth": [],
                 "connectionsWest": [
@@ -70,7 +74,7 @@
                     "capacity": 0.16
                 },
                 "generator": {
-                    "type": "FOREST"
+                    "type": "DESERT"
                 },
                 "connectionsNorth": [],
                 "connectionsWest": [
@@ -86,7 +90,25 @@
                     "capacity": 0.16
                 },
                 "generator": {
-                    "type": "FOREST_CABINS"
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            }
+        ],
+        [
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
                 },
                 "connectionsNorth": [],
                 "connectionsWest": [
@@ -102,7 +124,463 @@
                     "capacity": 0.16
                 },
                 "generator": {
-                    "type": "FOREST_STRONGHOLD"
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            }
+        ],
+        [
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            }
+        ],
+        [
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            }
+        ],
+        [
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            }
+        ],
+        [
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
+                },
+                "connectionsNorth": [],
+                "connectionsWest": [
+                    {
+                        "type": "path"
+                    }
+                ]
+            },
+            {
+                "music": "FOREST",
+                "temperature": {
+                    "ambient": 18,
+                    "capacity": 0.16
+                },
+                "generator": {
+                    "type": "DESERT"
                 },
                 "connectionsNorth": [],
                 "connectionsWest": [

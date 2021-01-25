@@ -1,12 +1,17 @@
 import { Component } from 'geotic';
+import { game } from '../../core/Game';
 
 export class Position extends Component {
+    static properties = {
+        chunkId: 0,
+    };
+
     getPos() {
-        return window.game.map.getPosition(this.entity.id);
+        return game.map.getPosition(this.entity.id, this.chunkId);
     }
 
     setPos(x, y) {
-        return window.game.map.setPosition(x, y, this.entity.id);
+        return game.map.setPosition(x, y, this.entity.id, this.chunkId);
     }
 
     equals(x, y) {

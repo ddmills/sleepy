@@ -7,16 +7,16 @@ export default class AreaGenerator {
     }
 
     static populate(settings, tiles) {
-        tiles.rooms.forEach((room) => {
-            const theme = getThemePopulator(room.theme);
+        // tiles.rooms.forEach((room) => {
+        //     const theme = getThemePopulator(room.theme);
 
-            theme.populateRoom(room);
-        });
+        //     theme.populateRoom(room);
+        // });
 
-        tiles.getUnassignedTiles().forEach((tile) => {
-            const theme = getThemePopulator(tile.theme);
+        // tiles.getUnassignedTiles().forEach((tile) => {
+        //     const theme = getThemePopulator(tile.theme);
 
-            theme.populateTile(tile);
-        });
+        //     theme.populateTile(tile);
+        // });
     }
 }

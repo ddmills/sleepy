@@ -21,6 +21,14 @@ export default class PlayerManager extends Manager {
         return this.entity.position.getPos();
     }
 
+    spawn() {
+        const entity = this.game.ecs.createPrefab('Player');
+
+        this.#entityId = entity.id;
+
+        return this.entity;
+    }
+
     getSetupData() {
         // TODO
         // player.fireEvent('query-owned-entities', { ids });

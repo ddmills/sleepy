@@ -92,6 +92,8 @@ export default class TemperatureSystem extends System {
     }
 
     update(dt) {
+        return;
+
         if (!this.game.clock.tickDelta) {
             return;
         }

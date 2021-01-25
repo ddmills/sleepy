@@ -30,6 +30,7 @@ import AbilitySystem from '../systems/AbilitySystem';
 import HealthShardSystem from '../systems/HealthShardSystem';
 import CompressionSystem from '../systems/CompressionSystem';
 import BitmaskManager from './BitmaskManager';
+import ChunkManager from './ChunkManager';
 
 export default class Game {
     #lastUpdate;
@@ -46,6 +47,7 @@ export default class Game {
         this.renderer = new Renderer(this);
         this.state = new GameStateManager(this);
         this.world = new WorldManager(this);
+        this.chunks = new ChunkManager(this);
         this.map = new MapManager(this);
         this.camera = new CameraManager(this);
         this.factions = new FactionManager(this);

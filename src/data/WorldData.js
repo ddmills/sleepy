@@ -40,7 +40,7 @@ export default class WorldData {
     }
 
     getStartingArea() {
-        return this.getArea(0);
+        return this.getArea(15);
     }
 
     getAreaByCoord(x, y) {

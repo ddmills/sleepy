@@ -15,5 +15,6 @@ const mapping = {
 };
 
 export const getGenerator = (name) => {
-    return mapping[name];
+    return DesertGenerator;
+    // return mapping[name];
 };

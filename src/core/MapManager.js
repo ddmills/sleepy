@@ -5,34 +5,34 @@ import { IsInventoried, Position } from '../ecs/components';
 export default class MapManager extends Manager {
     #playerOutOfBounds = null;
     positions;
-    #width = 32;
-    #height = 32;
+    #width = 64;
+    #height = 64;
 
     get width() {
-        return this.#width;
+        return this.game.chunks.chunkCountX * this.game.chunks.chunkWidth;
     }
 
     get height() {
-        return this.#height;
+        return this.game.chunks.chunkCountY * this.game.chunks.chunkHeight;
     }
 
     constructor(game) {
         super(game);
 
-        this.query = this.game.ecs.createQuery({
-            all: [Position],
-            none: [IsInventoried],
-        });
+        // this.query = this.game.ecs.createQuery({
+        //     all: [Position],
+        //     none: [IsInventoried],
+        // });
 
-        this.positions = new FastMap(this.width, this.height);
+        // this.positions = new FastMap(this.width, this.height);
 
-        this.query.onEntityAdded((e) => {
-            this.positions.set(0, 0, e.id);
-        });
+        // this.query.onEntityAdded((e) => {
+        //     this.positions.set(0, 0, e.id);
+        // });
 
-        this.query.onEntityRemoved((e) => {
-            this.positions.remove(e.id);
-        });
+        // this.query.onEntityRemoved((e) => {
+        //     this.positions.remove(e.id);
+        // });
     }
 
     getSetupData() {
@@ -41,7 +41,7 @@ export default class MapManager extends Manager {
 
     teardown() {
         this.#playerOutOfBounds = false;
-        this.positions.clear();
+        // this.positions.clear();
     }
 
     setup(data) {
@@ -59,9 +59,9 @@ export default class MapManager extends Manager {
     }
 
     getSaveGameData() {
-        const data = this.positions.serialize();
+        // const data = this.positions.serialize();
 
-        this.game.state.saveAreaPositionData(this.game.world.areaId, data);
+        // this.game.state.saveAreaPositionData(this.game.world.areaId, data);
 
         return {
             playerPosition: this.game.player.position,
@@ -69,29 +69,21 @@ export default class MapManager extends Manager {
     }
 
     onAreaLoaded(area) {
-        this.#playerOutOfBounds = false;
+        // this.#playerOutOfBounds = false;
 
-        const data = this.game.state.loadAreaPositionData(area.id);
+        // const data = this.game.state.loadAreaPositionData(area.id);
 
-        if (data) {
-            this.positions.deserialize(data);
-        }
+        // if (data) {
+        //     this.positions.deserialize(data);
+        // }
     }
 
-    getPosition(entityId) {
-        return this.positions.getPosition(entityId);
+    getPosition(entityId, chunkId) {
+        return this.game.chunks.getPosition(entityId, chunkId);
     }
 
-    setPosition(x, y, entityId) {
-        if (this.positions.isOutOfBounds(x, y)) {
-            if (this.game.player.id === entityId) {
-                this.#playerOutOfBounds = { x, y };
-            }
-
-            return;
-        }
-
-        this.positions.set(x, y, entityId);
+    setPosition(x, y, entityId, chunkId) {
+        this.game.chunks.setPosition(x, y, entityId, chunkId);
 
         if (entityId === this.game.player.id) {
             this.game.camera.setFocus(x, y);
@@ -99,15 +91,16 @@ export default class MapManager extends Manager {
     }
 
     getEntitiesAt(x, y, includeGround = false) {
-        return this.positions.get(x, y).reduce((entities, id) => {
-            const e = this.game.ecs.getEntity(id);
+        return this.game.chunks.getEntitiesAt(x, y, includeGround);
+        // return this.positions.get(x, y).reduce((entities, id) => {
+        //     const e = this.game.ecs.getEntity(id);
 
-            if (!e.isInventoried && (includeGround ? true : !e.ground)) {
-                entities.push(e);
-            }
+        //     if (!e.isInventoried && (includeGround ? true : !e.ground)) {
+        //         entities.push(e);
+        //     }
 
-            return entities;
-        }, []);
+        //     return entities;
+        // }, []);
     }
 
     isAdjacent(x1, y1, x2, y2) {
@@ -187,11 +180,11 @@ export default class MapManager extends Manager {
     }
 
     update(dt) {
-        if (this.#playerOutOfBounds) {
-            this.onPlayerOutOfBounds(
-                this.#playerOutOfBounds.x,
-                this.#playerOutOfBounds.y
-            );
-        }
+        // if (this.#playerOutOfBounds) {
+        //     this.onPlayerOutOfBounds(
+        //         this.#playerOutOfBounds.x,
+        //         this.#playerOutOfBounds.y
+        //     );
+        // }
     }
 }

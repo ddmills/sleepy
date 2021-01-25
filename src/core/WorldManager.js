@@ -51,12 +51,12 @@ export class WorldManager extends Manager {
     }
 
     setup(data) {
-        const area = this.#data.getArea(data.areaId);
+        // const area = this.#data.getArea(data.areaId);
 
-        this.game.screens.setScreen(SCREEN_LOAD_AREA, {
-            nextArea: area,
-            entry: data.position,
-        });
+        // this.game.screens.setScreen(SCREEN_LOAD_AREA, {
+        //     nextArea: area,
+        //     entry: data.position,
+        // });
     }
 
     teardown() {

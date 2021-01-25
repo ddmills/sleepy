@@ -213,6 +213,12 @@ export default class UISystem extends System {
             );
         }
 
+        const world = this.game.player.position;
+        const chunk = this.game.chunks.chunkCoordinate(world.x, world.y);
+
+        this.game.renderer.drawText(this.game.camera.width - 8, 1, `world (${world.x}, ${world.y})`);
+        this.game.renderer.drawText(this.game.camera.width - 8, 2, `chunk (${chunk.x}, ${chunk.y})`);
+
         this.renderNearbyCreatures();
     }
 }

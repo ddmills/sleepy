@@ -64,6 +64,19 @@ const spawnables = {
     SPWN_DESERT_REED: simplePrefab('DesertReed'),
 };
 
+export const spawnForChunk = (key, x, y, data = {}, chunk) => {
+    const entity = spawnables[key](data, x, y);
+
+    if (!isNaN(x) && !isNaN(y) && entity.position) {
+        entity.position.chunkId = chunk.id;
+        chunk.setPosition(x, y, entity.id);
+    }
+
+    entity.fireEvent('spawned');
+
+    return entity;
+}
+
 export const spawn = (key, x, y, data = {}) => {
     const entity = spawnables[key](data, x, y);
 

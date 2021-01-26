@@ -36,6 +36,10 @@ export default class FastMap {
         };
     }
 
+    getValues() {
+        return Array.from(this._idHash.keys());
+    }
+
     clear() {
         this._idHash.clear();
 

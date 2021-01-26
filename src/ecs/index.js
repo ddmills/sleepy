@@ -6,6 +6,7 @@ import Manager from '../core/Manager';
 
 export default class ECS extends Manager {
     #engine;
+    #id = 1;
 
     get engine() {
         return this.#engine;
@@ -14,6 +15,7 @@ export default class ECS extends Manager {
     constructor(game) {
         super(game);
         this.#engine = new Engine();
+        this.#engine.idGenerator = () => `e${this.#id++}`;
 
         Object.values(components).forEach((component) => {
             this.#engine.registerComponent(component);

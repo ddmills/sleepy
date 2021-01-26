@@ -1,9 +1,32 @@
 import { game } from '../core/Game';
+import { generateChunk } from '../level/ChunkGenerator';
 import FastMap from '../utils/FastMap';
-import { SPWN_GROUND_GRASS_DEAD } from './Spawnables';
-import { spawnForChunk } from './Spawner';
 
 export default class Chunk {
+    get worldX() {
+        return this.width * this.x;
+    }
+
+    get worldY() {
+        return this.height * this.y;
+    }
+
+    get left() {
+        return this.width * this.x;
+    }
+
+    get right() {
+        return this.width * this.x + this.width;
+    }
+
+    get top() {
+        return this.height * this.y;
+    }
+
+    get bottom() {
+        return this.height * this.y + this.height;
+    }
+
     constructor(id, x, y, width, height) {
         this.id = id;
         this.x = x;
@@ -15,23 +38,50 @@ export default class Chunk {
     }
 
     load() {
+        if (this.isLoaded) {
+            console.log('chunk is already loaded.');
+            return;
+        }
+
         console.log(`load chunk ${this.id} (${this.x}, ${this.y})`);
 
         const saved = game.state.loadChunkPositionData(this.id);
 
         if (!saved) {
-            this.data = new FastMap(this.width, this.height);
+            generateChunk(this);
+        } else {
+            this.data.deserialize(saved);
 
-            for (let x = 0; x < this.width; x++) {
-                for (let y = 0; y < this.width; y++) {
-                    spawnForChunk(SPWN_GROUND_GRASS_DEAD, x, y, {}, this);
-                }
-            }
+            const entityData = game.state.loadChunkEntityData(this.id);
+
+            game.ecs.deserialize(entityData);
         }
 
         this.isLoaded = true;
+    }
 
-        return saved;
+    unload() {
+        if (!this.isLoaded) {
+            console.log('chunk is already un-loaded.');
+            return;
+        }
+
+        console.log(`unload chunk ${this.id} (${this.x}, ${this.y})`);
+
+        const entityIds = this.data.getValues();
+
+        const entities = entityIds.map((id) => {
+            return game.ecs.getEntity(id);
+        });
+
+        const serialized = game.ecs.serialize(entities);
+
+        game.state.saveChunkPositionData(this.id, this.data.serialize());
+        game.state.saveChunkEntityData(this.id, serialized);
+
+        entities.forEach((e) => e.destroy());
+
+        this.isLoaded = false;
     }
 
     removeEntity(entityId) {

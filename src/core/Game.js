@@ -98,6 +98,7 @@ export default class Game {
             this.abilities.update(dt);
             this.deathSystem.update(dt);
             this.destroySystem.update(dt);
+            this.chunks.update(dt);
 
             if (playerTurn) {
                 this.updatePlayerSystems(dt);

@@ -3,11 +3,11 @@ import Grid from '../utils/Grid';
 import Manager from './Manager';
 
 export default class ChunkManager extends Manager {
-    chunkWidth = 16;
-    chunkHeight = 16;
+    chunkWidth = 8;
+    chunkHeight = 8;
 
-    chunkCountX = 32;
-    chunkCountY = 32;
+    chunkCountX = 16;
+    chunkCountY = 16;
 
     chunkX = 2;
     chunkY = 2;
@@ -56,6 +56,10 @@ export default class ChunkManager extends Manager {
         const local = this.localCoordinate(x, y);
         const chunk = this.getChunk(chunkPos.x, chunkPos.y);
 
+        if (!chunk) {
+            return;
+        }
+
         if (chunkId !== chunk.id) {
             const oldChunkCoord = this.chunks.coord(chunkId);
             const old = this.getChunk(oldChunkCoord.x, oldChunkCoord.y);
@@ -79,6 +83,10 @@ export default class ChunkManager extends Manager {
         const local = this.localCoordinate(x, y);
         const chunk = this.getChunk(chunkPos.x, chunkPos.y);
 
+        if (!chunk) {
+            return [];
+        }
+
         return chunk.getEntitiesAt(local.x, local.y, includeGround);
     }
 
@@ -89,24 +97,28 @@ export default class ChunkManager extends Manager {
     getChunk(chunkX, chunkY) {
         const chunk = this.chunks.get(chunkX, chunkY);
 
-        if (!chunk.isLoaded) {
+        if (chunk && !chunk.isLoaded) {
             chunk.load();
         }
 
         return chunk;
     }
 
-    getVisibleChunks() {
-        return [
-            getChunk(this.chunkX - 1, this.chunkY - 1),
-            getChunk(this.chunkX, this.chunkY - 1),
-            getChunk(this.chunkX + 1, this.chunkY - 1),
-            getChunk(this.chunkX - 1, this.chunkY),
-            getChunk(this.chunkX, this.chunkY),
-            getChunk(this.chunkX + 1, this.chunkY),
-            getChunk(this.chunkX - 1, this.chunkY + 1),
-            getChunk(this.chunkX, this.chunkY + 1),
-            getChunk(this.chunkX + 1, this.chunkY + 1),
-        ];
+    update(dt) {
+        const loaded = this.chunks.data.filter((c) => c.isLoaded);
+
+
+        loaded.forEach((chunk) => {
+            const c1 = game.camera.left < chunk.right;
+            const c2 = game.camera.right > chunk.left;
+            const c3 = game.camera.top < chunk.bottom;
+            const c4 = game.camera.bottom > chunk.top;
+
+            const intersects = c1 && c2 && c3 && c4;
+
+            if (!intersects) {
+                chunk.unload();
+            }
+        });
     }
 }

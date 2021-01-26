@@ -25,6 +25,22 @@ export default class CameraManager extends Manager {
         return this.zoom * this.game.renderer.tileHeight;
     }
 
+    get left() {
+        return this.topLeftWorldX;
+    }
+
+    get right() {
+        return this.topLeftWorldX + this.width;
+    }
+
+    get top() {
+        return this.topLeftWorldY;
+    }
+
+    get bottom() {
+        return this.topLeftWorldY + this.height;
+    }
+
     computeSize() {
         this.width = Math.max(
             this.clampX,

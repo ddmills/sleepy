@@ -1,6 +1,9 @@
 import Manager from './Manager';
 import { SCREEN_ADVENTURE } from './screens/ScreenType';
 
+const stringify = JSON.stringify;
+const parse = JSON.parse;
+
 export default class GameStateManager extends Manager {
     #isStarted = false;
     #filename = 'test';
@@ -88,7 +91,7 @@ export default class GameStateManager extends Manager {
 
         console.log('save data', data);
 
-        localStorage.setItem(this.filename, JSON.stringify(data));
+        localStorage.setItem(this.filename, stringify(data));
 
         return data;
     }
@@ -105,37 +108,52 @@ export default class GameStateManager extends Manager {
 
     saveChunkPositionData(chunkId, data) {
         localStorage.setItem(
-            `${this.filename}-${chunkId}-chunk-positions`,
-            JSON.stringify(data)
+            `${this.filename}-chunk-${chunkId}-positions`,
+            stringify(data)
         );
     };
 
     loadChunkPositionData(chunkId) {
         const json = localStorage.getItem(
-            `${this.filename}-${chunkId}-chunk-positions`
+            `${this.filename}-chunk-${chunkId}-positions`
         );
 
-        return json && JSON.parse(json);
+        return json && parse(json);
+    }
+
+    saveChunkEntityData(chunkId, entityData) {
+        localStorage.setItem(
+            `${this.filename}-chunk-${chunkId}-entities`,
+            stringify(entityData)
+        );
+    }
+
+    loadChunkEntityData(chunkId) {
+        const json = localStorage.getItem(
+            `${this.filename}-chunk-${chunkId}-entities`
+        );
+
+        return json && parse(json);
     }
 
     saveAreaPositionData(areaId, positionData) {
         localStorage.setItem(
             `${this.filename}-${areaId}-positions`,
-            JSON.stringify(positionData)
+            stringify(positionData)
         );
     }
 
     saveAreaTemperatureData(areaId, temperatureData) {
         localStorage.setItem(
             `${this.filename}-${areaId}-temperatures`,
-            JSON.stringify(temperatureData)
+            stringify(temperatureData)
         );
     }
 
     saveAreaEntityData(areaId, entityData) {
         localStorage.setItem(
             `${this.filename}-${areaId}-entities`,
-            JSON.stringify(entityData)
+            stringify(entityData)
         );
     }
 
@@ -144,7 +162,7 @@ export default class GameStateManager extends Manager {
             `${this.filename}-${areaId}-entities`
         );
 
-        return json && JSON.parse(json);
+        return json && parse(json);
     }
 
     loadAreaPositionData(areaId) {
@@ -152,7 +170,7 @@ export default class GameStateManager extends Manager {
             `${this.filename}-${areaId}-positions`
         );
 
-        return json && JSON.parse(json);
+        return json && parse(json);
     }
 
     loadAreaTemperatureData(areaId) {
@@ -160,13 +178,13 @@ export default class GameStateManager extends Manager {
             `${this.filename}-${areaId}-temperatures`
         );
 
-        return json && JSON.parse(json);
+        return json && parse(json);
     }
 
     loadSavefileData(filename) {
         const json = localStorage.getItem(filename);
 
-        return json && JSON.parse(json);
+        return json && parse(json);
     }
 
     loadGame() {

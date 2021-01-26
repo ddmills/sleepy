@@ -49,11 +49,9 @@ export default class GameStateManager extends Manager {
 
         this.deleteFile(this.filename);
 
-
         // spawn player
         const player = this.game.player.spawn();
-        console.log(player.position);
-        player.position.setPos(2, 2);
+        player.position.setPos(8, 8);
 
         this.game.screens.setScreen(SCREEN_ADVENTURE);
 

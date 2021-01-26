@@ -3,14 +3,11 @@ import Grid from '../utils/Grid';
 import Manager from './Manager';
 
 export default class ChunkManager extends Manager {
-    chunkWidth = 8;
-    chunkHeight = 8;
+    chunkWidth = 16;
+    chunkHeight = 16;
 
     chunkCountX = 16;
     chunkCountY = 16;
-
-    chunkX = 2;
-    chunkY = 2;
 
     constructor(game) {
         super(game);
@@ -105,10 +102,11 @@ export default class ChunkManager extends Manager {
     }
 
     update(dt) {
-        const loaded = this.chunks.data.filter((c) => c.isLoaded);
+        this.chunks.data.forEach((chunk) => {
+            if (!chunk.isLoaded) {
+                return;
+            }
 
-
-        loaded.forEach((chunk) => {
             const c1 = game.camera.left < chunk.right;
             const c2 = game.camera.right > chunk.left;
             const c3 = game.camera.top < chunk.bottom;

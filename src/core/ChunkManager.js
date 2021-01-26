@@ -38,13 +38,12 @@ export default class ChunkManager extends Manager {
     }
 
     getPosition(entityId, chunkId) {
-        const chunkCoord = this.chunks.coord(chunkId);
-        const chunk = this.getChunk(chunkCoord.x, chunkCoord.y);
+        const chunk = this.getChunkById(chunkId);
         const local = chunk.getPosition(entityId);
 
         return {
-            x: local.x + chunkCoord.x * this.chunkWidth,
-            y: local.y + chunkCoord.y * this.chunkHeight,
+            x: local.x + chunk.x * this.chunkWidth,
+            y: local.y + chunk.y * this.chunkHeight,
         };
     }
 
@@ -58,8 +57,7 @@ export default class ChunkManager extends Manager {
         }
 
         if (chunkId !== chunk.id) {
-            const oldChunkCoord = this.chunks.coord(chunkId);
-            const old = this.getChunk(oldChunkCoord.x, oldChunkCoord.y);
+            const old = this.getChunkById(chunkId);
 
             old.removeEntity(entityId);
         }
@@ -69,6 +67,13 @@ export default class ChunkManager extends Manager {
         entity.position.chunkId = chunk.id;
 
         chunk.setPosition(local.x, local.y, entityId);
+    }
+
+    removeEntity(entityId, chunkId) {
+        console.log('remove entity', entityId, chunkId);
+        const chunk = this.getChunkById(chunkId);
+
+        chunk.removeEntity(entityId);
     }
 
     getEntitiesAt(x, y, includeGround = false) {
@@ -89,6 +94,12 @@ export default class ChunkManager extends Manager {
 
     getSetupData() {
         return {};
+    }
+
+    getChunkById(chunkId) {
+        const coord = this.chunks.coord(chunkId);
+
+        return this.getChunk(coord.x, coord.y);
     }
 
     getChunk(chunkX, chunkY) {

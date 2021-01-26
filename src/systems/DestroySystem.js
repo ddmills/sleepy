@@ -15,6 +15,13 @@ export default class DestroySystem extends System {
     update(dt) {
         this.#query.get().forEach((entity) => {
             if (entity.isDestroying.pass > 0) {
+
+                if (entity.position) {
+                    const chunkId = entity.position.chunkId;
+
+                    this.game.chunks.removeEntity(entity.id, chunkId);
+                }
+
                 entity.destroy();
             } else {
                 entity.isDestroying.pass++;

@@ -3,11 +3,11 @@ import Grid from '../utils/Grid';
 import Manager from './Manager';
 
 export default class ChunkManager extends Manager {
-    chunkWidth = 16;
-    chunkHeight = 16;
+    chunkWidth = 32;
+    chunkHeight = 32;
 
-    chunkCountX = 16;
-    chunkCountY = 16;
+    chunkCountX = 8;
+    chunkCountY = 8;
 
     constructor(game) {
         super(game);

@@ -64,8 +64,8 @@ export default class FactionManager extends Manager {
     }
 
     getEntityRelation(entityA, entityB) {
-        const memberA = entityA.get(FactionMember);
-        const memberB = entityB.get(FactionMember);
+        const memberA = entityA.factionMember;
+        const memberB = entityB.factionMember;
 
         if (memberA && memberB) {
             const factionA = memberA.faction;

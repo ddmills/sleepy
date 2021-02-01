@@ -2,6 +2,7 @@ import { Component } from 'geotic';
 import { game } from '../../core/Game';
 import { EQ_SLOT_BODY } from '../../data/EquipmentSlotType';
 import { getWeaponType } from '../../data/WeaponTypes';
+import { getEntityRef, setEntityRef } from '../../utils/ecs-refs';
 import { IsEquipped } from './IsEquipped';
 
 export class EquipmentSlot extends Component {
@@ -11,10 +12,18 @@ export class EquipmentSlot extends Component {
         name: 'Body',
         key: 'body',
         slotType: EQ_SLOT_BODY,
-        content: '<Entity>',
+        contentId: 0,
         isPrimary: false,
         defaultWpnType: null,
     };
+
+    get content() {
+        return getEntityRef(this, 'contentId');
+    }
+
+    set content(value) {
+        setEntityRef(this, 'contentId', value);
+    }
 
     get isEmpty() {
         return !this.content;

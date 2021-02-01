@@ -1,14 +1,19 @@
 import { Component } from 'geotic';
 import { game } from '../../core/Game';
 import { SCREEN_INVENTORY } from '../../core/screens/ScreenType';
+import { getEntityArrayRef } from '../../utils/ecs-refs';
 import { IsInventoried } from './IsInventoried';
 import { Stackable } from './Stackable';
 
 export class Inventory extends Component {
     static properties = {
-        content: '<EntityArray>',
+        contentIds: [],
         isOpenable: true,
     };
+
+    get content() {
+        return getEntityArrayRef(this, 'contentIds');
+    }
 
     onDestroyed() {
         this.content.forEach((entity) => entity.destroy());
@@ -42,14 +47,14 @@ export class Inventory extends Component {
         }
 
         loot.add(IsInventoried, {
-            owner: this.entity,
+            ownerId: this.entity.id,
         });
 
-        this.content.push(loot);
+        this.contentIds.push(loot.id);
     }
 
     hasLoot(loot) {
-        const idx = this.content.indexOf(loot);
+        const idx = this.contentIds.indexOf(loot.id);
 
         return idx >= 0;
     }
@@ -63,10 +68,10 @@ export class Inventory extends Component {
             return this.removeLoot(loot);
         }
 
-        const idx = this.content.indexOf(loot);
+        const idx = this.contentIds.indexOf(loot.id);
 
         if (idx >= 0) {
-            this.content.splice(idx, 1);
+            this.contentIds.splice(idx, 1);
             loot.isInventoried.destroy();
         }
 

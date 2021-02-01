@@ -3,8 +3,16 @@ import { Stackable } from './Stackable';
 
 export class IsInventoried extends Component {
     static properties = {
-        owner: '<Entity>',
+        ownerId: 0,
     };
+
+    get owner() {
+        return getEntityRef(this, 'ownerId');
+    }
+
+    set owner(value) {
+        setEntityRef(this, 'ownerId', value);
+    }
 
     isOwnedBy(entity) {
         return this.owner && this.owner.id === entity.id;

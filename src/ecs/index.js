@@ -8,10 +8,6 @@ export default class ECS extends Manager {
     #engine;
     #id = 1;
 
-    get engine() {
-        return this.#engine;
-    }
-
     constructor(game) {
         super(game);
         this.#engine = new Engine();
@@ -24,6 +20,8 @@ export default class ECS extends Manager {
         Object.values(prefabs).forEach((prefab) => {
             this.#engine.registerPrefab(prefab);
         });
+
+        this.world = this.#engine.createWorld();
     }
 
     teardown() {
@@ -39,10 +37,10 @@ export default class ECS extends Manager {
     cloneEntity(entity) {
         const data = entity.serialize();
 
-        data.id = this.engine.generateId();
+        data.id = this.world.createId();
 
-        this.engine.deserialize(data);
+        this.world.deserialize(data);
 
-        return this.engine.getEntity(data.id);
+        return this.world.getEntity(data.id);
     }
 }

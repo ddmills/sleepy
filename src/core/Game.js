@@ -36,7 +36,7 @@ export default class Game {
     #lastUpdate;
 
     get ecs() {
-        return this.engine.engine;
+        return this.engine.world;
     }
 
     constructor() {

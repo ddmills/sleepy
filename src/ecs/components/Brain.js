@@ -3,8 +3,12 @@ import { INVALID, FAILURE } from '../../ai/GoalActionResult';
 
 export class Brain extends Component {
     static properties = {
-        goals: '<EntityArray>',
+        goalIds: [],
     };
+
+    get goals() {
+        return getEntityArrayRef(this, 'goalIds');
+    }
 
     onDestroyed() {
         this.goals.forEach((entity) => {
@@ -33,7 +37,13 @@ export class Brain extends Component {
     removeGoal(goal) {
         const goalsToDestroy = [];
 
-        this.goals = this.goals.filter((g) => {
+        this.goalIds = this.goalIds.filter((goalId) => {
+            const goal = this.world.getEntity(goalId);
+
+            if (!goal) {
+                return false;
+            }
+
             const isSelf = Boolean(g.id === goal.entity.id);
             const isSiblingGoal = Boolean(
                 g.goal.originalIntent &&
@@ -58,11 +68,14 @@ export class Brain extends Component {
 
         goal.parent = this.entity;
 
-        return this.goals.push(goal.entity);
+        return this.goalIds.push(goal.entity.id);
     }
 
     popGoal() {
-        return this.goals.pop().goal;
+        const goal = this.goals.pop().goal;
+        this.goalIds.pop();
+
+        return goal;
     }
 
     peekGoal() {

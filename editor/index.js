@@ -1,8 +1,7 @@
-import { EditorMap } from './EditorMap';
 import { renderEditorMap } from './EditorRenderer';
 import { generateWorld } from './EditorWorldGenerator';
 
-const data = generateWorld(32, 24);
+const data = generateWorld(64, 48);
 
 window.data = data;
 

@@ -3,7 +3,8 @@ const colorMap = {
     AREA_TYPE_CANYON: '#804c36',
     AREA_TYPE_DESERT: '#b3904d',
     AREA_TYPE_FOREST: '#3c5837',
-    AREA_TYPE_WATER: '#005784'
+    AREA_TYPE_WATER: '#326475',
+    AREA_TYPE_DEEP_WATER: '#235465'
 };
 
 export const renderEditorMap = (data) => {

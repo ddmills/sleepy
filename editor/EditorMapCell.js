@@ -1,4 +1,4 @@
-import { AREA_TYPE_CANYON, AREA_TYPE_DESERT, AREA_TYPE_FOREST, AREA_TYPE_PLAINS, AREA_TYPE_WATER } from './AreaType';
+import { AREA_TYPE_CANYON, AREA_TYPE_DESERT, AREA_TYPE_FOREST, AREA_TYPE_PLAINS, AREA_TYPE_WATER, AREA_TYPE_DEEP_WATER } from './AreaType';
 
 export class EditorMapCell {
     get height() {
@@ -40,12 +40,6 @@ export class EditorMapCell {
             }
         }
 
-        // if (this.height > .2) {
-        //     if (this.map.getPlains(this.x, this.y)) {
-        //         return AREA_TYPE_PLAINS;
-        //     }
-        // }
-
         if (this.height > .25) {
             if (this.height > .3) {
                 return AREA_TYPE_PLAINS;
@@ -56,7 +50,11 @@ export class EditorMapCell {
             return AREA_TYPE_DESERT;
         }
 
-        return AREA_TYPE_WATER;
+        if (this.height > .22) {
+            return AREA_TYPE_WATER;
+        }
+
+        return AREA_TYPE_DEEP_WATER;
     }
 
     serialize() {

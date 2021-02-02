@@ -1,7 +1,10 @@
 import { renderEditorMap } from './EditorRenderer';
 import { generateWorld } from './EditorWorldGenerator';
 
-const data = generateWorld(64, 48);
+const urlParams = new URLSearchParams(window.location.search);
+const seed = urlParams.get('seed') || Math.random();
+
+const data = generateWorld(128, 96, seed);
 
 window.data = data;
 

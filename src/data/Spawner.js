@@ -47,6 +47,8 @@ const spawnables = {
     SPWN_GROUND_GRASS_DEAD: DeadGrass.createSpawnable,
     SPWN_GROUND_SAND: Sand.createSpawnable,
     SPWN_GROUND_STONE: simplePrefab('StoneGround'),
+    SPWN_GROUND_WATER: simplePrefab('WaterGround'),
+    SPWN_GROUND_WATER_DEEP: simplePrefab('DeepWaterGround'),
     SPWN_CLOTH_HOOD: simplePrefab('ClothHood'),
     SPWN_WIZARD_CAP: simplePrefab('WizardCap'),
     SPWN_HELM: simplePrefab('Helm'),

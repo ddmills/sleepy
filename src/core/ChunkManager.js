@@ -6,8 +6,8 @@ export default class ChunkManager extends Manager {
     chunkWidth = 8;
     chunkHeight = 8;
 
-    chunkCountX = 16;
-    chunkCountY = 16;
+    chunkCountX = 128;
+    chunkCountY = 96;
 
     constructor(game) {
         super(game);

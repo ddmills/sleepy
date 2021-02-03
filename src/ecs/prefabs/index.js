@@ -33,6 +33,8 @@ export * as HatchetPrefab from './HatchetPrefab.json';
 export * as MacePrefab from './MacePrefab.json';
 export * as GrassPrefab from './GrassPrefab.json';
 export * as StoneGroundPrefab from './StoneGroundPrefab.json';
+export * as WaterGroundPrefab from './WaterGroundPrefab.json';
+export * as DeepWaterGroundPrefab from './DeepWaterGroundPrefab.json';
 export * as PlateArmorPrefab from './PlateArmorPrefab.json';
 export * as LeatherArmorPrefab from './LeatherArmorPrefab.json';
 export * as ClothHoodPrefab from './ClothHoodPrefab.json';

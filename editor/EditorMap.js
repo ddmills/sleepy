@@ -1,5 +1,6 @@
 import SimplexNoise from 'simplex-noise';
 import Grid from '../src/utils/Grid'
+import { AREA_TYPE_CANYON, AREA_TYPE_DEEP_WATER, AREA_TYPE_DESERT, AREA_TYPE_FOREST, AREA_TYPE_PLAINS, AREA_TYPE_WATER } from './AreaType';
 import { EditorMapCell } from './EditorMapCell';
 
 export class EditorMap {
@@ -23,6 +24,38 @@ export class EditorMap {
 
     nz(x, y) {
         return this._simplex.noise2D(x, y);
+    }
+
+    getType(x, y) {
+        const height = this.getHeight(x, y);
+
+        if (height > .4) {
+            if (this.getCanyons(x, y)) {
+                return AREA_TYPE_CANYON;
+            }
+        }
+
+        if (height > .3) {
+            if (this.getForest(x, y)) {
+                return AREA_TYPE_FOREST;
+            }
+        }
+
+        if (height > .25) {
+            if (height > .3) {
+                return AREA_TYPE_PLAINS;
+            }
+            if (this.getPlains(x, y)) {
+                return AREA_TYPE_PLAINS;
+            }
+            return AREA_TYPE_DESERT;
+        }
+
+        if (height > .22) {
+            return AREA_TYPE_WATER;
+        }
+
+        return AREA_TYPE_DEEP_WATER;
     }
 
     getForest(x, y) {

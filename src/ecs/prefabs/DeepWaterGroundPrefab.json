@@ -1,0 +1,26 @@
+{
+    "name": "DeepWaterGround",
+    "inherit": ["GameObject"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Deep water",
+                "z": 100
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "≈",
+                "fg1": "#235465"
+            }
+        },
+        {
+            "type": "Explorable"
+        },
+        {
+            "type": "Ground"
+        }
+    ]
+}

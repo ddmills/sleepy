@@ -51,7 +51,7 @@ export default class GameStateManager extends Manager {
 
         // spawn player
         const player = this.game.player.spawn();
-        player.position.setPos(8, 8);
+        player.position.setPos(33 * 8, 33 * 8);
 
         this.game.screens.setScreen(SCREEN_ADVENTURE);
 

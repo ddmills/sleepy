@@ -1,0 +1,26 @@
+{
+    "name": "WaterGround",
+    "inherit": ["GameObject"],
+    "components": [
+        {
+            "type": "Moniker",
+            "properties": {
+                "name": "Water",
+                "z": 100
+            }
+        },
+        {
+            "type": "Glyph",
+            "properties": {
+                "ch": "≈",
+                "fg1": "#326475"
+            }
+        },
+        {
+            "type": "Explorable"
+        },
+        {
+            "type": "Ground"
+        }
+    ]
+}
